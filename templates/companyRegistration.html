@@ -1,0 +1,836 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Registration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+    <!-- costom css -->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+</head>
+
+
+<body>
+    <div class="comp-reg">
+        <header>
+            <div class="top-nav">
+                <div class="call"><i class="fa fa-phone" aria-hidden="true"></i>+91- 958-483-9976</div>
+                <div class="call"><i class="fa fa-envelope-o" aria-hidden="true"> sales@cyberflax.com </i></div>
+                <div class="right">
+                    <i class="fa fa-facebook"></i>
+                    <i class="fa fa-comments"></i>
+                    <i class="fa fa-google-plus"></i>
+                    <i class="fa fa-linkedin"></i>
+                </div>
+            </div>
+            <div class="nav-bar">
+                <div class="logo col-lg-2 col-md-3 col-8">
+                    <a href="{% url 'index' %}"><img src="{% static 'images/logo.jpeg' %}" class="img-fluid" alt=""></a>
+                </div>
+                <nav>
+                    <ul class="">
+                        <li><a class="link" href="{% url 'index' %}">Home</a></li>
+                        <li><a class="link" href="{% url 'about' %}">About Us</a></li>
+                        <li class="sub-menu"><a class="link" href="#">services</a>
+                            <ul class="dopdown">
+                                <li><a href="./companyRegistration.html">company Registration</a></li>
+                                <li><a href="#">Corporate Services</a></li>
+                                <li> <a href="#">Audit</a></li>
+                                <li><a href="#">Corporate Finance</a></li>
+                                <li class="checking"><a class="checking3" href="#">Services for Non-Residents</a>
+
+                                    <ul class="dropdown-menu">
+                                        <table cellspacing="0" border="0" style="border-collapse:collapse;">
+                                            <tr>
+                                                <td><a href="#">CGST</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="#">IGST</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="#">UTGST</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="#">GST</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="#">GST</a></td>
+                                            </tr>
+                                        </table>
+                                    </ul>
+
+                                </li>
+
+                                <li class="checking"><a class="checking3" href="#">Accounting Services</a>
+
+                                    <ul class="dropdown-menu">
+                                        <table cellspacing="0" border="0" style="border-collapse:collapse;">
+                                            <tr>
+                                                <td><a href="#">CGST</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="#">IGST</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="#">UTGST</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="#">GST</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="#">GST</a></td>
+                                            </tr>
+                                        </table>
+                                    </ul>
+
+                                </li>
+                                <li class="checking"><a class="checking3" href="#">Business Process Outsourcing</a>
+
+                                    <ul class="dropdown-menu">
+                                        <table cellspacing="0" border="0" style="border-collapse:collapse;">
+                                            <tr>
+                                                <td><a href="#">CGST</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="#">IGST</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="#">UTGST</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="#">GST</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="#">GST</a></td>
+                                            </tr>
+                                        </table>
+                                    </ul>
+
+                                </li>
+                                <li class="checking"><a class="checking3" href="#">Income Tax</a>
+
+                                    <ul class="dropdown-menu">
+                                        <table cellspacing="0" border="0" style="border-collapse:collapse;">
+                                            <tr>
+                                                <td><a href="#">CGST</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="#">IGST</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="#">UTGST</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="#">GST</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="#">GST</a></td>
+                                            </tr>
+                                        </table>
+                                    </ul>
+
+                                </li>
+                                <li><a href="#">GST</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="./blog.html">blog</a></li>
+                        <li><a href="./newsfeed.html">newsfeed</a></li>
+                        <div class="attr-nav">
+                            <ul class="  navbar-right  right-si">
+                                <li>
+                                    <a href="./login.html" style="float: left;">Expert Log In /</a>
+                                    <a href="./signup.html" style="float: left;"> Sign Up </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="bottom-nav container">
+                            <div class="call"><i class="fa fa-phone" aria-hidden="true"></i><br>+91- 958-483-9976</div>
+                            <div class="call"><i class="fa fa-envelope-o" aria-hidden="true"> </i><br> sales@cyberflax.com </div>
+                            <br>
+                            <div style="font-size: 26px;border-top: 0.3px solid rgba(255, 255, 255, .2);">
+                                <i class="fa fa-facebook"></i>
+                                <i class="fa fa-comments"></i>
+                                <i class="fa fa-google-plus"></i>
+                                <i class="fa fa-linkedin"></i>
+                            </div>
+                        </div>
+                        </li>
+
+                    </ul>
+                </nav>
+                <div class="toggle-menu"><i class="fa fa-bars"></i></div>
+            </div>
+        </header>
+        <div class="clearfix"></div>
+        <div class="caon">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7 col-sm-6">
+                        <h1>Online Company Registration</h1>
+                        <br>
+                        <p class="cmp"> Now is the best time to register your company in India! <span> <br><strong class="m101"> We
+                  have already registered 10K companies in India!</strong> </span></p>
+                        <br>
+                        <ul class="sgt lnk">
+                            <li>
+                                <a href="#" target="_blank" title="Online Private Limited Company Registration"> <img src="{% static 'images/checked.png' %}" alt="company registration process" title="Company Registration">Private Limited Company</a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank" title="ONE PERSON COMPANY REGISTRATION PROCEDURE"><img src="{% static 'images/checked.png' %}" alt="Company Registration - firm registration " title="company registration process">One Person Company </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank" title="Limited Liability Partnership Registration"><img src="{% static 'images/checked.png' %}" alt="company registration process" title="Online company registration in india ">Limited Liability Partnership </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank" title="Partnership Firm Registration Certificate"><img src="{% static 'images/checked.png' %}" alt="New Company Registration" title=" online company registration in India">Partnership Firm </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank" title="new company registration"><img src="{% static 'images/checked.png' %}" alt="company incorporation" title="New Company Registration">Proprietorship Firm </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank" title="MSME SSI Online Registration"><img src="{% static 'images/checked.png' %}" alt="online firm registration process in india" title="Start a Company">MSME Registration
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-5 col-sm-6">
+                        <form class="regform11" id="register_form">
+                            <div class="tab-content" style="margin-top:16px;">
+                                <div class="tab-pane active" id="personal_details">
+                                    <div class="panel panel-default">
+                                        <div class="free">For <span class="free2">Expert</span> Consultancy</div>
+                                        <div class="panel-heading">Submit Query</div>
+                                        <div class="panel-body">
+                                            <!-- Fieldsets -->
+                                            <fieldset id="first">
+                                                <div>
+                                                    <input class="form-control" name="name" placeholder="Name" type="text" id="name">
+                                                    <span id="error_name" class="text-danger"></span>
+                                                    <input type="hidden" name="title" value="">
+                                                </div>
+                                                <input class="form-control" name="email" placeholder="Email Address*" type="email" id="email">
+                                                <span id="error_email" class="text-danger"></span>
+                                                <div>
+                                                    <input class="form-control" name="phone" maxlength="10" placeholder="Mobile Number*" id="phone" type="text">
+                                                    <span id="error_phone" class="text-danger"></span>
+                                                </div>
+                                                <div>
+                                                    <input class="form-control" name="city" id="city" placeholder="Enter City*" type="text">
+
+                                                </div>
+                                                <div>
+                                                    <span id="error_city" class="text-danger"></span>
+                                                </div>
+                                                <div>
+                                                    <select class="form-control" name="service" id="service" required>
+                            <option value="">--Select Services*--</option>
+                            <option value="Private Limited">Private Limited</option>
+                            <option value="Limited Liability Company">Limited Liability
+                              Company</option>
+                            <option value="One Person Company">One Person Company</option>
+                            <option value="Public Limited company">Public Limited company
+                            </option>
+                          </select>
+                                                    <span id="error_service" class="text-danger"></span>
+                                                </div>
+                                                <br>
+                                                <br>
+                                                <p class="you">You are just 10 seconds away to complete the form !</p>
+                                                <button type="button" name="btn_personal_details" style="
+                                          margin-bottom: 0px;" id="btn_personal_details" class="btn btn-info btn-lg">Next</button>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="contact_details">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading"></div>
+                                        <div class="panel-body">
+                                            <fieldset>
+                                                <div>
+                                                    <label for="state2">In which state do you want company
+                            Incorporation?*</label>
+                                                    <div>
+                                                        <span id="error_state2" class="text-danger"></span>
+                                                    </div>
+                                                    <select class="form-control" name="state2" id="state2">
+                            <option value="">--Select State--</option>
+                            <option value="Andaman and Nicobar Islands">Andaman and Nicobar
+                              Islands</option>
+                            <option value="Andhra Pradesh">Andhra Pradesh</option>
+                            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                            <option value="Assam">Assam</option>
+                            <option value="Bihar">Bihar</option>
+                            <option value="Chandigarh">Chandigarh</option>
+                            <option value="Chhattisgarh">Chhattisgarh</option>
+                            <option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli
+                            </option>
+                            <option value="Daman and Diu">Daman and Diu</option>
+                            <option value="Delhi">Delhi</option>
+                            <option value="Goa">Goa</option>
+                            <option value="Gujarat">Gujarat</option>
+                            <option value="Haryana">Haryana</option>
+                            <option value="Himachal Pradesh">Himachal Pradesh</option>
+                            <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                            <option value="Jharkhand">Jharkhand</option>
+                            <option value="Karnataka">Karnataka</option>
+                            <option value="Kenmore">Kenmore</option>
+                            <option value="Kerala">Kerala</option>
+                            <option value="Lakshadweep">Lakshadweep</option>
+                            <option value="Madhya Pradesh">Madhya Pradesh</option>
+                            <option value="Maharashtra">Maharashtra</option>
+                            <option value="Manipur">Manipur</option>
+                            <option value="Meghalaya">Meghalaya</option>
+                            <option value="Mizoram">Mizoram</option>
+                            <option value="Nagaland">Nagaland</option>
+                            <option value="Narora">Narora</option>
+                            <option value="Natwar">Natwar</option>
+                            <option value="Odisha">Odisha</option>
+                            <option value="Paschim Medinipur">Paschim Medinipur</option>
+                            <option value="Pondicherry">Pondicherry</option>
+                            <option value="Punjab">Punjab</option>
+                            <option value="Rajasthan">Rajasthan</option>
+                            <option value="Sikkim">Sikkim</option>
+                            <option value="Tamil Nadu">Tamil Nadu</option>
+                            <option value="Telangana">Telangana</option>
+                            <option value="Tripura">Tripura</option>
+                            <option value="Uttar Pradesh">Uttar Pradesh</option>
+                            <option value="Uttarakhand">Uttarakhand</option>
+                            <option value="Vaishali">Vaishali</option>
+                            <option value="West Bengal">West Bengal</option>
+                          </select>
+                                                </div>
+                                                <div>
+                                                    <label for="ba">What will be the nature of Business
+                            Activities?*</label>
+                                                    <div>
+                                                        <span id="error_ba" class="text-danger"></span>
+                                                    </div>
+                                                    <textarea placeholder="Business Activities" class="form-control" name="ba" id="ba"></textarea>
+                                                </div>
+                                                <div>
+                                                    <label for="week">When do you plan to start registration
+                            process?*</label>
+                                                    <span id="error_week" class="text-danger"></span>
+                                                    <br>
+                                                    <span class="chk"><input class="radio" name="week" id="week" type="radio"
+                              value="Within this week" checked> Within this
+                            week</span>
+                                                    <p class="chk"><input class="radio" name="week" id="week" type="radio" value="Next month"> Next month</p>
+                                                    <p class="chk"><input class="radio" name="week" id="week" type="radio" value="Dont know"> Don’t know </p>
+                                                </div>
+                                                <br>
+                                                <br>
+                                                <!-- CAPTCHA -->
+                                                <div class="g-recaptcha" id="cap" data-sitekey="6LeTkicUAAAAAGCGn6MnsPhpccAGPgaR6gb8PPhi"></div>
+                                                <br>
+                                                <span id="error_cap" class="text-danger"></span>
+                                                <br><br>
+                                                <button type="button" name="previous_btn_contact_details" id="previous_btn_contact_details" class="btn btn-default btn-lg">Previous</button>
+                                                <button type="button" name="btn_contact_details" id="btn_contact_details" class="btn btn-success btn-lg">Submit</button>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            </section>
+        </div>
+
+        <div class="para-content">
+            <div class="container">
+                <h2>Company Registration – Startup Registration</h2>
+                <p>The first &amp; foremost requirement of <strong>start-up registration</strong> is to choose the favorable business structure and also to <strong>register a company name in India</strong>. The choice of right business structure will impact
+                    many factors from your business name, to your liability towards business, to how you file your taxes &amp; statutory dues. The operational and financial success of the company also depends on the business structure, accordingly<strong> online company registration in India
+            process</strong> can be followed.</p>
+                <h2>How Do We Help With New Company Registration</h2>
+                <p>We, <strong> </strong> is providing the <a title="tax consultant in India" href="#" target="_blank" rel="noopener" class="inbuild-links"><strong>online CA
+              directory</strong></a> for start-up registration or say <strong>online company registration
+            in
+            India</strong> through professional like CA&rsquo;s, CS&rsquo;s and Lawyers as a ONE-STOP solution for all pre &amp; post incorporation compliances &amp; licensing requirements. The <strong>company
+            registration
+            process</strong> is cumbersome which involves legal obligation &amp; can be compiled properly with the help of experienced professionals. Promisingly, we are providing options of the <strong>best company
+            Registration Consultants in India</strong> who can help you in the <strong>online firm
+            registration
+            process in India</strong>, <strong>Company Incorporation</strong>, <strong>start-up
+            registration</strong>, <a title="new company registration" href="#" target="_blank" rel="noopener" class="inbuild-links"><strong>proprietorship firm registration</strong></a>, online company registration in India, etc.</p>
+                <h2>Online Company Registration in India</h2>
+                <p><strong> Cyber Flax</strong> has developed the digital platform i.e. online service marketplace which serves as the online directory where one can find the professional according to their requirements &amp; budget for the online company
+                    registration in India and also for <strong>start-up registration</strong>. Cyber Flax provides you the option to answer your questions like <strong> company registration
+            process</strong>? Or
+                    <strong> how to do startup registration</strong>? Or how to avail the services like<strong>
+            company
+            Incorporation in India</strong>?</p>
+                <h2>Startup Registration/Firm Registration</h2>
+                <p>startups which is also one of the significant reason behind the increasing number of <strong><a
+              title="ONLINE STARTUP INDIA REGISTRATION: HOW TO REGISTER FOR THE SCHEME?" href="#" target="_blank"
+              rel="noopener">online
+              startup registration in India</a></strong>. We, Cyber Flax is providing the online directory where you can search the <a class="inbuild-links" title="Online Top Chartered Accountants In India" href="#" target="_blank" rel="noopener"><strong>chartered
+              accountant</strong></a>, company secretaries, tax consultants, business consultants, etc to cater to the needs of <strong><a title="Proprietorship registration in India " href="#" target="_blank"
+              rel="noopener"><strong>proprietorship firm registration</strong></a>, startup registration.
+                    </strong>
+                    The verified profiles of the professionals registered on our digital platform are ready to serve you &amp; answer all your queries related to startup registration, online company registration in India and also
+                    <strong>firm registration in India?</strong>
+                </p>
+                <p>The cost of <strong>company incorporation</strong> depends on two factors like which type of company you are getting registered. <strong>Start a Company</strong> &amp; <strong>get online company incorporation
+            in
+            India</strong> with experts of Cyber Flax with competitive <strong>Company Registration Services
+            &amp;
+            fees</strong>, who can also help you in the<strong> firm registration</strong> &amp;
+                    <strong>startup
+            registration </strong>or<strong> online company registration in India.</strong>
+                </p>
+            </div>
+        </div>
+
+        <p class="mrg7"></p>
+        <section class="cmp1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h2>Documents Required for Company Registration</h2>
+                        <ul>
+                            <li><img src="{% static 'images/checked1.png' %}" alt="online company registration in India" title="New Company Registration">Copy of PAN Card of directors</li>
+                            <li><img src="{% static 'images/checked1.png' %}" alt="New Company Registration" title="how to register a company in india">Passport size photograph of directors
+                            </li>
+                            <li><img src="{% static 'images/checked1.png' %}" alt="Documents Required for Company Incorporation
+   " title="Online company registration in india
+   "><a title="Online Aadhaar Card" href="#" target="_blank" rel="noopener"><strong>Aadhaar
+                    Card</strong></a>/ Voter identity card of directors</li>
+                            <li><img src="{% static 'images/checked1.png' %}" alt="online company incorporation in India" title="Company Registration India">Copy of Rent agreement (If rented property)</li>
+                            <li><img src="{% static 'images/checked1.png' %}" alt="online company registration in India" title="Company Registration Online">Electricity/ Water bill (Business Place)</li>
+                            <li><img src="{% static 'images/checked1.png' %}" alt="Company Incorporation" title="company registration process">Copy of Property papers(If owned property)</li>
+                            <li><img src="{% static 'images/checked1.png' %}" alt="Company Incorporation Services & fees" title="register company name in india">Landlord NOC (Format will be provided)</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6">
+                        <img src="{% static 'images/pvtltd.png' %}" class="mb-lg-0 mb-4" style="width: 100%; height:auto;" alt="">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+
+
+        <section class="required">
+            <div class="mx-lg-5 mx-3">
+                <h2> Requirements for Start Up Incorporation</h2>
+                <div class="card1">
+                    <div class="card-body">
+                        <h6 class="card-price"><a href="#" title="One Person Company Incorporation" target="_blank"> One
+                Person Company</a></h6>
+                        <ul class="cards">
+                            <li><i class="fa fa-hand-o-right"></i> 1 Shareholders</li>
+                            <li><i class="fa fa-hand-o-right"></i> 1 Directors</li>
+                            <li><i class="fa fa-hand-o-right"></i> 1 Nominee</li>
+                            <li><i class="fa fa-hand-o-right"></i> DIN </li>
+                            <li><i class="fa fa-hand-o-right"></i> DSC</li>
+                            <li><i class="fa fa-hand-o-right"></i> Minimum Authorised Share Capital 1 Lakh</li>
+                        </ul>
+                        <a href="#" title=" How to register One Person Company?" target="_blank" class="bt-1">Read
+              More...</a>
+                    </div>
+                </div>
+                <!-- Plus Tier -->
+                <div class="card1">
+                    <div class="card-body">
+                        <h6 class="card-price"> <a href="#" title="Private Limited Company Incorporation" target="_blank">Private
+                Limited Company</a> </h6>
+                        <ul class="cards">
+                            <li><i class="fa fa-hand-o-right"></i> 2 Shareholders</li>
+                            <li><i class="fa fa-hand-o-right"></i> 2 Directors</li>
+                            <li><i class="fa fa-hand-o-right"></i> DIN </li>
+                            <li><i class="fa fa-hand-o-right"></i> DSC</li>
+                            <li><i class="fa fa-hand-o-right"></i> Minimum Authorised Share Capital 1 Lakh</li>
+                        </ul>
+                        <a href="#" title="ONLINE PRIVATE LIMITED COMPANY Incorporation IN INDIA" target="_blank" class="bt-1">Read
+              More...</a>
+                    </div>
+                </div>
+                <div class="card1">
+                    <div class="card-body">
+                        <h6 class="card-price"> <a href="#" title="Limited Liability Partnership at the best Price" target="_blank">
+                Limited Liability
+                Partnership</a></h6>
+                        <ul class="cards">
+                            <li><i class="fa fa-hand-o-right"></i> 2 Designated Partners</li>
+                            <li><i class="fa fa-hand-o-right"></i> DIN </li>
+                            <li><i class="fa fa-hand-o-right"></i> DSC</li>
+                            <li><i class="fa fa-hand-o-right"></i> Capital Contribution 10000/-</li>
+                        </ul>
+                        <a href="#" class="bt-1" title="LLP Incorporation Fees, Limited Liability Partnership Incorporation in India" target="_blank">Read
+              More...</a>
+                    </div>
+                </div>
+                <div class="card1">
+                    <div class="card-body">
+                        <h6 class="card-price"><a href="#" title="Proprietorship at the best Price" target="_blank">Proprietorship</a></h6>
+                        <ul class="cards">
+                            <li><i class="fa fa-hand-o-right"></i> PAN</li>
+                            <li><i class="fa fa-hand-o-right"></i> Adhaar</li>
+                            <li><i class="fa fa-hand-o-right"></i> Bank Details</li>
+                            <li><i class="fa fa-hand-o-right"></i> Business Details</li>
+                            <li><i class="fa fa-hand-o-right"></i> Investment minimum 1 Lakh</li>
+                        </ul>
+                        <a href="#" title="Proprietorship Firm Incorporation Online in India " target="_blank" class="bt-1">Read
+              More...</a>
+                    </div>
+                </div>
+                <div class="card1">
+                    <div class="card-body">
+                        <h6 class="card-price"><a href="#" title="Partnership Firm at the best Price" target="_blank">
+                Partnership Firm </a></h6>
+                        <ul class="cards">
+                            <li><i class="fa fa-hand-o-right"></i> 2 Partners</li>
+                            <li><i class="fa fa-hand-o-right"></i> PAN of Partnership</li>
+                            <li><i class="fa fa-hand-o-right"></i> Capital Contribution 10000/-</li>
+                        </ul>
+                        <a href="#" title="partnership firm Incorporation certificate" class="bt-1">Read More...</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+        <section class="type white1">
+            <div class="container">
+                <h2>Company Registration Process</h2>
+                <ul>
+                    <li>
+                        <span>1</span>
+                        <h6>Name approval</h6>
+                        <p>The first step of incorporating the company is to decide about the name of your company which will be applied to MCA for approval. Names given for approval should ideally be unique and related to business activities of the company.
+                            <a class="wt6" title="Steps to Register a new Company | Ministry Of Corporate Affairs" href="http://www.mca.gov.in/MinistryV2/incorporation_company.html" target="_blank" rel="noopener">MCA&nbsp;</a></p>
+                    </li>
+                    <li>
+                        <span>2</span>
+                        <h6>Application of DSC & DPIN</h6>
+                        <p>The next step for<strong> startup registration</strong> is to <a title="Get your Digital Signature Online Certificate (DSC)" href="https://www.caonweb.com/digital-signature-certificate.html" target="_blank" rel="noopener" class="inbuild-links"><strong>apply for digital signature</strong></a>                            and DPIN. A digital signature is an online signature used for signing the e-forms and DPIN refer to Director's identification number issued by Registrar.</p>
+                    </li>
+                    <li>
+                        <span>3</span>
+                        <h6>MOA & AOA submission</h6>
+                        <p>Once the name is approved, Memorandum of association and Articles of Association needs to be prepared which includes the rules & by-laws of the company that regulates the operation of the business. Both MOA and AOA are filed with
+                            the MCA with the subscription statement for the authentication & approval.
+                        </p>
+                    </li>
+                    <li>
+                        <span>4</span>
+                        <h6>Prepare form & documents</h6>
+                        <p>Fill the application forms duly, attach the documents, get the same verified by professional then file the form to ROC then make the payment.</p>
+                    </li>
+                    <li>
+                        <span>5</span>
+                        <h6> Get incorporation certificate</h6>
+                        <p>Once all the documentation is done & form is filed with the department, registrar issues the incorporation certificate. The certificate of incorporation mentions significant information about the company such as CIN number, the
+                            name of the company, date of incorporation, etc.</p>
+                    </li>
+                    <li>
+                        <span>6</span>
+                        <h6>Apply for Bank account</h6>
+                        <p>After the receipt of incorporation certificate, you can submit the copy of Incorporation certificate, MOA, AOA and PAN along with the account opening form of the bank to open your bank account.
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+
+
+
+        <section class="bg-grey faq">
+            <div class="container">
+                <h2>Frequently Asked Questions</h2>
+                <div class="row">
+
+                    <div class="fifth">
+                        <h2 style="font-weight: 800;">
+                            Frequntly Asked Questions
+                        </h2>
+                        <div class="col-12 toggler p-0" id="toggler">
+                            <div class="row">
+                                <div class="col-lg-5 col-11 ">
+                                    How do I incorporate my business in Hong Kong?
+                                </div>
+                                <div class="col-lg-7 col-1" style="text-align: right;">
+                                    <i class="fa fa-plus"></i>
+                                </div>
+                            </div>
+                            <ul class="pt-2 pb-2">
+
+                                <p><strong> Follow the simple process for incorporation:</strong></p>
+                                <ul>
+                                    <li>Company name.</li>
+                                    <li>Registered address.</li>
+                                    <li>Brief description of business activities.</li>
+                                    <li>Particulars of shareholders, directors and company secretary.</li>
+                                    <li>Liability of members.</li>
+                                    <li>Share capital registered on incorporation.</li>
+                                    <li>Number of shares taken up by subscribers</li>
+                                </ul>
+                                <p>The complete and detailed process of incorporation in Vertical city is mentioned earlier in the article.</p>
+
+                            </ul>
+
+                        </div>
+                        <div class="col-12 toggler p-0" id="toggler">
+                            <div class="row">
+                                <div class="col-lg-5 col-11 ">
+                                    Can foreigners start a business in Hong Kong?
+                                </div>
+                                <div class="col-lg-7 col-1" style="text-align: right;">
+                                    <i class="fa fa-plus"></i>
+                                </div>
+                            </div>
+                            <ul class="pt-2 pb-2">
+                                <div class="panel-body">
+                                    <p>Yes, a foreigner can start a business in Hong Kong. Incorporation in Hong Kong is cost effective &amp; easy compliance laws are there which make it convenient to start their venture in Vertical city.</p>
+
+
+
+                                </div>
+                            </ul>
+
+                        </div>
+                        <div class="col-12 toggler p-0" id="toggler">
+                            <div class="row">
+                                <div class="col-lg-5 col-11 ">
+                                    Do I need a local partner for incorporation in Hong Kong?
+                                </div>
+                                <div class="col-lg-7 col-1" style="text-align: right;">
+                                    <i class="fa fa-plus"></i>
+                                </div>
+                            </div>
+                            <ul class="pt-2 pb-2">
+                                <p>No, Incorporation in Vertical city does not require a local shareholder/director.
+                                </p>
+                            </ul>
+
+                        </div>
+                        <div class="col-12 toggler p-0" id="toggler">
+                            <div class="row">
+                                <div class="col-lg-5 col-11 ">
+                                    What are the different types of business entities in Hong Kong?
+                                </div>
+                                <div class="col-lg-7 col-1" style="text-align: right;">
+                                    <i class="fa fa-plus"></i>
+                                </div>
+                            </div>
+                            <ul class="pt-2 pb-2">
+                                Company Registration Procedure:
+
+                                <li> Private limited company. [Most preferred form of business entity].</li>
+                                <li>Branch office</li>
+                                <li>Subsidiary company (With a parent company having a substantial stake)</li>
+                                <li>Representative office</li>
+                                <li>Partnership</li>
+                                <li> Sole proprietorship (Unlimited legal liabilities of owners)</li>
+                            </ul>
+
+                        </div>
+                        <div class="col-12 toggler p-0" id="toggler">
+                            <div class="row">
+                                <div class="col-lg-5 col-11 ">
+                                    What are some mandatory compliance for incorporation in Hong Kong?
+                                </div>
+                                <div class="col-lg-7 col-1" style="text-align: right;">
+                                    <i class="fa fa-plus"></i>
+                                </div>
+                            </div>
+                            <ul class="pt-2 pb-2">
+                                <p>
+                                    There are some mandatory compliance which needs to be fulfilled:
+
+                                    <li>Accounts Audit: Compulsory to get your accounts audited by a certified public accountant.
+                                    </li>
+                                    <li>Annual Returns: Annual filing of returns with the company registrar (CR).</li>
+                                    <li>Annual general meeting (AGM): AGM should be held yearly as per the calendar year. The First meeting should take place within 18 months of company registration.</li>
+                                    <li>Public Information: All the necessary information regarding the directors, shareholders of the company & AGM must be applied with the Hong Kong registrar of companies.
+                                    </li>
+                                    <li>Taxation: No tax has to be paid other than on profits earned in Vertical city.</li>
+                                </p>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- </div>
+    </div> -->
+            </div>
+        </section>
+
+
+
+
+
+
+
+
+
+        <section class="bglight padding" id="blog">
+            <div class="container" style=" padding-bottom: 17px;">
+                <div class="row">
+                    <center>
+                        <h3 class="colr">POPULAR ARTICLES</h3>
+                    </center>
+
+                    <div class="col-lg-4 col-md-12">
+                        <div class="caonweb-blog">
+
+                            <div class="blog-text">
+                                <h3><a target="_blank" href="https://blog.caonweb.com/income-tax-filing">Income Tax
+                    Fundamentals
+                    for the Assessment FY- 20-21</a></h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-12">
+                        <div class="caonweb-blog">
+
+                            <div class="blog-text">
+                                <h3><a target="_blank" href="https://blog.caonweb.com/start-a-small-business">How to Start a
+                    Small Business in India � A Comprehensive Guide</a></h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-12">
+                        <div class="caonweb-blog">
+
+                            <div class="blog-text">
+                                <h3><a target="_blank" href="https://blog.caonweb.com/msme-registration-online">MSME Online
+                    Registration</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </section>
+
+
+
+
+
+
+    <section class="subscribe ca-15-certificate">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-xs-12">
+                    <h4>Need Help? Call Us 24/7</h4>
+                    <span> <a href="tel:01204231116" class="wt">0120 - 4231116</a></span>
+                </div>
+                <div class="col-md-12 col-xs-12">
+                    <div style="color: #81b84d;"><b id="successf"><span style="color:red;"></span></b></div>
+
+                    <form name="insertformf" method="POST" action="" class="width-85" style="position:relative;" onsubmit="return InsertFormf()" id="subf">
+                        <input type="email" name="email2" value="" placeholder="Insert email here" class="form-control">
+                        <div class="print-error-msg error-st1  fr dubaier" style="display:none;">
+                        </div>
+                        <button type="submit" style="background: #81b84d;" class="butn theme grey-hover bt" id="insertf">Subscribe</button>
+                        <span class="arrow"></span>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+    <footer>
+        <div class="footer-wrap">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6">
+                        <div class="footer-heading">Useful Links</div>
+                        <ul class="footer-nav">
+                            <li><a href="#">E-filing portal of Income Tax dept.</a></li>
+                            <li><a href="#">GST portal</a></li>
+                            <li><a href="#">E-way bill</a></li>
+                            <li><a href="#"> CBIC</a></li>
+                            <li><a href="#">Direct tax payment portal</a></li>
+                            <li><a href="#"> MCA portal</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 col-sm-6 middle">
+                        <div class="footer-heading">Quick Links</div>
+                        <ul class="footer-nav">
+                            <li><a href="#">Corporate Services</a></li>
+                            <li> <a href="#">Audit</a></li>
+                            <li><a href="#">Corporate Finance</a></li>
+                            <li><a href="#">Services for Non-Residents</a></li>
+                            <li><a href="#">Accounting Services</a></li>
+                            <li><a href="#">Business Process Outsourcing</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="footer-heading">Connect With Us</div>
+                        <ul class="call-ad">
+                            <li>
+                                <div><i class="fa fa-map-marker"></i><span>407,
+                    Sai Kesava Towers Shilpa Park Kondapur,
+                    HITEC City, Hyderabad,
+                    Telangana 500084</span></div>
+                            </li>
+                            <li>
+                                <div><i class="fa fa-phone"></i><span>+91- 958-483-9976</span></div>
+                            </li>
+
+                            <li>
+                                <div><i class="fa fa-envelope-o"></i><span>sales@cyberflax.com</span></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-service">
+                    <div class="copyright">© 2021 Cyberflax PVT. LTD &amp; . All Rights Reserved</div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        $(document).ready(function() {
+            $('.toggler').click(function() {
+                $(this).siblings().removeClass("active");
+                $(this).toggleClass("active");
+
+            })
+
+        });
+    </script>
+    </div>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>

@@ -1,0 +1,170 @@
+{% extends 'dbasic.html' %}
+
+{% block body %}
+<div class="my-5"></div>
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      {% if page_obj.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page_obj.previous_page_number }}"><<</a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><<</a>
+        </li>
+      {% endif %}
+      {% for i,j in sec %}
+        {% if page_obj.number == i %}
+          <li class="page-item active" aria-current="page">
+            <span class="page-link">
+              {{j}}
+              <span class="sr-only">(current)</span>
+            </span>
+          </li>
+        {% else %}
+          <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ j }}</a></li>
+        {% endif %}
+      {% endfor %}
+      {% if page_obj.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page_obj.next_page_number }}">>></a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <a class="page-link" href="#" tabindex="-1" aria-disabled="true">>></a>
+        </li>
+      {% endif %}
+    </ul>
+  </nav>
+<div class="my-5"></div>
+  
+{% for form in page_obj %}
+{% if form|length > 0 %}
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    {% if card_obj.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{page_obj.number}}&card={{ card_obj.previous_page_number }}"><<</a>
+      </li>
+    {% else %}
+      <li class="page-item disabled">
+        <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><<</a>
+      </li>
+    {% endif %}
+    {% for i in card_obj.paginator.page_range %}
+      {% if card_obj.number == i %}
+        <li class="page-item active" aria-current="page">
+          <span class="page-link">
+            {% for i,j in sec %}{% if page_obj.number == i %}{{j}}{% endif %}{% endfor %}{{i}}
+            <span class="sr-only">(current)</span>
+          </span>
+        </li>
+      {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{page_obj.number}}&card={{ i }}">{% if forloop.counter == card_obj.paginator.page_range|length %}Add New{% else %}{{ i }}{% endif %}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if card_obj.has_next %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{page_obj.number}}&card={{ card_obj.next_page_number }}">>></a>
+      </li>
+    {% else %}
+      <li class="page-item disabled">
+        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">>></a>
+      </li>
+    {% endif %}
+  </ul>
+</nav>
+{% for f in card_obj %}
+<div class="col-lg-12 my-2">
+    <div class="card">
+    <div class="card-body">
+      <a class="btn btn-info btn-xs float-right my-4" target="_blank" href="{% url 'handlenav' slug1=slugs.0 slug2=slugs.1  %}" "="">
+        <i class="ti-eye"> View Page</i>
+    </a>
+    <h1 class="my-4">{% for i,j in sec %}{% if page_obj.number == i %}{{j}}{% endif %}{% endfor %}{{i}} {{card_obj.number}}</h1>
+    <form action="{{request.get_full_path}}{% if f.instance.id %}&object={{f.instance.id}}{% else %}&object=new{% endif %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+        {{ f.media }}
+        {{ f.as_p }}
+        <input type="submit" class="btn btn-primary my-3" value="Submit">
+        <button type="button" class="btn btn-danger  {% if f.instance.id %}{% else %}disabled{% endif %}" data-toggle="modal" data-target="#exampleModal{{f.instance.id}}">
+            <i class="ti-trash"></i>Delete
+          </button>
+        
+    </form>
+    
+      
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal{{f.instance.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+        <form method="POST" action="{% url 'dsdeleteregistration' %}">
+            <div class="modal-body">
+              <h3>Are You Sure.</h3>
+            </div>
+            {% csrf_token %}
+            <input type="hidden" name="id" value="{{f.instance.id}}">
+            <input type="hidden" name="page" value="{{request.GET.page}}">
+            <input type="hidden" name="return" value="{{request.get_full_path}}">
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-danger">Yes Sure</button>
+            </div>
+        </form>
+          </div>
+        </div>
+      </div>
+    
+        </div>
+    </div>
+    </div>
+    {% endfor %}
+{% else %}
+<div class="col-lg-12 my-2">
+<div class="card">
+<div class="card-body">
+<a class="btn btn-info btn-xs float-right my-4" target="_blank" href="{% url 'handlenav' slug1=slugs.0 slug2=slugs.1  %}" "="">
+        <i class="ti-eye"> View Page</i>
+    </a>
+<h1 class="my-4">{% for i,j in sec %}
+  {% if page_obj.number == i %}{{j}}{% endif %}{% endfor %}</h1>
+<form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
+    {{ form.media }}
+    {{ form.as_p }}
+    <input type="submit" class="btn btn-primary my-3" value="Submit">
+    <button type="button" class="btn btn-danger {% if form.instance.id %}{% else %}disabled{% endif %}" data-toggle="modal" data-target="#exampleModal{{f.instance.id}}">
+        <i class="ti-trash"></i>Delete
+      </button>
+</form>
+</div>
+</div>
+</div>
+<div class="modal fade" id="exampleModal{{f.instance.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+    <form method="POST" action="{% url 'dsdeleteregistration' %}">
+        <div class="modal-body">
+          <h3>Are You Sure.</h3>
+        </div>
+        {% csrf_token %}
+        <input type="text" name="id" value="{{form.instance.id}}">
+        <input type="text" name="page" value="{{request.GET.page}}">
+        <input type="text" name="return" value="{{request.get_full_path}}">
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-danger">Yes Sure</button>
+        </div>
+    </form>
+      </div>
+    </div>
+  </div>
+
+    </div>
+</div>
+</div>
+{% endif %}
+
+{% endfor %}
+
+<!-- Button trigger modal -->
+
+{% endblock %}

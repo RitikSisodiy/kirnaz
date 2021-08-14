@@ -1,0 +1,382 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% block title%}Home{% endblock title%}
+
+{% block content %} 
+
+<!-- carasoul -->
+    <section class="banner-sec">
+      <div class="container">
+        <div class="parent">
+        {% for s in slider %}
+          <div class="container">
+            <div class="row slide">
+              <div class=" col-lg-6 slide_center"><img class="d-block" src="/media/{{s.img}}" alt="First slide">
+              </div>
+              <div class=" col-lg-6">
+                <h1 class="objective animate0">{{s.objective}}</h1>
+                <p class="objective_para">{{s.obj_details}}</p>
+                <a href="#" class="btn btn-theme">Our Team</a> <a href="#" class="btn btn-theme">Contact Us</a>
+              </div>
+            </div>
+          </div>
+{% comment %} 
+          <div class="container">
+            <div class="row slide">
+              <div class=" col-lg-5 slide_center"><img class="d-block animate0" src="{% static 'images/slide-3.png' %}"
+                  alt="First slide"></div>
+              <div class=" col-lg-7">
+                <h1 class="objective">Our Objective</h1>
+                <p class="objective_para">Seeing invisible, achieving impossible. Our vision is to raise benchmarks with
+                  every
+                  assignment by imparting knowledge
+                  with a goal to provide timely deliverable which makes us victorious in achieving client’s satisfaction
+                  adding to CA,
+                  CS
+                  & LAWYERS glory as a professional firm.</p>
+                <a href="#" class="btn btn-theme">Our Team</a> <a href="#" class="btn btn-theme">Contact Us</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="container">
+            <div class="row slide">
+              <div class=" col-lg-5 slide_center"><img class="d-block animate0" src="{% static 'images/slide-4.png' %}"
+                  alt="First slide"></div>
+              <div class=" col-lg-7">
+                <h1 class="objective animate__animated animate__bounce">Our Mission</h1>
+                <p class="objective_para">Let ideas transform into innovation”. Our mission is to provide comprehensive
+                  professional services which clients refer
+                  to their associates, employees boast upon, competitors acknowledge and set as standards for
+                  themselves.</p>
+                <a href="#" class="btn btn-theme">Our Team</a> <a href="#" class="btn btn-theme">Contact Us</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="container">
+            <div class="row slide">
+              <div class=" col-lg-5 slide_center"><img class="d-block animate0" src="{% static 'images/slide-5.png' %}"
+                  alt="First slide"></div>
+              <div class=" col-lg-7">
+                <h1 class="objective animate__animated animate__bounce">Our Vision</h1>
+                <p class="objective_para">Seeing invisible, achieving impossible. Our vision is to raise benchmarks with
+                  every assignment by imparting knowledge
+                  with a goal to provide timely deliverable which makes us victorious in achieving client’s satisfaction
+                  adding to CA, CS
+                  & LAWYERS glory as a professional firm.</p>
+                <a href="#" class="btn btn-theme">Our Team</a> <a href="#" class="btn btn-theme">Contact Us</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="container">
+            <div class="row slide">
+              <div class=" col-lg-5 slide_center"><img class="d-block animate0" src="{% static 'images/slide-6.png' %}"
+                  alt="First slide"></div>
+              <div class=" col-lg-7">
+                <h1 class="objective animate__animated animate__bounce">Excellence in Service</h1>
+                <p class="objective_para">To not just meet but exceed client expectation consistently by imbibing
+                  Teamwork, Professionalism, Personalised Service & Specialisation.</p>
+                <a href="#" class="btn btn-theme">Our Team</a> <a href="#" class="btn btn-theme">Contact Us</a>
+              </div>
+            </div>
+          </div> {% endcomment %}
+        {% endfor %}
+
+        </div>
+      </div>
+
+    </section>
+
+    <div class="first">
+      <div class="container">
+        <h1> About <span> CA, CS & LAWYERS.</span>
+          <div class="green-line"></div>
+        </h1>
+        <p><b class="lorem">Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+          has been the
+          industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+          scrambled
+          it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic
+          typesetting, remaining essentially unchanged. It was popularised in the 1960s.
+        </p>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+          industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
+          into
+          electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s.
+        </p>
+        <a href="#">Read More <i class="fa fa-angle-double-right"></i></a>
+      </div>
+    </div>
+    <div class="second">
+      <section class="hm-query-sec">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 ordering">
+            <form action="" method="POST">
+	          {% csrf_token %}
+              <h2>Business Query <div class="green-line"></div>
+              </h2>
+              <p>Always ready to help you out regarding all your queries.</p>
+              <div class="group-query">
+                <input name="name" type="text" id="ctl00_txtname" class="form-control" placeholder="Your Name">
+              </div>
+              <div class="group-query">
+                <input name="phone" type="text" id="ctl00_txtcontact" class="form-control"
+                  placeholder="Phone">
+              </div>
+              <div class="group-query">
+                <input name="email" type="email" id="ctl00_txtmail" class="form-control"
+                  placeholder="Your Email">
+              </div>
+              <div class="group-query">
+                <textarea name="message" type="text" rows="2" cols="20" id="ctl00_txtremark" class="form-control"
+                  placeholder="Your Message"></textarea>
+              </div>
+              <div class="group-query">
+                <input type="submit" name="ctl00$btnsubmit" value="Send" id="ctl00_btnsubmit" class="btn btn-send">
+              </div>
+              </form>
+            </div>
+            <div class="col-md-6 query-image"> <img alt="banner3" class="img-fluid" src="{% static 'images/query-b.png' %}"> </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="comp-reg">
+      <section class="required">
+        <div class="mx-lg-5 mx-3">
+          <h2> Requirements for Start Up Incorporation</h2>
+          <div class="card1">
+            <div class="card-body">
+              <h6 class="card-price"><a href="#" title="One Person Company Incorporation" target="_blank"> One Person
+                  Company</a></h6>
+              <ul class="cards">
+                <li><i class="fa fa-hand-o-right"></i> 1 Shareholders</li>
+                <li><i class="fa fa-hand-o-right"></i> 1 Directors</li>
+                <li><i class="fa fa-hand-o-right"></i> 1 Nominee</li>
+                <li><i class="fa fa-hand-o-right"></i> DIN </li>
+                <li><i class="fa fa-hand-o-right"></i> DSC</li>
+                <li><i class="fa fa-hand-o-right"></i> Minimum Authorised Share Capital 1 Lakh</li>
+              </ul>
+              <a href="#" title="How to register One Person Company?" target="_blank" class="bt-1">Read More...</a>
+            </div>
+          </div>
+          <!-- Plus Tier -->
+          <div class="card1">
+            <div class="card-body">
+              <h6 class="card-price"> <a href="#" title="Private Limited Company Incorporation" target="_blank">Private
+                  Limited Company</a> </h6>
+              <ul class="cards">
+                <li><i class="fa fa-hand-o-right"></i> 2 Shareholders</li>
+                <li><i class="fa fa-hand-o-right"></i> 2 Directors</li>
+                <li><i class="fa fa-hand-o-right"></i> DIN </li>
+                <li><i class="fa fa-hand-o-right"></i> DSC</li>
+                <li><i class="fa fa-hand-o-right"></i> Minimum Authorised Share Capital 1 Lakh</li>
+              </ul>
+              <a href="#" title="ONLINE PRIVATE LIMITED COMPANY Incorporation IN INDIA" target="_blank"
+                class="bt-1">Read
+                More...</a>
+            </div>
+          </div>
+          <div class="card1">
+            <div class="card-body">
+              <h6 class="card-price"> <a href="#" title="Limited Liability Partnership at the best Price"
+                  target="_blank"> Limited Liability
+                  Partnership</a></h6>
+              <ul class="cards">
+                <li><i class="fa fa-hand-o-right"></i> 2 Designated Partners</li>
+                <li><i class="fa fa-hand-o-right"></i> DIN </li>
+                <li><i class="fa fa-hand-o-right"></i> DSC</li>
+                <li><i class="fa fa-hand-o-right"></i> Capital Contribution 10000/-</li>
+              </ul>
+              <a href="#" class="bt-1"
+                title="LLP Incorporation Fees, Limited Liability Partnership Incorporation in India"
+                target="_blank">Read More...</a>
+            </div>
+          </div>
+          <div class="card1">
+            <div class="card-body">
+              <h6 class="card-price"><a href="#" title="Proprietorship at the best Price"
+                  target="_blank">Proprietorship</a></h6>
+              <ul class="cards">
+                <li><i class="fa fa-hand-o-right"></i> PAN</li>
+                <li><i class="fa fa-hand-o-right"></i> Adhaar</li>
+                <li><i class="fa fa-hand-o-right"></i> Bank Details</li>
+                <li><i class="fa fa-hand-o-right"></i> Business Details</li>
+                <li><i class="fa fa-hand-o-right"></i> Investment minimum 1 Lakh</li>
+              </ul>
+              <a href="#" title="Proprietorship Firm Incorporation Online in India " target="_blank" class="bt-1">Read
+                More...</a>
+            </div>
+          </div>
+          <div class="card1">
+            <div class="card-body">
+              <h6 class="card-price"><a href="#" title="Partnership Firm at the best Price" target="_blank"> Partnership
+                  Firm </a></h6>
+              <ul class="cards">
+                <li><i class="fa fa-hand-o-right"></i> 2 Partners</li>
+                <li><i class="fa fa-hand-o-right"></i> PAN of Partnership</li>
+                <li><i class="fa fa-hand-o-right"></i> Capital Contribution 10000/-</li>
+              </ul>
+              <a href="#" title="partnership firm Incorporation certificate" class="bt-1">Read More...</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <section class="news-sec">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 spacing-column">
+            <div class="news-item-box">
+              <h3>News</h3>
+              <marquee id="m2" height="276" direction="up" srolldelay="30" scrollamount="2" onmouseover="this.stop();"
+                onmouseout="this.start();">
+                <table id="ctl00_DataList1" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;">
+                  <tbody>
+                  {% for n in news %}
+                    <tr>
+                      <td>
+                        <div class="news2d"> <a class="hedingnews"><b>{{n.date}}</b></a> </div>
+                      </td>
+                    </tr>
+                    
+                    <tr>
+                      <td>
+                        <div class="news2d"> <a href="#">{{n.news}}</a> </div>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </marquee>
+              <a href="{% url 'newsfeed' %}">Readmore...</a>
+            </div>
+          </div>
+
+          <div class="col-md-4 spacing-column">
+            <div class="news-item-box">
+              <h3>Due Date Reminder</h3>
+              <table id="ctl00_DataListGovind" cellspacing="0" border="0" style="border-collapse:collapse;">
+                <tbody>
+                  <tr>
+                    <td><a id="ctl00_DataListGovind_ctl00_lb1" href="#">Jan</a></td>
+                    <td><a id="ctl00_DataListGovind_ctl01_lb1" href="#">Feb</a></td>
+                    <td><a id="ctl00_DataListGovind_ctl02_lb1" href="#">Mar</a></td>
+                    <td><a id="ctl00_DataListGovind_ctl03_lb1" href="#">Apr</a></td>
+                    <td><a id="ctl00_DataListGovind_ctl04_lb1" href="#">May</a></td>
+                    <td><a id="ctl00_DataListGovind_ctl05_lb1" href="#">June</a></td>
+                  </tr>
+                  <tr>
+                    <td><a id="ctl00_DataListGovind_ctl06_lb1" href="#">July</a></td>
+                    <td><a id="ctl00_DataListGovind_ctl07_lb1" href="#">Aug</a></td>
+                    <td><a id="ctl00_DataListGovind_ctl08_lb1" href="#">Sep</a></td>
+                    <td><a id="ctl00_DataListGovind_ctl09_lb1" href="#">Oct</a></td>
+                    <td><a id="ctl00_DataListGovind_ctl10_lb1" href="#">Nov</a></td>
+                    <td><a id="ctl00_DataListGovind_ctl11_lb1" href="#">Dec</a></td>
+                  </tr>
+                  <tr>
+                    <td><a id="ctl00_DataListGovind_ctl12_lb1" href="#">All</a></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <marquee id="ml" height="216" direction="up" srolldelay="30" scrollamount="2" onmouseover="this.stop();"
+                onmouseout="this.start();">
+                {% for d in ddreminder %}
+                <div class="news_blog"> <span class="hedingnews">{{d.date}}</span> <span class="arrownews">{{d.details}}</span> <br>
+                </div>
+               {% endfor %}
+              </marquee>
+              <a href="#" class="due-red">Readmore...</a>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="news-item-box">
+              <h3>Blog News</h3>
+              <marquee id="m2" height="296" direction="up" scrolldelay="30" scrollamount="2" onmouseover="this.stop();"
+                onmouseout="this.start();">
+                {% for b in bnews %}
+                <li class="Prodetails" style="list-style-type: none;"><span style="font-weight:bold;">{{b.date}}</span><br> <span style="font-weight:bold; list-style-type: none;"><a target="_blank"
+                      href="#"><b>{{b.title}}</b></a> -</span>
+                  <span>{{b.news}}</span>
+                </li>
+                {% endfor %}
+              </marquee>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="call-us-sec">
+      <div class="container"> <a href="tel:01414072000">Have a question? We can help you..... +91- 958-483-9976</a>
+      </div>
+    </section>
+
+    <section class="home-middle-sec">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-5"><img class="w-100" alt="image" src="{% static 'images/hm-about.jpg' %}"></div>
+          <div class="col-md-7">
+            <h2>Lorem Ipsum is simply dummy</h2>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+              the
+              industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
+              type
+              and scrambled it to make a type specimen book. It has survived not only five centuries, but also
+              the
+              leap into electronic typesetting, remaining essentially unchanged. It was popularised in the
+              1960s
+              with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with
+              desktop
+              publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+              the
+              industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
+              type
+              and scrambled it to make a type specimen book. </p>
+            <a href="#" class="btn-red">Read More <i class="fa fa-angle-double-right"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="hm-services-sec">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 hm-services-title">
+            <h2>Our Services<span> Offerings</span></h2>
+          </div>
+        </div>
+        <section class="row">
+        {% for o in offrings %}
+          <div class="col-md-6 col-lg-4 height-fill">
+            <article class="icon-box">
+              <div class="box-top">
+                <div class="box-icon"><img src="/media/{{o.img}}" alt="Start my Business"></div>
+                <div class="box-header">
+                  <h5><a href="#">{{o.title}} </a></h5>
+                </div>
+              </div>
+              <div class="box-body">
+                <p class="text-gray-05">{{o.details}}</p>
+              </div>
+            </article>
+          </div>
+          {% endfor %}
+  
+
+
+
+        </section>
+    </section>
+
+{% endblock content%}

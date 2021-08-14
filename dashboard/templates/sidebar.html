@@ -1,0 +1,86 @@
+{% load static %}
+<div class="sidebar-menu">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <a href="/admin-home">
+                        <img src="{% static 'assets/uploads/media-uploader/logo1626597048.png' %}" alt="" />
+                    </a>
+                </div>
+            </div>
+            <div class="main-menu">
+                <div class="menu-inner">
+                    <nav>
+                        <ul class="metismenu" id="menu">
+                            <li class="active">
+                                <a href="{% url 'dindex' %}" aria-expanded="true">
+                                    <i class="ti-dashboard"></i>
+                                    <span>dashboard</span>
+                                </a>
+                            </li>
+                            <li class="">
+                            </li>
+                            <li class="main_dropdown">
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-user"></i>
+                                    <span>Users Manage</span></a>
+                                <ul class="collapse">
+                                    <li class=""><a href="/admin-home/frontend/all-user">All Users</a></li>
+                                    <li class=""><a href="/admin-home/frontend/new-user">Add New User</a></li>
+                                </ul>
+                            </li>
+                             <li class="main_dropdown">
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-user"></i>
+                                    <span>Users Manage</span></a>
+                                <ul class="collapse">
+                                    <li class="main_dropdown">
+                                    <a href="javascript:void(0)" aria-expanded="true"><i class="ti-user"></i>
+                                    <span>Users Manage</span></a>
+                                    <ul class="collapse">
+                                    <a href="/admin-home/frontend/all-user">All Users</a>
+                                    </li>
+                                    <li class="">
+                                    <a href="/admin-home/frontend/new-user">Add New User</a>
+                                    </li>
+                                 </ul>
+                                    
+                                </ul>
+                            </li>
+                            </li>
+                            <li class="main_dropdown">
+                                <a href="javascript:void(0)" aria-expanded="true">
+                                    <i class="ti-timer"></i><span>Registration </a>
+                                <ul class="collapse">
+                                 <li class="">
+                                        <a href="{% url 'dregistration' %}">All Registrations</a></li>
+
+                                {% for res in Registrations %}
+                                    <li class="main_dropdown">
+                                        <a href="javascript:void(0)" aria-expanded="true">
+                                        <i class="ti-timer"></i><span>{{res.title}} </a>
+                                        <ul class="collapse">
+                                        {% for d in res.RegistrationSubMenu.all %}
+                                        <li class="">
+                                        <a href="{% url "dseditregistration" slug1=d.title.slug slug2=d.slug %}">{{d.submenu}}</a></li>
+                                        {% endfor %}
+                                        </ul>
+                                {% endfor %}
+                                </ul>
+                            </li>
+                            {% for data in othernavreg %}
+                            <li class="main_dropdown">
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-user"></i>
+                                    <span>{{data.title}}</span></a>
+                                <ul class="collapse">
+                                    {% for d in data.RegistrationSubMenu.all %}
+                                        <li class="">
+                                        <a href="{% url "dseditothernavs" slug1=d.title.slug slug2=d.slug %}">{{d.submenu}}</a></li>
+                                    {% endfor %}
+                                 </ul>
+                                    
+                            </li>
+                            {% endfor %}
+                            
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>

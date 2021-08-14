@@ -1,0 +1,186 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PVT LTD Registration</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+</head>
+
+<body>
+    <div class="pvt-ltd-reg">
+        <header>
+            <div class="top-nav">
+                <div class="call"> Services <i class="fa fa-angle-down" aria-hidden="true"></i></div>
+                <div class="call">sales: +91- 958-483-9976<i class="fa fa-angle-down" aria-hidden="true"></i></div>
+                <div class="right">
+                    <ul>
+                        <li><a href="member-login.html" style="--color:#f0ad4e">Login</a></li>
+                        <li><a href="member-signup.html" style="--color:#71d109">Signup</a></li>
+                        <li><a href="#" style="--color:#4cae4c">Whatsapp</a></li>
+                        <li><a href="#" style="--color:#01b4f1">Payment</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="nav-bar">
+        <div class="logo">
+          <img src="{% static 'images/logo.jpeg' %}" alt="">
+        </div>
+        <nav>
+          <ul>
+            <li><a href="#">Registration</a>
+              <ul class="xl-sub-menu">
+                <div class="row">
+                
+                {% for reg in Registrations %}
+                  <div class="col-lg-3">
+                    <span class="xl-sub-menu-title">{{reg.title}}</span>
+                    {% for drop in reg.RegistrationSubMenu.all %}
+                    <li> <a href="/registration/{{reg.slug}}/{{drop.slug}}">{{drop.submenu}}</a></li> {% endfor %}
+                    {% comment %} <li><a href="pvt-ltd-reg.html">Private Limited Company</a></li>
+                    <li><a href="pvt-ltd-reg.html">LLP(Limited Liability Partnership)</a></li>
+                    <li><a href="pvt-ltd-reg.html">Public Limited Company</a></li>
+                    <li><a href="pvt-ltd-reg.html">Producer Company</a></li>
+                    <li><a href="pvt-ltd-reg.html">Partnership Firm</a></li>
+                    <li><a href="pvt-ltd-reg.html">Sole Proprietorship</a></li>
+                    <li><a href="pvt-ltd-reg.html">Company Registration </a></li>
+                    <li><a href="pvt-ltd-reg.html">Company Registration In USA</a></li>
+                    <li><a href="pvt-ltd-reg.html">Company Registration In UK</a></li> {% endcomment %}
+                  </div>
+                  {% endfor %}
+                  {% comment %} <div class="col-lg-3">
+                    <span class="xl-sub-menu-title">Companies Registration</span>
+                    <li><a href="pvt-ltd-reg.html">OPC Pvt Ltd Company</a></li>
+                    <li><a href="pvt-ltd-reg.html">Private Limited Company</a></li>
+                    <li><a href="pvt-ltd-reg.html">LLP(Limited Liability Partnership)</a></li>
+                    <li><a href="pvt-ltd-reg.html">Public Limited Company</a></li>
+                    <li><a href="pvt-ltd-reg.html">Producer Company</a></li>
+                    <li><a href="pvt-ltd-reg.html">Partnership Firm</a></li>
+                    <li><a href="pvt-ltd-reg.html">Sole Proprietorship</a></li>
+                    <li><a href="pvt-ltd-reg.html">Company Registration </a></li>
+                    <li><a href="pvt-ltd-reg.html">Company Registration In USA</a></li>
+                    <li><a href="pvt-ltd-reg.html">Company Registration In UK</a></li>
+                  </div>
+                  <div class="col-lg-3">
+                    <span class="xl-sub-menu-title">Companies Registration</span>
+                    <li><a href="pvt-ltd-reg.html">OPC Pvt Ltd Company</a></li>
+                    <li><a href="pvt-ltd-reg.html">Private Limited Company</a></li>
+                    <li><a href="pvt-ltd-reg.html">LLP(Limited Liability Partnership)</a></li>
+                    <li><a href="pvt-ltd-reg.html">Public Limited Company</a></li>
+                    <li><a href="pvt-ltd-reg.html">Producer Company</a></li>
+                    <li><a href="pvt-ltd-reg.html">Partnership Firm</a></li>
+                    <li><a href="pvt-ltd-reg.html">Sole Proprietorship</a></li>
+                    <li><a href="pvt-ltd-reg.html">Company Registration </a></li>
+                    <li><a href="pvt-ltd-reg.html">Company Registration In USA</a></li>
+                    <li><a href="pvt-ltd-reg.html">Company Registration In UK</a></li>
+                  </div>
+                </div> {% endcomment %}
+              </ul>
+            </li>
+            {% for data in othernavreg %}
+            <li><a href="#">{{data.title}}</a>
+              <ul class="drop-down">
+              {% for tax in data.RegistrationSubMenu.all %}
+                <li><a href="{% url 'handlenav' slug1=data.slug slug2=tax.slug %}">{{tax.submenu}}</a></li>{% endfor %}
+                {% comment %} <li><a href="#">Business xTax Return Filling</a></li>
+                <li><a href="#">TDS Return Filling</a></li>
+                <li><a href="{% url 'pvtltdreg' %}">Income Tax Return</a></li> {% endcomment %}
+                <!-- <li><a href="#">GST Return Filling</a></li>
+                <li><a href="#">ESI Return Filling</a></li> -->
+              </ul>
+            </li>
+            {% endfor %}
+            <li><a href="{% url 'blog' %}">blog</a>
+            </li>
+            <li><a href="{% url 'about' %}">About Us</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="toggle-menu">
+          <div class="fa fa-bars"></div>
+        </div>
+        <div class="bottom-nav">
+          <div class="right">
+            <ul>
+              <li><a href="member-login.html" style="--color:#f0ad4e">Login</a></li>
+              <li><a href="member-signup.html" style="--color:#71d109">Signup</a></li>
+              <li><a href="#" style="--color:#4cae4c">Whatsapp</a></li>
+              <li><a href="#" style="--color:#01b4f1">Payment</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+
+{% block content %} {% endblock content%}
+
+<footer>
+        <div class="footer-wrap">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6">
+                        <div class="footer-heading">Useful Links</div>
+                        <ul class="footer-nav">
+                            <li><a href="#">E-filing portal of Income Tax dept.</a></li>
+                            <li><a href="#">GST portal</a></li>
+                            <li><a href="#">E-way bill</a></li>
+                            <li><a href="#"> CBIC</a></li>
+                            <li><a href="#">Direct tax payment portal</a></li>
+                            <li><a href="#"> MCA portal</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 col-sm-6 middle">
+                        <div class="footer-heading">Quick Links</div>
+                        <ul class="footer-nav">
+                            <li><a href="#">Corporate Services</a></li>
+                            <li> <a href="#">Audit</a></li>
+                            <li><a href="#">Corporate Finance</a></li>
+                            <li><a href="#">Services for Non-Residents</a></li>
+                            <li><a href="#">Accounting Services</a></li>
+                            <li><a href="#">Business Process Outsourcing</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="footer-heading">Connect With Us</div>
+                        <ul class="call-ad">
+                            <li>
+                                <div><i class="fa fa-map-marker"></i><span>407,
+                                        Sai Kesava Towers Shilpa Park Kondapur,
+                                        HITEC City, Hyderabad,
+                                        Telangana 500084</span></div>
+                            </li>
+                            <li>
+                                <div><i class="fa fa-phone"></i><span>+91- 958-483-9976</span></div>
+                            </li>
+
+                            <li>
+                                <div><i class="fa fa-envelope-o"></i><span>sales@cyberflax.com</span></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-service">
+                    <div class="copyright">© 2021 Cyberflax PVT. LTD &amp; . All Rights Reserved</div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    </div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="{% static 'js/main.js' %}"></script>
+
+</html>
