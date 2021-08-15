@@ -10,5 +10,8 @@ urlpatterns = [
     path('othernavsdelete/', otherNavViews.deleteothernavs, name="dsdeleteothernavs"),
     # path('othernavs/<slug:slug>', otherNavViews.othernavs, name="dsothernavs"),
     path('othernavs/edit/<slug:slug1>/<slug:slug2>', otherNavViews.editothernavs, name="dseditothernavs"),
+    path('adminchat', views.adminchat, name="adminchat"),
+    path('adminchat/<slug:slug1>/<int:id>', views.adminchat, name="adminchatuser"),
+    path('getmsg/<slug:slug1>/<int:id>', views.getmsg, name="admingetmsg"),
     
 ]

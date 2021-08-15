@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'dashboard',
     'ckeditor',
     'othernavs',
+    'chat',
 ]
 
 MIDDLEWARE = [

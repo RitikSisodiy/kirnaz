@@ -1,5 +1,6 @@
+from chat.models import conversation
 from django.http import request
-from django.http.response import HttpResponse
+from django.http.response import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from registration.models import *
 from .forms import *
@@ -60,16 +61,12 @@ def editregistration(request,slug1,slug2):
         page_number = int(request.GET.get('page') if request.GET.get('page') is not None else 1) - 1
         objectno = (request.GET.get('object') if request.GET.get('object') is not None else 1)
         if request.GET.get('object') is None:
-            print(page_number)
             form = sectionsforms[page_number](request.POST,request.FILES,instance=s[page_number][0])
         else:
-            print(request.FILES)
             if sectionsforms[page_number] is None or objectno == "new":
                 form = sectionsforms[page_number][0](request.POST,request.FILES,instance = None)
             else:
-                print(s[page_number])         
                 form = sectionsforms[page_number][0](request.POST,request.FILES,instance = s[page_number].filter(id=objectno)[0])
-        print(form.is_valid(),"thos is form status++++++")
         if form.is_valid():
             form.save()
             messages.success(request,"Information Is Added Successfully")
@@ -88,7 +85,6 @@ def editregistration(request,slug1,slug2):
     page_number = request.GET.get('page')
     res['page_obj'] = paginator.get_page(page_number)
     if isinstance(res['page_obj'].object_list[0],list):
-        print(res['page_obj'].object_list[0][0].instance)
         paginator2 = Paginator(res['page_obj'].object_list[0], 1)
         card = request.GET.get('card')
         res['card_obj'] = paginator2.get_page(card)
@@ -101,8 +97,6 @@ def editregistration(request,slug1,slug2):
 def deleteregistration(request):
 
     if request.method == "POST":
-        print(request.POST)
-        print(request.POST.get('page')=='')
         formid = int(request.POST.get('page') if request.POST.get('page') is not None and request.POST.get('page')!=""  else 1) - 1
         delid = request.POST.get('id')
         ret = request.POST.get('return')
@@ -112,4 +106,24 @@ def deleteregistration(request):
             messages.error(request,"successfully deleted")
             return redirect(ret)
     return redirect(request.get_full_path()[0:request.get_full_path().find('&object')])
-
+from chat.models import user
+def adminchat(request,slug1=None,id=None):
+    res = {}
+    if request.method=="POST":
+        msg = request.POST['message']   
+        conversation(msgby = user.objects.get(user=id),msgtoadmin=False,msg=msg).save()
+        return HttpResponse("{'msg':"+msg+"}")
+    if id is not None:
+        res['coverstion'] = conversation.objects.filter(msgby__user=id)
+        res['window'] = True
+        res['slug'] = [slug1,id]
+    res['chats'] = User.objects.filter(is_superuser=False)
+    return render(request,'adminchat.html',res)
+def getmsg(request,slug1=None,id=None):
+    auser = User.objects.get(id=id)
+    mlen = request.GET.get('len')
+    messages = list(conversation.objects.filter(msgby__user=auser.id).order_by('time').values('msgby__user',
+'msgtoadmin','msg'))
+    if len(messages)==int(mlen):
+        return HttpResponse("updated")
+    return JsonResponse(messages[int(mlen):],safe=False)

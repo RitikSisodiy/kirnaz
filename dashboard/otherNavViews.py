@@ -10,7 +10,6 @@ sectionsforms = [section0Form,section1Form,section2Form,[PackageIncludedForm],[s
 
 
 def editothernavs(request,slug1,slug2):
-    print(slug2)
     RegistrationSubMenuob = RegistrationSubMenu.objects.get(slug=slug2,title__slug=slug1)
     s = []
     for i in sections:
@@ -44,16 +43,12 @@ def editothernavs(request,slug1,slug2):
         page_number = int(request.GET.get('page') if request.GET.get('page') is not None else 1) - 1
         objectno = (request.GET.get('object') if request.GET.get('object') is not None else 1)
         if request.GET.get('object') is None:
-            print(page_number)
             form = sectionsforms[page_number](request.POST,request.FILES,instance=s[page_number][0])
         else:
-            print(request.FILES)
             if sectionsforms[page_number] is None or objectno == "new":
                 form = sectionsforms[page_number][0](request.POST,request.FILES,instance = None)
             else:
-                print(s[page_number])         
                 form = sectionsforms[page_number][0](request.POST,request.FILES,instance = s[page_number].filter(id=objectno)[0])
-        print(form.is_valid(),"thos is form status++++++")
         if form.is_valid():
             form.save()
             messages.success(request,"Information Is Added Successfully")
@@ -72,7 +67,6 @@ def editothernavs(request,slug1,slug2):
     page_number = request.GET.get('page')
     res['page_obj'] = paginator.get_page(page_number)
     if isinstance(res['page_obj'].object_list[0],list):
-        print(res['page_obj'].object_list[0][0].instance)
         paginator2 = Paginator(res['page_obj'].object_list[0], 1)
         card = request.GET.get('card')
         res['card_obj'] = paginator2.get_page(card)
@@ -83,8 +77,6 @@ def editothernavs(request,slug1,slug2):
 
 def deleteothernavs(request):
     if request.method == "POST":
-        print(request.POST)
-        print(request.POST.get('page')=='')
         formid = int(request.POST.get('page') if request.POST.get('page') is not None and request.POST.get('page')!=""  else 1) - 1
         delid = request.POST.get('id')
         ret = request.POST.get('return')
