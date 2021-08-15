@@ -1,5 +1,5 @@
-from django.contrib.auth import REDIRECT_FIELD_NAME
-from django.shortcuts import redirect
+from django.contrib.auth import REDIRECT_FIELD_NAME, login
+from django.shortcuts import redirect, render
 from django.urls import resolve
 def simple_middleware(get_response):
     # One-time configuration and initialization.
@@ -10,7 +10,7 @@ def simple_middleware(get_response):
             if request.user.is_superuser:
                 response = get_response(request)
             else:
-                response = redirect('index')
+                response = render(request,'logindashboard.html')
         else:
             response = get_response(request)
         return response

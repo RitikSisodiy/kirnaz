@@ -13,5 +13,6 @@ urlpatterns = [
     path('adminchat', views.adminchat, name="adminchat"),
     path('adminchat/<slug:slug1>/<int:id>', views.adminchat, name="adminchatuser"),
     path('getmsg/<slug:slug1>/<int:id>', views.getmsg, name="admingetmsg"),
+    path('dashboardlogout', views.dashboardlogout, name="dashboardlogout"),
     
 ]

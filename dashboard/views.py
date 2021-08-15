@@ -8,6 +8,8 @@ from .models import *
 import json
 from django.contrib import messages
 from django.core.paginator import Paginator
+from django.contrib.auth import authenticate, login, logout
+
 
 # Create your views here.
 def index(request):
@@ -127,3 +129,6 @@ def getmsg(request,slug1=None,id=None):
     if len(messages)==int(mlen):
         return HttpResponse("updated")
     return JsonResponse(messages[int(mlen):],safe=False)
+def dashboardlogout(request):
+    logout(request)
+    return redirect('dindex')

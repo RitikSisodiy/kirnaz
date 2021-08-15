@@ -12,7 +12,7 @@ urlpatterns = [
     path('chatbox/', views.chatbox,name='chatbox'),
     path('companyregistration/', views.companyregistration,name='companyregistration'),
     path('incometaxfilling/', views.incometaxfilling,name='incometaxfilling'),
-    path('login/', views.login,name='login'),
+    path('login/', views.Login,name='login'),
     path('memberlogin/', views.memberlogin,name='memberlogin'),
     path('membersignup/', views.membersignup,name='membersignup'),
     path('newsfeed/', views.newsfeed,name='newsfeed'),
@@ -21,7 +21,7 @@ urlpatterns = [
     path('signup/', views.signup,name='signup'),
     path('signup1/', views.signup1,name='signup1'),
     path('signup2/', views.signup2,name='signup2'),
+    path('logindashboard', views.logindashboard, name="logindashboard"),
  
-    
 
 ]

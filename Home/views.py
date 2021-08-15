@@ -1,7 +1,10 @@
-from django.shortcuts import render
+from django.contrib import messages
+from django.http.response import JsonResponse
+from django.shortcuts import redirect, render
 from . models import *
 from registration.models import *
 from taxfiling.models import *
+from django.contrib.auth import authenticate, login, logout
 
 
 def index(request):
@@ -51,7 +54,7 @@ def companyregistration(request):
 def incometaxfilling(request):
     return render(request,'incomeTaxFilling.html')
 
-def login(request):
+def Login(request):
     return render(request,'login.html')
 
 def memberlogin(request):
@@ -77,3 +80,16 @@ def signup1(request):
 
 def signup2(request):
     return render(request,'signup2.html')
+def logindashboard(request):
+    print("hellp this funtion is working")
+    if request.method=="POST":
+        print(request.POST,"this is working")
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        USER = authenticate(request,username=username, password=password)
+        if USER is not None:
+            login(request, USER)
+            if request.user.is_superuser:
+                return JsonResponse({'status':'ok'})
+            return JsonResponse({"status":'invaliduser'})
+    return render(request,'logindashboard.html')
