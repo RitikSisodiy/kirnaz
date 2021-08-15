@@ -14,7 +14,7 @@ class RegistrationSubMenuAdmin(admin.ModelAdmin):
 
 @admin.register(SubRegistrationContent)
 class SubRegistrationContentAdmin(admin.ModelAdmin):
-    list_display=('reg_title',)
+    list_display=('reg_title','title')
 
 @admin.register(AboutRegistraionSubMenu)
 class AboutRegistraionSubMenuAdmin(admin.ModelAdmin):

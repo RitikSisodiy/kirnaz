@@ -9,6 +9,11 @@ class section0Form(ModelForm):
         model = SubRegistrationContent
         exclude = ('id',)    
         widgets = {'reg_title': forms.HiddenInput()}    
+class PackageIncludedForm(ModelForm):
+    class Meta:
+        model = PackageIncluded
+        exclude = ('id',)    
+        widgets = {'reg_title': forms.HiddenInput()}    
 class section1Form(ModelForm):
     class Meta:
         model = AboutRegistraionSubMenu

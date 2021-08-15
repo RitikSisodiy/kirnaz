@@ -4,9 +4,9 @@ from .models import Sectionsothernavs as Sections
 import json
 from django.contrib import messages
 from django.core.paginator import Paginator
-sections = [SubRegistrationContent,AboutRegistraionSubMenu,DocumentRequired,Procedure,Memorandum,CompanyRegisterRequirements,FAQ,Sainification,ourclients]
+sections = [SubRegistrationContent,AboutRegistraionSubMenu,DocumentRequired,PackageIncluded,Procedure,Memorandum,CompanyRegisterRequirements,FAQ,Sainification,ourclients]
 # adding multi objects form as a list in sectionsform
-sectionsforms = [section0Form,section1Form,section2Form,[section3Form],section4Form,section5Form,[section6Form],section7Form,[section8Form]]
+sectionsforms = [section0Form,section1Form,section2Form,[PackageIncludedForm],[section3Form],section4Form,section5Form,[section6Form],section7Form,[section8Form]]
 
 
 def editothernavs(request,slug1,slug2):

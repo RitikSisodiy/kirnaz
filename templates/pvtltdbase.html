@@ -38,6 +38,11 @@
         </div>
         <nav>
           <ul>
+          </li>
+            <li><a href="{% url 'index' %}">Home</a>
+            </li>
+            <li><a href="{% url 'about' %}">About Us</a>
+            </li>
             <li><a href="#">Registration</a>
               <ul class="xl-sub-menu">
                 <div class="row">
@@ -101,9 +106,7 @@
             </li>
             {% endfor %}
             <li><a href="{% url 'blog' %}">blog</a>
-            </li>
-            <li><a href="{% url 'about' %}">About Us</a>
-            </li>
+            
           </ul>
         </nav>
         <div class="toggle-menu">

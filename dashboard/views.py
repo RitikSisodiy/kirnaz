@@ -22,9 +22,9 @@ def registration(request,slug=None):
     res["title"] = "Registration"
     return render(request,'dregistrations.html',res)
 
-sections = [SubRegistrationContent,AboutRegistraionSubMenu,DocumentRequired,Procedure,Memorandum,CompanyRegisterRequirements,FAQ,Sainification,ourclients]
+sections = [SubRegistrationContent,AboutRegistraionSubMenu,DocumentRequired,PackageIncluded,Procedure,Memorandum,CompanyRegisterRequirements,FAQ,Sainification,ourclients]
 # adding multi objects form as a list in sectionsform
-sectionsforms = [section0Form,section1Form,section2Form,[section3Form],section4Form,section5Form,[section6Form],section7Form,[section8Form]]
+sectionsforms = [section0Form,section1Form,section2Form,[PackageIncludedForm],[section3Form],section4Form,section5Form,[section6Form],section7Form,[section8Form]]
 
 def editregistration(request,slug1,slug2):
     RegistrationSubMenuob = RegistrationSubMenu.objects.get(slug=slug2,title__slug=slug1)
