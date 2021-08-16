@@ -22,7 +22,18 @@ class BlogNewsAdmin(admin.ModelAdmin):
 class OffringsAdmin(admin.ModelAdmin):
     list_display= ('title','details','img')
 @admin.register(headbanner)
-class OffringsAdmin(admin.ModelAdmin):
+class headbannerAdmin(admin.ModelAdmin):
     list_display= ('banner_title','banner_content',)
+
+
+@admin.register(links)
+class linksAdmin(admin.ModelAdmin):
+    list_display= ('title','page1','orpage2')
+@admin.register(Expertise)
+class ExpertiseAdmin(admin.ModelAdmin):
+    list_display= ('title',)
+@admin.register(marketplace)
+class marketplaceAdmin(admin.ModelAdmin):
+    list_display= ('title',)
 
 

@@ -23,16 +23,11 @@ class RegistrationSubMenu(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.submenu)
         super(RegistrationSubMenu, self).save(*args, **kwargs)
+    def __str__(self) :
+        return str(self.title.slug+"/"+self.slug)
     class Meta:
         unique_together = [['title', 'submenu']]
 
-
-
-
-    # def __str__(self):
-    #     return self.album_title 
-    def __str__(self):
-        return str(self.submenu)
 
 class ourclients(models.Model):
     reg_title = models.ForeignKey(RegistrationSubMenu, on_delete=models.CASCADE)

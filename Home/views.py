@@ -34,7 +34,12 @@ def index(request):
     return render(request,'index.html',res)
 
 def about(request):
-    return render(request,'about.html')
+    res= {}
+    res["banner"]= headbanner.objects.all()[0]
+    res["links"]= links.objects.all()
+    res["exper"]= Expertise.objects.all()
+    res["marketplace"]= marketplace.objects.all()
+    return render(request,'about.html',res)
 
 def another(request):
     return render(request,'another.html')

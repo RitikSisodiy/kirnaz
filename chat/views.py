@@ -1,4 +1,5 @@
 # Create your views here.
+from django.db import models
 from django.http.response import JsonResponse
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
@@ -29,6 +30,9 @@ def Login(request):
         if userob.exists():
             USER = authenticate(request,username=email, password=password)
         else:
+            if phone is None:
+                messages.error(request,"User Not exist Please register first")
+                return redirect("membersignup")
             userob = User.objects.create_user(email,email,password)
             userob.first_name  = name[0:name.find(' ')]
             userob.last_name  = name[name.find(' '):]
@@ -41,6 +45,7 @@ def Login(request):
             messages.success(request, "successfully logged in")
             if request.GET.get('next') is not None:
                 return redirect(request.GET.get('next'))
+            messages.success(request, 'Login success')
             return redirect('index')
         else:
             messages.error(request, "invalid credentials, please try again")
@@ -52,6 +57,7 @@ def Logout(request):
         logout(request)
     except KeyError:
         pass
+    messages.success(request,"Get back Soon")
     return redirect("index")   
 def getmsg(request):
     auser = request.user

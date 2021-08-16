@@ -1,0 +1,175 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% block title%}About{% endblock title%}
+
+{% block content %} 
+{% load static %}
+ <div class="page">
+   <div class="banner">
+      <div class="container">
+         <div class="left-side-content">
+            <h1>{{banner.banner_title}}</h1>
+            <p class="content">{{banner.banner_content}}</p>
+         </div>
+      </div>
+   </div>
+   <section class="swipper">
+      <div class=" container">
+         <div class="row">
+         {% for link in links %}
+            <div class="col-md-3 col-12">
+               <h3><a href="{% if link.page1 %}{% url 'registration' slug1=link.page1.title.slug slug2=link.page1.slug %}{% else %}{% url 'handlenav' slug1=link.orpage2.title.slug slug2=link.orpage2.slug %}{% endif %}" target="_blank">{{link.title}}</a></h3>
+            </div>
+         {% endfor %}
+         </div>
+      </div>
+   </section>
+   <div class="section-heading center-holder mt">
+      <h2>Online Directory of Tax/Compliance Experts
+
+      </h2>
+      <div class="section-heading-line"></div>
+      <br>
+   </div>
+   <div class="container">
+      <div class="row second">
+         {% for x in exper%}
+         <div class="col-md-3">
+            <div class="area">
+               <img src="/media/{{x.icon}}" alt="">
+               <h3>{{x.title}}</h3>
+            </div>
+         </div>
+         {% endfor %}
+      </div>
+      <br><br>
+   </div>
+  <div class="third">
+   <div class="container">
+      <div class="section-heading">
+         <h2 class="pt-3">Online service marketplace</h2>
+         <div class="section-heading-line"></div>
+         <br>
+      </div>
+      <div class="row">
+         {% for y in marketplace %}
+         {% if forloop.counter < 5 %}
+         <div class="col-lg-3">
+            <div class="area">
+               <img src="/media/{{y.icon}}" style="max-width: 50px;" alt="">
+               {{y.title|safe}}
+            </div>
+         </div>
+         {% endif %}
+         {% endfor %}
+      </div>
+   </div>
+</div>
+  <div class="fourth">
+   <div class="container">
+      <div class="section-heading">
+         <h2 class="pt-3">{{about.1.blog_title}}</h2>
+         <div class="section-heading-line"></div>
+         <br>
+      </div>
+      <div class="row">
+         <div class="col-lg-4 col-12">
+            <div class="row">
+               <div class="col-lg-12">
+                  <div class="area">
+                     <img src="{% static 'images/svg13.png' %}" alt="">
+                     <h2>Convenience</h2>
+                     <p>Having serve the clients since 2012, We understand your needs therefore we will
+                        give you the best experience throughout
+                     </p>
+                  </div>
+               </div>
+               <div class="col-lg-12">
+                  <div class="area">
+                     <img src="{% static 'images/svg14.png' %}" alt="">
+                     <h2>Support</h2>
+                     <p>For both the service providers & service receivers, We are always available to
+                        you through Chat, Email, Call or social media
+                     </p>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-lg-4 col-12 mobile-display-none">
+            <img src="{% static 'images/gif1.gif' %}" class="img-fluid" alt="">
+         </div>
+         <div class="col-lg-4 col-12">
+            <div class="row">
+               <div class="col-lg-12">
+                  <div class="area">
+                     <img src="{% static 'images/svg15.png' %}" alt="">
+                     <h2>Experience</h2>
+                     <p>This is our first priority as it means everything that any user want to have
+                        while using online service facility.
+                     </p>
+                  </div>
+               </div>
+               <div class="col-lg-12">
+                  <div class="area">
+                     <img src="{% static 'images/svg16.png' %}" alt="">
+                     <h2>Safety</h2>
+                     <p>Poor safety will lead to losing people, we very well understand this fact. Should
+                        there be NDA? Anytime!
+                     </p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+  <div class="fifth">
+      <section class="intro-area bg-gray" style="background: #80b84d;">
+         <div class="">
+            <div class="row">
+               <div class="col-xl-12">
+                  <div class="intro-text text-center">
+                     <h3 style="color: #fff;">You can compare and select from the list of experts </h3>
+                     <p style="color: #fff;">People forget how fast you did a job, but they remember how well
+                        you did it. –Howard W. Newton
+                     </p>
+                     <a href="#" class="primary-button button-md" style="background: #3c611a;">Contact Us</a>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+  </div>
+  <div class="container-fluid text-center client-logo">
+   <div class="container client-container">
+      <div class="row">
+         <div class="section-heading center-holder mt">
+            <h3>A Brand Trusted By</h3>
+         </div>
+         <ul class="client-logos">
+            <li>
+               <img src="https://www.caonweb.com/images/client/ALIBABA.jpg">
+            </li>
+            <li>
+               <img src="https://www.caonweb.com/images/client/new.png">
+            </li>
+            <li>
+               <img src="https://www.caonweb.com/images/client/PAYTM.jpg">
+            </li>
+            <li>
+               <img src="https://www.caonweb.com/images/client/shoot.png">
+            </li>
+            <li>
+               <img src="https://www.caonweb.com/images/client/adva.png">
+            </li>
+            <li>
+               <img src="https://www.caonweb.com/images/client/mobi.png">
+            </li>
+         </ul>
+      </div>
+   </div>
+</div>
+</div>
+
+
+{% endblock content %} 

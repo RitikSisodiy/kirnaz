@@ -1,5 +1,8 @@
+from ckeditor.fields import RichTextField
 from django.db import models
-
+from django.db.models.deletion import SET_NULL
+from registration.models import RegistrationSubMenu
+from othernavs.models import RegistrationSubMenu as othernavsubmenu
 # Create your models here.
 
 class Slider(models.Model):
@@ -35,3 +38,13 @@ class headbanner(models.Model):
     banner_title = models.CharField(max_length=500,blank=True)
     banner_content = models.CharField(max_length=1500,blank=True)
     banneerimg = models.ImageField(upload_to="banner",blank=True)
+class links(models.Model):
+    title = models.CharField(max_length=50)
+    page1 = models.ForeignKey(RegistrationSubMenu,on_delete=models.SET_NULL,blank=True,null=True)
+    orpage2 = models.ForeignKey(othernavsubmenu,on_delete=models.SET_NULL,blank=True,null=True)
+class Expertise(models.Model):
+    icon = models.ImageField(upload_to="imgaes")
+    title = models.CharField(max_length=50)
+class marketplace(models.Model):
+    icon = models.FileField(upload_to="imgaes")
+    title = RichTextField(blank=True,null=True)
