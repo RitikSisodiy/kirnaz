@@ -21,5 +21,8 @@ class BlogNewsAdmin(admin.ModelAdmin):
 @admin.register(Offrings)
 class OffringsAdmin(admin.ModelAdmin):
     list_display= ('title','details','img')
+@admin.register(headbanner)
+class OffringsAdmin(admin.ModelAdmin):
+    list_display= ('banner_title','banner_content',)
 
 

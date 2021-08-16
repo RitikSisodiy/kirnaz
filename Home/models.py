@@ -31,3 +31,7 @@ class Offrings(models.Model):
     title = models.CharField(max_length=100)
     details = models.CharField(max_length=500)
     img = models.ImageField(upload_to="img")
+class headbanner(models.Model):
+    banner_title = models.CharField(max_length=500,blank=True)
+    banner_content = models.CharField(max_length=1500,blank=True)
+    banneerimg = models.ImageField(upload_to="banner",blank=True)
