@@ -31,7 +31,7 @@
                 <div class="row">
                 
                 {% for reg in Registrations %}
-                  <div class="col-lg-3">
+                  <div class="col">
                     <span class="xl-sub-menu-title">{{reg.title}}</span>
                     {% for drop in reg.RegistrationSubMenu.all %}
                     <li> <a href="/registration/{{reg.slug}}/{{drop.slug}}">{{drop.submenu}}</a></li> {% endfor %}
