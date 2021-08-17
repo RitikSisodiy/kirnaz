@@ -19,15 +19,30 @@
                             </li>
                             <li class="">
                             </li>
-                            <li class="main_dropdown">
+                           <li class="main_dropdown">
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="ti-user"></i>
                                     <span>Users Manage</span></a>
                                 <ul class="collapse">
-                                    <li class=""><a >All Users</a></li>
-                                    <li class=""><a href="{% url "adminchat" %}">Chat</a></li>
                                 </ul>
                             </li>
                              
+                            <li class="main_dropdown">
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-user"></i>
+                                    <span>Home</span></a>
+                                    <ul class="collapse">
+                                    {% for edit in editnames %}
+                                    <li class=""><a href="{% url 'edithomeslug' slug=edit %}" >Edit {{edit}}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                            <li class="main_dropdown">
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-user"></i>
+                                    <span>about</span></a>
+                            </li>
+                            <li class="main_dropdown">
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-user"></i>
+                                    <span>Blog</span></a>
+                            </li>
                             </li>
                             <li class="main_dropdown">
                                 <a href="javascript:void(0)" aria-expanded="true">

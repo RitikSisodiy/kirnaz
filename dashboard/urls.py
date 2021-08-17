@@ -14,5 +14,8 @@ urlpatterns = [
     path('adminchat/<slug:slug1>/<int:id>', views.adminchat, name="adminchatuser"),
     path('getmsg/<slug:slug1>/<int:id>', views.getmsg, name="admingetmsg"),
     path('dashboardlogout', views.dashboardlogout, name="dashboardlogout"),
+    path('edithome', views.edithome, name="edithome"),
+    path('edithome/<slug:slug>', views.edithome, name="edithomeslug"),
+    path('deletehome/<slug:slug>', views.deletehome, name="deletehomeslug"),
     
 ]

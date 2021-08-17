@@ -1,0 +1,47 @@
+{% extends 'dbasic.html' %}
+        <!-- sidebar menu area start -->
+{% block body %}   
+
+{% for form in forms %}
+{% if forloop.counter > 1 and forloop.counter == forms|length %}
+<div style="display:none" id="addnewslug">
+
+{% endif %}
+<div class="col-lg-12 my-3">
+<div class="card">
+<div class="card-body">
+<h2 class="my-5">{{title}} {{forloop.counter}}</h2>
+ <form action="{{request.get_full_path}}?{% if form.instance.id %}&object={{form.instance.id}}{% else %}&object=new{% endif %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+        {{ form.media }}
+        {{ form.as_p }}
+        <input type="submit" class="btn btn-primary my-3" value="Submit">
+        <button type="button" class="btn btn-danger  {% if form.instance.id %}{% else %}disabled{% endif %}" data-toggle="modal" data-target="#exampleModal{{form.instance.id}}">
+            <i class="ti-trash"></i>Delete
+          </button>
+        
+    </form>
+    <div class="modal fade" id="exampleModal{{form.instance.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+        <form method="POST" action="{% url 'deletehomeslug' slug=slug %}">
+            <div class="modal-body">
+              <h3>Are You Sure.</h3>
+            </div>
+            {% csrf_token %}
+            <input type="hidden" name="id" value="{{form.instance.id}}">
+            <input type="hidden" name="page" value="{{request.GET.page}}">
+            <input type="hidden" name="return" value="{{request.get_full_path}}">
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-danger">Yes Sure</button>
+            </div>
+        </form>
+          </div>
+        </div>
+      </div>
+</div>
+</div>
+</div>
+{% if forloop.counter > 1 and forloop.counter == forms|length %}</div><button class="btn btn-primary mx-4" onclick="$('#addnewslug').toggle();">+Add {{slug}}</button>{% endif %}
+{% endfor %}
+{% endblock %}

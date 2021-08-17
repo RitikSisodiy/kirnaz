@@ -1,3 +1,4 @@
+from dashboard.homeforms import aboutcaform
 from django.contrib import messages
 from django.http.response import JsonResponse
 from django.shortcuts import redirect, render
@@ -14,15 +15,19 @@ def index(request):
     bnews = BlogNews.objects.all()
     offrings = Offrings.objects.all()
     menu = RegistrationSubMenu.objects.all()
-
-
+    abca = aboutca.objects.all()
+    abca = abca[0] if abca.exists() else []
+    latestblog = addblog.objects.all()
+    latestblog = latestblog.order_by('time')[0] if latestblog.exists() else []
     res = { 
         'slider':slider,
+        "aboutca":abca ,
         'news':news,
         'ddreminder':ddreminder,
         'bnews':bnews,
         'offrings':offrings,
         'menu':menu,
+        'latestblog': latestblog
     }
     if request.method == "POST":
         name = request.POST['name']

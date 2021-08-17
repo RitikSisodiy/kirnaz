@@ -1,3 +1,4 @@
+from Home.views import blog
 from chat.models import conversation
 from django.http import request
 from django.http.response import HttpResponse, JsonResponse
@@ -132,3 +133,58 @@ def getmsg(request,slug1=None,id=None):
 def dashboardlogout(request):
     logout(request)
     return redirect('dindex')
+from Home.models import *
+from .homeforms import * 
+homemodel = [Slider,aboutca,News,DueDateReminder,BlogNews,addblog]
+homeform = [[sliderform],aboutcaform,[Newsform],[DueDateReminderform],[BlogNewsform],[addblogform]]
+editname = ['slider','AboutCA','News_nortification','DueDate_Reminder','Blog_News_nortification','New_Blogs']
+def edithome(request,slug=None):
+    res={}
+    res["title"] = "Edit home" if slug is None else "Edit "+ slug
+    if slug is not None:
+        res['slug'] = slug
+        if slug in editname:
+            d = editname.index(slug)
+            if isinstance(homeform[d],list):
+                data = homemodel[d].objects.all()
+                res["forms"] = [homeform[d][0](instance=da) for da in data]
+                res['forms'].append(homeform[d][0]())
+            else:
+                data = homemodel[d].objects.all()
+                if data.exists():
+                    data= data[0]
+                else:
+                    data=None
+                res["forms"] = [homeform[d](instance=data)]
+    if request.method == "POST":
+        objectno = (request.GET.get('object') if request.GET.get('object') is not None else 1)
+        if homeform[d] is None or objectno == "new":
+            if isinstance(homeform[d],list):
+                form = homeform[d][0](request.POST,request.FILES,instance = None)
+            else:
+                form = homeform[d](request.POST,request.FILES,instance = None)
+
+        else:
+            if isinstance(homeform[d],list):
+                form = homeform[d][0](request.POST,request.FILES,instance = homemodel[d].objects.filter(id=objectno)[0])
+            else:
+                form = homeform[d](request.POST,request.FILES,instance = homemodel[d].objects.filter(id=objectno)[0])
+        if form.is_valid():
+            form.save()
+            messages.success(request,"Information Is Added Successfully")
+            return redirect(request.get_full_path()[0:request.get_full_path().find('&object')])
+        else:
+            messages.error  (request,"Plese Check Your Fields, Invalid Opration")
+    return render(request,'dashboardhome.html',res)
+def deletehome(request,slug):
+    if slug is not None:
+        formid = editname.index(slug)
+        if request.method == "POST":
+            delid = request.POST.get('id')
+            ret = request.POST.get('return')
+            if ret is not None:
+                data = homemodel[formid].objects.get(id=delid)
+                data.delete()
+                messages.error(request,"successfully deleted")
+                return redirect(ret)
+    return redirect(request.get_full_path()[0:request.get_full_path().find('&object')])

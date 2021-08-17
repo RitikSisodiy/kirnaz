@@ -203,7 +203,23 @@
     for(var i =0; i<sel.length; i++){
         sel[i].setAttribute('class','form-control col')
     }
-    
+     var ele = document.getElementsByTagName('input')
+  for(var i =0; i<ele.length; i++){
+      if(ele[i].className=='' && ele[i].getAttribute('type') != 'checkbox'){
+      ele[i].setAttribute('class','form-control col')
+      }
+      if(ele[i].className=='vTimeField'){
+        ele[i].setAttribute('type','time')
+      }
+      if(ele[i].className=='vDateField'){
+        ele[i].setAttribute('type','date')
+        ele[i].setAttribute('class','form-control')
+      }
+  }
+  var sel = document.getElementsByTagName('select')
+  for(var i =0; i<sel.length; i++){
+      sel[i].setAttribute('class','form-control col')
+  }
     
 </script>
 <script type="text/javascript">

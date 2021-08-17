@@ -1,6 +1,7 @@
 from ckeditor.fields import RichTextField
 from django.db import models
 from django.db.models.deletion import SET_NULL
+from django.http import request
 from registration.models import RegistrationSubMenu
 from othernavs.models import RegistrationSubMenu as othernavsubmenu
 # Create your models here.
@@ -9,7 +10,9 @@ class Slider(models.Model):
     objective = models.CharField(max_length=100)
     obj_details = models.TextField()
     img = models.ImageField(upload_to="img")
-
+class aboutca(models.Model):
+    title = models.CharField(max_length=50)
+    content = RichTextField(blank=True,null=True)
 
 class BusinessQuery(models.Model):
     name = models.CharField(max_length=30)
@@ -48,3 +51,8 @@ class Expertise(models.Model):
 class marketplace(models.Model):
     icon = models.FileField(upload_to="imgaes")
     title = RichTextField(blank=True,null=True)
+class addblog(models.Model):
+    title = models.CharField(max_length=100)
+    image = models.ImageField(upload_to="blogsimg")
+    content = RichTextField(blank=True,null=True)
+    time = models.DateTimeField(auto_now=True)

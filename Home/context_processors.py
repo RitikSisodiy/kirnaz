@@ -2,6 +2,7 @@ from registration.models import *
 from taxfiling.models import *
 from othernavs.models import Registration as othernavreg
 from chat.models import conversation
+from dashboard.views import editname
 
 def regfunc(request):
    Registrations = Registration.objects.all()
@@ -13,5 +14,6 @@ def regfunc(request):
       'othernavreg':othernavregob,
       'tfiling':tfiling,
       'msg':messages,
+      'editnames':editname
    }
    return res
