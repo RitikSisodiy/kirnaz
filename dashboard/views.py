@@ -1,3 +1,4 @@
+from django.urls.conf import path
 from Home.views import blog
 from chat.models import conversation
 from django.http import request
@@ -25,7 +26,7 @@ def registration(request,slug=None):
         res['registration'] = Registration.objects.all()
     res["title"] = "Registration"
     return render(request,'dregistrations.html',res)
-
+sectionname = ["Top Form section","Included in Our Packge","document","Package icon","Procedure","Memorandum","Register","FAQS","Signification","Our Clients"]
 sections = [SubRegistrationContent,AboutRegistraionSubMenu,DocumentRequired,PackageIncluded,Procedure,Memorandum,CompanyRegisterRequirements,FAQ,Sainification,ourclients]
 # adding multi objects form as a list in sectionsform
 sectionsforms = [section0Form,section1Form,section2Form,[PackageIncludedForm],[section3Form],section4Form,section5Form,[section6Form],section7Form,[section8Form]]
@@ -73,17 +74,16 @@ def editregistration(request,slug1,slug2):
         if form.is_valid():
             form.save()
             messages.success(request,"Information Is Added Successfully")
-            return redirect(request.get_full_path()[0:request.get_full_path().find('&object')])
+            path = request.get_full_path().rfind('/')
+            if '&object' in request.get_full_path()[path:]:
+                return redirect(request.get_full_path()[0:request.get_full_path().find('&object')])
+            else:
+                return redirect(request.get_full_path())
         else:
             messages.error  (request,"Plese Check Your Fields, Invalid Opration")
             li[page_number] = form
     sec = Sections.objects.filter(reg_title = RegistrationSubMenuob)
-    if sec.exists():
-        sec = json.loads(sec[0].section)
-    else:
-        sec = Sections(reg_title=RegistrationSubMenuob)
-        sec.save()
-        sec = json.loads(sec.section)
+    sec = sectionname
     paginator = Paginator(li, 1)
     page_number = request.GET.get('page')
     res['page_obj'] = paginator.get_page(page_number)
@@ -91,6 +91,8 @@ def editregistration(request,slug1,slug2):
         paginator2 = Paginator(res['page_obj'].object_list[0], 1)
         card = request.GET.get('card')
         res['card_obj'] = paginator2.get_page(card)
+        if 'icon' in res['card_obj'].object_list[0].fields:
+            res['icon'] = icon.objects.all()
     res['forms'] = li
     res['slugs'] = [slug1,slug2,RegistrationSubMenuob]
     res['sec'] = [[i,sec[i-1]] for i in res['page_obj'].paginator.page_range ]
@@ -109,12 +111,16 @@ def deleteregistration(request):
             messages.error(request,"successfully deleted")
             return redirect(ret)
     return redirect(request.get_full_path()[0:request.get_full_path().find('&object')])
-from chat.models import user
+from chat.models import user,convofiles
 def adminchat(request,slug1=None,id=None):
     res = {}
     if request.method=="POST":
         msg = request.POST['message']   
-        conversation(msgby = user.objects.get(user=id),msgtoadmin=False,msg=msg).save()
+        files= request.FILES.get('myfile')
+        convo=conversation(msgby = user.objects.get(user=id),msgtoadmin=False,msg=msg)
+        convo.save()
+        if files is not None:
+            convofiles(msg=convo,file=files).save()
         return HttpResponse("{'msg':"+msg+"}")
     if id is not None:
         res['coverstion'] = conversation.objects.filter(msgby__user=id)
@@ -126,7 +132,7 @@ def getmsg(request,slug1=None,id=None):
     auser = User.objects.get(id=id)
     mlen = request.GET.get('len')
     messages = list(conversation.objects.filter(msgby__user=auser.id).order_by('time').values('msgby__user',
-'msgtoadmin','msg'))
+'msgtoadmin','msg','convofiles__file'))
     if len(messages)==int(mlen):
         return HttpResponse("updated")
     return JsonResponse(messages[int(mlen):],safe=False)
@@ -188,3 +194,6 @@ def deletehome(request,slug):
                 messages.error(request,"successfully deleted")
                 return redirect(ret)
     return redirect(request.get_full_path()[0:request.get_full_path().find('&object')])
+def viewicon(request):
+    iconlist = icon.objects.all()
+    return render(request,'iconpack.html',{'icon':iconlist})

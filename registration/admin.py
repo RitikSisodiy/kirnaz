@@ -54,3 +54,9 @@ class FAQAdmin(admin.ModelAdmin):
 @admin.register(ourclients)
 class FAQAdmin(admin.ModelAdmin):
     list_display=('reg_title','content')
+@admin.register(iconver)
+class iconverAdmin(admin.ModelAdmin):
+    list_display=('id','version')
+@admin.register(icon)
+class iconAdmin(admin.ModelAdmin):
+    list_display=('id','icon')

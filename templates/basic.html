@@ -380,11 +380,11 @@ textarea {
                                   <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 2px;"></div>
                               </div>
                           </div>
-                          <form class="publisher bt-1 border-light"  id="sendmsg" autocomplete="off"> <img class="avatar avatar-xs" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="..."> 
+                          <form class="publisher bt-1 border-light"  id="sendmsg" autocomplete="off" enctype="multipart/form-data"> <img class="avatar avatar-xs" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="..."> 
                             {% csrf_token %} 
-                            <input class="publisher-input" type="text" name="message" placeholder="Write something"> <span class="publisher-btn file-group"> <i class="fa fa-paperclip file-browser"></i> 
-                            <input type="file" id="filefield"> </span> <a class="publisher-btn" href="#" data-abc="true"><i class="fa fa-smile"></i></a> 
-                            <a class="publisher-btn text-info" onclick="$('#sendmsg').submit()" data-abc="true">
+                            <input class="publisher-input" type="text" name="message" placeholder="Write something"> <span class="publisher-btn"> <i class="fa fa fa-photo file-browser" onclick=$('#filefield').click()></i> 
+                            <input type="file" id="filefield" accept="image/png, image/jpeg "  style="display:none"> </span> <a class="publisher-btn" href="#" data-abc="true"><i class="fa fa-smile"></i></a> 
+                            <a class="publisher-btn text-info" id="submit" onclick="$('#sendmsg').submit()" data-abc="true">
                             <i class="fa fa-paper-plane"></i></a> </form>
                       </div>
                   </div>
@@ -421,7 +421,9 @@ textarea {
 
 
 
+<div id="status">
 
+</div>
 
  <footer>
       <div class="footer-wrap">
@@ -473,8 +475,10 @@ textarea {
           </div>
         </div>
       </div>
+      
     </footer>
   </div>
+
   <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
  
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -531,7 +535,7 @@ textarea {
   
   <script src="{% static 'js/main.js' %}"></script>
   <script>
-    $('#sendmsg').submit(function(event) {
+    {% comment %} $('#sendmsg').submit(function(event) {
    var formData =  $('#sendmsg').serializeArray().reduce(function(obj, item) {
    obj[item.name] = item.value;
    return obj;
@@ -547,9 +551,72 @@ textarea {
        $("input[name=message]").val('')
        $("input[name=message]").focus()
    });
+   
 event.preventDefault();
 event.preventDefault();
-})
+}) {% endcomment %}
+
+(function(){
+    var form = document.getElementById('sendmsg');
+    var fileSelect = document.getElementById('filefield');
+    var uploadButton = document.getElementById('submit');
+    var statusDiv = document.getElementById('status');
+
+    form.onsubmit = function(event) {
+        event.preventDefault();
+
+        statusDiv.innerHTML = 'Uploading . . . ';
+
+        // Get the files from the input
+        var files = fileSelect.files;
+
+        // Create a FormData object.
+        var formData = new FormData();
+        $('#sendmsg').serializeArray().reduce(function(obj, item) {
+        formData.append(item.name, item.value);
+   return obj;
+   }, {});
+        
+        //Grab only one file since this script disallows multiple file uploads.
+        var file = files[0]; 
+
+        // //Check the file type.
+        // if (!file.type.match('image.*')) {
+        //     statusDiv.innerHTML = 'You cannot upload this file because it’s not an image.';
+        //     return;
+        // }
+
+        // if (file.size >= 2000000 ) {
+        //     statusDiv.innerHTML = 'You cannot upload this file because its size exceeds the maximum limit of 2 MB.';
+        //     return;
+        // }
+
+         // Add the file to the AJAX request.
+        if(file != undefined){
+        formData.append('myfile', file, file.name);
+      }
+        // Set up the request.
+        var xhr = new XMLHttpRequest();
+
+        // Open the connection.
+        xhr.open('POST', '{% url 'sendmsg'  %}', true);
+
+
+        // Set up a handler for when the task for the request is complete.
+        xhr.onload = function () {
+          if (xhr.status === 200) {
+            $("input[name=message]").val('')
+           $("input[name=message]").focus()
+          }
+        };
+
+        // Send the data.
+        xhr.send(formData);
+    }
+})();
+
+
+
    function getsms () {
    data = document.getElementsByClassName("usermessages")
    var xhttp = new XMLHttpRequest()
@@ -558,6 +625,7 @@ event.preventDefault();
    xhttp.onreadystatechange = function(){
        if(xhttp.readyState==4 && xhttp.status==200){
            data = xhttp.responseText
+           console.log(data)
            if (data != "updated"){
                data = JSON.parse(data)
                updatedmsg(data)
@@ -567,6 +635,7 @@ event.preventDefault();
    }
    setTimeout(getsms, 1500); // try again in 1500 milliseconds
    }
+   
 function updatedmsg(msgs){
     if (msgs.length>0){
         for(i=0;i<msgs.length;i++){
@@ -576,16 +645,25 @@ function updatedmsg(msgs){
                 
                          <div class="media media-chat media-chat-reverse usermessages">
                               <div class="media-body">
-                                  <p>${msgs[i]['msg']}</p>
+                                
+                 `
+                 if (msgs[i]['convofiles__file']!= null){
+                   msgstr += `<div class="" style="border: solid 5px;
+    border-block-color: revert;
+    border-color: cornflowerblue;
+    border-radius:20;"><img src="/media/${msgs[i]['convofiles__file']}" alt="" style="width:100%"  ></div>`
+                 }
+                 msgstr+= `      <p>${msgs[i]['msg']}</p>
                               </div>
-                          </div>
-                
-               `
+                          </div>`
             }
             else{
                 var msgstr = ` <div class="media media-chat usermessages"> <img class="avatar" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="...">
-                              <div class="media-body">
-                                  <p>${msgs[i]['msg']}</p>
+                              <div class="media-body">`
+                 if (msgs[i]['convofiles__file']!= null){
+                   msgstr += `<img src="/media/${msgs[i]['convofiles__file']}" alt="" style="width:100%">`
+                 }
+                 msgstr+= `      <p>${msgs[i]['msg']}</p>
                               </div>
                           </div>`
             }

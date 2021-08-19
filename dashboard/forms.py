@@ -13,7 +13,7 @@ class PackageIncludedForm(ModelForm):
     class Meta:
         model = PackageIncluded
         exclude = ('id',)    
-        widgets = {'reg_title': forms.HiddenInput()}    
+        widgets = {'reg_title': forms.HiddenInput(),'icon':forms.HiddenInput()}    
 class section1Form(ModelForm):
     class Meta:
         model = AboutRegistraionSubMenu
@@ -29,7 +29,7 @@ class section3Form(ModelForm):
     class Meta:
         model = Procedure
         exclude = ('id',)
-        widgets = {'reg_title': forms.HiddenInput()}    
+        widgets = {'reg_title': forms.HiddenInput(),'icon':forms.HiddenInput()}    
 
 class section4Form(ModelForm):
     class Meta:
@@ -57,7 +57,6 @@ class section8Form(ModelForm):
         model = ourclients
         exclude = ('id',)    
         widgets = {'reg_title': forms.HiddenInput()}    
-
 
 # class userRegister(ModelForm):
 #     password = forms.CharField(widget=forms.PasswordInput,label='Password')

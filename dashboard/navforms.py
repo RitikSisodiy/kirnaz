@@ -15,7 +15,7 @@ class PackageIncludedForm(ModelForm):
     class Meta:
         model = PackageIncluded
         exclude = ('id',)    
-        widgets = {'reg_title': forms.HiddenInput()}    
+        widgets = {'reg_title': forms.HiddenInput(),'icon':forms.HiddenInput()}    
 class section2Form(ModelForm):
     class Meta:
         model = DocumentRequired
@@ -25,7 +25,7 @@ class section3Form(ModelForm):
     class Meta:
         model = Procedure
         exclude = ('id',)
-        widgets = {'reg_title': forms.HiddenInput()}    
+        widgets = {'reg_title': forms.HiddenInput(),'icon':forms.HiddenInput()}    
 
 class section4Form(ModelForm):
     class Meta:

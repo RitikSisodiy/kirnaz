@@ -1,0 +1,106 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+    integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.0-beta/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    <h1>Hello, world!</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <select class="form-control" >
+    
+               
+                {% for i in icon %}
+                 <option data-content="<i class='fa fa-cutlery'></i> Cutlery"><span class="fa {{i.icon}}"></span></option>
+            {% endfor %}
+            <option data-content="<span class='badge badge-warning mt-1 ml-2 float-right'>3</span> More"></option>
+            </select>
+        </div>
+    </div>
+</div>
+<li class="dropdown notification-list d-lg-none">
+    <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+        <i class="dripicons-search noti-icon"></i>
+    </a>
+    <div class="dropdown-menu dropdown-menu-animated dropdown-lg p-0" style="">
+        <form class="p-3">
+            <input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
+        </form>
+    </div>
+</li>
+
+
+<input list="brow" id="iconvalue" onchange="$('#showicon').attr('class','fa '+this.value)"><i class="" id="showicon"></i>
+<datalist id="brow" style="font-family:icomoon;">
+    {% for i in icon %}
+    <option value="{{i.icon}}"></option>
+{% endfor %}
+</datalist>  
+<!-- <div class="btn-group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+        Select icon <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu list-inline" role="menu">
+        <li><span class="glyphicon glyphicon-cutlery"></span></li>
+        <li><span class="glyphicon glyphicon-fire"></span></li>
+        <li><span class="glyphicon glyphicon-glass"></span></li>
+        <li><span class="glyphicon glyphicon-heart"></span></li>          
+    </ul>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <select id="mySelect" data-show-content="true" class="form-control">
+                <option>Select..</option>
+                <option data-content="<i class='fa fa-cutlery'></i> Cutlery"></option>
+                <option data-content="<i class='fa fa-eye'></i> Eye"></option>
+                <option data-content="<i class='fa fa-heart-o'></i> Heart"></option>
+                <option data-content="<i class='fa fa-leaf'></i> Leaf"></option>
+                <option data-content="<i class='fa fa-music'></i> Music"></option>
+                <option data-content="<i class='fa fa-star'></i> Star"></option>
+                <option data-content="<span class='badge badge-warning mt-1 ml-2 float-right'>3</span> More"></option>
+            </select>
+        </div>
+    </div>
+</div> -->
+
+<h1><i id='showiconi'></i></h1>
+<div class="container">
+    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Docs / Components</a>
+        <ul class="dropdown-menu col-md-10">
+          <div class="col-md-12">
+              {% for i in icon %}
+              <label class="fa {{i.icon}}" onmouseover="$('#showiconi').attr('class',this.className);"  onclick="$('#showiconi').attr('class',this.className)" for="icon{{forloop.counter}}"></label><input type="radio" style="display: none;" id="icon{{forloop.counter}}" name="icon">
+            {% endfor %}
+          </div>
+        </ul>
+      </li>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.0-beta/js/bootstrap-select.min.js"></script>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+   
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>

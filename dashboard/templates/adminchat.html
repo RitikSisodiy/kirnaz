@@ -87,11 +87,23 @@ input::placeholder {
         <div class="media w-50 mb-3 usermessages"><img src="http://simpleicon.com/wp-content/uploads/user1.png" alt="user" width="50" class="rounded-circle">
           <div class="media-body ml-3">
             <div class="bg-light rounded py-2 px-3 mb-2">
+            {% if c.convofiles.all.0.file %}
+         <div class="m-sent clearfix">
+                                <div class="message float-right">
+                                    <div class="mb-3">
+                                        <img src="/media/{{c.convofiles.all.0.file}}" class="img-fluid" width="200">
+                                    </div>
+                                    <div class="msg-timestamp d-flex flex-nowrap">
+                                        <small class="text-muted"><i class="fas fa-check-double text-primary"></i> 10:05</small>
+                                    </div>
+                                </div>
+                            </div>{% endif %}
               <p class="text-small mb-0 text-muted">{{c.msg}}</p>
             </div>
             <p class="small text-muted">{{c.time}}</p>
           </div>
         </div>
+        
         {% else %}
         <!-- Reciever Message-->
         <div class="media w-50 ml-auto mb-3 usermessages">
@@ -99,9 +111,21 @@ input::placeholder {
             <div class="bg-primary rounded py-2 px-3 mb-2">
               <p class="text-small mb-0 text-white">{{c.msg}}</p>
             </div>
+            {% if c.convofiles.all.0.file %}
+         <div class="m-sent clearfix">
+                                <div class="message float-right">
+                                    <div class="mb-3">
+                                        <img src="/media/{{c.convofiles.all.0.file}}" class="img-fluid" width="200">
+                                    </div>
+                                    <div class="msg-timestamp d-flex flex-nowrap">
+                                        <small class="text-muted"><i class="fas fa-check-double text-primary"></i> 10:05</small>
+                                    </div>
+                                </div>
+                            </div>{% endif %}
             <p class="small text-muted">{{c.time}}</p>
           </div>
         </div>
+               
         {% endif %}
         {% endfor %}
 
@@ -112,6 +136,9 @@ input::placeholder {
         <div class="input-group">
           <input type="text" placeholder="Type a message" aria-describedby="button-addon2" name="message" class="form-control rounded-0 border-0 py-4 bg-light">
           <div class="input-group-append">
+          
+            <button id="button-addon2" class="btn btn-link"><i class="fa fa fa-photo file-browser" onclick=$('#filefield').click()></i> 
+                            <input type="file" id="filefield" accept="image/png, image/jpeg "  style="display:none"></button>
             <button id="button-addon2" type="submit" class="btn btn-link"> <i class="fa fa-paper-plane"></i></button>
           </div>
         </div>
@@ -126,7 +153,7 @@ input::placeholder {
  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
   {% if window %}
   <script>
-    $('#sendmsg').submit(function(event) {
+    {% comment %} $('#sendmsg').submit(function(event) {
    var formData =  $('#sendmsg').serializeArray().reduce(function(obj, item) {
    obj[item.name] = item.value;
    return obj;
@@ -144,7 +171,65 @@ input::placeholder {
    });
 event.preventDefault();
 event.preventDefault();
-})
+}) {% endcomment %}
+(function(){
+    var form = document.getElementById('sendmsg');
+    var fileSelect = document.getElementById('filefield');
+    var uploadButton = document.getElementById('submit');
+
+
+    form.onsubmit = function(event) {
+        event.preventDefault();
+
+        
+        // Get the files from the input
+        var files = fileSelect.files;
+
+        // Create a FormData object.
+        var formData = new FormData();
+        $('#sendmsg').serializeArray().reduce(function(obj, item) {
+        formData.append(item.name, item.value);
+   return obj;
+   }, {});
+        
+        //Grab only one file since this script disallows multiple file uploads.
+        var file = files[0]; 
+
+        // //Check the file type.
+        // if (!file.type.match('image.*')) {
+        //     statusDiv.innerHTML = 'You cannot upload this file because it’s not an image.';
+        //     return;
+        // }
+
+        // if (file.size >= 2000000 ) {
+        //     statusDiv.innerHTML = 'You cannot upload this file because its size exceeds the maximum limit of 2 MB.';
+        //     return;
+        // }
+
+         // Add the file to the AJAX request.
+        if(file != undefined){
+        formData.append('myfile', file, file.name);
+      }
+        // Set up the request.
+        var xhr = new XMLHttpRequest();
+
+        // Open the connection.
+        xhr.open('POST', '{{request.get_full_path}}', true);
+
+
+        // Set up a handler for when the task for the request is complete.
+        xhr.onload = function () {
+          if (xhr.status === 200) {
+            $("input[name=message]").val('')
+           $("input[name=message]").focus()
+          }
+        };
+
+        // Send the data.
+        xhr.send(formData);
+    }
+})();
+
    function getsms () {
    data = document.getElementsByClassName("usermessages")
    var xhttp = new XMLHttpRequest()
@@ -173,8 +258,22 @@ function updatedmsg(msgs){
                
           <div class="media w-50 mb-3 usermessages"><img src="http://simpleicon.com/wp-content/uploads/user1.png" alt="user" width="50" class="rounded-circle">
           <div class="media-body ml-3">
-            <div class="bg-light rounded py-2 px-3 mb-2">
-              <p class="text-small mb-0 text-muted">${msgs[i]['msg']}</p>
+            <div class="bg-light rounded py-2 px-3 mb-2"></div>`
+            if (msgs[i]['convofiles__file']!= null){
+                   msgstr += ` <div class="m-sent clearfix">
+                                <div class="message float-right">
+                                    <div class="mb-3">
+                                        <img src="/media/${msgs[i]['convofiles__file']}" class="img-fluid" width="200">
+                                    </div>
+                                    <div class="msg-timestamp d-flex flex-nowrap">
+                                        <small class="text-muted"><i class="fas fa-check-double text-primary"></i> 10:05</small>
+                                    </div>
+                                </div>
+                            </div>`
+                 }
+                 msgstr+= `  
+
+              <p class="text-small mb-0 text-muted text-light ">${msgs[i]['msg']}</p>
             </div>
             <p class="small text-muted">{{c.time}}</p>
           </div>
@@ -185,14 +284,34 @@ function updatedmsg(msgs){
                 var msgstr = ` 
                                 <div class="media w-50 ml-auto mb-3 usermessages">
           <div class="media-body">
-            <div class="bg-primary rounded py-2 px-3 mb-2">
-              <p class="text-small mb-0 text-white">${msgs[i]['msg']}</p>
-            </div>
+            <div class="bg-primary rounded py-2 px-3 mb-2">`
+            
+            
+            if(${msgs[i]['msg']}!=''){
+              msgstr = `
+            <p class="text-small mb-0 text-muted text-light">${msgs[i]['msg']}</p>
+            </div>`}
+
+
+               if (msgs[i]['convofiles__file']!= null){
+                   msgstr += ` <div class="m-sent clearfix">
+                                <div class="message float-right">
+                                    <div class="mb-3">
+                                        <img src="/media/${msgs[i]['convofiles__file']}" class="img-fluid" width="200">
+                                    </div>
+                                    <div class="msg-timestamp d-flex flex-nowrap">
+                                        <small class="text-muted"><i class="fas fa-check-double text-primary"></i> 10:05</small>
+                                    </div>
+                                </div>
+                            </div>`
+                 }
+                 msgstr+= `  
+
+              
             <p class="small text-muted">{{c.time}}</p>
           </div>
-        </div>
-                          `
-            }
+        </div> 
+               ` }
             $("#chat-content").append(msgstr)
             var objDiv = document.getElementById("chat-content");
             objDiv.scrollTop = objDiv.scrollHeight;

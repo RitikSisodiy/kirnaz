@@ -4,6 +4,14 @@ from django.utils.text import slugify
 from ckeditor.fields import RichTextField
 # Create your models here.
 
+class iconver(models.Model):
+    version = models.CharField(max_length=50)
+class icon(models.Model):
+    version = models.ForeignKey(iconver,on_delete=models.SET_NULL,null=True)
+    icon = models.CharField(max_length=70)
+    def __str__(self):
+        return self.icon
+
 class Registration(models.Model):
     title = models.CharField(max_length=50)
     # content = models.CharField(max_length=5000)
@@ -66,14 +74,14 @@ class TitleSlide(models.Model):
 class PackageIncluded(models.Model):
     reg_title = models.ForeignKey(RegistrationSubMenu, on_delete=models.CASCADE)
     heading1 = models.CharField(max_length=500,null=True,blank=True)
-    image = models.ImageField(upload_to = 'img',blank=True)
+    icon = models.ForeignKey(icon,on_delete=models.SET_NULL,null=True)
 
 
 class Procedure(models.Model):
     reg_title = models.ForeignKey(RegistrationSubMenu, on_delete=models.CASCADE)
     heading1 = models.CharField(max_length=500,null=True,blank=True)
     content = models.CharField(max_length=500)
-    image = models.ImageField(upload_to = 'img',blank=True)
+    icon = models.ForeignKey(icon,on_delete=models.SET_NULL,null=True)
 
 class DocumentRequired(models.Model):
     reg_title = models.ForeignKey(RegistrationSubMenu, on_delete=models.CASCADE)

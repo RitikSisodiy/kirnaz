@@ -3,7 +3,7 @@ from django.db import models
 from django.http.response import JsonResponse
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
-from .models import user,conversation
+from .models import convofiles, user,conversation
 from django.db.models import Q
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -16,8 +16,13 @@ def index(request):
     return render(request,'chat/index.html',{'contacts':contacts})
 def message(request):
     if request.method=="POST":
+        print(request.POST,request.FILES)
+        files= request.FILES.get('myfile')
         msg = request.POST['message']   
-        conversation(msgby = user.objects.get(user=request.user),msgtoadmin=True,msg=msg).save()
+        convo = conversation(msgby = user.objects.get(user=request.user),msgtoadmin=True,msg=msg)
+        convo.save()
+        if files is not None:
+            convofiles(msg=convo,file=files).save()
         return HttpResponse("{'msg':"+msg+"}")
     return redirect('index')  
 def Login(request):
@@ -63,7 +68,7 @@ def getmsg(request):
     auser = request.user
     mlen = request.GET.get('len')
     messages = list(conversation.objects.filter(msgby__user=auser.id).order_by('time').values('msgby__user',
-'msgtoadmin','msg'))
+'msgtoadmin','msg','convofiles__file'))
     if len(messages)==int(mlen):
         return HttpResponse("updated")
     return JsonResponse(messages[int(mlen):],safe=False)

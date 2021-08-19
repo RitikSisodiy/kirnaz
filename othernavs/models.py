@@ -2,7 +2,7 @@ from django.db import models
 from django.utils.text import slugify
 from ckeditor.fields import RichTextField
 # Create your models here.
-
+from registration.models import icon
 class Registration(models.Model):
     title = models.CharField(max_length=50)
     # content = models.CharField(max_length=5000)
@@ -27,6 +27,7 @@ class RegistrationSubMenu(models.Model):
     class Meta:
         unique_together = [['title', 'submenu']]
 
+
 class ourclients(models.Model):
     reg_title = models.ForeignKey(RegistrationSubMenu, on_delete=models.CASCADE)
     name = models.CharField(max_length=30)
@@ -49,7 +50,6 @@ class SubRegistrationContent(models.Model):
     BannerImg = models.ImageField(upload_to = 'img',blank=True)
     def __str__(self):
         return str(self.title)
-
 class AboutRegistraionSubMenu(models.Model):
     reg_title = models.ForeignKey(RegistrationSubMenu, on_delete=models.CASCADE)
     heading1 = models.CharField(max_length=500,null=True,blank=True)
@@ -65,14 +65,14 @@ class TitleSlide(models.Model):
 class PackageIncluded(models.Model):
     reg_title = models.ForeignKey(RegistrationSubMenu, on_delete=models.CASCADE)
     heading1 = models.CharField(max_length=500,null=True,blank=True)
-    image = models.ImageField(upload_to = 'img',blank=True)
+    icon = models.ForeignKey(icon,on_delete=models.SET_NULL,null=True,related_name='othernavicon')
 
 
 class Procedure(models.Model):
     reg_title = models.ForeignKey(RegistrationSubMenu, on_delete=models.CASCADE)
     heading1 = models.CharField(max_length=500,null=True,blank=True)
     content = models.CharField(max_length=500)
-    image = models.ImageField(upload_to = 'img',blank=True)
+    icon = models.ForeignKey(icon,on_delete=models.SET_NULL,null=True,related_name="Othernavicon")
 
 class DocumentRequired(models.Model):
     reg_title = models.ForeignKey(RegistrationSubMenu, on_delete=models.CASCADE)

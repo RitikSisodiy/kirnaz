@@ -19,3 +19,6 @@ class conversation(models.Model):
     time = models.DateTimeField(auto_now=True)
     def msgtime(self):
         return datetime_from_utc_to_local(self.time).strftime('%I:%M')
+class convofiles(models.Model):
+    msg = models.ForeignKey(conversation,on_delete=models.CASCADE,related_name='convofiles')
+    file = models.FileField(upload_to="convomedia")
