@@ -90,8 +90,8 @@ input::placeholder {
             {% if c.convofiles.all.0.file %}
          <div class="m-sent clearfix">
                                 <div class="message float-right">
-                                    <div class="mb-3">
-                                        <img src="/media/{{c.convofiles.all.0.file}}" class="img-fluid" width="200">
+                                    <div class="mb-3"><a target="_blank" href="/media/{{c.convofiles.all.0.file}}">
+                                        <img src="/media/{{c.convofiles.all.0.file}}" class="img-fluid" width="200"></a>
                                     </div>
                                     <div class="msg-timestamp d-flex flex-nowrap">
                                         <small class="text-muted"><i class="fas fa-check-double text-primary"></i> 10:05</small>
@@ -114,8 +114,8 @@ input::placeholder {
             {% if c.convofiles.all.0.file %}
          <div class="m-sent clearfix">
                                 <div class="message float-right">
-                                    <div class="mb-3">
-                                        <img src="/media/{{c.convofiles.all.0.file}}" class="img-fluid" width="200">
+                                    <div class="mb-3"><a target="_blank" href="/media/{{c.convofiles.all.0.file}}">
+                                        <img src="/media/{{c.convofiles.all.0.file}}" class="img-fluid" width="200"></a>
                                     </div>
                                     <div class="msg-timestamp d-flex flex-nowrap">
                                         <small class="text-muted"><i class="fas fa-check-double text-primary"></i> 10:05</small>
@@ -287,7 +287,7 @@ function updatedmsg(msgs){
             <div class="bg-primary rounded py-2 px-3 mb-2">`
             
             
-            if(${msgs[i]['msg']}!=''){
+            if(msgs[i]['msg']!=''){
               msgstr = `
             <p class="text-small mb-0 text-muted text-light">${msgs[i]['msg']}</p>
             </div>`}

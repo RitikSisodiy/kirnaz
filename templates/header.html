@@ -27,7 +27,7 @@
             <li><a href="{% url 'about' %}">About Us</a>
             </li>
             <li><a href="#">Registration</a>
-              <ul class="xl-sub-menu">
+              <ul class="xl-sub-menu bg-dark p-5">
                 <div class="row">
                 
                 {% for reg in Registrations %}
@@ -77,7 +77,7 @@
             </li>
             {% for data in othernavreg %}
             <li><a href="#">{{data.title}}</a>
-              <ul class="drop-down">
+              <ul class="drop-down bg-dark">
               {% for tax in data.RegistrationSubMenu.all %}
                 <li><a href="{% url 'handlenav' slug1=data.slug slug2=tax.slug %}">{{tax.submenu}}</a></li>{% endfor %}
                 {% comment %} <li><a href="#">Business xTax Return Filling</a></li>
@@ -281,7 +281,7 @@
 		height: 95px;
 		border-radius: 50%;
 		z-index: 9;
-		background: #82ce34;
+		background: #e77b20;
 		padding: 15px;
 		text-align: center;
 		box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
@@ -297,7 +297,7 @@
     .modal-confirm .btn {
         color: #fff;
         border-radius: 4px;
-		background: #82ce34;
+		background: #e77b20;
 		text-decoration: none;
 		transition: all 0.4s;
         line-height: normal;

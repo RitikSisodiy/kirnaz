@@ -6,19 +6,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PVT LTD Registration</title>
+  <link rel="shortcut icon" href="{% static 'images/favicon.jpeg' %}" type="image/x-icon">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <title>{{title}}</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
  <style>
     .card-bordered {
     border: 1px solid #ebebeb
 }
-
+html {
+  scroll-behavior: smooth;
+}
 .card {
     border: 0;
     border-radius: 0px;
@@ -228,7 +234,7 @@ h4.card-title {
 .media-chat.media-chat-reverse .media-body p {
     float: right;
     clear: right;
-    background-color: #48b0f7;
+    background-colore77b20;
     color: #fff
 }
 
@@ -318,7 +324,7 @@ textarea {
 }
 
 .text-info {
-    color: #48b0f7 !important
+    color: #e77b20 !important
 }
   </style>
 </head>
@@ -327,11 +333,11 @@ textarea {
  <div class="index-page">
     <div class="chatbox">
       <div class="button" onclick="show()">
-        <button class="online text-light">Online</button>
+        <button class="online">Online</button>
       </div>
       <div class="panel">
         <div class="top">
-          <div class="close-menu" onclick="hide()">
+          <div class="close-menu">
             <i class="fa fa-times"></i>
           </div>
         </div>
@@ -353,12 +359,16 @@ textarea {
                                   <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 2px;"></div>
                               </div>
                           </div>
-                          <form class="publisher bt-1 border-light"  id="sendmsg" autocomplete="off"> <img class="avatar avatar-xs" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="..."> 
+                          <div class="right" id="imgpreview" style="display: none;">
+                            <img id="blah" src="#" alt="your image" / width="80%">
+                          </div>
+                          <form class="publisher bt-1 border-light"  id="sendmsg" autocomplete="off" enctype="multipart/form-data"> <img class="avatar avatar-xs" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="..."> 
                             {% csrf_token %} 
-                            <input class="publisher-input" type="text" name="message" placeholder="Write something"> <span class="publisher-btn file-group"> <i class="fa fa-paperclip file-browser"></i> 
-                            <input type="file" id="filefield"> </span> <a class="publisher-btn" href="#" data-abc="true"><i class="fa fa-smile"></i></a> 
-                            <button class="publisher-btn text-info" type="submit" data-abc="true">
-                            <i class="fa fa-paper-plane"></i></button> </form>
+                            <input class="publisher-input" type="text" name="message" placeholder="Write something"> <span class="publisher-btn"> <i class="fa fa fa-photo file-browser" onclick=$('#filefield').click()></i> 
+                            <input type="file" id="filefield" accept="image/png, image/jpeg "  style="display:none">
+                          </span> <a class="publisher-btn" href="#" data-abc="true"><i class="fa fa-smile"></i></a> 
+                            <a class="publisher-btn text-info" id="submit" onclick="$('#sendmsg').submit()" data-abc="true">
+                            <i class="fa fa-paper-plane"></i></a> </form>
                       </div>
                   </div>
               </div>
@@ -382,9 +392,9 @@ textarea {
         function show() {
           $('.chatbox').addClass('active');
         }
-        function hide() {
+        $('.close-menu').click(() => {
           $('.chatbox').removeClass('active');
-        }
+        });
       </script>
     </div>
     <div class="pvt-ltd-reg">
@@ -466,6 +476,9 @@ textarea {
    .done(function(data) {
        $("input[name=message]").val('')
        $("input[name=message]").focus()
+       $("#filefield").val(null)
+       $("#imgpreview").hide()
+
    });
 event.preventDefault();
 event.preventDefault();
@@ -496,19 +509,30 @@ function updatedmsg(msgs){
                 
                          <div class="media media-chat media-chat-reverse usermessages">
                               <div class="media-body">
-                                  <p>${msgs[i]['msg']}</p>
-                              </div>
-                          </div>
-                
-               `
-            }
-            else{
-                var msgstr = ` <div class="media media-chat usermessages"> <img class="avatar" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="...">
-                              <div class="media-body">
-                                  <p>Hi</p>
+                                
+                 `
+                 if (msgs[i]['convofiles__file']!= null){
+                   msgstr += `<div class="" style="border: solid 5px;
+    border-block-color: revert;
+    border-color: #e77b20;
+    border-radius:20;"><img src="/media/${msgs[i]['convofiles__file']}" alt="" style="width:100%"  ></div>`
+                 }
+                 msgstr+= `      <p>${msgs[i]['msg']}</p>
                               </div>
                           </div>`
             }
+            else{
+                var msgstr = ` <div class="media media-chat usermessages"> <img class="avatar" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="...">
+                              <div class="media-body">`
+                 if (msgs[i]['convofiles__file']!= null){
+                   msgstr += `<img src="/media/${msgs[i]['convofiles__file']}" alt="" style="width:100%">`
+                 }
+                 msgstr+= `      <p>${msgs[i]['msg']}</p>
+                              </div>
+                          </div>`
+            }
+            msgstr = msgstr.replace("<p></p>",'')
+
             $("#chat-content").append(msgstr)
             var objDiv = document.getElementById("chat-content");
             objDiv.scrollTop = objDiv.scrollHeight;

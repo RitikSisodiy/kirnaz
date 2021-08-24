@@ -116,3 +116,10 @@ class FAQ(models.Model):
     # content = models.TextField(null=True,blank=True)
     content = RichTextField(null=True,blank=True)
 
+class contacts(models.Model):
+    reg_title = models.ForeignKey(RegistrationSubMenu, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+    email = models.CharField(max_length=50)
+    mobile = models.CharField(max_length=50)
+    pincode = models.CharField(max_length=50)
+    time = models.DateTimeField(auto_now=True)

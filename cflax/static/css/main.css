@@ -23,7 +23,7 @@ html {
 
 /* header */
 .top-nav {
-    background: #009ddc!important;
+    background: #e77b20!important;
 }
 
 .top-nav {
@@ -57,7 +57,7 @@ html {
     left: 0;
     width: 40px;
     height: 100%;
-    background: linear-gradient(225deg, #e1f3fc 50%, #009ddc 50%);
+    background: linear-gradient(225deg, #e1f3fc 50%, #e77b20 50%);
 }
 
 .top-nav ul {
@@ -127,7 +127,7 @@ html {
 }
 
 .nav-bar nav ul li a {
-    color: #47b8e6;
+    color: #e77b20;
     font-weight: 600;
     padding: 4px 10px;
     text-transform: uppercase;
@@ -160,7 +160,7 @@ html {
 }
 
 .nav-bar nav ul li ul li a:hover {
-    color: #47b8e6;
+    color: #e77b20;
     margin-left: 6px;
 }
 
@@ -188,7 +188,7 @@ html {
 }
 
 .nav-bar ul.sub-sub-down li:hover::after {
-    color: #47b8e6;
+    color: #e77b20;
 }
 
 .nav-bar ul.sub-sub-down li {
@@ -334,7 +334,7 @@ html {
 /* footer */
 
 .footer-wrap {
-    background: #282e3f;
+    background: #000000;
     padding: 50px 0px 10px 0px;
     font-size: 14px;
 }
@@ -386,7 +386,7 @@ html {
 }
 
 .footer-nav li a:hover {
-    color: #18ba60;
+    color: #e77b20;
 }
 
 .call-ad {
@@ -455,7 +455,7 @@ html {
 }
 
 .chatbox .top {
-    background-color: #0062E6;
+    background-color: #e77b20;
     margin-bottom: 20px;
 }
 
@@ -477,7 +477,7 @@ html {
     bottom: 0px;
     left: 0px;
     border: 0px;
-    background: #0062E6;
+    background: #e77b20;
     color: #fff;
     width: 100%;
     height: 34px;
@@ -523,14 +523,14 @@ html {
 .index-page .first .green-line {
     height: 3px;
     width: 60px;
-    background: #5cb302;
+    background: #e77b20;
     margin: 6px 0px;
 }
 
 .index-page .first a {
     color: #fff;
-    background-color: #18ba60;
-    border-color: #18ba60;
+    background-color: #e77b20;
+    border-color: #e77b20;
     display: inline-block;
     font-size: 16px;
     padding: 8px 35px;
@@ -575,7 +575,7 @@ html {
 .index-page .hm-query-sec .green-line {
     height: 2px;
     width: 60px;
-    background: #5cb302;
+    background: #e77b20;
     margin: 6px 0px;
 }
 
@@ -589,11 +589,11 @@ html {
 
 .index-page .hm-query-sec .btn-send {
     color: #fff;
-    background: #18ba60;
+    background: #e77b20;
     font-size: 18px;
     padding-left: 40px;
     padding-right: 40px;
-    border: 1px solid #18ba60;
+    border: 1px solid #e77b20;
     height: 44px;
     cursor: pointer;
     font-weight: 900;
@@ -602,8 +602,8 @@ html {
 }
 
 .index-page .hm-query-sec .btn-send:hover {
-    background: #003f69;
-    border-color: #003f69;
+    background: #9da3a7;
+    border-color: #f17000;
     color: #fff;
 }
 
@@ -638,7 +638,7 @@ html {
 .index-page .news-item-box h3 {
     font-size: 20px;
     margin: -20px -20px 30px;
-    background: #003f69;
+    background: #f17000;
     padding: 15px 0;
     color: #fff;
     position: relative;
@@ -648,7 +648,7 @@ html {
 .index-page .news-item-box h3:after {
     border-left: 15px solid transparent;
     border-right: 15px solid transparent;
-    border-top: 15px solid #003f69;
+    border-top: 15px solid #f17000;
     content: "";
     position: absolute;
     height: 0;
@@ -708,13 +708,13 @@ a:hover {
 }
 
 .index-page .news-sec a:hover {
-    color: #ca970b;
+    color: #e77b20;
 }
 
 .index-page .call-us-sec {
     padding-top: 20px;
     padding-bottom: 20px;
-    background: #003f69;
+    background: #f17000;
     display: block;
     clear: both;
     position: relative;
@@ -743,8 +743,8 @@ a {
 
 .btn-red {
     color: #fff;
-    background-color: #ca970b;
-    border-color: #ca970b;
+    background-color: #e77b20;
+    border-color: #e77b20;
     display: inline-block;
     font-size: 16px;
     padding: 8px 35px;
@@ -778,7 +778,7 @@ a {
     height: 2px;
     width: 10%;
     top: 100%;
-    background: #ca970b;
+    background: #e77b20;
 }
 
 .hm-services-sec h2 {
@@ -793,7 +793,7 @@ a {
 }
 
 .hm-services-sec h2 span {
-    color: #ca970b;
+    color: #e77b20;
     font-weight: 700;
 }
 
@@ -802,7 +802,7 @@ a {
     display: block;
     width: 80px;
     height: 3px;
-    background: #ca970b;
+    background: #e77b20;
     left: 0;
     right: 0;
     margin: 4px auto 0;
@@ -870,7 +870,7 @@ section.home-middle-sec {
     display: block;
     width: 80px;
     height: 3px;
-    background: #ca970b;
+    background: #e77b20;
     left: 0;
     right: 0;
     margin: 0px auto 0;
@@ -895,7 +895,7 @@ section.home-middle-sec {
 }
 
 .box-header>h5>a:hover {
-    color: #ca970b;
+    color: #e77b20;
     text-decoration: none;
 }
 
@@ -905,7 +905,7 @@ section.home-middle-sec {
 .icon-box:hover:after {
     width: 100%;
     height: 100%;
-    border-color: #ca970b;
+    border-color: #e77b20;
 }
 
 .icon-box:before {
@@ -971,7 +971,7 @@ p.objective_para {
 
 a.btn-theme {
     background: #fff;
-    color: #003f69 !important;
+    color: #f17000 !important;
     padding: 10px 25px;
     font-size: 16px;
     font-weight: 700;
@@ -984,7 +984,7 @@ a.btn-theme {
 }
 
 a.btn-theme+a.btn-theme {
-    background: #18ba60;
+    background: #e77b20;
     color: #fff !important;
 }
 
@@ -1421,7 +1421,7 @@ section.swipper div:nth-child(3) {
     display: block;
     width: 100px;
     height: 3px;
-    background: #80b84d;
+    background: #e77b20;
     border-radius: 25%;
     left: 50%;
     transform: translateX(-50%);
@@ -1460,7 +1460,7 @@ section.swipper div:nth-child(3) {
 }
 
 .page .second .primary-button {
-    background: #80b84d;
+    background: #e77b20;
     color: #fff;
     border-radius: 50px;
     transition: all 0.4s ease;
@@ -1509,7 +1509,7 @@ section.swipper div:nth-child(3) {
 }
 
 .page .third .col-lg-3 .area:hover {
-    border-color: #80b84d;
+    border-color: #e77b20;
 }
 
 .page .fourth {
@@ -1556,7 +1556,7 @@ section.swipper div:nth-child(3) {
 }
 
 .page .fifth .primary-button {
-    background: #80b84d;
+    background: #e77b20;
     color: #fff;
     border-radius: 50px;
     transition: all 0.4s ease;
@@ -2132,7 +2132,7 @@ b {
 }
 
 .signup-page .stage .number {
-    background: #18ba60;
+    background: #e77b20;
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -2190,7 +2190,7 @@ b {
     color: #2C3E50;
     font-size: 15px;
     height: 40px;
-    outline-color: #18ba60;
+    outline-color: #e77b20;
 }
 
 .signup-page .signup-box select {
@@ -2244,7 +2244,7 @@ b {
 }
 
 .signup-page .main-select .stage::after {
-    background: #18ba60;
+    background: #e77b20;
 }
 
 .signup-page .main-select .stage h3 {
@@ -2293,7 +2293,7 @@ b {
     color: #2C3E50;
     font-size: 15px;
     height: 40px;
-    outline-color: #18ba60;
+    outline-color: #e77b20;
 }
 
 .signup-page .main-select .signup-box input {
@@ -2504,7 +2504,7 @@ b {
 
 .comp-reg .required {
     background: #007bff;
-    background: linear-gradient(to right, #0062E6, #33AEFF);
+    background: linear-gradient(to right, #e77b20, #eaa66b);
     display: -webkit-box;
     padding: 30px 0px;
 }
@@ -2561,7 +2561,7 @@ b {
 }
 
 .comp-reg .required .bt-1 {
-    background: #8BC34A;
+    background: #e77b20;
     margin: 25px 0 21px;
     text-align: center;
     padding: 8px 0;
@@ -2792,7 +2792,7 @@ b {
 .subscribe {
     padding: 23px 0px 0;
     padding-bottom: 0;
-    background: linear-gradient(to right, #0062E6, #33AEFF);
+    background: linear-gradient(to right, #e77b20, #33AEFF);
 }
 
 .subscribe h4 {
@@ -3201,7 +3201,7 @@ a {
 
 .pvt-ltd-reg .first .form .form-heading {
     color: #fff;
-    background: linear-gradient(to right, #33ccff 0%, #5555ef 89%);
+    background: linear-gradient(to right, #f9e256  0%, #e77b20 89%);
 }
 
 .pvt-ltd-reg .first .form .form-heading h3 {
@@ -3227,7 +3227,7 @@ a {
 }
 
 .pvt-ltd-reg .first .form button {
-    background: linear-gradient(to top, #3d94f6 0%, #1e62d0 100%);
+    background: linear-gradient(to top, #e98224 0%, #f6cf4c  100%);
     color: #fff;
     border: none;
     border-radius: 8px;
@@ -3238,8 +3238,8 @@ a {
 
 .pvt-ltd-reg .sub-nav {
     background: #e7e7e7;
-    border: 1px solid #1e62d0; 
-    box-shadow: 0 0 10px #1e62d0;
+    border: 1px solid #f6cf4c ; 
+    box-shadow: 0 0 10px #f6cf4c ;
 }
 
 .pvt-ltd-reg .sub-nav ul {
@@ -3257,14 +3257,14 @@ a {
 
 .pvt-ltd-reg .sub-nav ul li a {
     padding: 0px 25px;
-    color: #009ddc;
+    color: #e77b20;
     font-weight: 600;
     height: 50px;
     line-height: 50px;
 }
 .pvt-ltd-reg .sub-nav ul li a:hover{
     color: #fff;
-    background-color: #009ddc;
+    background-color: #e77b20;
     display: block;
 }
 .pvt-ltd-reg .second .left {

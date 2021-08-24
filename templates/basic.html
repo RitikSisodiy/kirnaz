@@ -6,7 +6,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %} {% endblock title %}</title>
+  <link rel="shortcut icon" href="{% static 'images/favicon.jpeg' %}" type="image/x-icon">
+    <title>{% block title %} {% endblock title %}{{title}}</title>
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
@@ -256,7 +257,7 @@ h4.card-title {
 .media-chat.media-chat-reverse .media-body p {
     float: right;
     clear: right;
-    background-color: #48b0f7;
+    background-color: #e77b20;
     color: #fff
 }
 
@@ -346,7 +347,7 @@ textarea {
 }
 
 .text-info {
-    color: #48b0f7 !important
+    color: #e77b20 !important
 }
   </style>
 </head>
@@ -380,10 +381,14 @@ textarea {
                                   <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 2px;"></div>
                               </div>
                           </div>
+                          <div class="right" id="imgpreview" style="display: none;">
+                            <img id="blah" src="#" alt="your image" / width="80%">
+                          </div>
                           <form class="publisher bt-1 border-light"  id="sendmsg" autocomplete="off" enctype="multipart/form-data"> <img class="avatar avatar-xs" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="..."> 
                             {% csrf_token %} 
                             <input class="publisher-input" type="text" name="message" placeholder="Write something"> <span class="publisher-btn"> <i class="fa fa fa-photo file-browser" onclick=$('#filefield').click()></i> 
-                            <input type="file" id="filefield" accept="image/png, image/jpeg "  style="display:none"> </span> <a class="publisher-btn" href="#" data-abc="true"><i class="fa fa-smile"></i></a> 
+                            <input type="file" id="filefield" accept="image/png, image/jpeg "  style="display:none">
+                          </span> <a class="publisher-btn" href="#" data-abc="true"><i class="fa fa-smile"></i></a> 
                             <a class="publisher-btn text-info" id="submit" onclick="$('#sendmsg').submit()" data-abc="true">
                             <i class="fa fa-paper-plane"></i></a> </form>
                       </div>
@@ -531,6 +536,22 @@ textarea {
         }
       ]
     });
+    function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#blah').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+        $("#imgpreview").show()
+    }
+}
+
+$("#filefield").change(function(){
+    readURL(this);
+});
   </script>
   
   <script src="{% static 'js/main.js' %}"></script>
@@ -607,6 +628,9 @@ event.preventDefault();
           if (xhr.status === 200) {
             $("input[name=message]").val('')
            $("input[name=message]").focus()
+           $("#filefield").val(null)
+           $("#imgpreview").hide()
+
           }
         };
 
@@ -650,7 +674,7 @@ function updatedmsg(msgs){
                  if (msgs[i]['convofiles__file']!= null){
                    msgstr += `<div class="" style="border: solid 5px;
     border-block-color: revert;
-    border-color: cornflowerblue;
+    border-color: #e77b20;
     border-radius:20;"><img src="/media/${msgs[i]['convofiles__file']}" alt="" style="width:100%"  ></div>`
                  }
                  msgstr+= `      <p>${msgs[i]['msg']}</p>
@@ -667,6 +691,8 @@ function updatedmsg(msgs){
                               </div>
                           </div>`
             }
+            msgstr = msgstr.replace("<p></p>",'')
+
             $("#chat-content").append(msgstr)
             var objDiv = document.getElementById("chat-content");
             objDiv.scrollTop = objDiv.scrollHeight;

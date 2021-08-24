@@ -2,6 +2,8 @@ from django.db import models
 from datetime import datetime
 from django.contrib.auth.models import User
 import time
+
+from django.db.models.fields import related
 def datetime_from_utc_to_local(utc_datetime):
     now_timestamp = time.time()
     offset = datetime.fromtimestamp(now_timestamp) - datetime.utcfromtimestamp(now_timestamp)
@@ -13,7 +15,7 @@ class user(models.Model):
     def __str__(self):
         return str(self.user.id)
 class conversation(models.Model):
-    msgby = models.ForeignKey(user,related_name="msgby",on_delete=models.CASCADE)
+    msgby = models.ForeignKey(user,related_name="msgby",on_delete=models.CASCADE,related_query_name="convo")
     msgtoadmin = models.BooleanField()
     msg = models.CharField(max_length=1000)
     time = models.DateTimeField(auto_now=True)

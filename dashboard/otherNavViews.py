@@ -52,6 +52,11 @@ def editothernavs(request,slug1,slug2):
         if form.is_valid():
             form.save()
             messages.success(request,"Information Is Added Successfully")
+            path = request.get_full_path().rfind('/')
+            if '&object' in request.get_full_path()[path:]:
+                return redirect(request.get_full_path()[0:request.get_full_path().find('&object')])
+            else:
+                return redirect(request.get_full_path())
             return redirect(request.get_full_path()[0:request.get_full_path().find('&object')])
         else:
             messages.error  (request,"Plese Check Your Fields, Invalid Opration")
@@ -83,4 +88,17 @@ def deleteothernavs(request):
             messages.error(request,"successfully deleted")
             return redirect(ret)
     return redirect(request.get_full_path()[0:request.get_full_path().find('&object')])
-  
+def contact(request):
+    res = {}
+    res['title'] = "Registration Contacts"
+    res['contacts'] = contacts.objects.all().order_by('-time')
+    return render(request,'drcontacts.html',res)
+def delcontacts(request):
+    if request.method=="POST":
+        delval = request.POST['delval'].split(',')
+        for d in delval:
+            d = contacts.objects.filter(id=d)
+            if d.exists():
+                d[0].delete()
+        messages.error(request,"contact Deleted successfully")
+    return redirect('drcontact')

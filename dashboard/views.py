@@ -126,7 +126,12 @@ def adminchat(request,slug1=None,id=None):
         res['coverstion'] = conversation.objects.filter(msgby__user=id)
         res['window'] = True
         res['slug'] = [slug1,id]
-    res['chats'] = User.objects.filter(is_superuser=False)
+    list = conversation.objects.values('msgby__user__id') 
+    resp = []
+    for i in list:
+        if i not in resp:
+            resp.append(i)
+    res['chats'] = [User.objects.get(id=i['msgby__user__id']) for i in resp]
     return render(request,'adminchat.html',res)
 def getmsg(request,slug1=None,id=None):
     auser = User.objects.get(id=id)
@@ -197,3 +202,17 @@ def deletehome(request,slug):
 def viewicon(request):
     iconlist = icon.objects.all()
     return render(request,'iconpack.html',{'icon':iconlist})
+def contact(request):
+    res = {}
+    res['title'] = "Registration Contacts"
+    res['contacts'] = contacts.objects.all().order_by('-time')
+    return render(request,'drcontacts.html',res)
+def delcontacts(request):
+    if request.method=="POST":
+        delval = request.POST['delval'].split(',')
+        for d in delval:
+            d = contacts.objects.filter(id=d)
+            if d.exists():
+                d[0].delete()
+        messages.error(request,"contact Deleted successfully")
+    return redirect('drcontact')

@@ -20,13 +20,13 @@
                             <div class="form-heading">
                                 <h3>{{reg.formtitle|title}} Registration </h3>
                             </div>
-                            <form>
-                                <input type="text" name="" placeholder="Name" id="">
-                                <input type="email" name="" placeholder="Email" id="">
-                                <input type="number" name="" placeholder="Contact No." id="">
-                                <input type="number" name="" placeholder="Pin Code" id="">
+                            <form method='POST'>{% csrf_token %}
+                                <input type="text" name="name" placeholder="Name" id="">
+                                <input type="email" name="email" placeholder="Email" id="">
+                                <input type="text" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" maxlength=10 minlength=10 name="contact" placeholder="Contact No." id="">
+                                <input type="text" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" maxlength=7 minlength=6 name="pin" placeholder="Pin Code" id="">
                                 <div class="submit-btn">
-                                    <button type="button">Proceed Now!</button>
+                                    <button type="submit">Proceed Now!</button>
                                 </div>
                             </form>
                         </div>
@@ -38,7 +38,7 @@
 {% endif %}
 
         <div class="container second">
-            <p class="left heading-reg"><a href="{% url 'index' %}">Home</a> / Private Limited Company Registration</p>
+            <p class="left heading-reg"><a href="{% url 'index' %}">Home</a> / {{reg.submenu}}</p>
             <p class="right">Updated on 9 Jul 2021&nbsp;&nbsp;9.00 AM IST | <i class="fa fa-clock-o"
                     aria-hidden="true"></i> 4 min read</p>
             <br><br>
@@ -126,7 +126,7 @@
             {% endif %}
         </div>
         {% if pi %}
-        <div class="third">
+        <div class="third" id= "package-sec">
             <section class="services mt-20">
                 <!--Heading Start-->
                 <div class="container">
@@ -430,7 +430,7 @@
                         <h3 class="heading-reg mt-40">{{m.heading1}}</h3>
                     </div>
                     <div class="col-md-12 mb-40">
-                        <p class="my-3" id="frequently-asked">{{m.content}} <a href="mailto:info@cyberflax.com" target="_parent">info@cyberflax.com</a></p>
+                        <p class="my-3" id="">{{m.content}} <a href="mailto:info@cyberflax.com" target="_parent">info@cyberflax.com</a></p>
                     </div>
                 </div>
             </div>
@@ -438,7 +438,7 @@
         </section> {% endif %}
 
 {% if faq %}
-        <section class="services">
+        <section class="services" id="frequently-asked">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 text-center">
@@ -1328,7 +1328,7 @@ style="background-image:url(https://www.finacbooks.com/assets/theme/images/bg/ba
 <script>
 $( document ).ready(function() {
 $("ul.custumli li").addClass('my-2')
-$("ul.custumli li").prepend(`<i style="color: #0099e6; margin-right: 10px;" class="fa fa-check"></i>`)
+$("ul.custumli li").prepend(`<i style="color: #e77b20; margin-right: 10px;" class="fa fa-check"></i>`)
 $("ul.custumli ul").css("list-style-type", "none")
 });
 </script>

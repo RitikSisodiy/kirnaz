@@ -1,5 +1,6 @@
 {% extends 'basic.html' %}
 {% load static %}
+{% load customfilter %}
 {% block title%}About{% endblock title%}
 {% block content %}
  <div class="page">
@@ -19,61 +20,21 @@
     </div>
     <div class="container">
       <div class="row second">
+        {% for regs in Registrations %}
+        {% for d in regs.RegistrationSubMenu.all %}
+        {% if 5 > forloop.counter  %}
         <div class="col-md-3">
           <div class="area">
-            <img src="{% static 'images/svg1.png' %}" alt="">
-            <h3>Tax Filing Expert</h3>
+          <a href="{% url 'registration' slug1=regs.slug slug2=d.slug %}">
+            <h1><i class="fa {{ d.submenu|geticon }}" style="color: #e77b20;"></i></h1>
+            <h3>{{d.submenu}}</h3></a>
           </div>
         </div>
-        <div class="col-md-3">
-          <div class="area">
-            <img src="{% static 'images/svg4.png' %}" alt="">
-            <h3>GST Registration &amp; Filing</h3>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="area">
-            <img src="{% static 'images/svg2.png' %}" alt="">
-            <h3>Trademark Registration</h3>
-          </div>
-
-        </div>
-        <div class="col-md-3">
-          <div class="area">
-            <img src="{% static 'images/svg3.png' %}" alt="">
-            <h3>Book keeping &amp; Outsourcing</h3>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="area">
-            <img src="{% static 'images/svg5.png' %}" alt="">
-            <h3>Statutory &amp; Voluntary audits</h3>
-          </div>
-
-        </div>
-        <div class="col-md-3">
-          <div class="area">
-            <img src="{% static 'images/svg6.png' %}" alt="">
-            <h3>Company Formation &amp; Registration</h3>
-          </div>
-
-        </div>
-        <div class="col-md-3">
-          <div class="area">
-            <img src="{% static 'images/svg7.png' %}" alt="">
-            <h3>FDI Compliance</h3>
-          </div>
-
-        </div>
-        <div class="col-md-3">
-          <div class="area">
-            <img src="{% static 'images/svg8.png' %}" alt="">
-            <h3>Company Annual Filing</h3>
-          </div>
-
-        </div>
+        {% endif %}
+        {% endfor %}
+        {% endfor %}
         <div class="col-md-12 mb-5" style="text-align: center;margin-top: 50px;">
-          <a class="primary-button button-md" style="background: #80b84d;">See all category
+          <a class="primary-button button-md" style="background: #e77b20;">See all category
           </a>
         </div>
         <br><br>
@@ -89,7 +50,7 @@
         <div class="row">
           <div class="col-lg-3">
             <div class="area">
-              <img src="{% static 'images/svg9.svg' %}" style="max-width: 50px;" alt="">
+              <h1><i class="fa fa-userfa fa-user-secret" style="color: #e77b20;"></i></h1>
               <h2>Expert Profiles</h2>
               <p>All the experts have a profile which is visible to the client, As a service receiver, you
                 get to the location and the detailed.</p>
@@ -97,7 +58,7 @@
           </div>
           <div class="col-lg-3">
             <div class="area">
-              <img src="{% static 'images/svg10.png' %}" style="max-width: 50px;" alt="">
+              <h1><i class="fa fa-id-card-o" style="color: #e77b20;"></i></h1>
               <h2>Book Appointment</h2>
               <p>Contact a service provider on the basis of location or category of services. It’s quick
                 and convenient.</p>
@@ -105,7 +66,7 @@
           </div>
           <div class="col-lg-3">
             <div class="area">
-              <img src="{% static 'images/svg11.svg' %}" style="max-width: 50px;" alt="">
+              <h1><i class="fa fa-wpforms" style="color: #e77b20;"></i></h1>
               <h2>Informative blogs</h2>
               <p>We regularly update you with interesting, useful news, notification in Indian and Global
                 economy.</p>
@@ -113,7 +74,7 @@
           </div>
           <div class="col-lg-3">
             <div class="area">
-              <img src="{% static 'images/svg12.svg' %}" style="max-width: 50px;" alt="">
+              <h1><i class="fa fa-check-circle" style="color: #e77b20;"></i></h1>
               <h2>Secure Payment</h2>
               <p>This platform will also have an option of safe gateway payment as per your arrangement
                 with client.</p>
@@ -130,11 +91,11 @@
           <br>
         </div>
         <div class="row">
-          <div class="col-lg-4 col-12">
+          <div class="col-lg-6 col-12">
             <div class="row">
               <div class="col-lg-12">
                 <div class="area">
-                  <img src="{% static 'images/svg13.png' %}" alt="">
+                  <h1><i class="fa fa-hand-pointer-o" style="color: #e77b20;"></i></h1>
                   <h2>Convenience</h2>
                   <p>Having serve the clients since 2012, We understand your needs therefore we will
                     give you the best experience throughout</p>
@@ -142,7 +103,7 @@
               </div>
               <div class="col-lg-12">
                 <div class="area">
-                  <img src="{% static 'images/svg14.png' %}" alt="">
+                  <h1><i class="fa fa-support" style="color: #e77b20;"></i></h1>
                   <h2>Support</h2>
                   <p>For both the service providers & service receivers, We are always available to
                     you through Chat, Email, Call or social media</p>
@@ -150,14 +111,12 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-4 col-12 mobile-display-none">
-            <img src="{% static 'images/gif1.gif' %}" class="img-fluid" alt="">
-          </div>
-          <div class="col-lg-4 col-12">
+         
+          <div class="col-lg-6 col-12">
             <div class="row">
               <div class="col-lg-12">
                 <div class="area">
-                  <img src="{% static 'images/svg15.png' %}" alt="">
+                  <h1><i class="fa fa-child" style="color: #e77b20;"></i></h1>
                   <h2>Experience</h2>
                   <p>This is our first priority as it means everything that any user want to have
                     while using online service facility.</p>
@@ -165,7 +124,7 @@
               </div>
               <div class="col-lg-12">
                 <div class="area">
-                  <img src="{% static 'images/svg16.png' %}" alt="">
+                  <h1><i class="fa fa-check-square" style="color: #e77b20;"></i></h1>
                   <h2>Safety</h2>
                   <p>Poor safety will lead to losing people, we very well understand this fact. Should
                     there be NDA? Anytime!</p>
@@ -177,7 +136,7 @@
       </div>
     </div>
     <div class="fifth">
-      <section class="intro-area bg-gray" style="background: #80b84d;">
+      <section class="intro-area bg-gray" style="background: #e77b20;">
         <div class="">
           <div class="row">
             <div class="col-xl-12">
@@ -185,7 +144,7 @@
                 <h3 style="color: #fff;">You can compare and select from the list of experts </h3>
                 <p style="color: #fff;">People forget how fast you did a job, but they remember how well
                   you did it. –Howard W. Newton</p>
-                <a href="#" class="primary-button button-md" style="background: #3c611a;">Contact Us</a>
+                <a href="#" class="primary-button button-md" style="background: #000000;">Contact Us</a>
               </div>
             </div>
           </div>

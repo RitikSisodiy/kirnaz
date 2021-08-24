@@ -51,6 +51,8 @@
                                 <ul class="collapse">
                                  <li class="">
                                         <a href="{% url 'dregistration' %}">All Registrations</a></li>
+                                <li class="">
+                                        <a href="{% url 'drcontact' %}">All Contacts</a></li>
 
                                 {% for res in Registrations %}
                                     <li class="main_dropdown">
@@ -78,7 +80,17 @@
                                     
                             </li>
                             {% endfor %}
-                            
+                            <li class="main_dropdown">
+                                <a href="javascript:void(0)" aria-expanded="true">
+                                    <i class="ti-timer"></i><span>Contacts </a>
+                                <ul class="collapse">
+                                <li class="">
+                                        <a href="{% url 'drcontact' %}">All Contacts</a></li>
+                               <li class="">
+                                        <a href="{% url 'orcontact' %}">Other Contacts</a></li>
+                                </ul>
+                            </li>
+
                         </ul>
                     </nav>
                 </div>

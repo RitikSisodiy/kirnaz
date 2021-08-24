@@ -60,3 +60,6 @@ class iconverAdmin(admin.ModelAdmin):
 @admin.register(icon)
 class iconAdmin(admin.ModelAdmin):
     list_display=('id','icon')
+@admin.register(contacts)
+class contactsAdmin(admin.ModelAdmin):
+    list_display=('reg_title','name','email','mobile','pincode')
