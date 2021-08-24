@@ -22,6 +22,8 @@ urlpatterns = [
     path('signup1/', views.signup1,name='signup1'),
     path('signup2/', views.signup2,name='signup2'),
     path('logindashboard', views.logindashboard, name="logindashboard"),
+    path('payment/', views.payment, name="payment"),
+    path('handlerequest/', views.handelrequest, name="handelrequest"),
  
 
 ]

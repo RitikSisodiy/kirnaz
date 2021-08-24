@@ -1,9 +1,11 @@
 from ckeditor.fields import RichTextField
+from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.deletion import SET_NULL
 from django.http import request
 from registration.models import RegistrationSubMenu
 from othernavs.models import RegistrationSubMenu as othernavsubmenu
+from dashboard.models import makepaymentrequest
 # Create your models here.
 
 class Slider(models.Model):
@@ -56,3 +58,15 @@ class addblog(models.Model):
     image = models.ImageField(upload_to="blogsimg")
     content = RichTextField(blank=True,null=True)
     time = models.DateTimeField(auto_now=True)
+class OrderPlaced(models.Model):
+    order_id = models.CharField(unique=True, max_length=100, null=True, blank=True)
+    payreq = models.ForeignKey(makepaymentrequest,on_delete=models.SET_NULL,null=True)
+    ammount = models.FloatField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    order_date = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=50,default='pending')
+    other_data = models.CharField(max_length=1000,default="nodata")
+    def save(self, *args, **kwargs):
+        if self.order_id is None and self.order_date and self.id:
+            self.order_id = self.order_date.strftime('PAY2ME%Y%m%dODR') + str(self.id)
+        return super().save(*args, **kwargs)

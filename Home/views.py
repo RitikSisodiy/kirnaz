@@ -1,11 +1,13 @@
+from chat.models import conversation, user
 from dashboard.homeforms import aboutcaform
 from django.contrib import messages
-from django.http.response import JsonResponse
+from django.http.response import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from . models import *
 from registration.models import *
 from taxfiling.models import *
 from django.contrib.auth import authenticate, login, logout
+MERCHANT_KEY='ey1DQFRPXypAmeE3'
 
 
 def index(request):
@@ -103,3 +105,57 @@ def logindashboard(request):
                 return JsonResponse({'status':'ok'})
             return JsonResponse({"status":'invaliduser'})
     return render(request,'logindashboard.html')
+from django.contrib.auth.decorators import login_required
+from dashboard.models import makepaymentrequest
+from paytm import Checksum
+@login_required(login_url='memberlogin')
+def payment(request):
+    pendingpayments = makepaymentrequest.objects.filter(user=request.user.id,status="pending")
+    if pendingpayments.exists():
+        order = OrderPlaced.objects.create(user=request.user,payreq = pendingpayments[0],ammount=pendingpayments[0].ammount )
+        order.save()
+        paytmParams={
+
+            'MID': 'yUvqPZ56033952526905',
+            'ORDER_ID': str(order.order_id),
+            'TXN_AMOUNT': str(pendingpayments[0].ammount),
+            'CUST_ID': request.user.email,
+            'INDUSTRY_TYPE_ID': 'Retail',
+            'WEBSITE': 'WEBSTAGING',
+            'CHANNEL_ID': 'WEB',
+            'CALLBACK_URL':'http://'+request.get_host()+'/handlerequest/',
+        }
+        paytmParams["CHECKSUMHASH"] = Checksum.generateSignature(paytmParams, "ey1DQFRPXypAmeE3")
+        print(paytmParams)
+        return render(request,'payttm.html',{'dic':paytmParams})
+        # print(paytmParams)
+    else:
+        messages.error(request,"You Don't Have Any Payment Request ! Please Contact on Chat")
+        return redirect("index")
+from django.views.decorators.csrf import csrf_exempt
+import json
+@csrf_exempt
+def handelrequest(request):
+    if request.method == "POST":
+        resp = request.POST
+        print(resp)
+        param = {}
+        OrderPlaced.objects.filter(order_id=resp["ORDERID"]).update(other_data=json.dumps(resp));
+        for data in resp:
+            param[data] = resp[data]
+        if Checksum.verifySignature(param ,'ey1DQFRPXypAmeE3',resp['CHECKSUMHASH']):
+            if resp['RESPCODE'] == '01':
+                OrderPlaced.objects.filter(order_id=resp["ORDERID"]).update(status="Success");
+                mpr = makepaymentrequest.objects.get(id=OrderPlaced.objects.get(order_id=resp["ORDERID"]).payreq.id)
+                mpr.status = "success"
+                mpr.save()
+                msg = "the payment of" + str(mpr.ammount) + " for " + mpr.reason + " is done " + " TXNID is " + str(resp['ORDERID'])
+                conversation(msgby =  user.objects.get(user=OrderPlaced.objects.get(order_id=resp["ORDERID"]).user),msgtoadmin=True,msg=msg).save()
+                messages.success(request,"Your Payment is Successfull")
+            else:
+                messages.success(request,"Your Payment is unsuccessfull because "+resp['RESPMSG'] )
+
+        return redirect('index')
+    else:
+        messages.success(request,"Your Payment is unsuccessfull because " )
+        return redirect('index')

@@ -78,7 +78,29 @@ input::placeholder {
     </div>
     <!-- Chat Box-->
     {% if window %}
+    
     <div class="col-7 px-0" id="">
+    <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-clipboard"></i> clear chat</button>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+      <form method="POST" action="{{request.get_full_path}}clearchat/">
+          <div class="modal-body">
+            <h3>Are You Sure.</h3>
+          </div>
+          {% csrf_token %}
+          <input type="hidden" name="id" value="{{f.instance.id}}">
+          <input type="hidden" name="page" value="{{request.GET.page}}">
+          <input type="hidden" name="return" value="{{request.get_full_path}}">
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-danger">Yes Sure</button>
+          </div>
+      </form>
+        </div>
+      </div>
+    </div>
       <div class="px-4 py-5 chat-box overflow-auto" id="chat-content" style="
     background-color: #e0dfd8;">
       {% for c in coverstion %}
@@ -98,7 +120,8 @@ input::placeholder {
                                     </div>
                                 </div>
                             </div>{% endif %}
-              <p class="text-small mb-0 text-muted">{{c.msg}}</p>
+                {% if c.msg != '' %}
+              <p class="text-small mb-0 text-muted">{{c.msg}}</p>{% endif %}
             </div>
             <p class="small text-muted">{{c.time}}</p>
           </div>
@@ -109,7 +132,9 @@ input::placeholder {
         <div class="media w-50 ml-auto mb-3 usermessages">
           <div class="media-body">
             <div class="bg-primary rounded py-2 px-3 mb-2">
-              <p class="text-small mb-0 text-white">{{c.msg}}</p>
+              {% if c.msg != '' %}
+
+              <p class="text-small mb-0 text-white">{{c.msg}}</p>{% endif %}
             </div>
             {% if c.convofiles.all.0.file %}
          <div class="m-sent clearfix">
@@ -137,13 +162,35 @@ input::placeholder {
           <input type="text" placeholder="Type a message" aria-describedby="button-addon2" name="message" class="form-control rounded-0 border-0 py-4 bg-light">
           <div class="input-group-append">
           
-            <button id="button-addon2" class="btn btn-link"><i class="fa fa fa-photo file-browser" onclick=$('#filefield').click()></i> 
+            <button id="button-addon2" type="button" class="btn btn-link"><i class="fa fa fa-photo file-browser" onclick=$('#filefield').click()></i> 
                             <input type="file" id="filefield" accept="image/png, image/jpeg "  style="display:none"></button>
+            <button id="button-addon2" type="button" class="btn btn-link" data-toggle="modal" data-target="#setpayment"> <i class="fa fa-inr"></i></button>
             <button id="button-addon2" type="submit" class="btn btn-link"> <i class="fa fa-paper-plane"></i></button>
           </div>
         </div>
       </form>
 
+    <div class="modal fade" id="setpayment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+      <form method="POST" action="{{request.get_full_path}}setpayment/">
+          <div class="modal-body">
+            <h3>Set The Payment</h3>
+          </div>
+          {% csrf_token %}
+          <div class="container">
+            <label for="">Reason</label>
+          <input type="text" class="form-control" name="reason" placeholder="Payment reason" value="{{f.instance.id}}">
+          <label for="">Ammount</label>
+          <input type="text" class="form-control my-2" name="Ammount" placeholder="Payment reason" value="{{request.GET.page}}">
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-success">Yes Sure</button>
+          </div>
+      </form>
+        </div>
+      </div>
+    </div>
     </div>
     {% endif %}
   </div>

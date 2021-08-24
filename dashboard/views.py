@@ -216,3 +216,21 @@ def delcontacts(request):
                 d[0].delete()
         messages.error(request,"contact Deleted successfully")
     return redirect('drcontact')
+def clearchat(request,slug1=None,id=None):
+    if slug1 is not None and id is not None:
+        for d in conversation.objects.filter(msgby__user=id):
+            d.delete()
+    return redirect(request.get_full_path().replace('/clearchat/',''))
+def setpayment(request,slug1=None,id=None):
+    if slug1 is not None and id is not None and request.method=='POST':
+        reason = request.POST['reason']
+        Ammount = request.POST['Ammount']
+        USER = User.objects.get(id=id)
+        msg = "You Have to Pay " + Ammount + " for " + reason + " Click on Payment at Top Left Corner"
+        if makepaymentrequest.objects.filter(user=USER.id,status="pending").exists():
+            messages.error(request,"There is already a Pending payment request delete the payment request or Try again Later")
+        else:
+            makepaymentrequest(user=USER,reason=reason,ammount=Ammount).save()
+            conversation(msgby =  user.objects.get(user=id),msgtoadmin=False,msg=msg).save()
+            messages.success(request,"Payment request send successfully")
+    return redirect(request.get_full_path().replace('/setpayment/',''))
