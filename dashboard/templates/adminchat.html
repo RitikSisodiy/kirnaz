@@ -287,13 +287,7 @@ function updatedmsg(msgs){
             <div class="bg-primary rounded py-2 px-3 mb-2">`
             
             
-            if(msgs[i]['msg']!=''){
-              msgstr = `
-            <p class="text-small mb-0 text-muted text-light">${msgs[i]['msg']}</p>
-            </div>`}
-
-
-               if (msgs[i]['convofiles__file']!= null){
+              if (msgs[i]['convofiles__file']!= null){
                    msgstr += ` <div class="m-sent clearfix">
                                 <div class="message float-right">
                                     <div class="mb-3">
@@ -307,11 +301,12 @@ function updatedmsg(msgs){
                  }
                  msgstr+= `  
 
-              
+              <p class="text-small mb-0  text-white">${msgs[i]['msg']}</p>
+            </div>
             <p class="small text-muted">{{c.time}}</p>
           </div>
         </div> 
-               ` }
+               `   }
             $("#chat-content").append(msgstr)
             var objDiv = document.getElementById("chat-content");
             objDiv.scrollTop = objDiv.scrollHeight;
