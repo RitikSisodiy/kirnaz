@@ -63,3 +63,6 @@ class iconAdmin(admin.ModelAdmin):
 @admin.register(contacts)
 class contactsAdmin(admin.ModelAdmin):
     list_display=('reg_title','name','email','mobile','pincode')
+@admin.register(aboutContent)
+class aboutContentAdmin(admin.ModelAdmin):
+    list_display=('id','title')

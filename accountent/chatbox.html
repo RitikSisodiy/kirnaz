@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+    integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<style>
+    .chatbox {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    z-index: 999900;
+    background: #fff;
+    width: 350px;
+}
+
+.chatbox .panel {
+    display: none;
+}
+
+.chatbox.active .panel {
+    display: block;
+}
+
+.chatbox .online {
+    display: block;
+}
+
+.chatbox.active .online {
+    display: none;
+}
+
+.chatbox .top {
+    background-color: #0062E6;
+    margin-bottom: 20px;
+}
+
+.chatbox .close-menu {
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+}
+
+.chatbox .close-menu i {
+    color: #fff;
+    font-size: 24px;
+    padding: 8px;
+}
+
+.chatbox button {
+    border-radius: 5px 5px 0px 0px;
+    padding: 0px 15px;
+    bottom: 0px;
+    left: 0px;
+    border: 0px;
+    background: #0062E6;
+    color: #fff;
+    width: 100%;
+    height: 34px;
+}
+
+.chatbox form {
+    padding: 10px 40px;
+}
+
+.chatbox form input {
+    width: 100%;
+    margin: 10px 0;
+    padding: 4px 10px;
+}
+</style>
+<body>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  
+    <div class="chatbox">
+        <div class="button" onclick="show()">
+          <button class="online">Online</button>
+        </div>
+        <div class="panel">
+          <div class="top">
+            <div class="close-menu">
+              <i class="fa fa-times"></i>
+            </div>
+          </div>
+          <div class="form">
+            <h6 class="text-center">
+              Fill This to Start Chatting
+            </h6>
+            <form action="">
+              <input type="text" name="" required placeholder="Name" id="">
+              <input type="email" name="" id="" required placeholder="Email">
+              <input type="number" name="" id="" required placeholder="Mobile">
+              <button type="submit">Start Chatting</button>
+            </form>
+          </div>
+        </div>
+        <script>
+          function show() {
+            $('.chatbox').addClass('active');
+          }
+          $('.close-menu').click(() => {
+            $('.chatbox').removeClass('active');
+          });
+        </script>
+      </div>
+</body>
+</html>

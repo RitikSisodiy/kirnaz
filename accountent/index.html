@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accountant</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- Slick Slider -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"
+    integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"
+    integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+  <!-- icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+    integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- costom css -->
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+  <div class="index-page">
+    <div class="chatbox">
+      <div class="button" onclick="show()">
+        <button class="online">Online</button>
+      </div>
+      <div class="panel">
+        <div class="top">
+          <div class="close-menu">
+            <i class="fa fa-times"></i>
+          </div>
+        </div>
+        <div class="form">
+          <h6 class="text-center">
+            Fill This to Start Chatting
+          </h6>
+          <form action="">
+            <input type="text" name="" required placeholder="Name" id="">
+            <input type="email" name="" id="" required placeholder="Email">
+            <input type="number" name="" id="" required placeholder="Mobile">
+            <button type="submit">Start Chatting</button>
+          </form>
+        </div>
+      </div>
+      <script>
+        function show() {
+          $('.chatbox').addClass('active');
+        }
+        $('.close-menu').click(() => {
+          $('.chatbox').removeClass('active');
+        });
+      </script>
+    </div>
+    <header>
+      <div class="top-nav">
+        <div class="call"> Services <i class="fa fa-angle-down" aria-hidden="true"></i></div>
+        <div class="call">sales: +91- 958-483-9976<i class="fa fa-angle-down" aria-hidden="true"></i></div>
+        <div class="right">
+          <ul>
+            <li><a href="member-login.html" style="--color:#f0ad4e">Login</a></li>
+            <li><a href="member-signup.html" style="--color:#71d109">Signup</a></li>
+            <li><a href="#" style="--color:#4cae4c">Whatsapp</a></li>
+            <li><a href="#" style="--color:#01b4f1">Payment</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="nav-bar">
+        <div class="logo">
+          <img src="images/logo.png" alt="">
+        </div>
+        <nav>
+          <ul>
+            <li><a href="#">Registration</a>
+              <ul class="xl-sub-menu">
+                <div class="row">
+                  <div class="col-lg-3">
+                    <li><a href="pvt-ltd-reg.html">OPC Pvt Ltd Company</a></li>
+                    <li><a href="pvt-ltd-reg.html">Private Limited Company</a></li>
+                    <li><a href="pvt-ltd-reg.html">LLP(Limited Liability Partnership)</a></li>
+                    <li><a href="pvt-ltd-reg.html">Public Limited Company</a></li>
+                  </div>
+                  <div class="col-lg-3">
+                    <li><a href="pvt-ltd-reg.html">OPC Pvt Ltd Company</a></li>
+                    <li><a href="pvt-ltd-reg.html">Private Limited Company</a></li>
+                    <li><a href="pvt-ltd-reg.html">LLP(Limited Liability Partnership)</a></li>
+                    <li><a href="pvt-ltd-reg.html">Public Limited Company</a></li>
+                  </div>
+                  <div class="col-lg-3">
+                    <li><a href="pvt-ltd-reg.html">OPC Pvt Ltd Company</a></li>
+                    <li><a href="pvt-ltd-reg.html">Private Limited Company</a></li>
+                    <li><a href="pvt-ltd-reg.html">LLP(Limited Liability Partnership)</a></li>
+                    <li><a href="pvt-ltd-reg.html">Public Limited Company</a></li>
+                  </div>
+                  <div class="col-lg-3">
+                    <li><a href="pvt-ltd-reg.html">OPC Pvt Ltd Company</a></li>
+                    <li><a href="pvt-ltd-reg.html">Private Limited Company</a></li>
+                    <li><a href="pvt-ltd-reg.html">LLP(Limited Liability Partnership)</a></li>
+                    <li><a href="pvt-ltd-reg.html">Public Limited Company</a></li>
+                  </div>
+                  <div class="col-12 text-center">
+                    <a href="services.html" class="load-more-btn text-center">Load more</a>
+                  </div>
+                </div>
+              </ul>
+            </li>
+            <li><a href="#">Tax Filing</a>
+              <ul class="drop-down">
+                <li><a href="#">GST Return Filling</a></li>
+                <li><a href="#">Business Tax illing</a></li>
+                <li><a href="#">TDS Return Filling</a></li>
+                <li><a href="#">LLP Annual Filling</a></li>
+                <li><a href="#">ESI Return Filling</a></li>
+                <li><a href="#">Income Tax Return</a></li>
+                <div class="col-12 text-center">
+                  <a href="services.html" class="load-more-btn text-center">Load more</a>
+                </div>
+              </ul>
+            </li>
+            <li><a href="#">compliance</a>
+              <ul class="xl-sub-menu">
+                <div class="row">
+                  <div class="col-lg-4">
+                    <li><a href="pvt-ltd-reg.html">OPC Pvt Ltd Company</a></li>
+                    <li><a href="pvt-ltd-reg.html">Private Limited Company</a></li>
+                    <li><a href="pvt-ltd-reg.html">LLP(Limited Liability Partnership)</a></li>
+                    <li><a href="pvt-ltd-reg.html">Public Limited Company</a></li>
+                  </div>
+                  <div class="col-lg-4">
+                    <li><a href="pvt-ltd-reg.html">OPC Pvt Ltd Company</a></li>
+                    <li><a href="pvt-ltd-reg.html">Private Limited Company</a></li>
+                    <li><a href="pvt-ltd-reg.html">LLP(Limited Liability Partnership)</a></li>
+                    <li><a href="pvt-ltd-reg.html">Public Limited Company</a></li>
+                  </div>
+                  <div class="col-lg-4">
+                    <li><a href="pvt-ltd-reg.html">OPC Pvt Ltd Company</a></li>
+                    <li><a href="pvt-ltd-reg.html">Private Limited Company</a></li>
+                    <li><a href="pvt-ltd-reg.html">LLP(Limited Liability Partnership)</a></li>
+                    <li><a href="pvt-ltd-reg.html">Public Limited Company</a></li>
+                  </div>
+                  
+                  <div class="col-12 text-center">
+                    <a href="services.html" class="load-more-btn text-center">Load more</a>
+                  </div>
+                </div>
+              </ul>
+            </li>
+            <li><a href="#">valuation</a>
+              <ul class="drop-down valuation">
+                <li><a href="#">Property</a></li>
+                <li><a href="#">Jewellery</a></li>
+                <li><a href="#">Income Tax</a></li>
+                <li><a href="#">Capital Gains</a></li>
+                <div class="col-12 text-center">
+                  <a href="services.html" class="load-more-btn text-center">Load more</a>
+                </div>
+              </ul>
+            </li>
+            <li><a href="#">Ipr</a>
+              <ul class="drop-down">
+                <li><a href="#"> Trademark Registration</a></li>
+                <li><a href="#">Trademark Objection</a></li>
+                <li><a href="#">Patent Registration </a></li>
+                <li><a href="#">Patent Search</a></li>
+                <li><a href="#">Design Registration</a></li>
+                <div class="col-12 text-center">
+                  <a href="services.html" class="load-more-btn text-center">Load more</a>
+                </div>
+              </ul>
+            </li>
+            <li style="position: relative;"><a href="#">Recource</a>
+              <ul class="drop-down resource">
+                <li><a href="#">Blogs</a></li>
+                <li><a href="#">Article</a></li>
+                <li><a href="#">Videos </a></li>
+                <li><a href="#">News</a></li>
+                <li><a href="#">Tax Calculator</a></li>
+                <div class="col-12 text-center">
+                  <a href="services.html" class="load-more-btn text-center">Load more</a>
+                </div>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+        <div class="toggle-menu">
+          <div class="fa fa-bars"></div>
+        </div>
+        <div class="bottom-nav">
+          <div class="right">
+            <ul>
+              <li><a href="member-login.html" style="--color:#f0ad4e">Login</a></li>
+              <li><a href="member-signup.html" style="--color:#71d109">Signup</a></li>
+              <li><a href="#" style="--color:#4cae4c">Whatsapp</a></li>
+              <li><a href="#" style="--color:#01b4f1">Payment</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- carasoul -->
+    <section class="banner-sec">
+      <div class="container">
+        <div class="parent">
+          <div class="container">
+            <div class="row slide">
+              <div class=" col-lg-6 slide_center"><img class="d-block" src="./images/slide-2.png" alt="First slide">
+              </div>
+              <div class=" col-lg-6">
+                <h1 class="objective animate0">Our Objective</h1>
+                <p class="objective_para">Seeing invisible, achieving impossible. Our vision is to raise benchmarks with
+                  every assignment by imparting knowledge
+                  with a goal to provide timely deliverable which makes us victorious in achieving client’s satisfaction
+                  adding to CA, CS
+                  & LAWYERS glory as a professional firm.</p>
+                <a href="#" class="btn btn-theme">Our Team</a> <a href="#" class="btn btn-theme">Contact Us</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="container">
+            <div class="row slide">
+              <div class=" col-lg-5 slide_center"><img class="d-block animate0" src="./images/slide-3.png"
+                  alt="First slide"></div>
+              <div class=" col-lg-7">
+                <h1 class="objective">Our Objective</h1>
+                <p class="objective_para">Seeing invisible, achieving impossible. Our vision is to raise benchmarks with
+                  every
+                  assignment by imparting knowledge
+                  with a goal to provide timely deliverable which makes us victorious in achieving client’s satisfaction
+                  adding to CA,
+                  CS
+                  & LAWYERS glory as a professional firm.</p>
+                <a href="#" class="btn btn-theme">Our Team</a> <a href="#" class="btn btn-theme">Contact Us</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="container">
+            <div class="row slide">
+              <div class=" col-lg-5 slide_center"><img class="d-block animate0" src="./images/slide-4.png"
+                  alt="First slide"></div>
+              <div class=" col-lg-7">
+                <h1 class="objective animate__animated animate__bounce">Our Mission</h1>
+                <p class="objective_para">Let ideas transform into innovation”. Our mission is to provide comprehensive
+                  professional services which clients refer
+                  to their associates, employees boast upon, competitors acknowledge and set as standards for
+                  themselves.</p>
+                <a href="#" class="btn btn-theme">Our Team</a> <a href="#" class="btn btn-theme">Contact Us</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="container">
+            <div class="row slide">
+              <div class=" col-lg-5 slide_center"><img class="d-block animate0" src="./images/slide-5.png"
+                  alt="First slide"></div>
+              <div class=" col-lg-7">
+                <h1 class="objective animate__animated animate__bounce">Our Vision</h1>
+                <p class="objective_para">Seeing invisible, achieving impossible. Our vision is to raise benchmarks with
+                  every assignment by imparting knowledge
+                  with a goal to provide timely deliverable which makes us victorious in achieving client’s satisfaction
+                  adding to CA, CS
+                  & LAWYERS glory as a professional firm.</p>
+                <a href="#" class="btn btn-theme">Our Team</a> <a href="#" class="btn btn-theme">Contact Us</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="container">
+            <div class="row slide">
+              <div class=" col-lg-5 slide_center"><img class="d-block animate0" src="./images/slide-6.png"
+                  alt="First slide"></div>
+              <div class=" col-lg-7">
+                <h1 class="objective animate__animated animate__bounce">Excellence in Service</h1>
+                <p class="objective_para">To not just meet but exceed client expectation consistently by imbibing
+                  Teamwork, Professionalism, Personalised Service & Specialisation.</p>
+                <a href="#" class="btn btn-theme">Our Team</a> <a href="#" class="btn btn-theme">Contact Us</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <div class="first">
+      <div class="container">
+        <h1> About <span> CA, CS & LAWYERS.</span>
+          <div class="green-line"></div>
+        </h1>
+        <p><b class="lorem">Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+          has been the
+          industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+          scrambled
+          it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic
+          typesetting, remaining essentially unchanged. It was popularised in the 1960s.
+        </p>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+          industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
+          into
+          electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s.
+        </p>
+        <a href="#">Read More <i class="fa fa-angle-double-right"></i></a>
+      </div>
+    </div>
+    <div class="second">
+      <section class="hm-query-sec">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 ordering">
+              <h2>Business Query <div class="green-line"></div>
+              </h2>
+              <p>Always ready to help you out regarding all your queries.</p>
+              <div class="group-query">
+                <input name="ctl00$txtname" type="text" id="ctl00_txtname" class="form-control" placeholder="Your Name">
+              </div>
+              <div class="group-query">
+                <input name="ctl00$txtcontact" type="text" id="ctl00_txtcontact" class="form-control"
+                  placeholder="Phone">
+              </div>
+              <div class="group-query">
+                <input name="ctl00$txtmail" type="text" id="ctl00_txtmail" class="form-control"
+                  placeholder="Your Email">
+              </div>
+              <div class="group-query">
+                <textarea name="ctl00$txtremark" rows="2" cols="20" id="ctl00_txtremark" class="form-control"
+                  placeholder="Your Message"></textarea>
+              </div>
+              <div class="group-query">
+                <input type="submit" name="ctl00$btnsubmit" value="Send" id="ctl00_btnsubmit" class="btn btn-send">
+              </div>
+            </div>
+            <div class="col-md-6 query-image"> <img alt="banner3" class="img-fluid" src="images/query-b.png"> </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="comp-reg">
+      <section class="required">
+        <div class="mx-lg-5 mx-3">
+          <h2> Requirements for Start Up Incorporation</h2>
+          <div class="card1">
+            <div class="card-body">
+              <h6 class="card-price"><a href="#" title="One Person Company Incorporation" target="_blank"> One Person
+                  Company</a></h6>
+              <ul class="cards">
+                <li><i class="fa fa-hand-o-right"></i> 1 Shareholders</li>
+                <li><i class="fa fa-hand-o-right"></i> 1 Directors</li>
+                <li><i class="fa fa-hand-o-right"></i> 1 Nominee</li>
+                <li><i class="fa fa-hand-o-right"></i> DIN </li>
+                <li><i class="fa fa-hand-o-right"></i> DSC</li>
+                <li><i class="fa fa-hand-o-right"></i> Minimum Authorised Share Capital 1 Lakh</li>
+              </ul>
+              <a href="#" title="How to register One Person Company?" target="_blank" class="bt-1">Read More...</a>
+            </div>
+          </div>
+          <!-- Plus Tier -->
+          <div class="card1">
+            <div class="card-body">
+              <h6 class="card-price"> <a href="#" title="Private Limited Company Incorporation" target="_blank">Private
+                  Limited Company</a> </h6>
+              <ul class="cards">
+                <li><i class="fa fa-hand-o-right"></i> 2 Shareholders</li>
+                <li><i class="fa fa-hand-o-right"></i> 2 Directors</li>
+                <li><i class="fa fa-hand-o-right"></i> DIN </li>
+                <li><i class="fa fa-hand-o-right"></i> DSC</li>
+                <li><i class="fa fa-hand-o-right"></i> Minimum Authorised Share Capital 1 Lakh</li>
+              </ul>
+              <a href="#" title="ONLINE PRIVATE LIMITED COMPANY Incorporation IN INDIA" target="_blank"
+                class="bt-1">Read
+                More...</a>
+            </div>
+          </div>
+          <div class="card1">
+            <div class="card-body">
+              <h6 class="card-price"> <a href="#" title="Limited Liability Partnership at the best Price"
+                  target="_blank"> Limited Liability
+                  Partnership</a></h6>
+              <ul class="cards">
+                <li><i class="fa fa-hand-o-right"></i> 2 Designated Partners</li>
+                <li><i class="fa fa-hand-o-right"></i> DIN </li>
+                <li><i class="fa fa-hand-o-right"></i> DSC</li>
+                <li><i class="fa fa-hand-o-right"></i> Capital Contribution 10000/-</li>
+              </ul>
+              <a href="#" class="bt-1"
+                title="LLP Incorporation Fees, Limited Liability Partnership Incorporation in India"
+                target="_blank">Read More...</a>
+            </div>
+          </div>
+          <div class="card1">
+            <div class="card-body">
+              <h6 class="card-price"><a href="#" title="Proprietorship at the best Price"
+                  target="_blank">Proprietorship</a></h6>
+              <ul class="cards">
+                <li><i class="fa fa-hand-o-right"></i> PAN</li>
+                <li><i class="fa fa-hand-o-right"></i> Adhaar</li>
+                <li><i class="fa fa-hand-o-right"></i> Bank Details</li>
+                <li><i class="fa fa-hand-o-right"></i> Business Details</li>
+                <li><i class="fa fa-hand-o-right"></i> Investment minimum 1 Lakh</li>
+              </ul>
+              <a href="#" title="Proprietorship Firm Incorporation Online in India " target="_blank" class="bt-1">Read
+                More...</a>
+            </div>
+          </div>
+          <div class="card1">
+            <div class="card-body">
+              <h6 class="card-price"><a href="#" title="Partnership Firm at the best Price" target="_blank"> Partnership
+                  Firm </a></h6>
+              <ul class="cards">
+                <li><i class="fa fa-hand-o-right"></i> 2 Partners</li>
+                <li><i class="fa fa-hand-o-right"></i> PAN of Partnership</li>
+                <li><i class="fa fa-hand-o-right"></i> Capital Contribution 10000/-</li>
+              </ul>
+              <a href="#" title="partnership firm Incorporation certificate" class="bt-1">Read More...</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <section class="news-sec">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 spacing-column">
+            <div class="news-item-box">
+              <h3>News</h3>
+              <marquee id="m2" height="276" direction="up" srolldelay="30" scrollamount="2" onmouseover="this.stop();"
+                onmouseout="this.start();">
+                <table id="ctl00_DataList1" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="news2d"> <a class="hedingnews"><b>18 Dec 19</b></a> </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="news2d"> <a href="#">Govt Informs 15th FFC About Implausibility of Meeting Revenue
+                            Targets of 5 Years</a> </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="news2d"> <a href="#">No excuses, target over Rs 1 lakh crore GST collection in
+                            remaining months</a> </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="news2d"> <a href="#">GST Council meeting today: Lease rates, refund for exporters on
+                            agenda</a> </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="news2d"> <a href="#">GST Council meeting today. Will Nirmala Sitharaman increase GST
+                            rates, slabs?</a> </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="news2d"> <a href="#">CBIC further extends enabling New Changes in GSTR-9 and GSTR-9C
+                            to Dec 21</a> </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="news2d"> <a class="hedingnews">17 Dec 19</a> </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="news2d"> <a href="#">Industry Favours New GSTR Slow Implementation &amp; 4-digits
+                            HSN Code</a> </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="news2d"> <a href="#">Centre releases over Rs 35,000 crore as pending GST
+                            compensation to states </a> </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="news2d"> <a href="#">States get GST dues ahead of key meet</a> </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="news2d"> <a href="#">Under Fire, Govt Releases Rs 35,298 Crore GST Compensation to
+                            States</a> </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="news2d"> <a href="#">CBDT extends date for Third Instalment of Advance Tax for FY
+                            2019-20 in North Eastern States</a> </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </marquee>
+              <a href="#">Readmore...</a>
+            </div>
+          </div>
+
+          <div class="col-md-4 spacing-column">
+            <div class="news-item-box">
+              <h3>Due Date Reminder</h3>
+              <table id="ctl00_DataListGovind" cellspacing="0" border="0" style="border-collapse:collapse;">
+                <tbody>
+                  <tr>
+                    <td><a id="ctl00_DataListGovind_ctl00_lb1" href="#">Jan</a></td>
+                    <td><a id="ctl00_DataListGovind_ctl01_lb1" href="#">Feb</a></td>
+                    <td><a id="ctl00_DataListGovind_ctl02_lb1" href="#">Mar</a></td>
+                    <td><a id="ctl00_DataListGovind_ctl03_lb1" href="#">Apr</a></td>
+                    <td><a id="ctl00_DataListGovind_ctl04_lb1" href="#">May</a></td>
+                    <td><a id="ctl00_DataListGovind_ctl05_lb1" href="#">June</a></td>
+                  </tr>
+                  <tr>
+                    <td><a id="ctl00_DataListGovind_ctl06_lb1" href="#">July</a></td>
+                    <td><a id="ctl00_DataListGovind_ctl07_lb1" href="#">Aug</a></td>
+                    <td><a id="ctl00_DataListGovind_ctl08_lb1" href="#">Sep</a></td>
+                    <td><a id="ctl00_DataListGovind_ctl09_lb1" href="#">Oct</a></td>
+                    <td><a id="ctl00_DataListGovind_ctl10_lb1" href="#">Nov</a></td>
+                    <td><a id="ctl00_DataListGovind_ctl11_lb1" href="#">Dec</a></td>
+                  </tr>
+                  <tr>
+                    <td><a id="ctl00_DataListGovind_ctl12_lb1" href="#">All</a></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <marquee id="ml" height="216" direction="up" srolldelay="30" scrollamount="2" onmouseover="this.stop();"
+                onmouseout="this.start();">
+                <div class="news_blog"> <span class="hedingnews">30 Dec 19</span> <span class="arrownews">furnishing of
+                    challan-cum-statement in respect of tax deducted u/s 194-IA in month of November 19</span> <br>
+                </div>
+                <div class="news_blog"> <span class="hedingnews">30 Dec 19</span> <span class="arrownews">Due date for
+                    furnishing of challan-cum-statement in respect of tax deducted u/s 194-IB in month of November
+                    19</span> <br>
+                </div>
+                <div class="news_blog"> <span class="hedingnews">07 Jan 20</span> <span class="arrownews">Payment of TDS
+                    of December 2019 (For Govt deductors paying through challan)</span> <br>
+                </div>
+                <div class="news_blog"> <span class="hedingnews">11 Jan 20</span> <span class="arrownews">Filing of
+                    GSTR-1 for the month of Dec, 2019 , whose turnover &gt; 1.5cr</span> <br>
+                </div>
+                <div class="news_blog"> <span class="hedingnews">13 Jan 20</span> <span class="arrownews">Filing of
+                    GSTR-6 for input service distributor for the month of December 2019</span> <br>
+                </div>
+              </marquee>
+              <a href="#" class="due-red">Readmore...</a>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="news-item-box">
+              <h3>Blog News</h3>
+              <marquee id="m2" height="296" direction="up" scrolldelay="30" scrollamount="2" onmouseover="this.stop();"
+                onmouseout="this.start();">
+                <li class="Prodetails" style="list-style-type: none;"><span style="font-weight:bold;">09 Dec
+                    2021</span><br> <span style="font-weight:bold; list-style-type: none;"><a target="_blank"
+                      href="#"><b>About Us</b></a> -</span>
+                  <span>ASSOCIATES &nbsp; is a professional firm of Chartered Accountants s...</span>
+                </li>
+              </marquee>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="call-us-sec">
+      <div class="container"> <a href="tel:01414072000">Have a question? We can help you..... +91- 958-483-9976</a>
+      </div>
+    </section>
+
+    <section class="home-middle-sec">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-5"><img class="w-100" alt="image" src="./images/hm-about.jpg"></div>
+          <div class="col-md-7">
+            <h2>Lorem Ipsum is simply dummy</h2>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+              the
+              industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
+              type
+              and scrambled it to make a type specimen book. It has survived not only five centuries, but also
+              the
+              leap into electronic typesetting, remaining essentially unchanged. It was popularised in the
+              1960s
+              with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with
+              desktop
+              publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+              the
+              industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
+              type
+              and scrambled it to make a type specimen book. </p>
+            <a href="#" class="btn-red">Read More <i class="fa fa-angle-double-right"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="hm-services-sec">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 hm-services-title">
+            <h2>Our Services<span> Offerings</span></h2>
+          </div>
+        </div>
+        <section class="row">
+          <div class="col-md-6 col-lg-4 height-fill">
+            <article class="icon-box">
+              <div class="box-top">
+                <div class="box-icon"><img src="./images/business-icon.png" alt="Start my Business"></div>
+                <div class="box-header">
+                  <h5><a href="#">Start my Business </a></h5>
+                </div>
+              </div>
+              <div class="box-body">
+                <p class="text-gray-05">Considering registering company in India and that too in a fast and
+                  hassle-free</p>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-4 height-fill">
+            <article class="icon-box">
+              <div class="box-top">
+                <div class="box-icon"><img src="./images/tax-reg-icon.png" alt="Tax Registration"></div>
+                <div class="box-header">
+                  <h5><a href="#">Business and Tax Registration </a></h5>
+                </div>
+              </div>
+              <div class="box-body">
+                <p class="text-gray-05">In the era of globalization entrepreneurship is the need of the</p>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-4 height-fill">
+            <article class="icon-box">
+              <div class="box-top">
+                <div class="box-icon"><img src="./images/gst-icon.png" alt="GST"></div>
+                <div class="box-header">
+                  <h5><a href="#">GST</a></h5>
+                </div>
+              </div>
+              <div class="box-body">
+                <p class="text-gray-05">GST is a huge tax reform in India post-Independence</p>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-4 height-fill">
+            <article class="icon-box">
+              <div class="box-top">
+                <div class="box-icon"><img src="./images/intellectual-icon.png" alt="Intellectual Property Rights">
+                </div>
+                <div class="box-header">
+                  <h5><a href="#">Intellectual Property Rights</a></h5>
+                </div>
+              </div>
+              <div class="box-body">
+                <p class="text-gray-05">A trademark is typically a name, word, phrase, logo, symbol, design,
+                  image</p>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-4 height-fill">
+            <article class="icon-box">
+              <div class="box-top">
+                <div class="box-icon"><img src="./images/advisory-icon.png" alt="Startup Advisory"></div>
+                <div class="box-header">
+                  <h5><a href="#">Startup Advisory</a></h5>
+                </div>
+              </div>
+              <div class="box-body">
+                <p class="text-gray-05">We understand that for a startup, the primary focus is to grow their
+                </p>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-4 height-fill">
+            <article class="icon-box">
+              <div class="box-top">
+                <div class="box-icon"><img src="./images/foreign-direct-investment-icon.png"
+                    alt="Foreign Investment in India"></div>
+                <div class="box-header">
+                  <h5><a href="#">Foreign Investment in India</a></h5>
+                </div>
+              </div>
+              <div class="box-body">
+                <p class="text-gray-05">Foreign investment in India is primarily regulated by the FDI policy</p>
+              </div>
+            </article>
+          </div>
+        </section>
+    </section>
+    <footer>
+      <div class="footer-wrap">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4 col-sm-6">
+              <div class="footer-heading">Useful Links</div>
+              <ul class="footer-nav">
+                <li><a href="#">E-filing portal of Income Tax dept.</a></li>
+                <li><a href="#">GST portal</a></li>
+                <li><a href="#">E-way bill</a></li>
+                <li><a href="#"> CBIC</a></li>
+                <li><a href="#">Direct tax payment portal</a></li>
+                <li><a href="#"> MCA portal</a></li>
+              </ul>
+            </div>
+            <div class="col-md-4 col-sm-6 middle">
+              <div class="footer-heading">Quick Links</div>
+              <ul class="footer-nav">
+                <li><a href="#">Corporate Services</a></li>
+                <li> <a href="#">Audit</a></li>
+                <li><a href="#">Corporate Finance</a></li>
+                <li><a href="#">Services for Non-Residents</a></li>
+                <li><a href="#">Accounting Services</a></li>
+                <li><a href="#">Business Process Outsourcing</a></li>
+              </ul>
+            </div>
+            <div class="col-md-4 col-sm-6">
+              <div class="footer-heading">Connect With Us</div>
+              <ul class="call-ad">
+                <li>
+                  <div><i class="fa fa-map-marker"></i><span>407,
+                      Sai Kesava Towers Shilpa Park Kondapur,
+                      HITEC City, Hyderabad,
+                      Telangana 500084</span></div>
+                </li>
+                <li>
+                  <div><i class="fa fa-phone"></i><span>+91- 958-483-9976</span></div>
+                </li>
+
+                <li>
+                  <div><i class="fa fa-envelope-o"></i><span>sales@cyberflax.com</span></div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="footer-service">
+            <div class="copyright">© 2021 Cyberflax PVT. LTD &amp; . All Rights Reserved</div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+    integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
+    crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"
+    integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script type="text/javascript">
+    $('.parent').slick({
+      dots: false,
+      arrows: true,
+      infinite: true,
+      autoplay: true,
+      speed: 2000,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            infinite: true,
+            dots: false,
+            arrows: true
+          }
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: true
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+      ]
+    });
+  </script>
+  <script src="js/main.js"></script>
+</body>
+
+
+</html>

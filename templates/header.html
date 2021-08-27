@@ -1,4 +1,15 @@
 {% load static %}
+<style>
+.conleft{
+	margin-left:26%;
+}
+@media (max-width: 300px) {
+    .conleft {
+        margin-left:0;
+    }
+}
+
+</style>
 <header>
       <div class="top-nav">
         <div class="call"> Services <i class="fa fa-angle-down" aria-hidden="true"></i></div>
@@ -27,14 +38,15 @@
             <li><a href="{% url 'about' %}">About Us</a>
             </li>
             <li><a href="#">Registration</a>
-              <ul class="xl-sub-menu bg-dark p-5">
-                <div class="row">
+              <ul class="xl-sub-menu  p-3 conleft container" >
+                <div class="row ">
                 
                 {% for reg in Registrations %}
-                  <div class="col">
+                  <div class="col-md-4">
                     <span class="xl-sub-menu-title">{{reg.title}}</span>
                     {% for drop in reg.RegistrationSubMenu.all %}
-                    <li> <a href="/registration/{{reg.slug}}/{{drop.slug}}">{{drop.submenu}}</a></li> {% endfor %}
+					{% if 5 > forloop.counter %}
+                    <li> <a href="/registration/{{reg.slug}}/{{drop.slug}}">{{drop.submenu}}</a></li> {% endif %}{% endfor %}
                     {% comment %} <li><a href="pvt-ltd-reg.html">Private Limited Company</a></li>
                     <li><a href="pvt-ltd-reg.html">LLP(Limited Liability Partnership)</a></li>
                     <li><a href="pvt-ltd-reg.html">Public Limited Company</a></li>
@@ -46,6 +58,7 @@
                     <li><a href="pvt-ltd-reg.html">Company Registration In UK</a></li> {% endcomment %}
                   </div>
                   {% endfor %}
+				  
                   {% comment %} <div class="col-lg-3">
                     <span class="xl-sub-menu-title">Companies Registration</span>
                     <li><a href="pvt-ltd-reg.html">OPC Pvt Ltd Company</a></li>
@@ -73,22 +86,30 @@
                     <li><a href="pvt-ltd-reg.html">Company Registration In UK</a></li>
                   </div>
                 </div> {% endcomment %}
+				<div class="col-12 text-center">
+                                    <a href="{% url 'services' %}" class="load-more-btn text-center">View More</a>
+                                </div>
               </ul>
             </li>
+			         
             {% for data in othernavreg %}
             <li><a href="#">{{data.title}}</a>
-              <ul class="drop-down bg-dark">
+              <ul class="drop-down ">
               {% for tax in data.RegistrationSubMenu.all %}
-                <li><a href="{% url 'handlenav' slug1=data.slug slug2=tax.slug %}">{{tax.submenu}}</a></li>{% endfor %}
+					{% if 5 > forloop.counter %}
+                <li><a href="{% url 'handlenav' slug1=data.slug slug2=tax.slug %}">{{tax.submenu}}</a></li>{% endif %}{% endfor %}
                 {% comment %} <li><a href="#">Business xTax Return Filling</a></li>
                 <li><a href="#">TDS Return Filling</a></li>
                 <li><a href="{% url 'pvtltdreg' %}">Income Tax Return</a></li> {% endcomment %}
                 <!-- <li><a href="#">GST Return Filling</a></li>
                 <li><a href="#">ESI Return Filling</a></li> -->
+				<div class="col-12 text-center">
+                                    <a href="{% url 'services' %}" class="load-more-btn text-center">View More</a>
+                                </div>
               </ul>
             </li>
             {% endfor %}
-            <li style=""><a href="{% url 'blog' %}">News</a>
+            <li style=""><a href="{% url 'news' %}">News</a>
             <li style=""><a href="{% url 'blog' %}">blog</a>
             
           </ul>
@@ -99,10 +120,10 @@
         <div class="bottom-nav">
           <div class="right">
             <ul>
-              <li><a href="member-login.html" style="--color:#f0ad4e">Login</a></li>
-              <li><a href="member-signup.html" style="--color:#71d109">Signup</a></li>
-              <li><a href="#" style="--color:#4cae4c">Whatsapp</a></li>
-              <li><a href="#" style="--color:#01b4f1">Payment</a></li>
+              <li><a href="{% url 'memberlogin' %}" style="--color:#f0ad4e">Login</a></li>
+              <li><a href="{% url 'membersignup' %}" style="--color:#71d109">Signup</a></li>
+              <li><a href="#" style="--color:#4cae4c" onclick="show()">Chat Now</a></li>
+              <li><a href="{% url "payment" %}" style="--color:#01b4f1">Payment</a></li>
             </ul>
           </div>
         </div>

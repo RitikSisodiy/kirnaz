@@ -4,11 +4,12 @@ from .models import Sectionsothernavs as Sections
 import json
 from django.contrib import messages
 from django.core.paginator import Paginator
+from cflax.settings import sectionname
+
 sections = [SubRegistrationContent,AboutRegistraionSubMenu,DocumentRequired,PackageIncluded,Procedure,Memorandum,CompanyRegisterRequirements,FAQ,Sainification,ourclients]
 # adding multi objects form as a list in sectionsform
 sectionsforms = [section0Form,section1Form,section2Form,[PackageIncludedForm],[section3Form],section4Form,section5Form,[section6Form],section7Form,[section8Form]]
 editname = ['slider','AboutCA','News_nortification','DueDate_Reminder','Blog_News_nortification','New_Blogs']
-sectionname = ["Top Form section","Included in Our Packge","document","Package icon","Procedure","Memorandum","Register","FAQS","Signification","Our Clients"]
 def editothernavs(request,slug1,slug2):
     RegistrationSubMenuob = RegistrationSubMenu.objects.get(slug=slug2,title__slug=slug1)
     s = []
@@ -21,7 +22,6 @@ def editothernavs(request,slug1,slug2):
     # s5 = sections[4].objects.filter(reg_title = RegistrationSubMenuob) if sections[4].objects.filter(reg_title = RegistrationSubMenuob).exists()  else [RegistrationSubMenuob]
     # s6 = sections[5].objects.filter(reg_title = RegistrationSubMenuob) if sections[5].objects.filter(reg_title = RegistrationSubMenuob).exists()  else [RegistrationSubMenuob]
     # s7 = sections[6].objects.filter(reg_title = RegistrationSubMenuob) if sections[6].objects.filter(reg_title = RegistrationSubMenuob).exists()  else [RegistrationSubMenuob]
-
     res = {}
     res['title'] = "Edit Registrations"
     li = []

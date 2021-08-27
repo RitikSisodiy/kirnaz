@@ -12,7 +12,7 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 from django.contrib.auth import authenticate, login, logout
 
-
+from cflax.settings import sectionname
 # Create your views here.
 def index(request):
     res = {}
@@ -26,7 +26,6 @@ def registration(request,slug=None):
         res['registration'] = Registration.objects.all()
     res["title"] = "Registration"
     return render(request,'dregistrations.html',res)
-sectionname = ["Top Form section","Included in Our Packge","document","Package icon","Procedure","Memorandum","Register","FAQS","Signification","Our Clients"]
 sections = [SubRegistrationContent,AboutRegistraionSubMenu,DocumentRequired,PackageIncluded,Procedure,Memorandum,CompanyRegisterRequirements,FAQ,Sainification,ourclients]
 # adding multi objects form as a list in sectionsform
 sectionsforms = [section0Form,section1Form,section2Form,[PackageIncludedForm],[section3Form],section4Form,section5Form,[section6Form],section7Form,[section8Form]]

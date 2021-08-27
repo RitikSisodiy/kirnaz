@@ -1,0 +1,75 @@
+
+
+.dashboard-page .user-dashboard-wrapper {
+    padding: 80px 0;
+    display: flex;
+  }
+  .dashboard-page .user-dashboard-wrapper > ul {
+    display: inline-block;
+    width: 260px;
+    background-color: #1d2228;
+    padding-bottom: 5px;
+  }
+  .dashboard-page .breadcrumb-area{
+    background-image: linear-gradient(90deg , #9cbcfd  60% , #fff);
+  }
+  .dashboard-page .breadcrumb-inner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 130px 10px;
+    flex-direction: column;
+  }
+  .dashboard-page .page-title{
+    color: #ffff;
+    font-weight: 600;
+    font-size: 42px;
+  }
+  .dashboard-page .page-list{
+    display: flex;
+    color: #ffffff99;
+    list-style: none;
+  }
+  .dashboard-page .page-list a{
+    color: #fff;
+  }
+  .dashboard-page .user-dashboard-wrapper .nav-item a{
+    color: #fff;
+  }
+  .dashboard-page .login-page-wrapper{
+    display: flex;
+  
+  }
+  .dashboard-page .user-dashboard-card{
+    padding: 30px ;
+    background: #1ebeb6;
+    color: #fff;
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .dashboard-page .user-dashboard-card i{
+    font-size: 40px;
+  }
+  .dashboard-page .user-dashboard-wrapper .content .number{
+    font-size: 40px;
+  }
+  .dashboard-page .tab-content{
+    padding: 0 40px;
+  }
+  @media (max-width:700px) {
+    .dashboard-page .user-dashboard-wrapper{
+        flex-wrap: wrap;
+    }
+    .dashboard-page .login-page-wrapper .nav-pills{
+        width: 100%;
+    }
+    .dashboard-page .tab-content{
+        padding: 10px;
+    }
+   .dashboard-page  .user-dashboard-card{
+        margin: 10px 0;
+    }
+   .dashboard-page  .user-dashboard-card .icon{
+        margin: 0 5px;
+    }
+  }

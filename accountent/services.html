@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accountant</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Slick Slider -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"
+        integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"
+        integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <!-- icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+        integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- costom css -->
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+    <div class="index-page">
+        <div class="chatbox">
+            <div class="button" onclick="show()">
+                <button class="online">Online</button>
+            </div>
+            <div class="panel">
+                <div class="top">
+                    <div class="close-menu">
+                        <i class="fa fa-times"></i>
+                    </div>
+                </div>
+                <div class="form">
+                    <h6 class="text-center">
+                        Fill This to Start Chatting
+                    </h6>
+                    <form action="">
+                        <input type="text" name="" required placeholder="Name" id="">
+                        <input type="email" name="" id="" required placeholder="Email">
+                        <input type="number" name="" id="" required placeholder="Mobile">
+                        <button type="submit">Start Chatting</button>
+                    </form>
+                </div>
+            </div>
+            <script>
+                function show() {
+                    $('.chatbox').addClass('active');
+                }
+                $('.close-menu').click(() => {
+                    $('.chatbox').removeClass('active');
+                });
+            </script>
+        </div>
+        <header>
+            <div class="top-nav">
+                <div class="call"> Services <i class="fa fa-angle-down" aria-hidden="true"></i></div>
+                <div class="call">sales: +91- 958-483-9976<i class="fa fa-angle-down" aria-hidden="true"></i></div>
+                <div class="right">
+                    <ul>
+                        <li><a href="member-login.html" style="--color:#f0ad4e">Login</a></li>
+                        <li><a href="member-signup.html" style="--color:#71d109">Signup</a></li>
+                        <li><a href="#" style="--color:#4cae4c">Whatsapp</a></li>
+                        <li><a href="#" style="--color:#01b4f1">Payment</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="nav-bar">
+                <div class="logo">
+                    <img src="images/logo.png" alt="">
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#">Registration</a>
+                            <ul class="xl-sub-menu">
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <li><a href="pvt-ltd-reg.html">OPC Pvt Ltd Company</a></li>
+                                        <li><a href="pvt-ltd-reg.html">Private Limited Company</a></li>
+                                        <li><a href="pvt-ltd-reg.html">LLP(Limited Liability Partnership)</a></li>
+                                        <li><a href="pvt-ltd-reg.html">Public Limited Company</a></li>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <li><a href="pvt-ltd-reg.html">OPC Pvt Ltd Company</a></li>
+                                        <li><a href="pvt-ltd-reg.html">Private Limited Company</a></li>
+                                        <li><a href="pvt-ltd-reg.html">LLP(Limited Liability Partnership)</a></li>
+                                        <li><a href="pvt-ltd-reg.html">Public Limited Company</a></li>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <li><a href="pvt-ltd-reg.html">OPC Pvt Ltd Company</a></li>
+                                        <li><a href="pvt-ltd-reg.html">Private Limited Company</a></li>
+                                        <li><a href="pvt-ltd-reg.html">LLP(Limited Liability Partnership)</a></li>
+                                        <li><a href="pvt-ltd-reg.html">Public Limited Company</a></li>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <li><a href="pvt-ltd-reg.html">OPC Pvt Ltd Company</a></li>
+                                        <li><a href="pvt-ltd-reg.html">Private Limited Company</a></li>
+                                        <li><a href="pvt-ltd-reg.html">LLP(Limited Liability Partnership)</a></li>
+                                        <li><a href="pvt-ltd-reg.html">Public Limited Company</a></li>
+                                    </div>
+                                    <div class="col-12 text-center">
+                                        <a href="services.html" class="load-more-btn text-center">Load more</a>
+                                    </div>
+                                </div>
+                            </ul>
+                        </li>
+                        <li><a href="#">Tax Filing</a>
+                            <ul class="drop-down">
+                                <li><a href="#">GST Return Filling</a></li>
+                                <li><a href="#">Business Tax illing</a></li>
+                                <li><a href="#">TDS Return Filling</a></li>
+                                <li><a href="#">LLP Annual Filling</a></li>
+                                <li><a href="#">ESI Return Filling</a></li>
+                                <li><a href="#">Income Tax Return</a></li>
+                                <div class="col-12 text-center">
+                                    <a href="services.html" class="load-more-btn text-center">Load more</a>
+                                </div>
+                            </ul>
+                        </li>
+                        <li><a href="#">compliance</a>
+                            <ul class="xl-sub-menu">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <li><a href="pvt-ltd-reg.html">OPC Pvt Ltd Company</a></li>
+                                        <li><a href="pvt-ltd-reg.html">Private Limited Company</a></li>
+                                        <li><a href="pvt-ltd-reg.html">LLP(Limited Liability Partnership)</a></li>
+                                        <li><a href="pvt-ltd-reg.html">Public Limited Company</a></li>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <li><a href="pvt-ltd-reg.html">OPC Pvt Ltd Company</a></li>
+                                        <li><a href="pvt-ltd-reg.html">Private Limited Company</a></li>
+                                        <li><a href="pvt-ltd-reg.html">LLP(Limited Liability Partnership)</a></li>
+                                        <li><a href="pvt-ltd-reg.html">Public Limited Company</a></li>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <li><a href="pvt-ltd-reg.html">OPC Pvt Ltd Company</a></li>
+                                        <li><a href="pvt-ltd-reg.html">Private Limited Company</a></li>
+                                        <li><a href="pvt-ltd-reg.html">LLP(Limited Liability Partnership)</a></li>
+                                        <li><a href="pvt-ltd-reg.html">Public Limited Company</a></li>
+                                    </div>
+
+                                    <div class="col-12 text-center">
+                                        <a href="services.html" class="load-more-btn text-center">Load more</a>
+                                    </div>
+                                </div>
+                            </ul>
+                        </li>
+                        <li><a href="#">valuation</a>
+                            <ul class="drop-down valuation">
+                                <li><a href="#">Property</a></li>
+                                <li><a href="#">Jewellery</a></li>
+                                <li><a href="#">Income Tax</a></li>
+                                <li><a href="#">Capital Gains</a></li>
+                                <div class="col-12 text-center">
+                                    <a href="services.html" class="load-more-btn text-center">Load more</a>
+                                </div>
+                            </ul>
+                        </li>
+                        <li><a href="#">Ipr</a>
+                            <ul class="drop-down">
+                                <li><a href="#"> Trademark Registration</a></li>
+                                <li><a href="#">Trademark Objection</a></li>
+                                <li><a href="#">Patent Registration </a></li>
+                                <li><a href="#">Patent Search</a></li>
+                                <li><a href="#">Design Registration</a></li>
+                                <div class="col-12 text-center">
+                                    <a href="services.html" class="load-more-btn text-center">Load more</a>
+                                </div>
+                            </ul>
+                        </li>
+                        <li style="position: relative;"><a href="#">Recource</a>
+                            <ul class="drop-down resource">
+                                <li><a href="#">Blogs</a></li>
+                                <li><a href="#">Article</a></li>
+                                <li><a href="#">Videos </a></li>
+                                <li><a href="#">News</a></li>
+                                <li><a href="#">Tax Calculator</a></li>
+                                <div class="col-12 text-center">
+                                    <a href="services.html" class="load-more-btn text-center">Load more</a>
+                                </div>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="toggle-menu">
+                    <div class="fa fa-bars"></div>
+                </div>
+                <div class="bottom-nav">
+                    <div class="right">
+                        <ul>
+                            <li><a href="member-login.html" style="--color:#f0ad4e">Login</a></li>
+                            <li><a href="member-signup.html" style="--color:#71d109">Signup</a></li>
+                            <li><a href="#" style="--color:#4cae4c">Whatsapp</a></li>
+                            <li><a href="#" style="--color:#01b4f1">Payment</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- carasoul -->
+        <div class="services-page">
+            <div class="btContentWrap btClear">
+                <section class="head-bg"
+                    style="background-image: url(https://www.finacbooks.com/assets/theme/images/bg/hero-inner.jpg); background-size: cover; padding: 100px 20px;background-position: 0 0, center; position: relative;"
+                    data-parallax="0.8" data-parallax-offset="0">
+                    <div class="port">
+                        <header class="header btClear extralarge">
+                            <div class="btSuperTitle">
+                                <span>
+                                    <div class="btBreadCrumbs">
+                                        <a href="index.html">Home</a> <span style="color: #fff;">•</span> <a
+                                            href="#">Service</a>
+                                    </div>
+                                </span>
+                            </div>
+                            <div class="dash">
+                                <h1><span class="headline">Our Services</span></h1>
+                            </div>
+
+                        </header>
+                    </div>
+                </section>
+                <div class="main-sec">
+                    <div class="services-head">
+                        <h3>Business</h3>
+                    </div>
+                    <div class="white-box">
+                        <h3>Business Registrations</h3>
+                        <ul>
+                            <li><a href="pvt-ltd-reg.html">OPC Pvt Ltd Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">Private Limited Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">LLP(Limited Liability Partnership)</a></li>
+                            <li><a href="pvt-ltd-reg.html">Public Limited Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration</a></li>
+                            <li><a href="pvt-ltd-reg.html">Patnarship frim</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration US</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration UK</a></li>
+                        </ul>
+                        <h3>Business Registrations</h3>
+                        <ul>
+                            <li><a href="pvt-ltd-reg.html">OPC Pvt Ltd Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">Private Limited Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">LLP(Limited Liability Partnership)</a></li>
+                            <li><a href="pvt-ltd-reg.html">Public Limited Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration</a></li>
+                            <li><a href="pvt-ltd-reg.html">Patnarship frim</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration US</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration UK</a></li>
+                        </ul>
+                        <h3>Business Registrations</h3>
+                        <ul>
+                            <li><a href="pvt-ltd-reg.html">OPC Pvt Ltd Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">Private Limited Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">LLP(Limited Liability Partnership)</a></li>
+                            <li><a href="pvt-ltd-reg.html">Public Limited Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration</a></li>
+                            <li><a href="pvt-ltd-reg.html">Patnarship frim</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration US</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration UK</a></li>
+                        </ul>
+                        <h3>Business Registrations</h3>
+                        <ul>
+                            <li><a href="pvt-ltd-reg.html">OPC Pvt Ltd Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">Private Limited Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">LLP(Limited Liability Partnership)</a></li>
+                            <li><a href="pvt-ltd-reg.html">Public Limited Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration</a></li>
+                            <li><a href="pvt-ltd-reg.html">Patnarship frim</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration US</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration UK</a></li>
+                        </ul>
+                    </div>
+                    <div class="services-head">
+                        <h3>IPR</h3>
+                    </div>
+                    <div class="white-box">
+                        <h3>Business Registrations</h3>
+                        <ul>
+                            <li><a href="pvt-ltd-reg.html">OPC Pvt Ltd Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">Private Limited Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">LLP(Limited Liability Partnership)</a></li>
+                            <li><a href="pvt-ltd-reg.html">Public Limited Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration</a></li>
+                            <li><a href="pvt-ltd-reg.html">Patnarship frim</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration US</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration UK</a></li>
+                        </ul>
+                        <h3>Business Registrations</h3>
+                        <ul>
+                            <li><a href="pvt-ltd-reg.html">OPC Pvt Ltd Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">Private Limited Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">LLP(Limited Liability Partnership)</a></li>
+                            <li><a href="pvt-ltd-reg.html">Public Limited Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration</a></li>
+                            <li><a href="pvt-ltd-reg.html">Patnarship frim</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration US</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration UK</a></li>
+                        </ul>
+                        <h3>Business Registrations</h3>
+                        <ul>
+                            <li><a href="pvt-ltd-reg.html">OPC Pvt Ltd Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">Private Limited Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">LLP(Limited Liability Partnership)</a></li>
+                            <li><a href="pvt-ltd-reg.html">Public Limited Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration</a></li>
+                            <li><a href="pvt-ltd-reg.html">Patnarship frim</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration US</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration UK</a></li>
+                        </ul>
+                        <h3>Business Registrations</h3>
+                        <ul>
+                            <li><a href="pvt-ltd-reg.html">OPC Pvt Ltd Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">Private Limited Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">LLP(Limited Liability Partnership)</a></li>
+                            <li><a href="pvt-ltd-reg.html">Public Limited Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration</a></li>
+                            <li><a href="pvt-ltd-reg.html">Patnarship frim</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration US</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration UK</a></li>
+                        </ul>
+                    </div>
+                    <div class="services-head">
+                        <h3>GST</h3>
+                    </div>
+                    <div class="white-box">
+                        <h3>Business Registrations</h3>
+                        <ul>
+                            <li><a href="pvt-ltd-reg.html">OPC Pvt Ltd Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">Private Limited Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">LLP(Limited Liability Partnership)</a></li>
+                            <li><a href="pvt-ltd-reg.html">Public Limited Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration</a></li>
+                            <li><a href="pvt-ltd-reg.html">Patnarship frim</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration US</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration UK</a></li>
+                        </ul>
+                        <h3>Business Registrations</h3>
+                        <ul>
+                            <li><a href="pvt-ltd-reg.html">OPC Pvt Ltd Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">Private Limited Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">LLP(Limited Liability Partnership)</a></li>
+                            <li><a href="pvt-ltd-reg.html">Public Limited Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration</a></li>
+                            <li><a href="pvt-ltd-reg.html">Patnarship frim</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration US</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration UK</a></li>
+                        </ul>
+                        <h3>Business Registrations</h3>
+                        <ul>
+                            <li><a href="pvt-ltd-reg.html">OPC Pvt Ltd Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">Private Limited Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">LLP(Limited Liability Partnership)</a></li>
+                            <li><a href="pvt-ltd-reg.html">Public Limited Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration</a></li>
+                            <li><a href="pvt-ltd-reg.html">Patnarship frim</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration US</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration UK</a></li>
+                        </ul>
+                        <h3>Business Registrations</h3>
+                        <ul>
+                            <li><a href="pvt-ltd-reg.html">OPC Pvt Ltd Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">Private Limited Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">LLP(Limited Liability Partnership)</a></li>
+                            <li><a href="pvt-ltd-reg.html">Public Limited Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration</a></li>
+                            <li><a href="pvt-ltd-reg.html">Patnarship frim</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration US</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration UK</a></li>
+                        </ul>
+                    </div>
+                    <div class="services-head">
+                        <h3>Licences/ Certificate</h3>
+                    </div>
+                    <div class="white-box">
+                        <h3>Business Registrations</h3>
+                        <ul>
+                            <li><a href="pvt-ltd-reg.html">OPC Pvt Ltd Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">Private Limited Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">LLP(Limited Liability Partnership)</a></li>
+                            <li><a href="pvt-ltd-reg.html">Public Limited Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration</a></li>
+                            <li><a href="pvt-ltd-reg.html">Patnarship frim</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration US</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration UK</a></li>
+                        </ul>
+                        <h3>Business Registrations</h3>
+                        <ul>
+                            <li><a href="pvt-ltd-reg.html">OPC Pvt Ltd Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">Private Limited Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">LLP(Limited Liability Partnership)</a></li>
+                            <li><a href="pvt-ltd-reg.html">Public Limited Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration</a></li>
+                            <li><a href="pvt-ltd-reg.html">Patnarship frim</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration US</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration UK</a></li>
+                        </ul>
+                        <h3>Business Registrations</h3>
+                        <ul>
+                            <li><a href="pvt-ltd-reg.html">OPC Pvt Ltd Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">Private Limited Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">LLP(Limited Liability Partnership)</a></li>
+                            <li><a href="pvt-ltd-reg.html">Public Limited Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration</a></li>
+                            <li><a href="pvt-ltd-reg.html">Patnarship frim</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration US</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration UK</a></li>
+                        </ul>
+                        <h3>Business Registrations</h3>
+                        <ul>
+                            <li><a href="pvt-ltd-reg.html">OPC Pvt Ltd Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">Private Limited Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">LLP(Limited Liability Partnership)</a></li>
+                            <li><a href="pvt-ltd-reg.html">Public Limited Company</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration</a></li>
+                            <li><a href="pvt-ltd-reg.html">Patnarship frim</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration US</a></li>
+                            <li><a href="pvt-ltd-reg.html">Company Registration UK</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="footer-wrap">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-6">
+                            <div class="footer-heading">Useful Links</div>
+                            <ul class="footer-nav">
+                                <li><a href="#">E-filing portal of Income Tax dept.</a></li>
+                                <li><a href="#">GST portal</a></li>
+                                <li><a href="#">E-way bill</a></li>
+                                <li><a href="#"> CBIC</a></li>
+                                <li><a href="#">Direct tax payment portal</a></li>
+                                <li><a href="#"> MCA portal</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4 col-sm-6 middle">
+                            <div class="footer-heading">Quick Links</div>
+                            <ul class="footer-nav">
+                                <li><a href="#">Corporate Services</a></li>
+                                <li> <a href="#">Audit</a></li>
+                                <li><a href="#">Corporate Finance</a></li>
+                                <li><a href="#">Services for Non-Residents</a></li>
+                                <li><a href="#">Accounting Services</a></li>
+                                <li><a href="#">Business Process Outsourcing</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="footer-heading">Connect With Us</div>
+                            <ul class="call-ad">
+                                <li>
+                                    <div><i class="fa fa-map-marker"></i><span>407,
+                                            Sai Kesava Towers Shilpa Park Kondapur,
+                                            HITEC City, Hyderabad,
+                                            Telangana 500084</span></div>
+                                </li>
+                                <li>
+                                    <div><i class="fa fa-phone"></i><span>+91- 958-483-9976</span></div>
+                                </li>
+
+                                <li>
+                                    <div><i class="fa fa-envelope-o"></i><span>sales@cyberflax.com</span></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="footer-service">
+                        <div class="copyright">© 2021 Cyberflax PVT. LTD &amp; . All Rights Reserved</div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+        integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"
+        integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="js/main.js"></script>
+</body>
+
+
+</html>

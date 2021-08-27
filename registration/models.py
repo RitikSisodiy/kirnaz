@@ -123,3 +123,8 @@ class contacts(models.Model):
     mobile = models.CharField(max_length=50)
     pincode = models.CharField(max_length=50)
     time = models.DateTimeField(auto_now=True)
+
+class aboutContent(models.Model):
+    title = models.CharField(max_length=100)
+    content = RichTextField(max_length=5000 ,null=True,blank=True)
+    img = models.ImageField(upload_to="about",blank=True)

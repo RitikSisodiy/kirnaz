@@ -21,6 +21,7 @@ def index(request):
     abca = abca[0] if abca.exists() else []
     latestblog = addblog.objects.all()
     latestblog = latestblog.order_by('time')[0] if latestblog.exists() else []
+    client = ourclients.objects.all()[:3]
     res = { 
         'slider':slider,
         "aboutca":abca ,
@@ -29,7 +30,8 @@ def index(request):
         'bnews':bnews,
         'offrings':offrings,
         'menu':menu,
-        'latestblog': latestblog
+        'latestblog': latestblog,
+        'client':client
     }
     if request.method == "POST":
         name = request.POST['name']
@@ -38,6 +40,8 @@ def index(request):
         message = request.POST['message']
         data = BusinessQuery(name=name, email=email, phone=phone, message=message)
         data.save()
+        messages.success(request,"Hurrey! Thanks For Contacting With us, We will Get Back To You Soon.")
+        return redirect('index')
     return render(request,'index.html',res)
 
 def about(request):
@@ -46,6 +50,7 @@ def about(request):
     res["links"]= links.objects.all()
     res["exper"]= Expertise.objects.all()
     res["marketplace"]= marketplace.objects.all()
+    res['content'] = aboutContent.objects.all()
     return render(request,'about.html',res)
 
 def another(request):
@@ -55,7 +60,13 @@ def blogpage(request):
     return render(request,'blog-page.html')
 
 def blog(request):
-    return render(request,'blog.html')
+    res= {}
+    res['title'] = "Blogs"
+    return render(request,'blog.html',res)
+def news(request):
+    res= {}
+    res['title'] = "N   ews"
+    return render(request,'blog.html',res)
 
 def chatbox(request):
     return render(request,'chatbox.html')
@@ -159,3 +170,5 @@ def handelrequest(request):
     else:
         messages.success(request,"Your Payment is unsuccessfull because " )
         return redirect('index')
+def services(request):
+    return render(request,'services.html')

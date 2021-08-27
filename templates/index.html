@@ -95,7 +95,7 @@
           <div class="green-line"></div>
         </h1>
         {{aboutca.content|safe}}
-        <a href="#">Read More <i class="fa fa-angle-double-right"></i></a>
+        <a href="{% url 'about' %}">Read More <i class="fa fa-angle-double-right"></i></a>
       </div>
     </div>
   {% endif %}
@@ -110,19 +110,19 @@
               </h2>
               <p>Always ready to help you out regarding all your queries.</p>
               <div class="group-query">
-                <input name="name" type="text" id="ctl00_txtname" class="form-control" placeholder="Your Name">
+                <input name="name" type="text" id="ctl00_txtname" class="form-control" placeholder="Your Name" required>
               </div>
               <div class="group-query">
                 <input name="phone" type="text" id="ctl00_txtcontact" class="form-control"
-                  placeholder="Phone">
+                  placeholder="Phone" required>
               </div>
               <div class="group-query">
                 <input name="email" type="email" id="ctl00_txtmail" class="form-control"
-                  placeholder="Your Email">
+                  placeholder="Your Email" required>
               </div>
               <div class="group-query">
                 <textarea name="message" type="text" rows="2" cols="20" id="ctl00_txtremark" class="form-control"
-                  placeholder="Your Message"></textarea>
+                  placeholder="Your Message" required></textarea>
               </div>
               <div class="group-query">
                 <input type="submit" name="ctl00$btnsubmit" value="Send" id="ctl00_btnsubmit" class="btn btn-send">
@@ -136,25 +136,37 @@
     </div>
     <div class="comp-reg">
       <section class="required">
-        <div class="mx-lg-5 mx-3">
-          <h2> Requirements for Start Up Incorporation</h2>
-          <div class="card1">
+        <div class="mx-lg-12 mx-3 row">
+          <h2 class="col-md-12"> Requirements for Start Up Incorporation</h2>
+           {% for data in Registrations %}{% if 3 > forloop.counter %}
+          <div class="card1 col">
             <div class="card-body">
-              <h6 class="card-price"><a href="#" title="One Person Company Incorporation" target="_blank"> One Person
-                  Company</a></h6>
-              <ul class="cards">
-                <li><i class="fa fa-hand-o-right"></i> 1 Shareholders</li>
-                <li><i class="fa fa-hand-o-right"></i> 1 Directors</li>
-                <li><i class="fa fa-hand-o-right"></i> 1 Nominee</li>
-                <li><i class="fa fa-hand-o-right"></i> DIN </li>
-                <li><i class="fa fa-hand-o-right"></i> DSC</li>
-                <li><i class="fa fa-hand-o-right"></i> Minimum Authorised Share Capital 1 Lakh</li>
+              <h6 class="card-price"><a href="" title="{{data.title}}" target="_blank"> {{data.title}}</a></h6>
+              <ul class="cards ">
+              {% for d in data.RegistrationSubMenu.all %}{% if 5 > forloop.counter %}
+                <li ><a href="{% url 'registration' slug1=data.slug slug2=d.slug %}"><i class="fa fa-hand-o-right"></i> {{d.submenu}}</a></li>{% endif %}
+                {% endfor %}
               </ul>
-              <a href="#" title="How to register One Person Company?" target="_blank" class="bt-1">Read More...</a>
+              <a href="{% url 'services' %}" title="How to register One Person Company?" target="_blank" class="bt-1">View More...</a>
             </div>
           </div>
+          {% endif %}
+          {% endfor %}
+          {% for data in othernavreg %}
+          <div class="card1 col">
+            <div class="card-body">
+              <h6 class="card-price"><a href="#" title="{{data.title}}" target="_blank"> {{data.title}}</a></h6>
+              <ul class="cards ">
+              {% for d in data.RegistrationSubMenu.all %}{% if 4 > forloop.counter %}
+                <li><a href="{% url 'handlenav' slug1=data.slug slug2=d.slug %}" class=""><i class="fa fa-hand-o-right"></i> {{d.submenu}}</a></li>{% endif %}
+                {% endfor %}
+              </ul>
+              <a href="{% url "services" %}" title="How to register One Person Company?" target="_blank" class="bt-1">View More...</a>
+            </div>
+          </div>
+          {% endfor %}
           <!-- Plus Tier -->
-          <div class="card1">
+          {% comment %} <div class="card1">
             <div class="card-body">
               <h6 class="card-price"> <a href="#" title="Private Limited Company Incorporation" target="_blank">Private
                   Limited Company</a> </h6>
@@ -212,7 +224,7 @@
               </ul>
               <a href="#" title="partnership firm Incorporation certificate" class="bt-1">Read More...</a>
             </div>
-          </div>
+          </div> {% endcomment %}
         </div>
       </section>
     </div>
@@ -352,5 +364,41 @@
 
         </section>
     </section>
+  
+  
+<section class=" client-says boldSection topSpaced bottomSpaced gutter inherit wBackground cover btBackgroundOverlay btSolidLightBackground"
+style="background-image:url(https://www.finacbooks.com/assets/theme/images/bg/background_4.webp);">
+<div class="container ">
+<center>
+    <div class="heading mx-5" style="padding:41px 0 0 0;">
+        <h6>MEET US</h6>
+        <h4 class="headline">What Clients Say</h4>
+        <p>Customer delight is our main goal and we are very serious about it. </p>
+        <hr>
+        </h4>
+    </div>
+    </center>
+    <div class="team row">
+    {% for cli in client %}
+        <div class="col-12 my-3 col-lg-4">
+    <center>
+            <div class="card p-5">
+                <div class="img">
+                    <img src="/media/{{cli.Profile}}" alt="">
+                </div>
+                <div class="text">
+                    <h4>Pravin Chauhan</h4>
+                    <p>
+                    <div class="btSubTitle">{{cli.content}}</div>
+                    </p>
+                </div>
+                <div class="sign"><img src="/media/{{cli.SignatureOptional}}" alt=""></div>
+            </div>
+        </center>
+        </div>
+    {% endfor %}
+    </div>
+  </div>
+</section>
 
 {% endblock content%}

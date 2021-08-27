@@ -1,6 +1,7 @@
 {% extends 'pvtltdbase.html' %}
 {% load static %}
 {% load customfilter %}
+{% block title%}{{reg.submenu|title}}{% endblock title%}
 
 {% block content %}
 <style>
@@ -46,32 +47,33 @@ i.fa-check {
     {% endfor %}
 {% endif %}
 
-        <div class="container second">
-            <p class="left heading-reg"><a href="{% url 'index' %}">Home</a> / {{reg.submenu}}</p>
-            <p class="right">Updated on 9 Jul 2021&nbsp;&nbsp;9.00 AM IST | <i class="fa fa-clock-o"
-                    aria-hidden="true"></i> 4 min read</p>
+       <div class="container second">
+            <p class="left heading-reg my-2"><a href="{% url 'index' %}">Home</a> / {{reg.submenu}}</p>
             <br><br>
             <div class="sub-nav">
                 <div class="container">
                     <ul class="list-inline list-icons">
-                        <li><a href="#package-sec">Included In Our Package</a></li>
-                        <li><a href="#procedure">Procedure</a></li>
+                    {% for d in slist %}
+                    {% if forloop.counter > 1 %}
+                        <li><a href="#selectsection{{d.1}}">{{d.0}}</a></li>{% endif %}
+                        {% endfor %}
+                        {% comment %} <li><a href="#procedure">Procedure</a></li>
                         <li><a href="#doc-sec">Document</a></li>
                         <li><a href="#cyberflax">Memorandum</a></li>
                         <li><a href="#fssai-licence">Register</a></li>
                         <li><a href="#frequently-asked">FAQ’S</a></li>
-                        <li><a href="#considered">Sainification</a></li>
+                        <li><a href="#considered">Sainification</a></li> {% endcomment %}
                     </ul>
                 </div>
             </div>
             {% if absm %}
             {% for ab in absm %}
 
-            <h2 class="heading-reg my-4 text-center text-bold"><b>{{ab.heading1}}</b></h2>
+            <h2 class="heading-reg my-4 text-center text-bold" id='selectsectionabsm'><b>{{ab.heading1}}</b></h2>
             <div class="col-md-12">
                 <p class="text-justify bold">{{ab.heading1_details|safe}}</p>
 
-                <h4 class="mb-20"><b>{{ab.heading2}}</b></h4>
+                <h4 class="heading-reg my-4 text-center text-bold"><b>{{ab.heading2}}</b></h4>
                     <ul class="custumli">{{ab.heading2_details|safe}}</ul>
 
                 {% endfor %}
@@ -135,12 +137,12 @@ i.fa-check {
             {% endif %}
         </div>
         {% if pi %}
-        <div class="third">
+        <div class="third" id= "selectsectionpi">
             <section class="services mt-20">
                 <!--Heading Start-->
                 <div class="container">
                     <div class="col-md-12 text-center">
-                        <h5 class="heading">What Is Included In Our Package?</h5>
+                        <h5 class="heading-reg my-4 text-center text-bold">What Is Included In Our Package?</h5>
                     </div>
                 </div>
 
@@ -210,12 +212,13 @@ i.fa-check {
         </div>
         {% endif %}
         {% if dr %}
+        <div id = 'selectsectiondr'>
         {% for d in dr %}
-        <section class="cmp1" id="doc-sec">
+        <section class="cmp1" id="">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <h2 class="heading-reg text-center">{{d.heading1}}</h2>
+                        <h2 class="heading-reg my-4 text-center text-bold">{{d.heading1}}</h2>
                         <ul class="custumli">
                             {{d.content|safe}}</ul>
                             {% comment %} <li style="margin: 10px 0;"><i class="fa fa-caret-right" style="font-size:20px; margin-right: 10px; color:#0099e6;"></i>Passport size photograph of directors
@@ -231,15 +234,16 @@ i.fa-check {
             </div>
         </section>
         {% endfor %}
+        </div>
         {% endif %}
 
 {% if pr %}
-        <section class="services">
+        <section class="services" id="selectsectionpr">
             <div id="procedure"></div>
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <h3 class="heading">Procedure for Private Limited Company Registration</h3>
+                        <h3 class="heading-reg my-4 text-center text-bold">{{reg.submenu}} Registration</h3>
                     </div>
                 </div>
             </div>
@@ -319,12 +323,12 @@ i.fa-check {
         {% endif %}
         {% if cr %}
         {% for c in cr %}
-        <section id="fssai-licence" class="services">
+        <section id="fssai-licence" class="services" id='selectsectioncr'>
         
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <h3 class="heading-reg text-capitalize">{{c.heading1}}
+                        <h3 class="heading-reg my-4 text-center text-bold">{{c.heading1}}
                         </h3>
                     </div>
                 </div>
@@ -358,7 +362,7 @@ i.fa-check {
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <h3 class="heading-reg">{{c.heading2}}</h3>
+                        <h3 class="heading-reg my-4 text-center text-bold">{{c.heading2}}</h3>
                     </div>
                 </div>
             </div>
@@ -386,12 +390,12 @@ i.fa-check {
         {% endif %}
 
         {% if sn %}
-        <section id="considered" class="services">
+        <section id="considered" class="services" id='selectsectionsn'>
         {% for s in sn %}
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <h3 class="heading-reg">{{s.heading1}}
+                        <h3 class="heading-reg my-4 text-center text-bold">{{s.heading1}}
                         </h3>
                     </div>
                 </div>
@@ -431,15 +435,15 @@ i.fa-check {
         {% endfor %}
         </section> {% endif %}
         {% if mm %}
-        <section id="cyberflax" class="fssai-registration-sec py-5" style="background: #f3f3f3;">
+        <section id="selectsectionmm" class="fssai-registration-sec py-5"  style="background: #f3f3f3;">
         {% for m in mm %}
             <div class="container para-justfy">
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <h3 class="heading-reg mt-40">{{m.heading1}}</h3>
+                        <h3 class="heading-reg my-4 text-center text-bold">{{m.heading1}}</h3>
                     </div>
                     <div class="col-md-12 mb-40">
-                        <p class="my-3" id="frequently-asked">{{m.content|safe}}</p>
+                        <p class="my-3" id="">{{m.content|safe}} </p>
                     </div>
                 </div>
             </div>
@@ -447,11 +451,11 @@ i.fa-check {
         </section> {% endif %}
 
 {% if faq %}
-        <section class="services">
+        <section class="services" id="selectsectionfaq">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <h4 class="heading-reg bold">{{reg.submenu}} FAQs </h4>
+                        <h4 class="heading-reg my-4 text-center text-bold">{{reg.submenu}} FAQs </h4>
                     </div>
                 </div>
             </div>
@@ -1168,12 +1172,11 @@ i.fa-check {
         </section> {% endif %}
         {% if client %}
 <section class=" client-says boldSection topSpaced bottomSpaced gutter inherit wBackground cover btBackgroundOverlay btSolidLightBackground"
-style="background-image:url(https://www.finacbooks.com/assets/theme/images/bg/background_4.webp);">
+style="background-image:url(https://www.finacbooks.com/assets/theme/images/bg/background_4.webp);" id='selectsectionclient'>
 <div class="container">
     <div class="heading">
-        <h6>MEET US</h6>
-        <h4 class="headline">What Clients Say</h4>
-        <p>Customer delight is our main goal and we are very serious about it. </p>
+        <h4 class="heading-reg my-4 text-center text-bold">What Clients Say</h4>
+        <p class="heading-reg my-4 text-center text-bold">Customer delight is our main goal and we are very serious about it. </p>
         <hr>
         </h4>
     </div>
@@ -1195,8 +1198,6 @@ style="background-image:url(https://www.finacbooks.com/assets/theme/images/bg/ba
         </div>
     {% endfor %}
     </div>
-</div>
-</div>
 </div>
 </section>
 
@@ -1337,7 +1338,7 @@ style="background-image:url(https://www.finacbooks.com/assets/theme/images/bg/ba
 <script>
 $( document ).ready(function() {
 $("ul.custumli li").addClass('my-2')
-$("ul.custumli li").prepend(`<i style="color: #0099e6; margin-right: 10px;" class="fa fa-check"></i>`)
+$("ul.custumli li").prepend(`<i style="color: #e77b20; margin-right: 10px;" class="fa fa-check"></i>`)
 $("ul.custumli ul").css("list-style-type", "none")
 });
 </script>

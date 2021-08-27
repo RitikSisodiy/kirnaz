@@ -9,6 +9,7 @@ urlpatterns = [
     path('another/', views.another,name='another'),
     path('blogpage/', views.blogpage,name='blogpage'),
     path('blog/', views.blog,name='blog'),
+    path('news/', views.news,name='news'),
     path('chatbox/', views.chatbox,name='chatbox'),
     path('companyregistration/', views.companyregistration,name='companyregistration'),
     path('incometaxfilling/', views.incometaxfilling,name='incometaxfilling'),
@@ -24,6 +25,7 @@ urlpatterns = [
     path('logindashboard', views.logindashboard, name="logindashboard"),
     path('payment/', views.payment, name="payment"),
     path('handlerequest/', views.handelrequest, name="handelrequest"),
+    path('services/', views.services, name="services"),
  
 
 ]
