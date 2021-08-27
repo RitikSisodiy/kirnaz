@@ -39,7 +39,7 @@ def handlenav(request,slug1,slug2):
     # res['pr'] = Procedure.objects.filter(reg_title__slug=slug2)
     # res['faq'] = FAQ.objects.filter(reg_title__slug=slug2)    
     # res['client'] = ourclients.objects.filter(reg_title__slug=slug2)  
-    # res['reg'] = reg  
+    res['reg'] = reg  
     return render(request,'othernavs.html',res)
 
     # if type(slug1)==str:

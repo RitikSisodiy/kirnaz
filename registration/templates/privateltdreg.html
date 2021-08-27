@@ -4,21 +4,21 @@
 {% block title%}{{reg.title|title}}{% endblock title%}
 {% block content %} 
        {% if top %}
-{% for reg in top %}
+{% for regs in top %}
         <div class="first">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-7 col-12">
                         <div class="banner-captions">
-                            <center><h1 class="title">{{reg.title}}</h1></center>
-                            <div class="sub-title"><center>{{reg.subtitle}}</center></div>
-                            <center>{{reg.Content|safe}}</center>
+                            <center><h1 class="title">{{regs.title}}</h1></center>
+                            <div class="sub-title"><center>{{regs.subtitle}}</center></div>
+                            <center>{{regs.Content|safe}}</center>
                         </div>
                     </div>
                     <div class="col-lg-5">
                         <div class="form">
                             <div class="form-heading">
-                                <h3>{{reg.formtitle|title}} Registration </h3>
+                                <h3>{{regs.formtitle|title}} Registration </h3>
                             </div>
                             <form method='POST'>{% csrf_token %}
                                 <input type="text" name="name" placeholder="Name" id="">
@@ -233,7 +233,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <h3 class="heading-reg my-4 text-center text-bold">{{reg.submenu}} Registration</h3>
+                        <h3 class="heading-reg my-4 text-center text-bold">{{reg.submenu|title}} Registration</h3>
                     </div>
                 </div>
             </div>

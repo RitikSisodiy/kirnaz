@@ -40,7 +40,7 @@ def regis(request,slug1,slug2):
     # res['pr'] = Procedure.objects.filter(reg_title__slug=slug2)
     # res['faq'] = FAQ.objects.filter(reg_title__slug=slug2)    
     # res['client'] = ourclients.objects.filter(reg_title__slug=slug2)
-    # res['reg'] = reg
+    res['reg'] = reg
     res["title"] = reg.submenu
     return render(request,'privateltdreg.html',res)
 
