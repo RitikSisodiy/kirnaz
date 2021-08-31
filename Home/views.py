@@ -171,57 +171,59 @@ def handelrequest(request):
     return redirect('index')
 def services(request):
     return render(request,'services.html')
+
+
+# profile sections
 from .forms import Userform,userform
-class profile():
-    @login_required(login_url='memberlogin')
-    def profile(request):
-        res= {}
-        res['title'] = "Profile"
-        return render(request,'profile.html',res)
-    @login_required(login_url='memberlogin')
-    def bookings(request):
-        res= {}
-        res['title'] = "Profile"
-        res['booking'] = OrderPlaced.objects.filter(user=request.user.id)
-        return render(request,'bookings.html',res)
-    @login_required(login_url='memberlogin')
-    def documents(request):
-        if request.method == "POST":
-            name = request.POST['docname']
-            document = request.FILES['document']
-            documents(user=request.user,name=name,doc=document).save()
-            messages.success(request,name +' Uploaded Successfully')
-            return redirect('documents')
-        res= {}
-        res['title'] = "Documents"
-        res['document'] = documents.objects.filter(user=request.user.id)
-        return render(request,'documents.html',res)
-    @login_required(login_url='memberlogin')
-    def getdoclist(request):
-        value = request.GET.get('doc')
-        if value is not None:
-            data = documents.objects.filter(name__contains=value).values('name')
-            data={item['name'] for item in data}
-            data = json.dumps(list(data))
-            return HttpResponse(data)
-        return HttpResponse('hello')
-    @login_required(login_url='memberlogin')
-    def editprofile(request):
-        res = {}
-        Uform = Userform(instance = request.user)
-        uform = userform(instance = request.user.user)
-        if request.method == "POST":
-            Uform = Userform(request.POST,instance = request.user)
-            uform = userform(request.POST,request.FILES,instance = request.user.user)
-            if Uform.is_valid and uform.is_valid:
-                uform.save()
-                Uform.save()
-                messages.success(request,'Your Profile Is Updated')
-                return redirect('editprofile')
-            else:
-                messages.error(request,"Invalid data")
-        res['form'] = [Uform,uform]
-        return render(request,'editprofile.html',res)
-    @login_required(login_url='memberlogin')
-    def changepass(request):
-        return render(request,'changepass.html')
+@login_required(login_url='memberlogin')
+def profile(request):
+    res= {}
+    res['title'] = "Profile"
+    return render(request,'profile.html',res)
+@login_required(login_url='memberlogin')
+def bookings(request):
+    res= {}
+    res['title'] = "Profile"
+    res['booking'] = OrderPlaced.objects.filter(user=request.user.id)
+    return render(request,'bookings.html',res)
+@login_required(login_url='memberlogin')
+def documents(request):
+    if request.method == "POST":
+        name = request.POST['docname']
+        document = request.FILES['document']
+        documents(user=request.user,name=name,doc=document).save()
+        messages.success(request,name +' Uploaded Successfully')
+        return redirect('documents')
+    res= {}
+    res['title'] = "Documents"
+    res['document'] = documents.objects.filter(user=request.user.id)
+    return render(request,'documents.html',res)
+@login_required(login_url='memberlogin')
+def getdoclist(request):
+    value = request.GET.get('doc')
+    if value is not None:
+        data = documents.objects.filter(name__contains=value).values('name')
+        data={item['name'] for item in data}
+        data = json.dumps(list(data))
+        return HttpResponse(data)
+    return HttpResponse('hello')
+@login_required(login_url='memberlogin')
+def editprofile(request):
+    res = {}
+    Uform = Userform(instance = request.user)
+    uform = userform(instance = request.user.user)
+    if request.method == "POST":
+        Uform = Userform(request.POST,instance = request.user)
+        uform = userform(request.POST,request.FILES,instance = request.user.user)
+        if Uform.is_valid and uform.is_valid:
+            uform.save()
+            Uform.save()
+            messages.success(request,'Your Profile Is Updated')
+            return redirect('editprofile')
+        else:
+            messages.error(request,"Invalid data")
+    res['form'] = [Uform,uform]
+    return render(request,'editprofile.html',res)
+@login_required(login_url='memberlogin')
+def changepass(request):
+    return render(request,'changepass.html')
