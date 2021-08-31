@@ -21,4 +21,4 @@ paytm/
 passenger_wsgi.py
 tmp/
 db.sqlite3
-paytm/__pycache__/Checksum.cpython-37.pyc
+paytm/__pycache__/
