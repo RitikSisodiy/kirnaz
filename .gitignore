@@ -20,3 +20,4 @@ paytm
 #cpannelfile
 passenger_wsgi.py
 tmp/
+db.sqlite3
