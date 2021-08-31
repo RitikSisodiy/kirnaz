@@ -1,0 +1,35 @@
+ {% extends 'profilebase.html' %}
+{% block pbody %}
+<div class="card login-form  shadow-lg p-3 mb-5 bg-white rounded" style="padding: 1;">
+	<div class="card-body">
+		<h3 class="card-title text-center">Change password</h3>
+		
+		<!--Password must contain one lowercase letter, one number, and be at least 7 characters long.-->
+		
+		<div class="card-text">
+			<form id="changepass">
+				
+				<div class="form-group">
+					<label for="exampleInputEmail1">Current Password</label>
+					<input type="password" name='cpass' class="form-control form-control-sm" required>
+				</div><div class="form-group">
+					<label for="exampleInputEmail1">Your new password</label>
+					<input type="password" name='npass' class="form-control form-control-sm" required>
+				</div>
+				<div class="form-group">
+					<label for="exampleInputEmail1">Repeat password</label>
+					<input type="password" name='rnpass' class="form-control form-control-sm" required>
+				</div>
+				<button type="submit" class="btn btn-primary btn-block submit-btn"  style="background-color:#e77b20; border-color:#e77b20;">Confirm</button>
+			</form>
+		</div>
+	</div>
+</div>
+<script>
+    form =document.getElementById('changepass') 
+    form.onsubmit = function(event){
+    alert('working')
+    event.preventDefault()
+)
+</script>
+{% endblock %}

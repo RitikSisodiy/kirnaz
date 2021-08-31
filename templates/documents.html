@@ -1,0 +1,109 @@
+{% extends 'profilebase.html' %}
+{% block pbody %}
+<div class="dashboard-form-wrapper">
+                                                    <div class="header-wrapp">
+                                                        <h4 class="header-title">Documents Feedback List </h4>
+                                                        <div class="header-title">
+                                                            <button type="submit" style="padding: 0px 20px; font-size: 18px; height: 40px; line-height: 30px; border: none; border-radius: 5px; background: #fbc700;" class="btn btn-info" data-toggle="modal" data-target="#upload"><i class="fas fa-plus mr-2"></i>Upload
+                                                                Documents</button>
+                                                        </div>
+                                                    </div>
+                                                    {% if document %}
+                                                    <div class="table-responsive mt-3">
+                                                        <table class="table table-striped">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th scope="col">Uploaded Documents Info</th>
+                                                                    <th scope="col">Guidelines / Feedback</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            {% for doc in document %}
+                                                                <tr>
+                                                                    <th scope="row">
+                                                                        <div class="user-dahsboard-order-info-wrap">
+                                                                            <small class="d-block"><strong>#Documents
+                                                                                    ID :</strong> {{doc.id}}</small>
+                                                                            <small class="d-block"><strong>Doc
+                                                                                    Name:</strong> {{doc.name}}</small>
+                                                                            <small class="d-block"><strong>Your
+                                                                                    Document:</strong> <a href="{{doc.doc.url}}" target="_blank" class="btn btn-medheal btn-sm mr-1" style="padding: 5px 16px;font-size: 18px;height: auto;line-height: normal;border: none;font-size: 14px;border-radius: 5px;background: #fbc700;" title="View Document">
+                                                                                    <i class="fas fa-eye"></i> View</a>
+                                                                            </small>
+                                                                            <small class="d-block"><strong>Date
+                                                                                    Created:</strong> {{doc.time}}</small>
+                                                                        </div>
+                                                                    </th>
+                                                                    <td>
+                                                                        <div class="user-dahsboard-order-info-wrap">
+                                                                            <small class="d-block">
+                                                                                <span class="alert alert-warning text-capitalize alert-sm alert-small d-inline-block">pending</span>
+                                                                            </small>
+                                                                        </div>
+                                                                    </td>
+
+                                                                </tr>
+                                                                {% endfor %}
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    {% else %}
+                                                    <div class="alert alert-warning my-4">No Documents Found</div>
+                                                    {% endif %}
+                                                    <div class="blog-pagination">
+
+                                                    </div>
+                                                    <div class="modal fade" id="upload" aria-hidden="true">
+                                                        <div class="modal-dialog modal-lg margin-top-150">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title">Upload Documents</h5>
+                                                                     <button type="button" class="btn-close" data-dismiss="modal" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <form action="" method="post" enctype="multipart/form-data"><input type="hidden" name="_token" value="7zKL4h6bo8T231C3Gw2l7Gs0wyzdKbK81NmLPSMv">
+                                                                    <div class="modal-body">{% csrf_token %}
+                                                                        <input type="hidden" name="user_id" value="20">
+                                                                        <input type="hidden" name="name" value="Navneet Sarswat">
+                                                                        <input type="hidden" name="email" value="AMANYADAV42248@GMAIL.COM">
+                                                                        <input type="hidden" name="phone" value="09584839976">
+                                                                        <div class="form-group">
+                                                                            <label for="">Enter Document Name</label>
+                                                                            <input list='select' class="form-control" onkeydown="getdocname(this.value)" name="docname" width=100% rows="7" required></input>
+                                                                            <datalist   id="select">    
+                                                                            </datalist>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="">Upload Documents</label>
+                                                                            <input type="file" name="document" id="image" class="form-control" required>
+                                                                        </div>
+                                                                        <div id="preview_image"></div>
+                                                                        <div class="card-footer"><small class="text text-danger"><sup>*</sup>
+                                                                                .jpg, .jpeg, .png ,.pdf </small></div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-dismiss="modal">Close</button>
+                                                                        <button type="submit" id="submit" class="btn btn-primary" style="background-color:#e77b20; border-color:#e77b20;">Submit</button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+<script>
+function getdocname(value) {
+    var xhttp = new XMLHttpRequest()
+    xhttp.open('GET','{% url 'getdoclist' %}?doc='+value,true)
+    xhttp.send()
+    xhttp.onreadystatechange = function(){
+        if(xhttp.readyState==4 && xhttp.status==200){
+            data = JSON.parse(xhttp.response)
+            mystr = ''
+            for(i=0;i<data.length;i++){
+                mystr +=`<option style="width:100%"  value="${data[i]}"/>`
+            }
+            $('#select').html(mystr)
+        }
+    }
+}
+</script>
+{% endblock %}

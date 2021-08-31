@@ -1,0 +1,97 @@
+{% extends 'profilebase.html' %}
+{% block pbody %}
+<div class="dashboard-form-wrapper">
+                                                    <div class="header-wrapp">
+                                                        <h4 class="header-title">Bookings Feedback List </h4>
+                                                        <div class="header-title">
+                                                            <button type="submit" style="padding: 0px 20px; font-size: 18px; height: 40px; line-height: 30px; border: none; border-radius: 5px; background: #fbc700;" class="btn btn-info" data-toggle="modal" data-target="#upload"><i class="fas fa-plus mr-2"></i>Upload
+                                                                Bookings</button>
+                                                        </div>
+                                                    </div>
+                                                    {% if booking %}
+                                                    <div class="table-responsive mt-3">
+                                                        <table class="table table-striped">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th scope="col">Uploaded Booking Info</th>
+                                                                    <th scope="col">Guidelines / Feedback</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            {% for doc in booking %}
+                                                                <tr>
+                                                                    <th scope="row">
+                                                                        <div class="user-dahsboard-order-info-wrap">
+                                                                            <small class="d-block"><strong>#Bookings
+                                                                                    ID :</strong> {{doc.id}}</small>
+                                                                            <small class="d-block"><strong>Payment
+                                                                                    For:</strong> {{doc.payreq.reason}}</small>
+                                                                            <small class="d-block"><strong>Your
+                                                                                    TXNID:</strong> {{doc.order_id}}
+                                                                            </small>
+                                                                            <small class="d-block"><strong>Date
+                                                                                    Created:</strong> {{doc.order_date}}</small>
+                                                                        </div>
+                                                                    </th>
+                                                                    <td>
+                                                                        <div class="user-dahsboard-order-info-wrap">
+                                                                            <small class="d-block">
+                                                                            {% if doc.status == 'pending' %}
+                                                                                <span class="alert alert-warning text-capitalize alert-sm alert-small d-inline-block">{{doc.status}}</span>
+                                                                            {% endif %}
+                                                                            {% if doc.status == 'Success' %}
+                                                                                <span class="alert alert-success text-capitalize alert-sm alert-small d-inline-block">{{doc.status}}</span>
+                                                                            {% endif %}
+                                                                            </small>
+                                                                        </div>
+                                                                    </td>
+
+                                                                </tr>
+                                                                {% endfor %}
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    {% else %}
+                                                    <div class="alert alert-warning my-4">No Bookings Found</div>
+                                                    {% endif %}
+                                                    <div class="blog-pagination">
+
+                                                    </div>
+                                                    <div class="modal fade" id="upload" aria-hidden="true">
+                                                        <div class="modal-dialog modal-lg margin-top-150">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title">Upload Bookings</h5>
+                                                                     <button type="button" class="btn-close" data-dismiss="modal" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <form action="" method="post" enctype="multipart/form-data"><input type="hidden" name="_token" value="7zKL4h6bo8T231C3Gw2l7Gs0wyzdKbK81NmLPSMv">
+                                                                    <div class="modal-body">{% csrf_token %}
+                                                                        <input type="hidden" name="user_id" value="20">
+                                                                        <input type="hidden" name="name" value="Navneet Sarswat">
+                                                                        <input type="hidden" name="email" value="AMANYADAV42248@GMAIL.COM">
+                                                                        <input type="hidden" name="phone" value="09584839976">
+                                                                        <div class="form-group">
+                                                                            <label for="">Enter Document Name</label>
+                                                                            <input list='select' class="form-control" onkeydown="getdocname(this.value)" name="docname" width=100% rows="7" required></input>
+                                                                            <datalist   id="select">    
+                                                                            </datalist>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="">Upload Bookings</label>
+                                                                            <input type="file" name="document" id="image" class="form-control" required>
+                                                                        </div>
+                                                                        <div id="preview_image"></div>
+                                                                        <div class="card-footer"><small class="text text-danger"><sup>*</sup>
+                                                                                .jpg, .jpeg, .png ,.pdf </small></div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-dismiss="modal">Close</button>
+                                                                        <button type="submit" id="submit" class="btn btn-primary" style="background-color:#e77b20; border-color:#e77b20;">Submit</button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+{% endblock %}

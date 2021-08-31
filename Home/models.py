@@ -70,3 +70,8 @@ class OrderPlaced(models.Model):
         if self.order_id is None and self.order_date and self.id:
             self.order_id = self.order_date.strftime('PAY2ME%Y%m%dODR') + str(self.id)
         return super().save(*args, **kwargs)
+class documents(models.Model):
+    user = models.ForeignKey(User,on_delete=SET_NULL,null=True)
+    name = models.CharField(max_length=100)
+    doc = models.FileField(upload_to="documents")
+    time = models.DateTimeField(auto_now=True)

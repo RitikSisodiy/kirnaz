@@ -1,3 +1,4 @@
+from django.contrib.auth.backends import RemoteUserBackend
 from chat.models import conversation, user
 from dashboard.homeforms import aboutcaform
 from django.contrib import messages
@@ -113,8 +114,8 @@ def logindashboard(request):
         if USER is not None:
             login(request, USER)
             if request.user.is_superuser:
-                return JsonResponse({'status':'ok'})
-            return JsonResponse({"status":'invaliduser'})
+                return JsonResponse({'status':'ok','msg':'Login Success'})
+            return JsonResponse({"status":'invaliduser','msg':'invalid user'})
     return render(request,'logindashboard.html')
 from django.contrib.auth.decorators import login_required
 from dashboard.models import makepaymentrequest
@@ -167,8 +168,54 @@ def handelrequest(request):
                 messages.success(request,"Your Payment is unsuccessfull because "+resp['RESPMSG'] )
 
         return redirect('index')
-    else:
-        messages.success(request,"Your Payment is unsuccessfull because " )
-        return redirect('index')
+    return redirect('index')
 def services(request):
     return render(request,'services.html')
+from .forms import Userform,userform
+class profile():
+    def profile(request):
+        res= {}
+        res['title'] = "Profile"
+        return render(request,'profile.html',res)
+    def bookings(request):
+        res= {}
+        res['title'] = "Profile"
+        res['booking'] = OrderPlaced.objects.filter(user=request.user.id)
+        return render(request,'bookings.html',res)
+    def documents(request):
+        if request.method == "POST":
+            name = request.POST['docname']
+            document = request.FILES['document']
+            documents(user=request.user,name=name,doc=document).save()
+            messages.success(request,name +' Uploaded Successfully')
+            return redirect('documents')
+        res= {}
+        res['title'] = "Documents"
+        res['document'] = documents.objects.filter(user=request.user.id)
+        return render(request,'documents.html',res)
+    def getdoclist(request):
+        value = request.GET.get('doc')
+        if value is not None:
+            data = documents.objects.filter(name__contains=value).values('name')
+            data={item['name'] for item in data}
+            data = json.dumps(list(data))
+            return HttpResponse(data)
+        return HttpResponse('hello')
+    def editprofile(request):
+        res = {}
+        Uform = Userform(instance = request.user)
+        uform = userform(instance = request.user.user)
+        if request.method == "POST":
+            Uform = Userform(request.POST,instance = request.user)
+            uform = userform(request.POST,request.FILES,instance = request.user.user)
+            if Uform.is_valid and uform.is_valid:
+                uform.save()
+                Uform.save()
+                messages.success(request,'Your Profile Is Updated')
+                return redirect('editprofile')
+            else:
+                messages.error(request,"Invalid data")
+        res['form'] = [Uform,uform]
+        return render(request,'editprofile.html',res)
+    def changepass(request):
+        return render(request,'changepass.html')

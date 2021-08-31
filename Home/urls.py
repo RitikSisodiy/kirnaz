@@ -26,6 +26,11 @@ urlpatterns = [
     path('payment/', views.payment, name="payment"),
     path('handlerequest/', views.handelrequest, name="handelrequest"),
     path('services/', views.services, name="services"),
- 
+    path('profile/', views.profile.profile, name="profile"),
+    path('editprofile/', views.profile.editprofile, name="editprofile"),
+    path('profile/changepass/', views.profile.changepass, name="changepass"),
+    path('profile/documents', views.profile.documents, name="documents"),
+    path('profile/bookings', views.profile.bookings, name="bookings"),
+    path('getdoclist',views.profile.getdoclist,name='getdoclist')
 
 ]

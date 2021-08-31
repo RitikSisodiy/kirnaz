@@ -10,8 +10,11 @@ def datetime_from_utc_to_local(utc_datetime):
     return utc_datetime + offset
 # Create your models here.
 class user(models.Model):
-    user = models.OneToOneField(User,on_delete=models.CASCADE)
-    num = models.CharField(max_length=10,primary_key=True)
+    user = models.OneToOneField(User,on_delete=models.CASCADE,related_name="user")
+    phone = models.CharField(max_length=10,primary_key=True)
+    alternative_Phone = models.CharField(max_length=10,blank=True)
+    address = models.CharField(max_length=100,blank=True)
+    profile = models.ImageField(upload_to='profile',blank='true')
     def __str__(self):
         return str(self.user.id)
 class conversation(models.Model):
@@ -22,5 +25,5 @@ class conversation(models.Model):
     def msgtime(self):
         return datetime_from_utc_to_local(self.time).strftime('%I:%M')
 class convofiles(models.Model):
-    msg = models.ForeignKey(conversation,on_delete=models.CASCADE,related_name='convofiles')
+    msg = models.ForeignKey(conversation,on_delete=models.SET_NULL,null=True,related_name='convofiles',)
     file = models.FileField(upload_to="convomedia")

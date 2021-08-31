@@ -79,7 +79,7 @@ TEMPLATES = [
         },
     },
 ]
-sectionname = ["Top Form section","What We Offer","Document","Package icon","Procedure","Memorandum","Register","FAQS","Signification","Our Clients"]
+sectionname = ["Top Form section","What We Offer","Document","Our Package","Procedure","Memorandum","Register","FAQS","Signification","Our Clients"]
 names = ['top','absm','dr','pi','pr','mm','cr','faq','sn','client']
 
 WSGI_APPLICATION = 'cflax.wsgi.application'
