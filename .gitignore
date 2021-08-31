@@ -13,3 +13,6 @@ media
 # Python # 
 *.py[cod] 
 *$py.class 
+
+#paytm
+paytm/
