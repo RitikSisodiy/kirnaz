@@ -15,7 +15,7 @@ media
 *$py.class 
 
 #paytm
-paytm
+paytm/
 
 #cpannelfile
 passenger_wsgi.py
