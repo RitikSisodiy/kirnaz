@@ -16,3 +16,7 @@ media
 
 #paytm
 paytm
+
+#cpannelfile
+passenger_wsgi.py
+tmp/
