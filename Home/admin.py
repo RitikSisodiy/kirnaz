@@ -35,5 +35,8 @@ class ExpertiseAdmin(admin.ModelAdmin):
 @admin.register(marketplace)
 class marketplaceAdmin(admin.ModelAdmin):
     list_display= ('title',)
+@admin.register(documents)
+class documentsAdmin(admin.ModelAdmin):
+    list_display= ('name',)
 
 
