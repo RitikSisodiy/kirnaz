@@ -180,6 +180,7 @@ def profile(request):
     res= {}
     res['title'] = "Profile"
     return render(request,'profile.html',res)
+
 @login_required(login_url='memberlogin')
 def bookings(request):
     res= {}
