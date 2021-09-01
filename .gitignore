@@ -1,4 +1,4 @@
-# Django #
+# Django 
 *.log
 *.pot
 *.pyc
@@ -7,17 +7,17 @@ __pycache__
 db.sqlite3
 media
 
-# Backup files # 
+# Backup files 
 *.bak
 
-# Python # 
+# Python  
 *.py[cod] 
 *$py.class 
 
 #paytm
 paytm/
 
-#cpannelfile
+# cpannelfile 
 passenger_wsgi.py
 tmp/
 db.sqlite3
