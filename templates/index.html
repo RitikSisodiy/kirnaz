@@ -305,9 +305,9 @@
               <marquee id="m2" height="296" direction="up" scrolldelay="30" scrollamount="2" onmouseover="this.stop();"
                 onmouseout="this.start();">
                 {% for b in bnews %}
-                <li class="Prodetails" style="list-style-type: none;"><span style="font-weight:bold;">{{b.date}}</span><br> <span style="font-weight:bold; list-style-type: none;"><a target="_blank"
-                      href="#"><b>{{b.title}}</b></a> -</span>
-                  <span>{{b.news}}</span>
+                <li class="Prodetails" style="list-style-type: none;"><span style="font-weight:bold;">{{b.date|date}}</span><br> <span style="font-weight:bold; list-style-type: none;"><a target="_blank"
+                      target="_blank" href="{% url "singleblog" b.id %}"><b>{{b.title}} </b></a></span>
+                  <span>{{b.Short_des|slice:":100"}}...<a  target="_blank" href="{% url "singleblog" b.id %}">more</a>.</span>
                 </li>
                 {% endfor %}
               </marquee>

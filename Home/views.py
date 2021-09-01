@@ -60,14 +60,7 @@ def another(request):
 def blogpage(request):
     return render(request,'blog-page.html')
 
-def blog(request):
-    res= {}
-    res['title'] = "Blogs"
-    return render(request,'blog.html',res)
-def news(request):
-    res= {}
-    res['title'] = "N   ews"
-    return render(request,'blog.html',res)
+
 
 def chatbox(request):
     return render(request,'chatbox.html')
@@ -228,3 +221,33 @@ def editprofile(request):
 @login_required(login_url='memberlogin')
 def changepass(request):
     return render(request,'changepass.html')
+
+
+
+# resourses sections
+def blog(request,id=None):
+    type = "blog"
+    res= {}
+    res['title'] = "Blogs"
+    res['type'] = type
+    res['pageurl'] = 'singleblog'
+    if id is not None:
+        res['blogob'] = BlogNews.objects.get(id=id)
+        res['recentblog'] = BlogNews.objects.all().order_by('-date')[:4]
+        res['title'] = res['blogob'].title
+        return render(request, 'blogdetails.html',res) 
+    res['blogs'] = BlogNews.objects.filter(type='1')      
+    return render(request,'blog.html',res)
+def news(request,id=None):
+    type = "news"
+    res= {}
+    res['title'] = "News"
+    res['type'] = type
+    res['pageurl'] = 'singlenews'
+    res['blogs'] = BlogNews.objects.filter(type='2')      
+    if id is not None:
+        res['blogob'] = BlogNews.objects.get(id=id)
+        res['recentblog'] = BlogNews.objects.all().order_by('-date')[:4]
+        res['title'] = res['blogob'].title
+        return render(request, 'blogdetails.html',res)
+    return render(request,'blog.html',res)

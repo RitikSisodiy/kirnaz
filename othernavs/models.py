@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
 from ckeditor.fields import RichTextField
+from registration.models import unique_slug_generator
 # Create your models here.
 from registration.models import icon
 class Registration(models.Model):
@@ -8,7 +9,7 @@ class Registration(models.Model):
     # content = models.CharField(max_length=5000)
     slug = models.SlugField(blank=True)
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.title)
+        self.slug = unique_slug_generator(Registration,self.title)
         super(Registration, self).save(*args, **kwargs)
 
     def __str__(self):
@@ -20,7 +21,7 @@ class RegistrationSubMenu(models.Model):
     submenu = models.CharField(max_length=50)
     slug = models.SlugField(blank=True)
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.submenu)
+        self.slug = unique_slug_generator(RegistrationSubMenu,self.submenu)
         super(RegistrationSubMenu, self).save(*args, **kwargs)
     def __str__(self) :
         return str(self.title.slug+"/"+self.slug)

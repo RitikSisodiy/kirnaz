@@ -16,7 +16,7 @@ class DueDateReminderAdmin(admin.ModelAdmin):
 
 @admin.register(BlogNews)
 class BlogNewsAdmin(admin.ModelAdmin):
-    list_display= ('news',)
+    list_display= ('title',)
 
 @admin.register(Offrings)
 class OffringsAdmin(admin.ModelAdmin):

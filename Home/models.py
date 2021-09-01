@@ -7,7 +7,7 @@ from registration.models import RegistrationSubMenu
 from othernavs.models import RegistrationSubMenu as othernavsubmenu
 from dashboard.models import makepaymentrequest
 # Create your models here.
-
+from datetime import datetime
 class Slider(models.Model):
     objective = models.CharField(max_length=100)
     obj_details = models.TextField()
@@ -31,9 +31,20 @@ class DueDateReminder(models.Model):
     details = models.TextField()
 
 class BlogNews(models.Model):
-    date = models.DateField(auto_now_add=False,null=True,blank=True)
-    title= models.CharField(max_length=50,null=True,blank=True)
-    news = models.TextField()
+    Tchoice = (
+        ('1','News'),
+        ('2','Blogs'),
+    )
+    date = models.DateTimeField(auto_now=True)
+    last_update = models.DateTimeField(auto_now=True)
+    type = models.CharField(max_length=1, choices=Tchoice)
+    img = models.ImageField(upload_to='blogs')
+    title= models.CharField(max_length=200,null=True,blank=True)
+    Short_des = models.CharField(max_length=500)
+    content = RichTextField()
+    def save(self, *args, **kwargs):
+        self.last_update = datetime.now()
+        super(BlogNews, self).save(*args, **kwargs)
 
 class Offrings(models.Model):
     title = models.CharField(max_length=100)

@@ -3,6 +3,23 @@ from django.db import models
 from django.utils.text import slugify
 from ckeditor.fields import RichTextField
 # Create your models here.
+import random ,string
+def get_random_string(size):
+    return ''.join(random.choices(string.ascii_uppercase +
+                             string.digits, k = size))
+
+def unique_slug_generator(instance, new_slug=None):
+    """
+    This is for a Django project and it assumes your instance 
+    has a model with a slug field and a title character (char) field.
+    """
+    slug=new_slug
+    Klass = instance
+    qs_exists = Klass.objects.filter(slug=slug).exists()
+    if qs_exists:
+        new_slug = slugify(str(slug)+get_random_string(4))
+        return unique_slug_generator(instance, new_slug=new_slug)
+    return slug
 
 class iconver(models.Model):
     version = models.CharField(max_length=50)
@@ -17,7 +34,7 @@ class Registration(models.Model):
     # content = models.CharField(max_length=5000)
     slug = models.SlugField(blank=True)
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.title)
+        self.slug = unique_slug_generator(Registration,self.title)
         super(Registration, self).save(*args, **kwargs)
 
     def __str__(self):
@@ -26,10 +43,10 @@ class Registration(models.Model):
     
 class RegistrationSubMenu(models.Model):
     title = models.ForeignKey(Registration, on_delete=models.CASCADE ,related_name="RegistrationSubMenu")
-    submenu = models.CharField(max_length=50)
     slug = models.SlugField(blank=True)
+    submenu = models.CharField(max_length=50)
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.submenu)
+        self.slug = unique_slug_generator(RegistrationSubMenu,self.submenu)
         super(RegistrationSubMenu, self).save(*args, **kwargs)
     def __str__(self) :
         return str(self.title.slug+"/"+self.slug)
