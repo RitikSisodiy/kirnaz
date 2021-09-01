@@ -42,7 +42,7 @@
           <p>Any Questions? Request a callback from our Tax Experts.</p>
         </div>
         <div class="call-to-action-btn">
-          <a class="btn btn btn-primary lightbox-92160973430455" onclick="show()">
+          <a class="btn btn btn-primary lightbox-92160973430455" style="background-color:#e77b20;" onclick="show()">
             Let's Talk
           </a>
         </div>
@@ -60,12 +60,24 @@
             <div class="post-block">
               <div class="row">
                 <div class="col-md-6">
-                  <h3 style="text-align:left; "><a href="" class="btn btn-primary"><i class="fa fa-chevron-left"></i>
-                      Previous Post</a></h3>
+                {% if prevblog %}
+                  <h3 style="text-align:left;">
+                    <a href="{% url pageurl id=prevblog.id %}" text-light" style="background-color:#e77b20;" class="btn btn-primary"><i class="fa fa-chevron-left"></i> Previous Post </a>
+                  </h3>
+                  {% else %}
+                   <h3 style="text-align:left;">
+                    <a href="" class="btn btn-primary disabled text-light" style="background-color:#e77b20;" disabled><i class="fa fa-chevron-left"></i> Previous Post </a>
+                  </h3>
+                  {% endif %}
                 </div>
                 <div class="col-md-6">
-                  <h3 style="text-align:right; "><a href="" class="btn btn-primary">Next Post <i
-                        class="fa fa-chevron-right"></i></a></h3>
+                {% if nextblog %}
+                 <h3 style="text-align:right; "><a href="{% url pageurl id=nextblog.id %}" class="btn btn-primary text-light" style="background-color:#e77b20"> Next Post <i
+                  class="fa fa-chevron-right"></i></a></h3>
+                 {% else %}
+                 <h3 style="text-align:right; "><a href="" class="btn btn-primary disabled text-light" style="background-color:#e77b20" disabled> Next Post <i
+                  class="fa fa-chevron-right"></i></a></h3>
+                  {% endif %}
                 </div>
               </div>
             </div>

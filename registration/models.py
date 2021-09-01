@@ -1,4 +1,3 @@
-from typing import Optional
 from django.db import models
 from django.utils.text import slugify
 from ckeditor.fields import RichTextField

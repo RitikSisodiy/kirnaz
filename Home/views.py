@@ -225,18 +225,24 @@ def changepass(request):
 
 
 # resourses sections
+def getblog(request,res,id):
+    res['blogob'] = BlogNews.objects.get(id=id)
+    res['recentblog'] = BlogNews.objects.all().order_by('-date')[:4]
+    res['title'] = res['blogob'].title
+    current = res['blogs'].filter(id__lt = res['blogob'].id).count()
+    print(current)
+    res['nextblog'] = res['blogs'][current+1] if len(res['blogs'])-1 > current else False
+    res['prevblog'] = res['blogs'][current-1] if current > 0 else False
+    return render(request, 'blogdetails.html',res)
 def blog(request,id=None):
     type = "blog"
     res= {}
+    res['blogs'] = BlogNews.objects.filter(type='2')      
     res['title'] = "Blogs"
     res['type'] = type
     res['pageurl'] = 'singleblog'
     if id is not None:
-        res['blogob'] = BlogNews.objects.get(id=id)
-        res['recentblog'] = BlogNews.objects.all().order_by('-date')[:4]
-        res['title'] = res['blogob'].title
-        return render(request, 'blogdetails.html',res) 
-    res['blogs'] = BlogNews.objects.filter(type='2')      
+        return getblog(request,res,id)
     return render(request,'blog.html',res)
 def news(request,id=None):
     type = "news"
@@ -246,8 +252,5 @@ def news(request,id=None):
     res['pageurl'] = 'singlenews'
     res['blogs'] = BlogNews.objects.filter(type='1')      
     if id is not None:
-        res['blogob'] = BlogNews.objects.get(id=id)
-        res['recentblog'] = BlogNews.objects.all().order_by('-date')[:4]
-        res['title'] = res['blogob'].title
-        return render(request, 'blogdetails.html',res)
+        return getblog(request,res,id)
     return render(request,'blog.html',res)
