@@ -236,7 +236,7 @@ def blog(request,id=None):
         res['recentblog'] = BlogNews.objects.all().order_by('-date')[:4]
         res['title'] = res['blogob'].title
         return render(request, 'blogdetails.html',res) 
-    res['blogs'] = BlogNews.objects.filter(type='1')      
+    res['blogs'] = BlogNews.objects.filter(type='2')      
     return render(request,'blog.html',res)
 def news(request,id=None):
     type = "news"
@@ -244,7 +244,7 @@ def news(request,id=None):
     res['title'] = "News"
     res['type'] = type
     res['pageurl'] = 'singlenews'
-    res['blogs'] = BlogNews.objects.filter(type='2')      
+    res['blogs'] = BlogNews.objects.filter(type='1')      
     if id is not None:
         res['blogob'] = BlogNews.objects.get(id=id)
         res['recentblog'] = BlogNews.objects.all().order_by('-date')[:4]
