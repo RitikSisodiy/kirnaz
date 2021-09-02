@@ -4,7 +4,6 @@
 *.pyc
 static/
 __pycache__
-db.sqlite3
 
 # Backup files 
 *.bak
@@ -19,5 +18,4 @@ paytm/
 # cpannelfile 
 passenger_wsgi.py
 tmp/
-db.sqlite3
 paytm/__pycache__/
