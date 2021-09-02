@@ -34,6 +34,7 @@ class BlogNews(models.Model):
     Tchoice = (
         ('1','News'),
         ('2','Blogs'),
+        ('3','Article'),
     )
     date = models.DateTimeField(auto_now=True)
     last_update = models.DateTimeField(auto_now=True)
@@ -45,7 +46,8 @@ class BlogNews(models.Model):
     def save(self, *args, **kwargs):
         self.last_update = datetime.now()
         super(BlogNews, self).save(*args, **kwargs)
-
+    def Getchoices(self):
+        return self.Tchoice
 class Offrings(models.Model):
     title = models.CharField(max_length=100)
     details = models.CharField(max_length=500)

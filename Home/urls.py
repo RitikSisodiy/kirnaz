@@ -8,10 +8,6 @@ urlpatterns = [
     # path('basic/', views.basic,name='basic'),
     path('another/', views.another,name='another'),
     path('blogpage/', views.blogpage,name='blogpage'),
-    path('blog/', views.blog,name='blog'),
-    path('blog/<int:id>', views.blog,name='singleblog'),
-    path('news/', views.news,name='news'),
-    path('news/<int:id>', views.news,name='singlenews'),
     path('chatbox/', views.chatbox,name='chatbox'),
     path('companyregistration/', views.companyregistration,name='companyregistration'),
     path('incometaxfilling/', views.incometaxfilling,name='incometaxfilling'),
@@ -34,5 +30,7 @@ urlpatterns = [
     path('profile/documents', views.documents, name="documents"),
     path('profile/bookings', views.bookings, name="bookings"),
     path('getdoclist',views.getdoclist,name='getdoclist'),
+    path('blog/<slug:slug>/', views.blog,name='blog'),
+    path('blog/<slug:slug>/<int:id>', views.blog,name='singleblog'),
 
 ]

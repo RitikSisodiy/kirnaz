@@ -112,9 +112,9 @@
             {% endfor %}
 			 <li ><a href="#">Resourses</a>
               <ul class="drop-down" style='min-width:150px' >
-			 	 <li style=""><a href="{% url 'news' %}">News</a>
-            	<li style=""><a href="{% url 'blog' %}">blog</a>
-            	<li style=""><a href="{% url 'blog' %}">articles</a>
+			  {% for data in choices %}
+			 	 <li style=""><a href="{% url 'blog' data.1 %}">{{data.1}}</a>
+				{% endfor %}	  
 			  </ul>
 			  </li>
             {% comment %} <li style=""><a href="{% url 'news' %}">News</a>

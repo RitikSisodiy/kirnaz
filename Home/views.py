@@ -13,9 +13,9 @@ MERCHANT_KEY='ey1DQFRPXypAmeE3'
 
 def index(request):
     slider = Slider.objects.all()
-    news = News.objects.all()
+    news = BlogNews.objects.filter(type = '1')
     ddreminder = DueDateReminder.objects.all()
-    bnews = BlogNews.objects.all()
+    bnews = BlogNews.objects.filter(type = '2')
     offrings = Offrings.objects.all()
     menu = RegistrationSubMenu.objects.all()
     abca = aboutca.objects.all()
@@ -234,23 +234,34 @@ def getblog(request,res,id):
     res['nextblog'] = res['blogs'][current+1] if len(res['blogs'])-1 > current else False
     res['prevblog'] = res['blogs'][current-1] if current > 0 else False
     return render(request, 'blogdetails.html',res)
-def blog(request,id=None):
-    type = "blog"
+def blog(request,slug=None,id=None):
+    type = slug
     res= {}
-    res['blogs'] = BlogNews.objects.filter(type='2')      
-    res['title'] = "Blogs"
+    print('hello')
+    res['blogs'] = BlogNews.objects.filter(type=list(filter(lambda x:x[1]==slug, BlogNews().Getchoices()))[0][0])
+    res['title'] = slug
     res['type'] = type
     res['pageurl'] = 'singleblog'
     if id is not None:
         return getblog(request,res,id)
     return render(request,'blog.html',res)
-def news(request,id=None):
-    type = "news"
-    res= {}
-    res['title'] = "News"
-    res['type'] = type
-    res['pageurl'] = 'singlenews'
-    res['blogs'] = BlogNews.objects.filter(type='1')      
-    if id is not None:
-        return getblog(request,res,id)
-    return render(request,'blog.html',res)
+# def news(request,id=None):
+#     type = "news"
+#     res= {}
+#     res['title'] = "News"
+#     res['type'] = type
+#     res['pageurl'] = 'singlenews'
+#     res['blogs'] = BlogNews.objects.filter(type='1')      
+#     if id is not None:
+#         return getblog(request,res,id)
+#     return render(request,'blog.html',res)
+# def articals(request,id=None):
+#     type = "artical"
+#     res= {}
+#     res['title'] = "Artical"
+#     res['type'] = type
+#     res['pageurl'] = 'singlenews'
+#     res['blogs'] = BlogNews.objects.filter(type='1')      
+#     if id is not None:
+#         return getblog(request,res,id)
+#     return render(request,'blog.html',res)

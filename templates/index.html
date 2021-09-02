@@ -239,22 +239,26 @@
                 <table id="ctl00_DataList1" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;">
                   <tbody>
                   {% for n in news %}
-                    <tr>
+                    {% comment %} <tr>
                       <td>
-                        <div class="news2d"> <a class="hedingnews"><b>{{n.date}}</b></a> </div>
+                        <div class="news2d"> <a class="hedingnews"><b>{{n.date|date}}</b></a> </div>
                       </td>
                     </tr>
                     
                     <tr>
                       <td>
-                        <div class="news2d"> <a href="#">{{n.news}}</a> </div>
+                        <div class="news2d"> <a href="#">{{n.title}}</a> </div>
                       </td>
-                    </tr>
+                    </tr> {% endcomment %}
+                      <div class="news_blog"> <span class="hedingnews">{{n.date|date}}</span> <span class="arrownews">
+                     <strong><a href="{% url "singleblog" slug=n.get_type_display   id=n.id %}">{{n.title}}</a></strong></span> <br>
+                     <span>{{n.Short_des|slice:":100"}}...<a  target="_blank" href="{% url "singleblog" slug=n.get_type_display   id=n.id %}">more</a></span>
+                      </div>
                     {% endfor %}
                   </tbody>
                 </table>
               </marquee>
-              <a href="{% url 'newsfeed' %}">Readmore...</a>
+              <a href="{% url 'blog' 'News' %}">Readmore...</a>
             </div>
           </div>
 
@@ -304,13 +308,14 @@
               <h3>Blog News</h3>
               <marquee id="m2" height="296" direction="up" scrolldelay="30" scrollamount="2" onmouseover="this.stop();"
                 onmouseout="this.start();">
-                {% for b in bnews %}
-                <li class="Prodetails" style="list-style-type: none;"><span style="font-weight:bold;">{{b.date|date}}</span><br> <span style="font-weight:bold; list-style-type: none;"><a target="_blank"
-                      target="_blank" href="{% url "singleblog" b.id %}"><b>{{b.title}} </b></a></span>
-                  <span>{{b.Short_des|slice:":100"}}...<a  target="_blank" href="{% url "singleblog" b.id %}">more</a>.</span>
-                </li>
+                {% for n in bnews %}
+                <div class="news_blog"> <span class="hedingnews">{{n.date|date}}</span> <span class="arrownews">
+                     <strong><a href="{% url "singleblog" slug=n.get_type_display   id=n.id %}">{{n.title}}</a></strong></span> <br>
+                     <span>{{n.Short_des|slice:":100"}}...<a  target="_blank" href="{% url "singleblog" slug=n.get_type_display   id=n.id %}">more</a></span>
+                      </div>
                 {% endfor %}
               </marquee>
+               <a href="{% url 'blog' 'Blogs' %}">Readmore...</a>
             </div>
           </div>
         </div>
