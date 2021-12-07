@@ -108,7 +108,7 @@ DATABASES = {
     #     'PORT': '3306',   #my port is 3306
     # }
 }
-if os.environ.get('')
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
