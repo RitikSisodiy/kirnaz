@@ -1096,9 +1096,7 @@ a.btn-theme+a.btn-theme {
 }
 
 @media (min-device-width: 426px) and (max-device-width: 767px) {
-    button.online{
-        width: 40px;
-    }
+
     .slide img {
         height: 200px;
     }
@@ -1357,6 +1355,14 @@ section.swipper div:nth-child(3) {
 }
 
 @media only screen and (max-width: 767px) {
+    .chatbox {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        z-index: 999900;
+        background: #fff;
+        width: 100%;
+    }
     .left-side-content h1 {
         font-size: 25px;
         text-align: center;
