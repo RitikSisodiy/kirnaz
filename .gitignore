@@ -16,6 +16,5 @@ __pycache__
 paytm/
 
 # cpannelfile 
-passenger_wsgi.py
 tmp/
 paytm/__pycache__/
