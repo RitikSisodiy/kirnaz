@@ -136,13 +136,13 @@
     </div>
     <div class="comp-reg">
       <section class="required">
-        <div class="mx-lg-12 mx-3 row">
+        <div class="mx-lg-12 mx-3 row justify-content-md-center">
           <h2 class="col-md-12"> Requirements for Start Up Incorporation</h2>
            {% for data in Registrations %}{% if 3 > forloop.counter %}
-          <div class="card1 col">
+          <div class="card1 col-md-2 mx-2">
             <div class="card-body">
               <h6 class="card-price"><a href="" title="{{data.title}}" target="_blank"> {{data.title}}</a></h6>
-              <ul class="cards ">
+              <ul class="cards">
               {% for d in data.RegistrationSubMenu.all %}{% if 5 > forloop.counter %}
                 <li ><a href="{% url 'registration' slug1=data.slug slug2=d.slug %}"><i class="fa fa-hand-o-right"></i> {{d.submenu}}</a></li>{% endif %}
                 {% endfor %}
@@ -153,7 +153,7 @@
           {% endif %}
           {% endfor %}
           {% for data in othernavreg %}
-          <div class="card1 col">
+          <div class="card1 col-md-2 mx-2">
             <div class="card-body">
               <h6 class="card-price"><a href="#" title="{{data.title}}" target="_blank"> {{data.title}}</a></h6>
               <ul class="cards ">
@@ -231,7 +231,7 @@
     <section class="news-sec">
       <div class="container">
         <div class="row">
-          <div class="col-md-4 spacing-column">
+          <div class="col-md-4 spacing-column my-2">
             <div class="news-item-box">
               <h3>News</h3>
               <marquee id="m2" height="276" direction="up" srolldelay="30" scrollamount="2" onmouseover="this.stop();"
@@ -262,7 +262,7 @@
             </div>
           </div>
 
-          <div class="col-md-4 spacing-column">
+          <div class="col-md-4 spacing-column my-2">
             <div class="news-item-box">
               <h3>Due Date Reminder</h3>
               <table id="ctl00_DataListGovind" cellspacing="0" border="0" style="border-collapse:collapse;">
@@ -303,7 +303,7 @@
               <a href="#" class="due-red">Readmore...</a>
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-4 my-2">
             <div class="news-item-box">
               <h3>Blog News</h3>
               <marquee id="m2" height="296" direction="up" scrolldelay="30" scrollamount="2" onmouseover="this.stop();"
@@ -354,7 +354,8 @@
               <div class="box-top">
                 <div class="box-icon"><img src="/media/{{o.img}}" alt="Start my Business"></div>
                 <div class="box-header">
-                  <h5><a href="#">{{o.title}} </a></h5>
+                  <h5><a href="#" style="color:#000000" onMouseOver="this.style.color='#e77b20'"
+   onMouseOut="this.style.color='#000000'">{{o.title}} </a></h5>
                 </div>
               </div>
               <div class="box-body">

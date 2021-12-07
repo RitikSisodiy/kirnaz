@@ -18,7 +18,7 @@ def unique_slug_generator(instance, new_slug=None):
     if qs_exists:
         new_slug = slugify(str(slug)+get_random_string(4))
         return unique_slug_generator(instance, new_slug=new_slug)
-    return slug
+    return slugify(slug)
 
 class iconver(models.Model):
     version = models.CharField(max_length=50)
@@ -32,6 +32,7 @@ class Registration(models.Model):
     title = models.CharField(max_length=50)
     # content = models.CharField(max_length=5000)
     slug = models.SlugField(blank=True)
+    type = models.CharField(max_length=1,choices=((1,'registration'),(2,'othernavs')))
     def save(self, *args, **kwargs):
         self.slug = unique_slug_generator(Registration,self.title)
         super(Registration, self).save(*args, **kwargs)

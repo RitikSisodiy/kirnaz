@@ -1,7 +1,8 @@
 ---
 deployment:
   tasks:
-    - source /home/wt29jctjbes9/virtualenv/sequel/3.7/bin/activate && cd /home/wt29jctjbes9/sequel
+    - source /home/ztlzpllpqetq/virtualenv/kirnaz/3.6/bin/activate && cd /home/ztlzpllpqetq/kirnaz
     - pip install -r requirements.txt
     - python manage.py collectstatic --no-input
     - python manage.py migrate
+    - touch tmp/restart.txt
