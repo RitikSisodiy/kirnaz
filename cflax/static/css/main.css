@@ -1096,6 +1096,9 @@ a.btn-theme+a.btn-theme {
 }
 
 @media (min-device-width: 426px) and (max-device-width: 767px) {
+    button.online{
+        width: 40px;
+    }
     .slide img {
         height: 200px;
     }

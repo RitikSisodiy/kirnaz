@@ -42,7 +42,7 @@ def Login(request):
             userob.first_name  = name[0:name.find(' ')]
             userob.last_name  = name[name.find(' '):]
             userob.save()
-            userob1 = user(user=userob,num=phone)
+            userob1 = user(user=userob,phone=phone)
             userob1.save()
         USER = authenticate(request,username=email, password=password)
         if USER is not None:
