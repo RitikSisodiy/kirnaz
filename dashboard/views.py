@@ -132,6 +132,10 @@ def adminchat(request,slug1=None,id=None):
             resp.append(i)
     res['chats'] = [User.objects.get(id=i['msgby__user__id']) for i in resp]
     return render(request,'adminchat.html',res)
+def alluser(request):
+    res = {}
+    return render(request,'alluser.html',res)
+
 def getmsg(request,slug1=None,id=None):
     auser = User.objects.get(id=id)
     mlen = request.GET.get('len')

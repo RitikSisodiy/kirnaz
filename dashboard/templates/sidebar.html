@@ -1,4 +1,5 @@
 {% load static %}
+{% load customfilter %}
 <div class="sidebar-menu">
             <div class="sidebar-header">
                 <div class="logo">
@@ -24,27 +25,26 @@
                                     <span>Users Manage</span></a>
                                 <ul class="collapse">
                                     <li class=""><a href="{% url 'adminchat'  %}" >chat</a></li>
+                                    <li class=""><a href="{% url 'alluser'  %}" >Users</a></li>
                                 </ul>
                             </li>
                              
-                            <li class="main_dropdown">
-                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-user"></i>
-                                    <span>Home</span></a>
+                            {% with ''|sidebardata as modelslist %}
+                                {% for key,val in modelslist.items %}
+                                {% url "showapp" key as showappurl %}
+                                <li class="main_dropdown {% if showappurl == request.path %}active{% endif %}">
+                                    <a href="{{showappurl}}" aria-expanded="true"><i class="ti-user"></i>
+                                        <span>{{key|cemelcase}}</span> <span class="badge">{{val|length}}</span></a>
                                     <ul class="collapse">
-                                    {% for edit in editnames %}
-                                    <li class=""><a href="{% url 'edithomeslug' slug=edit %}" >Edit {{edit}}</a></li>
-                                    {% endfor %}
-                                </ul>
-                            </li>
-                            <li class="main_dropdown">
-                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-user"></i>
-                                    <span>about</span></a>
-                            </li>
-                            <li class="main_dropdown">
-                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-user"></i>
-                                    <span>Blog</span></a>
-                            </li>
-                            </li>
+                                    {% for da in val %}
+                                        {% url 'showdatamodel' key da as showdatamodelurl %}
+                                        <li class="{% if showdatamodelurl == request.path %}active{% endif %}"><a href="{{showdatamodelurl}}">{{da|cemelcase}}</a>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                                {% endfor %}
+                                {% endwith %}
                             <li class="main_dropdown">
                                 <a href="javascript:void(0)" aria-expanded="true">
                                     <i class="ti-timer"></i><span>Registration </a>
@@ -65,6 +65,7 @@
                                         {% endfor %}
                                         </ul>
                                 {% endfor %}
+                                
                                 </ul>
                             </li>
                             {% for data in othernavreg %}
@@ -80,6 +81,7 @@
                                     
                             </li>
                             {% endfor %}
+                            
                             <li class="main_dropdown">
                                 <a href="javascript:void(0)" aria-expanded="true">
                                     <i class="ti-timer"></i><span>Contacts </a>

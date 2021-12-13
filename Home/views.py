@@ -181,7 +181,7 @@ def bookings(request):
     res['booking'] = OrderPlaced.objects.filter(user=request.user.id)
     return render(request,'bookings.html',res)
 @login_required(login_url='memberlogin')
-def documents(request):
+def document(request):
     if request.method == "POST":
         name = request.POST['docname']
         document = request.FILES['document']

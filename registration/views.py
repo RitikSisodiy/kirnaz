@@ -22,7 +22,6 @@ def regis(request,slug1,slug2):
         return redirect(request.get_full_path())
     res = {}
     res['slist'] = []
-    print('this is section',sectionname)
     sections =[SubRegistrationContent,AboutRegistraionSubMenu,DocumentRequired,PackageIncluded,Procedure,Memorandum,CompanyRegisterRequirements,FAQ,Sainification,ourclients]
     for d in range(0,len(sections)):
         res[names[d]] = sections[d].objects.filter(reg_title__slug=slug2)

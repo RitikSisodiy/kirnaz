@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path,include
 from . import views,otherNavViews
 urlpatterns = [
     path('', views.index, name="dindex"),
@@ -14,15 +14,18 @@ urlpatterns = [
     path('othernavs/contact', otherNavViews.contact, name="orcontact"),
     path('othernavs/contact/delcontacts', otherNavViews.delcontacts, name="odelcontacts"),
     path('othernavs/edit/<slug:slug1>/<slug:slug2>/', otherNavViews.editothernavs, name="dseditothernavs"),
+    path('users/', views.alluser, name="alluser"),
     path('adminchat/', views.adminchat, name="adminchat"),
     path('adminchat/<slug:slug1>/<int:id>/', views.adminchat, name="adminchatuser"),
     path('adminchat/<slug:slug1>/<int:id>/clearchat/', views.clearchat, name="clearchat"),
     path('adminchat/<slug:slug1>/<int:id>/setpayment/', views.setpayment, name="setpayment"),
     path('getmsg/<slug:slug1>/<int:id>/', views.getmsg, name="admingetmsg"),
+
     path('dashboardlogout/', views.dashboardlogout, name="dashboardlogout"),
     path('edithome/', views.edithome, name="edithome"),
     path('edithome/<slug:slug>/', views.edithome, name="edithomeslug"),
     path('deletehome/<slug:slug>/', views.deletehome, name="deletehomeslug"),
     path('viewicon/', views.viewicon, name="viewiconslug"),
+    path('', include('dashboard.superuserurls')),
     
 ]

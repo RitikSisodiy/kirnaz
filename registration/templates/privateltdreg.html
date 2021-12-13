@@ -233,7 +233,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <h3 class="heading-reg my-4 text-center text-bold">{{reg.submenu|title}}</h3>
+                        <h3 class="heading-reg my-4 text-center text-bold">Procedure</h3>
                     </div>
                 </div>
             </div>
@@ -348,6 +348,7 @@
             
 
         </section>
+        {% if c.heading2 %}
         <section class="services">
             <div class="container">
                 <div class="row">
@@ -375,7 +376,7 @@
                 </div>
             </div>
 
-        </section>
+        </section>{% endif %}
         {% endfor %}
         {% endif %}
 
