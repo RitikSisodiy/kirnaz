@@ -98,6 +98,9 @@ def editregistration(request,slug1,slug2):
     return render(request,'editregistraions.html',res)
 
 
+
+
+
 def deleteregistration(request):
 
     if request.method == "POST":

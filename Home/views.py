@@ -117,7 +117,7 @@ from paytm import Checksum
 def payment(request):
     pendingpayments = makepaymentrequest.objects.filter(user=request.user.id,status="pending")
     if pendingpayments.exists():
-        order = OrderPlaced.objects.create(user=request.user,payreq = pendingpayments[0],ammount=pendingpayments[0].ammount )
+        order = Payments.objects.create(user=request.user,payreq = pendingpayments[0],ammount=pendingpayments[0].ammount )
         order.save()
         paytmParams={
 
@@ -145,17 +145,17 @@ def handelrequest(request):
         resp = request.POST
         print(resp)
         param = {}
-        OrderPlaced.objects.filter(order_id=resp["ORDERID"]).update(other_data=json.dumps(resp));
+        Payments.objects.filter(order_id=resp["ORDERID"]).update(other_data=json.dumps(resp));
         for data in resp:
             param[data] = resp[data]
         if Checksum.verifySignature(param ,'ey1DQFRPXypAmeE3',resp['CHECKSUMHASH']):
             if resp['RESPCODE'] == '01':
-                OrderPlaced.objects.filter(order_id=resp["ORDERID"]).update(status="Success");
-                mpr = makepaymentrequest.objects.get(id=OrderPlaced.objects.get(order_id=resp["ORDERID"]).payreq.id)
+                Payments.objects.filter(order_id=resp["ORDERID"]).update(status="Success");
+                mpr = makepaymentrequest.objects.get(id=Payments.objects.get(order_id=resp["ORDERID"]).payreq.id)
                 mpr.status = "success"
                 mpr.save()
                 msg = "the payment of" + str(mpr.ammount) + " for " + mpr.reason + " is done " + " TXNID is " + str(resp['ORDERID'])
-                conversation(msgby =  user.objects.get(user=OrderPlaced.objects.get(order_id=resp["ORDERID"]).user),msgtoadmin=True,msg=msg).save()
+                conversation(msgby =  user.objects.get(user=Payments.objects.get(order_id=resp["ORDERID"]).user),msgtoadmin=True,msg=msg).save()
                 messages.success(request,"Your Payment is Successfull")
             else:
                 messages.success(request,"Your Payment is unsuccessfull because "+resp['RESPMSG'] )
@@ -178,7 +178,7 @@ def profile(request):
 def bookings(request):
     res= {}
     res['title'] = "Profile"
-    res['booking'] = OrderPlaced.objects.filter(user=request.user.id)
+    res['booking'] = Payments.objects.filter(user=request.user.id)
     return render(request,'bookings.html',res)
 @login_required(login_url='memberlogin')
 def document(request):

@@ -71,8 +71,8 @@ class addblog(models.Model):
     image = models.ImageField(upload_to="blogsimg")
     content = RichTextField(blank=True,null=True)
     time = models.DateTimeField(auto_now=True)
-class OrderPlaced(models.Model):
-    order_id = models.CharField(unique=True, max_length=100, null=True, blank=True)
+class Payments(models.Model):
+    order_id = models.CharField(unique=True, max_length=100, null=True, blank=True, verbose_name="Payments")
     payreq = models.ForeignKey(makepaymentrequest,on_delete=models.SET_NULL,null=True)
     ammount = models.FloatField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)

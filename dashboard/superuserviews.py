@@ -300,14 +300,14 @@ def Logout(request):
 #     res = {}
 #     res['choices'] = STATUS_CHOICE
 #     if slug is None:
-#         res['orders'] = OrderPlaced.objects.all().order_by('order_date')
+#         res['orders'] = Payments.objects.all().order_by('order_date')
 #     else:
-#         res['orders'] = OrderPlaced.objects.filter(status=slug).order_by('order_date')
+#         res['orders'] = Payments.objects.filter(status=slug).order_by('order_date')
 #     return render(request,'superuser/orders.html',res)
 # def addorders(request,id=None):
 #     res = {}
-#     form = GenForm(OrderPlaced)
-#     ins = OrderPlaced.objects.filter(id=id)
+#     form = GenForm(Payments)
+#     ins = Payments.objects.filter(id=id)
 #     ins = ins[0] if ins.exists() else None
 #     res['form'] = form(instance=ins)
 #     if request.method == "POST":

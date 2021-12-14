@@ -65,7 +65,7 @@ input::placeholder {
                   <div class="d-flex align-items-center justify-content-between mb-1 ">
                     <h6 class="mb-0">{{chat.first_name|title}}{{chat.last_name|title}}</h6><small class="small font-weight-bold">25 Dec</small>
                   </div>
-                  <p class="font-italic mb-0 text-small {% if request.path == url %} text-white {% endif %}">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                  <p class="font-italic mb-0 text-small {% if request.path == url %} text-white {% endif %}">{{chat.msgby.all.0}}</p>
                 </div>
               </div>
             </a>
