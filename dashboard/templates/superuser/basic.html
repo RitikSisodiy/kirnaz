@@ -247,24 +247,7 @@
             $('#reload').on('click', function () {
                 location.reload();
             })
-            $('#darkmode').on('click', function () {
-                var el = $(this)
-                var mode = el.data('mode')
-                $.ajax({
-                    type: 'GET',
-                    url: {
-                        / admin - home /
-                        dark - mode - toggle
-                    }
-                    data: {
-                        mode: mode
-                    },
-                    success: function () {
-                        location.reload();
-                    },
-                    error: function () {}
-                });
-            })
+            
         })(jQuery);
     </script>
     <script>

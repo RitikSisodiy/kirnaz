@@ -11,7 +11,24 @@
             {% csrf_token %}
             {{form.media}}
             {{form.as_p}}
-            
+            {% if 'icon' in form.fields %}
+            <div class="row my-4">
+            <div class="container col-10 ">
+                <li class="nav-item dropup" style="list-style-type: none;">
+                  <a class="nav-link dropdown-toggle btn btn-secondary" href="#" data-bs-toggle="dropdown">Choose Icon</a>
+                    <ul class="dropdown-menu col-md-10">
+                      <div class="col-md-12">
+                          {% for i in icon %}
+                          <label class="fa {{i.icon}}" onmouseover="$('#showiconi').attr('class',this.className);
+                          $('#id_icon').val(this.id)" id="{{forloop.counter}}"  onclick="$('#showiconi').attr('class',this.className);" for="icon{{forloop.counter}}"></label><input type="radio" style="display: none;" id="icon{{forloop.counter}}" name="icons">
+                        {% endfor %}
+                      </div>
+                    </ul>
+                </li>
+            </div>
+            <div class="col"><h1><i class="fa {{f.instance.icon}}" id='showiconi'></i></h1></div>
+            </div>
+            {% endif %}
             <input type="submit" class="btn btn-primary my-3" />
 
              <div class='row container'>

@@ -1,100 +1,129 @@
 {% load static %}
 {% load customfilter %}
 <div class="sidebar-menu">
-            <div class="sidebar-header">
-                <div class="logo">
-                    <a href="/admin-home">
-                        <img src="{% static 'assets/uploads/media-uploader/logo1626597048.png' %}" alt="" />
-                    </a>
-                </div>
-            </div>
-            <div class="main-menu">
-                <div class="menu-inner">
-                    <nav>
-                        <ul class="metismenu" id="menu">
-                            <li class="active">
-                                <a href="{% url 'dindex' %}" aria-expanded="true">
-                                    <i class="ti-dashboard"></i>
-                                    <span>dashboard</span>
-                                </a>
+    <div class="sidebar-header">
+        <div class="logo">
+            <a href="/admin-home">
+                <img src="{% static 'assets/uploads/media-uploader/logo1626597048.png' %}" alt="" />
+            </a>
+        </div>
+    </div>
+    <div class="main-menu">
+        <div class="menu-inner">
+            <nav>
+                <ul class="metismenu" id="menu">
+                    <li class="active">
+                        <a href="{% url 'dindex' %}" aria-expanded="true">
+                            <i class="ti-dashboard"></i>
+                            <span>dashboard</span>
+                        </a>
+                    </li>
+                    <li class="">
+                    </li>
+                    <li class="main_dropdown">
+                        <a href="javascript:void(0)" aria-expanded="true"><i class="ti-user"></i>
+                            <span>Users Manage</span></a>
+                        <ul class="collapse">
+                            <li class=""><a href="{% url 'adminchat'  %}">chat</a></li>
+                            <li class=""><a href="/dashboard/chat/user/">Users</a></li>
+                            <li class="">
+                                <a href="/dashboard/Home/documents/">
+                                    Documents</a>
                             </li>
                             <li class="">
+                                <a href="/dashboard/Home/Payments/">
+                                    Payments</a>
                             </li>
-                           <li class="main_dropdown">
-                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-user"></i>
-                                    <span>Users Manage</span></a>
-                                <ul class="collapse">
-                                    <li class=""><a href="{% url 'adminchat'  %}" >chat</a></li>
-                                    <li class=""><a href="/dashboard/chat/user/" >Users</a></li>
-                                </ul>
-                            </li>
-                             
-                            {% with ''|sidebardata as modelslist %}
-                                {% for key,val in modelslist.items %}
-                                {% url "showapp" key as showappurl %}
-                                <li class="main_dropdown {% if showappurl == request.path %}active{% endif %}">
-                                    <a href="{{showappurl}}" aria-expanded="true"><i class="ti-user"></i>
-                                        <span>{{key|cemelcase}}</span> <span class="badge">{{val|length}}</span></a>
-                                    <ul class="collapse">
-                                    {% for da in val %}
-                                        {% url 'showdatamodel' key da as showdatamodelurl %}
-                                        <li class="{% if showdatamodelurl == request.path %}active{% endif %}"><a href="{{showdatamodelurl}}">{{da|cemelcase}}</a>
-                                        </li>
-                                        {% endfor %}
-                                    </ul>
-                                </li>
-                                {% endfor %}
-                                {% endwith %}
-                            <li class="main_dropdown">
-                                <a href="javascript:void(0)" aria-expanded="true">
-                                    <i class="ti-timer"></i><span>Registration </a>
-                                <ul class="collapse">
-                                 <li class="">
-                                        <a href="{% url 'dregistration' %}">All Registrations</a></li>
-                                <li class="">
-                                        <a href="{% url 'drcontact' %}">All Contacts</a></li>
+                        </ul>
+                    </li>
 
-                                {% for res in Registrations %}
-                                    <li class="main_dropdown">
-                                        <a href="javascript:void(0)" aria-expanded="true">
-                                        <i class="ti-timer"></i><span>{{res.title}} </a>
-                                        <ul class="collapse">
-                                        {% for d in res.RegistrationSubMenu.all %}
-                                        <li class="">
-                                        <a href="{% url "dseditregistration" slug1=d.title.slug slug2=d.slug %}">{{d.submenu}}</a></li>
-                                        {% endfor %}
-                                        </ul>
-                                {% endfor %}
-                                
-                                </ul>
-                            </li>
-                            {% for data in othernavreg %}
-                            <li class="main_dropdown">
-                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-user"></i>
-                                    <span>{{data.title}}</span></a>
-                                <ul class="collapse">
-                                    {% for d in data.RegistrationSubMenu.all %}
-                                        <li class="">
-                                        <a href="{% url "dseditothernavs" slug1=d.title.slug slug2=d.slug %}">{{d.submenu}}</a></li>
-                                    {% endfor %}
-                                 </ul>
-                                    
+                    {% with ''|sidebardata as modelslist %}
+                    {% for key,val in modelslist.items %}
+                    {% url "showapp" key as showappurl %}
+                    <li class="main_dropdown {% if showappurl == request.path %}active{% endif %}">
+                        <a href="{{showappurl}}" aria-expanded="true"><i class="ti-user"></i>
+                            <span>{{key|cemelcase}}</span> <span class="badge">{{val|length}}</span></a>
+                        <ul class="collapse">
+                            {% for da in val %}
+                            {% url 'showdatamodel' key da as showdatamodelurl %}
+                            <li class="{% if showdatamodelurl == request.path %}active{% endif %}"><a
+                                    href="{{showdatamodelurl}}">{{da|cemelcase}}</a>
                             </li>
                             {% endfor %}
-                            
+                        </ul>
+                    </li>
+                    {% endfor %}
+                    {% endwith %}
+                    <li class="main_dropdown">
+                        <a href="javascript:void(0)" aria-expanded="true"><i class="ti-user"></i>
+                            <span>About</span></a>
+                        <ul class="collapse">
+                            <li class=""><a href="/dashboard/Home/aboutca/">About CA</a></li>
+                            <li class=""><a href="/dashboard/registration/aboutContent/">About Content</a></li>
+                        </ul>
+                    </li>
+                    <li class="main_dropdown">
+                        <a href="javascript:void(0)" aria-expanded="true"><i class="ti-user"></i>
+                            <span>Blogs</span></a>
+                        <ul class="collapse">
+                            <li class=""><a href="/dashboard/Home/BlogNews/">News</a></li>
+                            <li class=""><a href="/dashboard/Home/addblog/">Blogs</a></li>
+                        </ul>
+                    </li>
+                   
+                    <li class="main_dropdown">
+                        <a href="javascript:void(0)" aria-expanded="true">
+                            <i class="ti-timer"></i><span>Registration </a>
+                        <ul class="collapse">
+                            <li class="">
+                                <a href="{% url 'dregistration' %}">All Registrations</a></li>
+                            <li class="">
+                                <a href="{% url 'drcontact' %}">All Contacts</a></li>
+
+                            {% for res in Registrations %}
                             <li class="main_dropdown">
                                 <a href="javascript:void(0)" aria-expanded="true">
-                                    <i class="ti-timer"></i><span>Contacts </a>
+                                    <i class="ti-timer"></i><span>{{res.title}} </a>
                                 <ul class="collapse">
-                                <li class="">
-                                        <a href="{% url 'drcontact' %}">All Contacts</a></li>
-                               <li class="">
-                                        <a href="{% url 'orcontact' %}">Other Contacts</a></li>
+                                    {% for d in res.RegistrationSubMenu.all %}
+                                    <li class="">
+                                        <a
+                                            href="{% url "dseditregistration" slug1=d.title.slug slug2=d.slug %}">{{d.submenu}}</a>
+                                    </li>
+                                    {% endfor %}
                                 </ul>
-                            </li>
+                                {% endfor %}
 
                         </ul>
-                    </nav>
-                </div>
-            </div>
+                    </li>
+                    {% for data in othernavreg %}
+                    <li class="main_dropdown">
+                        <a href="javascript:void(0)" aria-expanded="true"><i class="ti-user"></i>
+                            <span>{{data.title}}</span></a>
+                        <ul class="collapse">
+                            {% for d in data.RegistrationSubMenu.all %}
+                            <li class="">
+                                <a href="{% url "dseditothernavs" slug1=d.title.slug slug2=d.slug %}">{{d.submenu}}</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+
+                    </li>
+                    {% endfor %}
+
+                    <li class="main_dropdown">
+                        <a href="javascript:void(0)" aria-expanded="true">
+                            <i class="ti-timer"></i><span>Contacts </a>
+                        <ul class="collapse">
+                            <li class="">
+                                <a href="{% url 'drcontact' %}">All Contacts</a></li>
+                            <li class="">
+                                <a href="{% url 'orcontact' %}">Other Contacts</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </nav>
         </div>
+    </div>
+</div>

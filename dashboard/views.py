@@ -133,7 +133,7 @@ def adminchat(request,slug1=None,id=None):
     for i in list:
         if i not in resp:
             resp.append(i)
-    res['chats'] = [User.objects.get(id=i['msgby__user__id']) for i in resp]
+    res['chats'] = [[User.objects.get(id=i['msgby__user__id']),User.objects.get(id=i['msgby__user__id']).user.msgby.all().order_by('-time')] for i in resp]
     return render(request,'adminchat.html',res)
 def alluser(request):
     res = {}

@@ -57,15 +57,15 @@ input::placeholder {
 
         <div class="messages-box">
           <div class="list-group rounded-0">
-          {% for chat in chats %}
+          {% for chat,latmsg in chats %}
           {% url 'adminchatuser' slug1=chat.first_name|slugify id=chat.id as url %}
             <a class="list-group-item list-group-item-action{% if request.path == url %} active text-white {% endif %}rounded-0" href={{url}}>
               <div class="media"><img src="http://simpleicon.com/wp-content/uploads/user1.png" alt="user" width="50" class="rounded-circle">
                 <div class="media-body ml-4">
                   <div class="d-flex align-items-center justify-content-between mb-1 ">
-                    <h6 class="mb-0">{{chat.first_name|title}}{{chat.last_name|title}}</h6><small class="small font-weight-bold">25 Dec</small>
+                    <h6 class="mb-0">{{chat.first_name|title}}{{chat.last_name|title}}</h6><small class="small font-weight-bold">{{latmsg.0.time|date:"d M"}}</small>
                   </div>
-                  <p class="font-italic mb-0 text-small {% if request.path == url %} text-white {% endif %}">{{chat.msgby.all.0}}</p>
+                  <p class="font-italic mb-0 text-small {% if request.path == url %} text-white {% endif %}">{{chat.msgby.all.0}}{{latmsg.0.msg|slice:":25"}}...</p>
                 </div>
               </div>
             </a>

@@ -2,12 +2,12 @@ from django.urls import path,include
 from . import views,otherNavViews
 urlpatterns = [
     path('', views.index, name="dindex"),
-    path('registration/', views.registration, name="dregistration"),
-    path('registration/contact', views.contact, name="drcontact"),
-    path('registration/contact/delcontacts', views.delcontacts, name="delcontacts"),
-    path('registrationdelete/', views.deleteregistration, name="dsdeleteregistration"),
-    path('registration/<slug:slug>/', views.registration, name="dsregistration"),
-    path('registration/edit/<slug:slug1>/<slug:slug2>/', views.editregistration, name="dseditregistration"),
+    path('registrations/', views.registration, name="dregistration"),
+    path('registrations/contact', views.contact, name="drcontact"),
+    path('registrations/contact/delcontacts', views.delcontacts, name="delcontacts"),
+    path('registrationsdelete/', views.deleteregistration, name="dsdeleteregistration"),
+    path('registrations/<slug:slug>/', views.registration, name="dsregistration"),
+    path('registrations/edit/<slug:slug1>/<slug:slug2>/', views.editregistration, name="dseditregistration"),
     # path('othernavs', otherNavViews.othernavs, name="dothernavs"),
     path('othernavsdelete/', otherNavViews.deleteothernavs, name="dsdeleteothernavs"),
     # path('othernavs/<slug:slug>', otherNavViews.othernavs, name="dsothernavs"),
@@ -26,6 +26,5 @@ urlpatterns = [
     path('edithome/<slug:slug>/', views.edithome, name="edithomeslug"),
     path('deletehome/<slug:slug>/', views.deletehome, name="deletehomeslug"),
     path('viewicon/', views.viewicon, name="viewiconslug"),
-    path('', include('dashboard.superuserurls')),
-    
+    path('', include('dashboard.superuserurls')),    
 ]

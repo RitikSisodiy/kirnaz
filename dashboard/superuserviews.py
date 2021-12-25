@@ -10,6 +10,7 @@ from django.core import serializers
 from .forms import GenForm
 from django.contrib.auth import logout
 from .dashboardsettings import exclude as excludeapps
+from registration.models import icon
 # from django.apps import apps
 # from onlineshop.models import *
 # from django.contrib import messages
@@ -94,6 +95,7 @@ def editmodel(request,appname=None,modelname=None,objectid=None,opration=None):
         if f"{appname}.{modelname}" in showRelatedOnEditPage:
             res['showrelated'] = True
         res['form'] = form(instance=singledata)
+        res['icon'] = icon.objects.all() if 'icon' in res['form'].fields else []
         res['relateddata'] = type(singledata)._meta.related_objects
         res['appname'] = appname
         res['modelname'] = modelname

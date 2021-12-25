@@ -6,11 +6,27 @@ from django.conf import settings
 from django.shortcuts import render
 
 from cflax.settings import INSTALLED_APPS
+
+
+excludeModels = (
+    "Home.BusinessQuery",
+    "Home.News",
+    "Home.aboutca",
+    "Home.BlogNews",
+    "Home.links",
+    "Home.addblog",
+    "Home.Payments",
+    "Home.documents",
+)
+
 def appmodels(listofappname:list):
     resli = {}
     for name in listofappname:
         app_models = apps.get_app_config(name).get_models()
-        Modellist = [mod.__name__ for mod in app_models]
+        Modellist = []
+        for mod in app_models:
+            if f"{name}.{mod.__name__}" not in excludeModels:
+                Modellist.append(mod.__name__)
         if len(Modellist)>0:
             resli[name] = Modellist
     return resli
@@ -19,11 +35,14 @@ def getObjectbyAppModelName(appname , modelname):
     app_models = apps.get_app_config(appname).get_model(modelname)
     return app_models
 #get model list by app name
+
+#write in string like "appname.modelname"
+
+
 def getmodelbyappname(appname):
     app_models = apps.get_app_config(appname).get_models()
     Modellist = [mod.__name__ for mod in app_models]
     return Modellist
-
 
 #get app list
 appslist = []
