@@ -13,24 +13,24 @@ i.fa-check {
     margin-right: 23px;
 }
 </style>
-       {% if top %}
-{% for reg in top %}
+{% if top %}
+{% for regs in top %}
         <div class="first">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-7 col-12">
                         <div class="banner-captions">
-                            <center><h1 class="title">{{reg.title}}</h1></center>
-                            <div class="sub-title"><center>{{reg.subtitle}}</center></div>
-                            <center>{{reg.Content|safe}}</center>
+                            <center><h1 class="title">{{regs.title}}</h1></center>
+                            <div class="sub-title"><center>{{regs.subtitle}}</center></div>
+                            <center>{{regs.Content|safe}}</center>
                         </div>
                     </div>
                     <div class="col-lg-5">
                         <div class="form">
                             <div class="form-heading">
-                                <h3>{{reg.formtitle|title}} Registration </h3>
+                                <h3>{{regs.formtitle|title}}</h3>
                             </div>
-                             <form method='POST'>{% csrf_token %}
+                            <form method='POST'>{% csrf_token %}
                                 <input type="text" name="name" placeholder="Name" id="">
                                 <input type="email" name="email" placeholder="Email" id="">
                                 <input type="text" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" maxlength=10 minlength=10 name="contact" placeholder="Contact No." id="">
@@ -47,7 +47,7 @@ i.fa-check {
     {% endfor %}
 {% endif %}
 
-       <div class="container second">
+        <div class="container second">
             <p class="left heading-reg my-2"><a href="{% url 'index' %}">Home</a> / {{reg.submenu}}</p>
             <br><br>
             <div class="sub-nav">
@@ -73,7 +73,7 @@ i.fa-check {
             <div class="col-md-12">
                 <p class="text-justify bold">{{ab.heading1_details|safe}}</p>
 
-                <h4 class="heading-reg my-4 text-center text-bold"><b>{{ab.heading2}}</b></h4>
+                <h2 class="heading-reg my-4 text-center text-bold"><b>{{ab.heading2}}</b></h2>
                     <ul class="custumli">{{ab.heading2_details|safe}}</ul>
 
                 {% endfor %}
@@ -142,7 +142,7 @@ i.fa-check {
                 <!--Heading Start-->
                 <div class="container">
                     <div class="col-md-12 text-center">
-                        <h5 class="heading-reg my-4 text-center text-bold">What Is Included In Our Package?</h5>
+                        <h2 class="heading-reg my-4 text-center text-bold">What Is Included In Our Package?</h2>
                     </div>
                 </div>
 
@@ -243,7 +243,7 @@ i.fa-check {
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <h3 class="heading-reg my-4 text-center text-bold">{{reg.submenu}} Registration</h3>
+                        <h2 class="heading-reg my-4 text-center text-bold">Procedure</h2>
                     </div>
                 </div>
             </div>
@@ -323,13 +323,13 @@ i.fa-check {
         {% endif %}
         {% if cr %}
         {% for c in cr %}
-        <section id="fssai-licence" class="services" id='selectsectioncr'>
+        <section id="selectsectioncr" class="services" id=''>
         
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <h3 class="heading-reg my-4 text-center text-bold">{{c.heading1}}
-                        </h3>
+                        <h2 class="heading-reg my-4 text-center text-bold">{{c.heading1}}
+                        </h2>
                     </div>
                 </div>
             </div>
@@ -358,11 +358,12 @@ i.fa-check {
             
 
         </section>
+        {% if c.heading2 %}
         <section class="services">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <h3 class="heading-reg my-4 text-center text-bold">{{c.heading2}}</h3>
+                        <h2 class="heading-reg my-4 text-center text-bold">{{c.heading2}}</h2>
                     </div>
                 </div>
             </div>
@@ -385,18 +386,18 @@ i.fa-check {
                 </div>
             </div>
 
-        </section>
+        </section>{% endif %}
         {% endfor %}
         {% endif %}
 
         {% if sn %}
-        <section id="considered" class="services" id='selectsectionsn'>
+        <section id="selectsectionsn" class="services" id=''>
         {% for s in sn %}
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <h3 class="heading-reg my-4 text-center text-bold">{{s.heading1}}
-                        </h3>
+                        </h2 class="heading-reg my-4 text-center text-bold">{{s.heading1}}
+                        </h2>
                     </div>
                 </div>
             </div>
@@ -440,7 +441,7 @@ i.fa-check {
             <div class="container para-justfy">
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <h3 class="heading-reg my-4 text-center text-bold">{{m.heading1}}</h3>
+                        <h2 class="heading-reg my-4 text-center text-bold">{{m.heading1}}</h2>
                     </div>
                     <div class="col-md-12 mb-40">
                         <p class="my-3" id="">{{m.content|safe}} </p>
@@ -455,7 +456,7 @@ i.fa-check {
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <h4 class="heading-reg my-4 text-center text-bold">{{reg.submenu}} FAQs </h4>
+                        <h2 class="heading-reg my-4 text-center text-bold">{{reg.submenu}} FAQs </h2>
                     </div>
                 </div>
             </div>
@@ -1175,7 +1176,7 @@ i.fa-check {
 style="background-image:url(https://www.finacbooks.com/assets/theme/images/bg/background_4.webp);" id='selectsectionclient'>
 <div class="container">
     <div class="heading">
-        <h4 class="heading-reg my-4 text-center text-bold">What Clients Say</h4>
+        <h2 class="heading-reg my-4 text-center text-bold">What Clients Say</h2>
         <p class="heading-reg my-4 text-center text-bold">Customer delight is our main goal and we are very serious about it. </p>
         <hr>
         </h4>
