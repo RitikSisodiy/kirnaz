@@ -176,14 +176,14 @@
 <div class="modal fade" id="exampleModal{{f.instance.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-    <form method="POST" action="{% url 'dsdeleteregistration' %}">
+    <form method="POST" action="{% url 'dsdeleteothernavs' %}">
         <div class="modal-body">
           <h3>Are You Sure.</h3>
         </div>
         {% csrf_token %}
-        <input type="text" name="id" value="{{form.instance.id}}">
-        <input type="text" name="page" value="{{request.GET.page}}">
-        <input type="text" name="return" value="{{request.get_full_path}}">
+        <input type="hidden" name="id" value="{{form.instance.id}}">
+        <input type="hidden" name="page" value="{{request.GET.page}}">
+        <input type="hidden" name="return" value="{{request.get_full_path}}">
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             <button type="submit" class="btn btn-danger">Yes Sure</button>
