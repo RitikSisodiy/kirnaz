@@ -12,8 +12,8 @@
 </style>
 <header class="shadow-lg p-3 	bg-white rounded">
       <div class="top-nav">
-        <div class="call"> Services <i class="fa fa-angle-down" aria-hidden="true"></i></div>
-        <div class="call">sales: +91- 958-483-9976<i class="fa fa-angle-down" aria-hidden="true"></i></div>
+        <div class="call"> </div>
+        <div class="call">sales: +91- 958-483-9976</div>
         <div class="right">
           <ul>
           {% if user.is_authenticated %}
@@ -22,7 +22,7 @@
           {% else %}
             <li><a href="{% url 'memberlogin' %}" style="--color:#f0ad4e">Login</a></li>
             <li><a href="{% url 'membersignup' %}" style="--color:#71d109">Signup</a></li>{% endif %}
-            <li><a href="#" style="--color:#4cae4c" onclick="show()">Chat NOW</a></li>
+            <li><a href="#" style="--color:#4cae4c" onclick="show()">Chat Now</a></li>
             <li><a href="{% url "payment" %}" style="--color:#01b4f1">Payment</a></li>
           </ul>
         </div>
@@ -44,10 +44,10 @@
                 
                 {% for reg in Registrations %}
                   <div class="col-md-4">
-                    <span class="xl-sub-menu-title">{{reg.title}}</span>
+                    <span class="xl-sub-menu-title">{{reg.title|title}}</span>
                     {% for drop in reg.RegistrationSubMenu.all %}
 					{% if 5 > forloop.counter %}
-                    <li> <a href="/registration/{{reg.slug}}/{{drop.slug}}">{{drop.submenu}}</a></li> {% endif %}{% endfor %}
+                    <li> <a href="/registration/{{reg.slug}}/{{drop.slug}}">{{drop.submenu|title}}</a></li> {% endif %}{% endfor %}
                     {% comment %} <li><a href="pvt-ltd-reg.html">Private Limited Company</a></li>
                     <li><a href="pvt-ltd-reg.html">LLP(Limited Liability Partnership)</a></li>
                     <li><a href="pvt-ltd-reg.html">Public Limited Company</a></li>
@@ -94,11 +94,11 @@
             </li>
 			         
             {% for data in othernavreg %}
-            <li ><a href="#">{{data.title}}</a>
+            <li ><a href="#">{{data.title|title}}</a>
               <ul class="drop-down ">
               {% for tax in data.RegistrationSubMenu.all %}
 					{% if 5 > forloop.counter %}
-                <li><a href="{% url 'handlenav' slug1=data.slug slug2=tax.slug %}">{{tax.submenu}}</a></li>{% endif %}{% endfor %}
+                <li><a href="{% url 'handlenav' slug1=data.slug slug2=tax.slug %}">{{tax.submenu|title}}</a></li>{% endif %}{% endfor %}
                 {% comment %} <li><a href="#">Business xTax Return Filling</a></li>
                 <li><a href="#">TDS Return Filling</a></li>
                 <li><a href="{% url 'pvtltdreg' %}">Income Tax Return</a></li> {% endcomment %}

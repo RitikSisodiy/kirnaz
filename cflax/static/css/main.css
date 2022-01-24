@@ -12,7 +12,7 @@ html {
     padding: 0;
     color: #56595c;
     font-size: 14px;
-    font-family: open sans, Helvetica, Arial, sans-serif;
+    font-family:system-ui;
     -webkit-font-smoothing: subpixel-antialiased;
     text-rendering: optimizeLegibility;
     line-height: 24px;
@@ -36,8 +36,8 @@ html {
     margin: 10px 20px;
     font-size: 14px;
     color: #fff;
-    font-weight: 700;
-    font-family: "Poppins", sans-serif;
+    
+    font-family:system-ui;
     cursor: pointer;
 }
 
@@ -130,8 +130,8 @@ html {
     color: #e77b20;
     font-weight: 600;
     padding: 4px 10px;
-    text-transform: uppercase;
-    font-family: 'Open Sans', sans-serif;
+    
+    font-family:system-ui;
 }
 
 .nav-bar nav ul li ul {
@@ -192,7 +192,7 @@ html {
 .nav-bar ul.sub-sub-down li::after {
     position: absolute;
     content: '\f0da';
-    font-family: 'fontAwesome';
+    font-family:system-ui;
     right: 5px;
     top: 0;
     color: #777777;
@@ -242,7 +242,7 @@ html {
 }
 
 .nav-bar nav ul .xl-sub-menu-title {
-    font-weight: 700;
+    
     font-size: 14px;
     color: #656565!important;
 }
@@ -354,7 +354,7 @@ html {
 .footer-heading {
     font-size: 22px;
     color: #fff;
-    font-weight: bold;
+    
     margin-bottom: 24px;
     position: relative;
 }
@@ -393,7 +393,7 @@ html {
 
 .footer-nav li a:before {
     content: "\f0da";
-    font-family: "FontAwesome";
+    font-family:fontAwesome;
     padding-right: 10px;
 }
 
@@ -574,14 +574,14 @@ html {
 
 .index-page .hm-query-sec h2 {
     color: #050521;
-    font-weight: bold;
+    
     font-size: 35px;
     margin: 0px 0 15px;
     position: relative;
     padding-bottom: 5px;
     display: block;
     clear: both;
-    text-transform: uppercase;
+    
 }
 
 .index-page .hm-query-sec .green-line {
@@ -674,7 +674,7 @@ html {
 .index-page .hedingnews,
 a.hedingnews {
     display: block;
-    font-weight: bold;
+    
     border: 0;
     padding: 0;
 }
@@ -688,7 +688,7 @@ a.hedingnews {
 }
 
 .index-page #ctl00_DataListGovind a {
-    font-weight: bold;
+    
     padding-right: 25px;
     font-size: 12px;
     color: #1b396b;
@@ -772,15 +772,15 @@ a {
 
 .home-middle-sec h2 {
     color: #050521;
-    font-weight: bold;
+    
     font-size: 26px;
     margin: 0px 0 15px;
     position: relative;
     padding-bottom: 5px;
     display: block;
     clear: both;
-    text-transform: uppercase;
-    font-family: "Arvo", serif;
+    
+    font-family:system-ui;
 }
 
 .home-middle-sec h2:before {
@@ -800,16 +800,16 @@ a {
     color: #050521;
     font-weight: 400;
     margin-top: 0;
-    font-family: arvo, times new roman, Times, serif;
+    font-family:system-ui;
     margin-bottom: 10px;
 }
 
 .hm-services-sec h2 span {
     color: #e77b20;
-    font-weight: 700;
+    
 }
 
-.hm-services-sec h2:after {
+/* .hm-services-sec h2:after {
     content: "";
     display: block;
     width: 80px;
@@ -820,7 +820,7 @@ a {
     margin: 4px auto 0;
     position: absolute;
     top: 100%;
-}
+} */
 
 section.home-middle-sec {
     padding-top: 50px;
@@ -877,7 +877,7 @@ section.home-middle-sec {
     margin-bottom: 15px;
 }
 
-.icon-box h5:after {
+/* .icon-box h5:after {
     content: "";
     display: block;
     width: 80px;
@@ -888,14 +888,14 @@ section.home-middle-sec {
     margin: 0px auto 0;
     position: absolute;
     top: 100%;
-}
+} */
 
 .icon-box h5 {
     line-height: 1.11111;
     font-size: 18px;
     padding-bottom: 5px;
-    font-family: open sans, Helvetica, Arial, sans-serif;
-    font-weight: 700;
+    font-family:system-ui;
+    
     color: #050521;
     margin: 0 0 10px;
     position: relative;
@@ -986,9 +986,9 @@ a.btn-theme {
     color: #f17000 !important;
     padding: 10px 25px;
     font-size: 16px;
-    font-weight: 700;
+    
     border-radius: 5px;
-    text-transform: uppercase;
+    
     display: inline-block;
     text-decoration: none;
     margin-top: 20px;
@@ -1087,7 +1087,7 @@ a.btn-theme+a.btn-theme {
         padding-left: 22px;
         padding-right: 22px;
         height: 37px;
-        font-weight: 700;
+        
     }
     .index-page .first a {
         font-size: 13px;
@@ -1151,7 +1151,7 @@ a.btn-theme+a.btn-theme {
         padding-left: 22px;
         padding-right: 22px;
         height: 37px;
-        font-weight: 700;
+        
     }
     .index-page .first a {
         font-size: 13px;
@@ -1216,7 +1216,7 @@ a.btn-theme+a.btn-theme {
 .checking3::after {
     position: absolute;
     content: "\f0d7";
-    font-family: "fontAwesome";
+    font-family:system-ui;
     color: #000;
     right: 20px;
     transform: rotate(270deg);
@@ -1263,7 +1263,7 @@ a.btn-theme+a.btn-theme {
 
 .left-side-content h1 {
     color: #111;
-    font-family: "Fira Sans", sans-serif;
+    font-family:system-ui;
 }
 
 .content {
@@ -1611,8 +1611,8 @@ section.swipper div:nth-child(3) {
 .page .sixth ul li a {
     font-size: 16px;
     color: #797979;
-    font-family: GT Walsheim Web, Arial, sans-serif;
-    font-weight: 700;
+    font-family:system-ui;
+    
 }
 
 .page .client-logos li {
@@ -1688,8 +1688,8 @@ section.swipper div:nth-child(3) {
 }
 
 .blog .entry-title a {
-    font-weight: 700;
-    font-family: "Roboto Slab", serif;
+    
+    font-family:system-ui;
     color: #444;
 }
 
@@ -1708,7 +1708,7 @@ section.swipper div:nth-child(3) {
 .blog .entry-content p {
     margin: 0 0 10px;
     color: #6b6b6b;
-    font-family: "Open Sans", sans-serif;
+    font-family:system-ui;
     line-height: 1.7;
     font-size: 14px;
 }
@@ -1721,7 +1721,7 @@ a.more-link {
     padding: 11px 13px;
     border-radius: 4px;
     color: #fff;
-    text-transform: uppercase;
+    
     background-color: #da4453;
     border-color: #da4453;
 }
@@ -1750,12 +1750,12 @@ a.more-link:hover {
 
 .blog .widget>h3 {
     font-size: 14px;
-    text-transform: uppercase;
+    
     margin-bottom: 25px;
     margin-top: 0;
     color: #636467;
-    font-weight: 700;
-    font-family: "Roboto Slab", serif;
+    
+    font-family:system-ui;
 }
 
 .blog select#cat {
@@ -1785,7 +1785,7 @@ a.more-link:hover {
     padding: 9px 13px;
     border-radius: 4px;
     color: #fff;
-    text-transform: uppercase;
+    
     background-color: #da4453;
     border-color: #da4453;
 }
@@ -1798,7 +1798,7 @@ a.more-link:hover {
 
 .blog .widget>h3 {
     font-size: 14px;
-    text-transform: uppercase;
+    
     margin-bottom: 25px;
     margin-top: 0;
     color: #636467;
@@ -1836,7 +1836,7 @@ a.more-link:hover {
 }
 
 .blog #st-2 {
-    font-family: "Helvetica Neue", Verdana, Helvetica, Arial, sans-serif;
+    font-family:system-ui;
     -moz-transition: all 0.2s ease-in;
     -ms-transition: all 0.2s ease-in;
     -o-transition: all 0.2s ease-in;
@@ -2067,7 +2067,7 @@ b {
     color: #444;
     font-size: 18px;
     margin: 0 0 30px;
-    font-weight: 700;
+    
 }
 
 .login-page .login-form .form-group {
@@ -2294,7 +2294,7 @@ b {
     display: inline-block;
     max-width: 100%;
     margin-bottom: 0;
-    font-family: 'lato';
+    font-family:system-ui;
     font-size: 14px;
     color: #343434;
     text-align: left;
@@ -2367,7 +2367,7 @@ b {
 }
 
 .comp-reg .caon strong {
-    font-weight: bolder;
+    
     color: #a0e360;
 }
 
@@ -2406,8 +2406,8 @@ b {
 
 .comp-reg .free {
     line-height: 31px;
-    font-weight: bold;
-    font-family: 'lato';
+    
+    font-family:system-ui;
     text-align: center;
     font-size: 22px;
     text-transform: capitalize;
@@ -2475,10 +2475,10 @@ b {
 
 .comp-reg .para-content h2 {
     font-size: 22px;
-    font-weight: bold;
+    
     color: #313131;
     margin-bottom: 0;
-    font-family: 'Lato', sans-serif;
+    font-family:system-ui;
     line-height: 48px;
 }
 
@@ -2499,7 +2499,7 @@ b {
     color: #000;
     line-height: 29px;
     font-size: 22px;
-    font-weight: bold;
+    
     margin-bottom: 0;
     margin-bottom: 15px;
 }
@@ -2533,7 +2533,7 @@ b {
 .comp-reg .required h2 {
     color: #fff;
     font-size: 22px;
-    font-weight: bold;
+    
     margin-bottom: 0;
     margin-bottom: 15px;
 }
@@ -2606,7 +2606,7 @@ b {
     color: #090909;
     font-size: 22px;
     line-height: 29px;
-    font-weight: bold;
+    
     margin-bottom: 0;
     margin-bottom: 15px;
 }
@@ -2637,7 +2637,7 @@ b {
     color: #3f3f3f;
     margin: 0 0 15px 0;
     letter-spacing: 1px;
-    font-weight: bold;
+    
     font-size: 16px;
 }
 
@@ -2652,7 +2652,7 @@ b {
 .comp-reg .faq h2 {
     color: #090909;
     font-size: 22px;
-    font-weight: bold;
+    
     margin-bottom: 0;
     margin-bottom: 15px;
 }
@@ -2691,7 +2691,7 @@ b {
 
 .comp-reg .faq h4 a {
     font-size: 18px;
-    font-family: lato;
+    font-family:system-ui;
     color: #3f3f3f;
     font-weight: 600;
 }
@@ -2722,7 +2722,7 @@ b {
     color: #3f3f3f;
     margin: 0 0 15px 0;
     letter-spacing: 1px;
-    font-weight: bold;
+    
 }
 
 .comp-reg .location-wrapper1 .wraps1 {
@@ -2807,7 +2807,7 @@ b {
 .blog-text h3 a {
     color: #000000;
     font-size: 16px;
-    font-weight: bold;
+    
 }
 
 .subscribe {
@@ -2924,8 +2924,8 @@ b {
     color: #444;
     font-size: 28px;
     margin-bottom: 30px;
-    font-weight: 700;
-    font-family: 'Roboto Slab', serif;
+    
+    font-family:system-ui;
 }
 
 .entry-meta {
@@ -2951,7 +2951,7 @@ b {
 #listenButton1 {
     background-color: #DA4453;
     border: none;
-    text-transform: uppercase;
+    
     -webkit-border-radius: 4px;
     border-radius: 4px;
     color: #fff;
@@ -2962,8 +2962,8 @@ b {
 
 .tax_Filing .entry-content h4 {
     color: #DA4453;
-    font-weight: 700;
-    font-family: 'Roboto Slab', serif;
+    
+    font-family:system-ui;
     font-size: 18px;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -2971,8 +2971,8 @@ b {
 
 .tax_Filing .entry-content h5 {
     color: #DA4453;
-    font-weight: 700;
-    font-family: 'Roboto Slab', serif;
+    
+    font-family:system-ui;
     font-size: 16px;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -3037,8 +3037,8 @@ blockquote.wp-block-quote.has-text-align-center.is-style-large a {
 
 .tax_Filing .entry-content h2 {
     color: #DA4453;
-    font-weight: 700;
-    font-family: 'Roboto Slab', serif;
+    
+    font-family:system-ui;
     margin-top: 20px;
     font-size: 20px;
     margin-bottom: 10px;
@@ -3046,8 +3046,8 @@ blockquote.wp-block-quote.has-text-align-center.is-style-large a {
 
 .tax_Filing .entry-content h3 {
     color: #DA4453;
-    font-weight: 700;
-    font-family: 'Roboto Slab', serif;
+    
+    font-family:system-ui;
     font-size: 20px;
     margin-top: 20px;
     margin-bottom: 10px;
@@ -3106,14 +3106,14 @@ blockquote.wp-block-quote.has-text-align-center.is-style-large a {
 .comment-author .fn,
 .author-bio h4,
 .comment-reply-title {
-    text-transform: uppercase;
-    font-weight: 700;
+    
+    
 }
 
 .tax_Filing .entry-content a {
     color: #DA4453;
-    font-weight: 700;
-    font-family: 'Roboto Slab', serif;
+    
+    font-family:system-ui;
     font-size: 15px;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -3122,7 +3122,7 @@ blockquote.wp-block-quote.has-text-align-center.is-style-large a {
 .author-description {
     color: #6B6B6B;
     word-wrap: break-word;
-    font-family: 'Open Sans', sans-serif;
+    font-family:system-ui;
     line-height: 1.7;
     font-size: 14px;
 }
@@ -3139,7 +3139,7 @@ ul.navbar-right.right-si li a {
     color: #fff;
     -webkit-transition-duration: .3s;
     transition-duration: .3s;
-    font-family: GT Walsheim Web, Arial, sans-serif!important;
+    font-family:system-ui;
 }
 
 .attr-nav {
@@ -3173,7 +3173,7 @@ a {
 
 .pvt-ltd-reg .heading-reg {
     font-weight: 1000;
-    font-family: 'Open Sans', sans-serif;
+    font-family:system-ui;
     color: #000;
 }
 
@@ -3191,11 +3191,11 @@ a {
     line-height: 42px;
     border-bottom: 1px solid #fff;
     padding-bottom: 10px;
-    font-weight: bold;
+    
     margin-bottom: 15px;
     display: inline-flex;
     color: #fff;
-    font-family: 'Open Sans', sans-serif;
+    font-family:system-ui;
 }
 
 .pvt-ltd-reg .first .banner-captions .sub-title {
@@ -3308,8 +3308,8 @@ a {
 
 .pvt-ltd-reg .third h5 {
     font-size: 30px;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: bold;
+    font-family:system-ui;
+    
     margin: 50px 0;
 }
 
@@ -3349,7 +3349,7 @@ a {
 .pvt-ltd-reg .third .cards p {
     margin: 14px 0 0 0;
     color: #1b1b1b;
-    font-weight: bold;
+    
     font-size: 20px;
 }
 
@@ -3358,7 +3358,7 @@ a {
 }
 
 .pvt-ltd-reg .services .heading {
-    font-family: 'Open Sans', sans-serif;
+    font-family:system-ui;
     font-weight: 1000;
 }
 
@@ -3441,7 +3441,7 @@ a {
 }
 .pvt-ltd-reg .client-says h3{
     font-weight: 1000;
-    font-family: 'Open Sans', sans-serif;
+    font-family:system-ui;
 }
 
 @media(max-width:512px) {
@@ -3580,7 +3580,7 @@ a {
 }
 .services-page .btSuperTitle a{
     color: #fff;
-    font-family: "Open Sans",Arial,sans-serif;
+    font-family:system-ui;
     font-size: 16px;
 }
 .services-page .head-bg .dash h1{
@@ -3595,7 +3595,7 @@ a {
 .services-page .services-head h3{
     text-align: center;
     color: #000;
-    font-weight: bold;
+    
     font-size: 24px;
 }
 .services-page .white-box{
@@ -3606,7 +3606,7 @@ a {
 .services-page .white-box h3{
     font-size: 21px;
     color: #000;
-    font-weight: 700;
+    
     margin-top: 30px;
 }
 .services-page .white-box ul{
@@ -3623,8 +3623,8 @@ a {
 .services-page .white-box ul li::before{
     content: '\f138';
     color: #10b4f1;
-    font-weight: 700;
-    font-family: fontAwesome;
+    
+    font-family:fontAwesome;
     margin-right: 8px;
 }
 @media (max-width:781px) {

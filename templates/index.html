@@ -91,8 +91,8 @@
 {% if aboutca %}
     <div class="first">
       <div class="container">
-        <h1> {{aboutca.title}}.</span>
-          <div class="green-line"></div>
+        <h1> {{aboutca.title|title}}
+          <div class=""></div>
         </h1>
         {{aboutca.content|safe}}
         <a href="{% url 'about' %}">Read More <i class="fa fa-angle-double-right"></i></a>
@@ -106,7 +106,7 @@
             <div class="col-md-6 ordering">
             <form action="" method="POST">
 	          {% csrf_token %}
-              <h2>Business Query <div class="green-line"></div>
+              <h2>Business Query <div class=""></div>
               </h2>
               <p>Always ready to help you out regarding all your queries.</p>
               <div class="group-query">
@@ -136,15 +136,17 @@
     </div>
     <div class="comp-reg">
       <section class="required">
-        <div class="mx-lg-12 mx-3 row justify-content-md-center">
-          <h2 class="col-md-12"> Requirements for Start Up Incorporation</h2>
+        <div class="mx-lg-12 mx-3 row justify-content-md-center"><center>
+
+          <h2 class="col-md-12"> Our Services</h2>
+        </center>
            {% for data in Registrations|slice:":3" %}
           <div class="card1 col-md-2 my-2 mx-2">
             <div class="card-body">
-              <h6 class="card-price"><a href="" title="{{data.title}}" target="_blank"> {{data.title}}</a></h6>
+              <h6 class="card-price"><a href="" title="{{data.title}}" target="_blank"> {{data.title|title}}</a></h6>
               <ul class="cards">
               {% for d in data.RegistrationSubMenu.all|slice:"4" %}
-                <li ><a href="{% url 'registration' slug1=data.slug slug2=d.slug %}"><i class="fa fa-hand-o-right"></i> {{d.submenu}}</a></li>
+                <li ><a href="{% url 'registration' slug1=data.slug slug2=d.slug %}"><i class="fa fa-hand-o-right"></i> {{d.submenu|title}}</a></li>
                 {% endfor %}
               </ul>
               <a href="{% url 'services' %}" title="How to register One Person Company?" target="_blank" class="bt-1">View More...</a>
@@ -154,10 +156,10 @@
           {% for data in othernavreg|slice:":2" %}
           <div class="card1 col-md-2 my-2 mx-2">
             <div class="card-body">
-              <h6 class="card-price"><a href="#" title="{{data.title}}" target="_blank"> {{data.title}}</a></h6>
+              <h6 class="card-price"><a href="#" title="{{data.title}}" target="_blank"> {{data.title|title}}</a></h6>
               <ul class="cards ">
               {% for d in data.RegistrationSubMenu.all|slice:":4" %}
-                <li><a href="{% url 'handlenav' slug1=data.slug slug2=d.slug %}" class=""><i class="fa fa-hand-o-right"></i> {{d.submenu}}</a></li>
+                <li><a href="{% url 'handlenav' slug1=data.slug slug2=d.slug %}" class=""><i class="fa fa-hand-o-right"></i> {{d.submenu|title}}</a></li>
                 {% endfor %}
               </ul>
               <a href="{% url "services" %}" title="How to register One Person Company?" target="_blank" class="bt-1">View More...</a>
@@ -267,23 +269,23 @@
               <table id="ctl00_DataListGovind" cellspacing="0" border="0" style="border-collapse:collapse;">
                 <tbody>
                   <tr>
-                    <td><a id="ctl00_DataListGovind_ctl00_lb1" href="#">Jan</a></td>
-                    <td><a id="ctl00_DataListGovind_ctl01_lb1" href="#">Feb</a></td>
-                    <td><a id="ctl00_DataListGovind_ctl02_lb1" href="#">Mar</a></td>
-                    <td><a id="ctl00_DataListGovind_ctl03_lb1" href="#">Apr</a></td>
-                    <td><a id="ctl00_DataListGovind_ctl04_lb1" href="#">May</a></td>
-                    <td><a id="ctl00_DataListGovind_ctl05_lb1" href="#">June</a></td>
+                    <td><a id="ctl00_DataListGovind_ctl00_lb1" >Jan</a></td>
+                    <td><a id="ctl00_DataListGovind_ctl01_lb1" >Feb</a></td>
+                    <td><a id="ctl00_DataListGovind_ctl02_lb1" >Mar</a></td>
+                    <td><a id="ctl00_DataListGovind_ctl03_lb1" >Apr</a></td>
+                    <td><a id="ctl00_DataListGovind_ctl04_lb1" >May</a></td>
+                    <td><a id="ctl00_DataListGovind_ctl05_lb1" >June</a></td>
                   </tr>
                   <tr>
-                    <td><a id="ctl00_DataListGovind_ctl06_lb1" href="#">July</a></td>
-                    <td><a id="ctl00_DataListGovind_ctl07_lb1" href="#">Aug</a></td>
-                    <td><a id="ctl00_DataListGovind_ctl08_lb1" href="#">Sep</a></td>
-                    <td><a id="ctl00_DataListGovind_ctl09_lb1" href="#">Oct</a></td>
-                    <td><a id="ctl00_DataListGovind_ctl10_lb1" href="#">Nov</a></td>
-                    <td><a id="ctl00_DataListGovind_ctl11_lb1" href="#">Dec</a></td>
+                    <td><a id="ctl00_DataListGovind_ctl06_lb1" >July</a></td>
+                    <td><a id="ctl00_DataListGovind_ctl07_lb1" >Aug</a></td>
+                    <td><a id="ctl00_DataListGovind_ctl08_lb1" >Sep</a></td>
+                    <td><a id="ctl00_DataListGovind_ctl09_lb1" >Oct</a></td>
+                    <td><a id="ctl00_DataListGovind_ctl10_lb1" >Nov</a></td>
+                    <td><a id="ctl00_DataListGovind_ctl11_lb1" >Dec</a></td>
                   </tr>
                   <tr>
-                    <td><a id="ctl00_DataListGovind_ctl12_lb1" href="#">All</a></td>
+                    <td><a id="ctl00_DataListGovind_ctl12_lb1" >All</a></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -354,11 +356,11 @@
                 <div class="box-icon"><img src="/media/{{o.img}}" alt="Start my Business"></div>
                 <div class="box-header">
                   <h5><a href="#" style="color:#000000" onMouseOver="this.style.color='#e77b20'"
-   onMouseOut="this.style.color='#000000'">{{o.title}} </a></h5>
+   onMouseOut="this.style.color='#000000'">{{o.title|title}} </a></h5>
                 </div>
               </div>
               <div class="box-body">
-                <p class="text-gray-05">{{o.details}}</p>
+                <p class="text-gray-05">{{o.details|title}}</p>
               </div>
             </article>
           </div>
