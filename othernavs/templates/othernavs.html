@@ -1370,12 +1370,36 @@ style="background-image:url(https://www.finacbooks.com/assets/theme/images/bg/ba
     </div>
     </div>
     </section> {% endcomment %}
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $( document ).ready(function() {
 $("ul.custumli li").addClass('my-2')
 $("ul.custumli li").prepend(`<i style="color: #e77b20; margin-right: 10px;" class="fa fa-check"></i>`)
 $("ul.custumli ul").css("list-style-type", "none")
+});
+
+var elementPosition = $('#navigation').offset();
+
+$(window).scroll(function () {
+    if ($(window).scrollTop() > elementPosition.top) {
+        $('#navigation').css('position', 'fixed').css('top', '0').css('z-index', '1').css('left', '0');
+    } else {
+        $('#navigation').css('position', 'static');
+    }
+});
+
+
+$('#right-button').click(function () {
+    event.preventDefault();
+    $('#content').animate({
+        scrollLeft: "+=200px"
+    }, "slow");
+});
+
+$('#left-button').click(function () {
+    event.preventDefault();
+    $('#content').animate({
+        scrollLeft: "-=200px"
+    }, "slow");
 });
 </script>
 {% endblock content%}
