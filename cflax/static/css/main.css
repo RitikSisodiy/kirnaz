@@ -489,7 +489,7 @@ html {
     bottom: 0px;
     left: 0px;
     border: 0px;
-    background: #e77b20;
+    background: #f17000;
     color: #fff;
     width: 100%;
     height: 34px;
@@ -2561,7 +2561,7 @@ b {
     line-height: 22px;
     font-size: 14px;
     height: 50px;
-    border-bottom: solid 2px #2196F3;
+    border-bottom: solid 2px #f17000;
 }
 
 .comp-reg .card-price a {
@@ -2581,15 +2581,24 @@ b {
     list-style-type: none;
 }
 
+.comp-reg ul.cards li a {
+    color: #000!important;
+
+}
+.comp-reg ul.cards li a:hover {
+    color: #f17000!important;
+
+}
+
 .comp-reg .required .bt-1 {
-    background: #e77b20;
+    background: #f17000;
     margin: 25px 0 21px;
     text-align: center;
     padding: 8px 0;
     width: 100%;
     color: #fff;
     float: left;
-    box-shadow: 1px 1px 1px 1px #497c0e;
+    box-shadow: 1px 1px 1px 1px #e09035;
     text-decoration: none;
 }
 

@@ -47,7 +47,7 @@
                     <span class="xl-sub-menu-title">{{reg.title|title}}</span>
                     {% for drop in reg.RegistrationSubMenu.all %}
 					{% if 5 > forloop.counter %}
-                    <li> <a href="/registration/{{reg.slug}}/{{drop.slug}}">{{drop.submenu|title}}</a></li> {% endif %}{% endfor %}
+                    <li> <a href="/registration/{{reg.slug}}/{{drop.slug}}">{{drop.submenu}}</a></li> {% endif %}{% endfor %}
                     {% comment %} <li><a href="pvt-ltd-reg.html">Private Limited Company</a></li>
                     <li><a href="pvt-ltd-reg.html">LLP(Limited Liability Partnership)</a></li>
                     <li><a href="pvt-ltd-reg.html">Public Limited Company</a></li>
@@ -94,11 +94,11 @@
             </li>
 			         
             {% for data in othernavreg %}
-            <li ><a href="#">{{data.title|title}}</a>
+            <li ><a href="#">{{data.title}}</a>
               <ul class="drop-down ">
               {% for tax in data.RegistrationSubMenu.all %}
 					{% if 5 > forloop.counter %}
-                <li><a href="{% url 'handlenav' slug1=data.slug slug2=tax.slug %}">{{tax.submenu|title}}</a></li>{% endif %}{% endfor %}
+                <li><a href="{% url 'handlenav' slug1=data.slug slug2=tax.slug %}">{{tax.submenu}}</a></li>{% endif %}{% endfor %}
                 {% comment %} <li><a href="#">Business xTax Return Filling</a></li>
                 <li><a href="#">TDS Return Filling</a></li>
                 <li><a href="{% url 'pvtltdreg' %}">Income Tax Return</a></li> {% endcomment %}

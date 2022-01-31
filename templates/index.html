@@ -143,10 +143,10 @@
            {% for data in Registrations|slice:":3" %}
           <div class="card1 col-md-2 my-2 mx-2">
             <div class="card-body">
-              <h6 class="card-price"><a href="" title="{{data.title}}" target="_blank"> {{data.title|title}}</a></h6>
+              <h6 class="card-price"><a href="" title="{{data.title}}" target="_blank"> {{data.title}}</a></h6>
               <ul class="cards">
               {% for d in data.RegistrationSubMenu.all|slice:"4" %}
-                <li ><a href="{% url 'registration' slug1=data.slug slug2=d.slug %}"><i class="fa fa-hand-o-right"></i> {{d.submenu|title}}</a></li>
+                <li ><a href="{% url 'registration' slug1=data.slug slug2=d.slug %}"><i class="fa fa-hand-o-right"></i> {{d.submenu}}</a></li>
                 {% endfor %}
               </ul>
               <a href="{% url 'services' %}" title="How to register One Person Company?" target="_blank" class="bt-1">View More...</a>
@@ -156,10 +156,10 @@
           {% for data in othernavreg|slice:":2" %}
           <div class="card1 col-md-2 my-2 mx-2">
             <div class="card-body">
-              <h6 class="card-price"><a href="#" title="{{data.title}}" target="_blank"> {{data.title|title}}</a></h6>
+              <h6 class="card-price"><a href="#" title="{{data.title}}" target="_blank"> {{data.title}}</a></h6>
               <ul class="cards ">
               {% for d in data.RegistrationSubMenu.all|slice:":4" %}
-                <li><a href="{% url 'handlenav' slug1=data.slug slug2=d.slug %}" class=""><i class="fa fa-hand-o-right"></i> {{d.submenu|title}}</a></li>
+                <li><a href="{% url 'handlenav' slug1=data.slug slug2=d.slug %}" class=""><i class="fa fa-hand-o-right"></i> {{d.submenu}}</a></li>
                 {% endfor %}
               </ul>
               <a href="{% url "services" %}" title="How to register One Person Company?" target="_blank" class="bt-1">View More...</a>
