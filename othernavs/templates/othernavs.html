@@ -50,7 +50,7 @@ i.fa-check {
         <div class="container second">
             <p class="left heading-reg my-2"><a href="{% url 'index' %}">Home</a> / {{reg.submenu}}</p>
             <br><br>
-            <div class="sub-nav">
+            <!-- <div class="sub-nav">
                 <div class="container">
                     <ul class="list-inline list-icons">
                     {% for d in slist %}
@@ -65,6 +65,41 @@ i.fa-check {
                         <li><a href="#considered">Sainification</a></li> {% endcomment %}
                     </ul>
                 </div>
+            </div> -->
+            <style>
+                .contentnav {
+                    display: -webkit-box;
+                    overflow-x: auto;
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-around;
+                    /* overflow-x: hidden; */
+                }
+        
+                #navigation {
+                    transition: display 1s;
+                }
+        
+                .contentnav::-webkit-scrollbar {
+                    display: none;
+                    /* Safari and Chrome */
+                }
+        
+                #right-button,
+                #left-button {
+                    cursor: pointer;
+                }
+            </style>
+            <div class="d-flex w-100" id="navigation">
+                <div class="align-self-center" id='left-button'><i class="fa fa-angle-double-left mx-1	"></i></div>
+                <div class="p-3 rounded bg-light shadow contentnav" id="content">
+                    {% for d in slist %}
+                    {% if forloop.counter > 1 %}
+                    <div class="mx-2"><a href="#selectsection{{d.1}}">{{d.0}}</a></div>{% endif %}
+                    {% endfor %}
+                </div>
+                <div class="align-self-center" id="right-button"><i class="	fa fa-angle-double-right mx-1 "></i></div>
+        
             </div>
             {% if absm %}
             {% for ab in absm %}

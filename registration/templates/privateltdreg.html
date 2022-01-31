@@ -37,11 +37,11 @@
     {% endfor %}
 {% endif %}
 
-        <div class="container second">
+        <div class="container second" >
             <p class="left heading-reg my-2"><a href="{% url 'index' %}">Home</a> / {{reg.submenu}}</p>
             <br><br>
-            <div class="sub-nav">
-                <div class="container">
+            <!-- <div class="sub-nav" id="navigation">
+                <div class="container" >
                     <ul class="list-inline list-icons">
                     {% for d in slist %}
                     {% if forloop.counter > 1 %}
@@ -55,7 +55,37 @@
                         <li><a href="#considered">Sainification</a></li> {% endcomment %}
                     </ul>
                 </div>
+            </div> -->
+<style>
+    .contentnav {
+    display: -webkit-box;
+    overflow-x: auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    /* overflow-x: hidden; */
+}
+#navigation{
+    transition: display 1s;
+}
+.contentnav::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+#right-button , #left-button{
+    cursor: pointer;
+}
+</style>
+<div class="d-flex w-100" id="navigation">
+    <div class="align-self-center" id='left-button'><i class="fa fa-angle-double-left mx-1	"></i></div>
+            <div class="p-3 rounded bg-light shadow contentnav" id="content">
+                {% for d in slist %}
+                {% if forloop.counter > 1 %}
+                        <div class="mx-2"><a href="#selectsection{{d.1}}">{{d.0}}</a></div>{% endif %}
+                        {% endfor %}
             </div>
+    <div class="align-self-center" id="right-button"><i class="	fa fa-angle-double-right mx-1 "></i></div>
+            
+        </div>          
             {% if absm %}
             {% for ab in absm %}
 
@@ -1325,12 +1355,37 @@ style="background-image:url(https://www.finacbooks.com/assets/theme/images/bg/ba
     </div>
     </div>
     </section> {% endcomment %}
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
 $( document ).ready(function() {
 $("ul.custumli li").addClass('my-2')
 $("ul.custumli li").prepend(`<i style="color: #e77b20; margin-right: 10px;" class="fa fa-check"></i>`)
 $("ul.custumli ul").css("list-style-type", "none")
+});
+
+var elementPosition = $('#navigation').offset();
+
+$(window).scroll(function(){
+        if($(window).scrollTop() > elementPosition.top){
+              $('#navigation').css('position','fixed').css('top','0').css('z-index','1').css('left','0');
+        } else {
+            $('#navigation').css('position','static');
+        }    
+});
+
+
+$('#right-button').click(function() {
+  event.preventDefault();
+  $('#content').animate({
+    scrollLeft: "+=200px"
+  }, "slow");
+});
+
+ $('#left-button').click(function() {
+  event.preventDefault();
+  $('#content').animate({
+    scrollLeft: "-=200px"
+  }, "slow");
 });
 </script>
 {% endblock content%}
