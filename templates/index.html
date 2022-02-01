@@ -252,8 +252,8 @@
                       </td>
                     </tr> {% endcomment %}
                       <div class="news_blog"> <span class="hedingnews">{{n.date|date}}</span> <span class="arrownews">
-                     <strong><a href="{% url "singleblog" slug=n.get_type_display   id=n.id %}">{{n.title}}</a></strong></span> <br>
-                     <span>{{n.Short_des|slice:":100"}}...<a  target="_blank" href="{% url "singleblog" slug=n.get_type_display   id=n.id %}">more</a></span>
+                     <strong><a href="{{n.getabsoluteurl}}">{{n.title}}</a></strong></span> <br>
+                     <span>{{n.Short_des|slice:":100"}}...<a  target="_blank" href="{{n.getabsoluteurl}}">more</a></span>
                       </div>
                     {% endfor %}
                   </tbody>
@@ -311,8 +311,8 @@
                 onmouseout="this.start();">
                 {% for n in bnews %}
                 <div class="news_blog"> <span class="hedingnews">{{n.date|date}}</span> <span class="arrownews">
-                     <strong><a href="{% url "singleblog" slug=n.get_type_display   id=n.id %}">{{n.title}}</a></strong></span> <br>
-                     <span>{{n.Short_des|slice:":100"}}...<a  target="_blank" href="{% url "singleblog" slug=n.get_type_display   id=n.id %}">more</a></span>
+                     <strong><a href="{{n.getabsoluteurl}}">{{n.title}}</a></strong></span> <br>
+                     <span>{{n.Short_des|slice:":100"}}...<a  target="_blank" href="{{n.getabsoluteurl}}">more</a></span>
                       </div>
                 {% endfor %}
               </marquee>
