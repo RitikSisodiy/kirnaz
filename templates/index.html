@@ -1,9 +1,9 @@
 {% extends 'basic.html' %}
 {% load static %}
 {% block title%}Home{% endblock title%}
-
+{% load customfilter%}
 {% block content %} 
-
+{% with ''|contact as contact %}
 <!-- carasoul -->
     <section class="banner-sec">
       <div class="container">
@@ -323,7 +323,7 @@
       </div>
     </section>
     <section class="call-us-sec">
-      <div class="container"> <a href="tel:01414072000">Have a question? We can help you..... +91- 958-483-9976</a>
+      <div class="container"> <a href="tel:01414072000">Have a question? We can help you..... {{contact.0.phone}}</a>
       </div>
     </section>
 {% comment %} {% if latestblog %}
@@ -349,21 +349,41 @@
           </div>
         </div>
         <section class="row">
-        {% for o in offrings %}
+          {% for reg in Registrations|slice:":2" %}
+          {% for drop in reg.RegistrationSubMenu.all|slice:":2" %}
           <div class="col-md-6 col-lg-4 height-fill">
             <article class="icon-box">
               <div class="box-top">
-                <div class="box-icon"><img src="/media/{{o.img}}" alt="Start my Business"></div>
+                <!-- <div class="box-icon"><img src="/media/{{o.img}}" alt="Start my Business"></div> -->
                 <div class="box-header">
-                  <h5><a href="#" style="color:#000000" onMouseOver="this.style.color='#e77b20'"
-   onMouseOut="this.style.color='#000000'">{{o.title|title}} </a></h5>
+                  <h5><a href="{{drop.getabsoluteurl}}" style="color:#000000" onMouseOver="this.style.color='#e77b20'"
+                    onMouseOut="this.style.color='#000000'">{{drop.submenu}} </a></h5>
                 </div>
               </div>
               <div class="box-body">
-                <p class="text-gray-05">{{o.details|title}}</p>
+                <p class="text-gray-05">{{drop.title}}</p>
               </div>
             </article>
           </div>
+          {% endfor %}
+          {% endfor %}
+          {% for reg in othernavreg %}
+          {% for drop in reg.RegistrationSubMenu.all|slice:":1" %}
+          <div class="col-md-6 col-lg-4 height-fill">
+            <article class="icon-box">
+              <div class="box-top">
+                <!-- <div class="box-icon"><img src="/media/{{o.img}}" alt="Start my Business"></div> -->
+                <div class="box-header">
+                  <h5><a href="{{drop.getabsoluteurl}}" style="color:#000000" onMouseOver="this.style.color='#e77b20'"
+                    onMouseOut="this.style.color='#000000'">{{drop.submenu}} </a></h5>
+                </div>
+              </div>
+              <div class="box-body">
+                <p class="text-gray-05">{{drop.title}}</p>
+              </div>
+            </article>
+          </div>
+          {% endfor %}
           {% endfor %}
   
 
@@ -372,8 +392,25 @@
         </section>
     </section>
   
-  
-<section class=" client-says boldSection topSpaced bottomSpaced gutter inherit wBackground cover btBackgroundOverlay btSolidLightBackground"
+    {% if blogs %}
+    <center><h2 class="heading-reg my-4 text-center text-bold my-2">Recent Blogs</h2></center>
+    <div class=" p-5 row">
+        {% for data in blogs|slice:":4" %}
+        <div class="col">
+            <div class="card shadow" >
+                <img class="card-img-top" src="{{data.img.url}}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">{{data.title|slice:":35"}}</h5>
+                  <span class="badge badge-danger">{{data.date|date}}</span>
+                  <p class="card-text">{{data.Short_des|slice:":90"}}...</p>
+                  <a href="{{data.getabsoluteurl}}" class="btn btn-theme shadow-sm ">View more</a>
+                </div>
+              </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+<!-- <section class=" client-says boldSection topSpaced bottomSpaced gutter inherit wBackground cover btBackgroundOverlay btSolidLightBackground"
 style="background-image:url(https://www.finacbooks.com/assets/theme/images/bg/background_4.webp);">
 <div class="container ">
 <center>
@@ -405,6 +442,6 @@ style="background-image:url(https://www.finacbooks.com/assets/theme/images/bg/ba
     {% endfor %}
     </div>
   </div>
-</section>
-
+</section> -->
+{% endwith %}
 {% endblock content%}

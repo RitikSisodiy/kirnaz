@@ -1,6 +1,8 @@
+import imp
 from django import template
 import random
 from registration.models import icon
+from Home.models import ContactDetails
 
 register = template.Library()
 @register.filter(name='rancolor')
@@ -55,3 +57,7 @@ def getpercent(value,arg):
 @register.filter(name="showrelated")
 def showrelated(value,args):
     return "showing related"
+
+@register.filter(name="contact")
+def getcontact(value):
+    return ContactDetails.objects.all()

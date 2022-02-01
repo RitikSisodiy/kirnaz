@@ -16,6 +16,12 @@ class aboutca(models.Model):
     title = models.CharField(max_length=50)
     content = RichTextField(blank=True,null=True)
 
+class ContactDetails(models.Model):
+    email = models.EmailField()
+    phone = models.CharField(max_length=13)
+    address = models.TextField(max_length=100)
+    otherPhones = models.CharField(max_length=100)
+
 class BusinessQuery(models.Model):
     name = models.CharField(max_length=30)
     phone = models.IntegerField()

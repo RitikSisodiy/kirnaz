@@ -1,3 +1,4 @@
+from distutils.command.upload import upload
 from django.db import models
 from django.utils.text import slugify
 from ckeditor.fields import RichTextField
@@ -45,6 +46,7 @@ class Registration(models.Model):
     
 class RegistrationSubMenu(models.Model):
     title = models.ForeignKey(Registration, on_delete=models.CASCADE ,related_name="RegistrationSubMenu")
+    logo = models.ImageField(upload_to="logos",blank=True)
     slug = models.SlugField(blank=True)
     submenu = models.CharField(max_length=50)
     def save(self, *args, **kwargs):

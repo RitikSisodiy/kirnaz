@@ -34,6 +34,7 @@ def index(request):
         'latestblog': latestblog,
         'client':client
     }
+    res['blogs'] = BlogNews.objects.filter(type="2").order_by("-date")
     if request.method == "POST":
         name = request.POST['name']
         email = request.POST['email']

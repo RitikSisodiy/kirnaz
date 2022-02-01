@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.text import slugify
 from ckeditor.fields import RichTextField
 from registration.models import unique_slug_generator
+from django.urls import reverse
 # Create your models here.
 from registration.models import icon
 class Registration(models.Model):
@@ -19,12 +20,16 @@ class Registration(models.Model):
 class RegistrationSubMenu(models.Model):
     title = models.ForeignKey(Registration, on_delete=models.CASCADE ,related_name="RegistrationSubMenu")
     submenu = models.CharField(max_length=50)
+    logo = models.ImageField(upload_to="logos",blank=True)
     slug = models.SlugField(blank=True)
     def save(self, *args, **kwargs):
         self.slug = unique_slug_generator(RegistrationSubMenu,self.submenu)
         super(RegistrationSubMenu, self).save(*args, **kwargs)
     def __str__(self) :
         return str(self.title.slug+"/"+self.slug)
+    def getabsoluteurl(self):
+        return reverse('handlenav',kwargs={'slug1': self.title.slug,'slug2':self.slug})
+
     class Meta:
         unique_together = [['title', 'submenu']]
 

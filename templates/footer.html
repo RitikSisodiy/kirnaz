@@ -1,4 +1,7 @@
 {% load static %}
+{% load customfilter %}
+{% with ""|contact as contact %}
+{% with contact.0 as contact %}
 <footer>
       <div class="footer-wrap">
         <div class="container">
@@ -6,12 +9,11 @@
             <div class="col-md-4 col-sm-6">
               <div class="footer-heading">Useful Links</div>
               <ul class="footer-nav">
-                <li><a href="#">E-filing portal of Income Tax dept.</a></li>
-                <li><a href="#">GST portal</a></li>
-                <li><a href="#">E-way bill</a></li>
-                <li><a href="#"> CBIC</a></li>
-                <li><a href="#">Direct tax payment portal</a></li>
-                <li><a href="#"> MCA portal</a></li>
+                <li><a target="_blank" href="https://www.incometax.gov.in/iec/foportal
+                  ">E-filing portal of Income Tax dept.</a></li>
+                <li><a target="_blank" href="https://services.gst.gov.in/services/login">GST portal</a></li>
+                <li><a target="_blank" href="https://ewaybillgst.gov.in/login.aspx">E-way bill</a></li>
+                <li><a target="_blank" href="https://www.cbic.gov.in/"> CBIC</a></li>
               </ul>
             </div>
             <div class="col-md-4 col-sm-6 middle">
@@ -29,19 +31,23 @@
               <div class="footer-heading">Connect With Us</div>
               <ul class="call-ad">
                 <li>
-                  <div><i class="fa fa-map-marker"></i><span>407,
-                      Sai Kesava Towers Shilpa Park Kondapur,
-                      HITEC City, Hyderabad,
-                      Telangana 500084</span></div>
+                  <div><i class="fa fa-map-marker"></i><span>{{contact.address}}</span></div>
                 </li>
                 <li>
-                  <div><i class="fa fa-phone"></i><span>+91- 958-483-9976</span></div>
+                  <div><i class="fa fa-phone"></i><span>{{contact.otherPhones}}</span></div>
                 </li>
 
                 <li>
-                  <div><i class="fa fa-envelope-o"></i><span>sales@cyberflax.com</span></div>
+                  <div><i class="fa fa-envelope"></i><span>{{contact.email}}</span></div>
                 </li>
               </ul>
+              <div class="d-flex">
+                <div class="text-light "><a class="border mb-2  rounded-circle bg-danger p-3 mx-1 text-light" href=""><i class="P-2 fa fa-facebook"></i></a></div>
+                <div class="text-light "><a class="border mb-2  rounded-circle bg-danger p-3 mx-1 text-light" href=""><i class="P-2 fa fa-instagram"></i></a></div>
+                <div class="text-light "><a class="border mb-2  rounded-circle bg-danger p-3 mx-1 text-light" href=""><i class="P-2 fa fa-pinterest"></i></a></div>
+                <div class="text-light "><a class="border mb-2  rounded-circle bg-danger p-3 mx-1 text-light" href=""><i class="P-2 fa fa-linkedin"></i></a></div>
+                <!-- <div class="text-light"><i class="fa fa-"></i></div> -->
+              </div>
             </div>
           </div>
           <div class="footer-service">
@@ -52,7 +58,7 @@
       
     </footer>
   </div>
-
+  <script src="https://kit.fontawesome.com/ad22a78509.js" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
     integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
@@ -270,3 +276,4 @@ function updatedmsg(msgs){
 </body>
 
 </html>
+{% endwith %}{% endwith %}
