@@ -1,5 +1,6 @@
 from django import forms
 from django.forms import ModelForm
+from Home.models import BlogNews
 from othernavs.models import *
 class section0Form(ModelForm):
     class Meta:
@@ -53,7 +54,6 @@ class section8Form(ModelForm):
         model = ourclients
         exclude = ('id',)    
         widgets = {'reg_title': forms.HiddenInput()}    
-
 
 # class userRegister(ModelForm):
 #     password = forms.CharField(widget=forms.PasswordInput,label='Password')

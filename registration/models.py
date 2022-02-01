@@ -145,3 +145,23 @@ class aboutContent(models.Model):
     title = models.CharField(max_length=100)
     content = RichTextField(max_length=5000 ,null=True,blank=True)
     img = models.ImageField(upload_to="about",blank=True)
+
+class BlogNews(models.Model):
+    Tchoice = (
+        ('1','News'),
+        ('2','Blogs'),
+        ('3','Article'),
+    )
+    reg_title = models.ForeignKey(RegistrationSubMenu, on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now=True)
+    last_update = models.DateTimeField(auto_now=True)
+    type = models.CharField(max_length=1, choices=Tchoice)
+    img = models.ImageField(upload_to='blogs')
+    title= models.CharField(max_length=200,null=True,blank=True)
+    Short_des = models.CharField(max_length=500)
+    content = RichTextField()
+    def save(self, *args, **kwargs):
+        self.last_update = datetime.now()
+        super(BlogNews, self).save(*args, **kwargs)
+    def Getchoices(self):
+        return self.Tchoice

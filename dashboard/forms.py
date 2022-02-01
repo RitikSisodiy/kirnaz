@@ -57,6 +57,12 @@ class section8Form(ModelForm):
         model = ourclients
         exclude = ('id',)    
         widgets = {'reg_title': forms.HiddenInput()}    
+class section9Form(ModelForm):
+    class Meta:
+        model = BlogNews
+        exclude = ('id',)    
+        widgets = {'reg_title': forms.HiddenInput()}    
+
 
 # class userRegister(ModelForm):
 #     password = forms.CharField(widget=forms.PasswordInput,label='Password')
