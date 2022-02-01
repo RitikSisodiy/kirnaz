@@ -2581,11 +2581,12 @@ b {
     list-style-type: none;
 }
 
-.comp-reg ul.cards li a {
+.comp-reg ul.cards li a,div.pkb-recomandation a {
     color: #000!important;
 
 }
-.comp-reg ul.cards li a:hover {
+
+.comp-reg ul.cards li a:hover , div.pkb-recomandation a:hover {
     color: #f17000!important;
 
 }
