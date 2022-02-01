@@ -1246,9 +1246,10 @@
 
 {% endif %}
 {% if blogs %}
-<div class="d-flex p-5">
-    {% for data in blogs %}
-    <div class="col-md-3 col-sm-3 ">
+<center><h2 class="heading-reg my-4 text-center text-bold my-2">Related Blogs</h2></center>
+<div class=" p-5 row">
+    {% for data in blogs|slice:":4" %}
+    <div class="col">
         <div class="card shadow" >
             <img class="card-img-top" src="{{data.img.url}}" alt="Card image cap">
             <div class="card-body">
