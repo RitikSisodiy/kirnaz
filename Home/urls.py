@@ -31,6 +31,6 @@ urlpatterns = [
     path('profile/bookings', views.bookings, name="bookings"),
     path('getdoclist',views.getdoclist,name='getdoclist'),
     path('blog/<slug:slug>/', views.blog,name='blog'),
-    path('blog/<slug:slug>/<int:id>', views.blog,name='singleblog'),
+    path('blog/<slug:slug>/<slug:slug1>', views.blog,name='singleblog'),
 
 ]

@@ -226,7 +226,7 @@ def changepass(request):
 
 # resourses sections
 def getblog(request,res,id):
-    res['blogob'] = BlogNews.objects.get(id=id)
+    res['blogob'] = BlogNews.objects.get(slug=id)
     res['recentblog'] = BlogNews.objects.all().order_by('-date')[:4]
     res['title'] = res['blogob'].title
     current = res['blogs'].filter(id__lt = res['blogob'].id).count()
@@ -234,7 +234,7 @@ def getblog(request,res,id):
     res['nextblog'] = res['blogs'][current+1] if len(res['blogs'])-1 > current else False
     res['prevblog'] = res['blogs'][current-1] if current > 0 else False
     return render(request, 'blogdetails.html',res)
-def blog(request,slug=None,id=None):
+def blog(request,slug=None,slug1=None):
     type = slug
     res= {}
     print('hello')
@@ -243,7 +243,7 @@ def blog(request,slug=None,id=None):
     res['type'] = type
     res['pageurl'] = 'singleblog'
     if id is not None:
-        return getblog(request,res,id)
+        return getblog(request,res,slug1)
     return render(request,'blog.html',res)
 # def news(request,id=None):
 #     type = "news"

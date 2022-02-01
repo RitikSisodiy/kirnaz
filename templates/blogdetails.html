@@ -18,9 +18,8 @@
         <h1 class="mb-none mt-0 text-light">{{blogob.title}}</h1>
         <br>
         <span class="blog-meta-header pl-0 text-light"><i class="fa fa-user"></i> Vidit Agarwal &nbsp; <i
-            class="fa fa-calendar"></i> Published on 31 Jul, 2021 &nbsp; <i class="fa fa-tag"></i> <a
-            href="https://www.finacbooks.com/blog/category/company-registration" class='text-light'>Company
-            Registration</a> &nbsp;</span>
+            class="fa fa-calendar"></i> Published on {{blogob.date|date}} &nbsp; <i class="fa fa-tag"></i> <a
+            href="{{blogob.reg_title.getabsoluteurl}}" class='text-light'>{{blogob.reg_title.submenu}}</a> &nbsp;</span>
 
 
 
@@ -62,7 +61,7 @@
                 <div class="col-md-6">
                 {% if prevblog %}
                   <h3 style="text-align:left;">
-                    <a href="{% url 'singleblog' slug=prevblog.get_type_display id=prevblog.id %}" class="btn btn-primary text-light" style="background-color:#e77b20;" ><i class="fa fa-chevron-left"></i> Previous Post </a>
+                    <a href="{{prevblog.getabsoluteurl}}" class="btn btn-primary text-light" style="background-color:#e77b20;" ><i class="fa fa-chevron-left"></i> Previous Post </a>
                   </h3>
                   {% else %}
                    <h3 style="text-align:left;">
@@ -72,7 +71,7 @@
                 </div>
                 <div class="col-md-6">
                 {% if nextblog %}
-                 <h3 style="text-align:right; "><a href="{% url 'singleblog' slug=type id=nextblog.id %}" class="btn btn-primary text-light" style="background-color:#e77b20"> Next Post <i
+                 <h3 style="text-align:right; "><a href="{{nextblog.getabsoluteurl}}" class="btn btn-primary text-light" style="background-color:#e77b20"> Next Post <i
                   class="fa fa-chevron-right"></i></a></h3>
                  {% else %}
                  <h3 style="text-align:right; "><a href="" class="btn btn-primary disabled text-light" style="background-color:#e77b20" disabled> Next Post <i
@@ -94,10 +93,10 @@
         {% if blogob.id != data.id %}
         <div class="pkb-recomandation">
           <strong>
-            <a href="{% url 'singleblog' slug=data.get_type_display id=data.id %}"><i class="fa fa-hand-o-right"></i>
+            <a href="{{data.getabsoluteurl}}"><i class="fa fa-hand-o-right"></i>
               {{data.title}}</a> 
           </strong>
-          <a href="{% url 'singleblog' slug=data.get_type_display id=data.id %}">
+          <a href="{{data.getabsoluteurl}}">
             <img class="img-responsive" src="{{data.img.url}}" alt="{{data.title}}" width='100%'>
           </a>
           <hr>

@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils.text import slugify
 from ckeditor.fields import RichTextField
+from django.urls import reverse
+from datetime import datetime
 # Create your models here.
 import random ,string
 def get_random_string(size):
@@ -52,6 +54,8 @@ class RegistrationSubMenu(models.Model):
         return str(self.title.slug+"/"+self.slug)
     class Meta:
         unique_together = [['title', 'submenu']]
+    def getabsoluteurl(self):
+        return reverse('registration',kwargs={'slug1': self.title.slug,'slug2':self.slug})
 
 
 class ourclients(models.Model):
@@ -160,8 +164,13 @@ class BlogNews(models.Model):
     title= models.CharField(max_length=200,null=True,blank=True)
     Short_des = models.CharField(max_length=500)
     content = RichTextField()
+    slug = models.SlugField(blank=True)
     def save(self, *args, **kwargs):
+        if self.slug is None or len(self.slug)==0:
+            self.slug = unique_slug_generator(BlogNews,self.title)
         self.last_update = datetime.now()
         super(BlogNews, self).save(*args, **kwargs)
     def Getchoices(self):
         return self.Tchoice
+    def getabsoluteurl(self):
+        return reverse('singleblog',kwargs={'slug': dict(self.Tchoice)[self.type],'slug1':self.slug})
