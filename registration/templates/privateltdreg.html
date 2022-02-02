@@ -75,6 +75,15 @@
         #navigation {
             transition: display 1s;
         }
+        @media only screen and (max-width: 600px) {
+            .contentnav {
+                display: -webkit-box;
+                overflow-x: auto;
+                width: 100%;
+                justify-content: space-around;
+                /* overflow-x: hidden; */
+            }
+        }
 
         .contentnav::-webkit-scrollbar {
             display: none;
@@ -1246,7 +1255,7 @@
 
 {% endif %}
 {% if blogs %}
-<center><h2 class="heading-reg my-4 text-center text-bold my-2">Related Blogs</h2></center>
+<center><h2 id="selectsectionblogs" class="heading-reg my-4 text-center text-bold my-2">Related Blogs</h2></center>
 <div class=" p-5 row">
     {% for data in blogs|slice:":4" %}
     <div class="col">

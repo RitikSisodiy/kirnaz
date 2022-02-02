@@ -152,8 +152,8 @@ def dashboardlogout(request):
     return redirect('dindex')
 from Home.models import *
 from .homeforms import * 
-homemodel = [Slider,aboutca,News,DueDateReminder,BlogNews,addblog]
-homeform = [[sliderform],aboutcaform,[Newsform],[DueDateReminderform],[BlogNewsform],[addblogform]]
+homemodel = [Slider,aboutca,News,DueDateReminder,addblog]
+homeform = [[sliderform],aboutcaform,[Newsform],[DueDateReminderform],[addblogform]]
 editname = ['slider','AboutCA','News_nortification','DueDate_Reminder','Blog_News_nortification','New_Blogs']
 def edithome(request,slug=None):
     res={}
