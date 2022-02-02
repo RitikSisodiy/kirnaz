@@ -7,6 +7,7 @@ from django.shortcuts import redirect, render
 from . models import *
 from registration.models import *
 from taxfiling.models import *
+from registration.models import BlogNews
 from django.contrib.auth import authenticate, login, logout
 MERCHANT_KEY='ey1DQFRPXypAmeE3'
 
@@ -243,7 +244,7 @@ def blog(request,slug=None,slug1=None):
     res['title'] = slug
     res['type'] = type
     res['pageurl'] = 'singleblog'
-    if id is not None:
+    if slug1 is not None:
         return getblog(request,res,slug1)
     return render(request,'blog.html',res)
 # def news(request,id=None):
