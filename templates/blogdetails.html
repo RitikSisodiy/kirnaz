@@ -1,6 +1,37 @@
 {% extends 'basic.html' %}
 {% load static %}
 {% block content %}
+<style>
+
+#servicesblock{-webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    direction: ltr;
+    user-select: none;
+    color: #444;
+    font-size: 14px!important;
+    font-family: 'Open Sans',sans-serif;
+    text-rendering: optimizeLegibility!important;
+    -webkit-font-smoothing: antialiased!important;
+    line-height: 22px;
+    font-weight: 400!important;
+    outline: 0;
+    box-sizing: border-box;
+    background-repeat: no-repeat;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 35px;}
+  #servicesblock a {
+    -webkit-transition: background .1s;
+    -moz-transition: background .1s;
+    transition: background .1s;
+    border-bottom: 1px solid #ededde;
+    padding: 8px 0 8px 18px;
+    display: block;
+    color: #666;
+    font-size: .9em;
+    line-height: 20px;
+}
+</style>
 <link rel="stylesheet" href="{% static 'assets/css/skins/skin-corporate-3.css' %}">
 <link rel="stylesheet" href="{% static 'assets/css/theme-elements.css' %}">
 <link rel="stylesheet" href="{% static 'assets/css/theme.css' %}">
@@ -104,12 +135,11 @@
         {% endif %}
         {% endfor %}
         <h4>Services</h4>
-        <ul class="nav nav-list primary push-bottom">
+        <ul class="nav nav-list primary push-bottom" id="servicesblock" style="display:block;">
           {% for d in Registrations.0.RegistrationSubMenu.all|slice:":6" %}
-          <li><a href="{% url 'registration' slug1=d.title.slug slug2=d.slug %}">{{d.submenu}}</a></li>
+          <li><a href="{% url 'registration' slug1=d.title.slug slug2=d.slug %}"><i class="fa fa-hand-o-right" aria-hidden="true"></i> {{d.submenu}}</a></li>
           {% endfor %}
         </ul>
-
       </div>
     </div>
 </div>

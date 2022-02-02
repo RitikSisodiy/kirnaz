@@ -61,7 +61,7 @@ class section9Form(ModelForm):
     class Meta:
         model = BlogNews
         exclude = ('id','content_type','object_id')   
-
+    
 
 # class userRegister(ModelForm):
 #     password = forms.CharField(widget=forms.PasswordInput,label='Password')

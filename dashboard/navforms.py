@@ -1,6 +1,5 @@
 from django import forms
 from django.forms import ModelForm
-from Home.models import BlogNews
 from othernavs.models import *
 class section0Form(ModelForm):
     class Meta:
