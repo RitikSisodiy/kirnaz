@@ -400,15 +400,15 @@
   
     {% if blogs %}
     <center><h2 class="heading-reg my-4 text-center text-bold my-2">Recent Blogs</h2></center>
-    <div class=" p-5 row">
+    <div class=" p-5 row justify-content-md-center">
         {% for data in blogs|slice:":4" %}
-        <div class="col">
+        <div class="col-md-3">
             <div class="card shadow" >
                 <img class="card-img-top" src="/media/{{data.img}}" alt="Card image cap">
                 <div class="card-body">
                   <h5 class="card-title">{{data.title|slice:":35"}}</h5>
                   <span class="badge badge-danger">{{data.date|date}}</span>
-                  <p class="card-text">{{data.Short_des|slice:":90"}}...</p>
+                  <p class="card-text">{{data.Short_des|slice:":82"}}...</p>
                   <a href="{{data.getabsoluteurl}}" class="btn btn-theme shadow-sm ">View more</a>
                 </div>
               </div>

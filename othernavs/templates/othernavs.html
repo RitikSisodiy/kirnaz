@@ -89,11 +89,16 @@
             display: none;
             /* Safari and Chrome */
         }
-
         #right-button,
         #left-button {
             cursor: pointer;
         }
+        .card-img, .card-img-top {
+    border-top-left-radius: calc(.25rem - 1px);
+    border-top-right-radius: calc(.25rem - 1px);
+    height: 274px !important;
+    object-fit: cover !important;
+}
     </style>
     <div class="d-flex w-100" id="navigation">
         <div class="align-self-center" id='left-button'><i class="fa fa-angle-double-left mx-1	"></i></div>
@@ -1256,15 +1261,15 @@
 {% endif %}
 {% if blogs %}
 <center><h2 id="selectsectionblogs" class="heading-reg my-4 text-center text-bold my-2">Related Blogs</h2></center>
-<div class=" p-5 row">
+<div class=" p-5 row justify-content-md-center">
     {% for data in blogs|slice:":4" %}
-    <div class="col">
+    <div class="col-md-3">
         <div class="card shadow" >
             <img class="card-img-top" src="{{data.img.url}}" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">{{data.title|slice:":35"}}</h5>
               <span class="badge badge-danger">{{data.date|date}}</span>
-              <p class="card-text">{{data.Short_des|slice:":90"}}...</p>
+              <p class="card-text">{{data.Short_des|slice:":82"}}...</p>
               <a href="{{data.getabsoluteurl}}" class="btn btn-theme shadow-sm ">View more</a>
             </div>
           </div>
