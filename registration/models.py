@@ -43,10 +43,43 @@ class Registration(models.Model):
     def __str__(self):
         return self.title
 
+from django.db import models
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.contenttypes.fields import GenericRelation
+class BlogNews(models.Model):
+    Tchoice = (
+        ('1','News'),
+        ('2','Blogs'),
+        ('3','Article'),
+    )
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey('content_type', 'object_id')
+    # reg_title = models.ForeignKey(RegistrationSubMenu, on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now=True)
+    last_update = models.DateTimeField(auto_now=True)
+    type = models.CharField(max_length=1, choices=Tchoice)
+    img = models.ImageField(upload_to='blogs')
+    title= models.CharField(max_length=200,null=True,blank=True)
+    Short_des = models.CharField(max_length=500)
+    content = RichTextField()
+    slug = models.SlugField(blank=True)
+    def save(self, *args, **kwargs):
+        if self.slug is None or len(self.slug)==0:
+            self.slug = unique_slug_generator(BlogNews,self.title)
+        self.last_update = datetime.now()
+        super(BlogNews, self).save(*args, **kwargs)
+    def Getchoices(self):
+        return self.Tchoice
+    def getabsoluteurl(self):
+        return reverse('singleblog',kwargs={'slug': dict(self.Tchoice)[self.type],'slug1':self.slug})
+
     
 class RegistrationSubMenu(models.Model):
     title = models.ForeignKey(Registration, on_delete=models.CASCADE ,related_name="RegistrationSubMenu")
     logo = models.ImageField(upload_to="logos",blank=True)
+    tags = GenericRelation(BlogNews,related_query_name='reg_title1')
     slug = models.SlugField(blank=True)
     submenu = models.CharField(max_length=50)
     def save(self, *args, **kwargs):
@@ -151,28 +184,3 @@ class aboutContent(models.Model):
     title = models.CharField(max_length=100)
     content = RichTextField(max_length=5000 ,null=True,blank=True)
     img = models.ImageField(upload_to="about",blank=True)
-
-class BlogNews(models.Model):
-    Tchoice = (
-        ('1','News'),
-        ('2','Blogs'),
-        ('3','Article'),
-    )
-    reg_title = models.ForeignKey(RegistrationSubMenu, on_delete=models.CASCADE)
-    date = models.DateTimeField(auto_now=True)
-    last_update = models.DateTimeField(auto_now=True)
-    type = models.CharField(max_length=1, choices=Tchoice)
-    img = models.ImageField(upload_to='blogs')
-    title= models.CharField(max_length=200,null=True,blank=True)
-    Short_des = models.CharField(max_length=500)
-    content = RichTextField()
-    slug = models.SlugField(blank=True)
-    def save(self, *args, **kwargs):
-        if self.slug is None or len(self.slug)==0:
-            self.slug = unique_slug_generator(BlogNews,self.title)
-        self.last_update = datetime.now()
-        super(BlogNews, self).save(*args, **kwargs)
-    def Getchoices(self):
-        return self.Tchoice
-    def getabsoluteurl(self):
-        return reverse('singleblog',kwargs={'slug': dict(self.Tchoice)[self.type],'slug1':self.slug})

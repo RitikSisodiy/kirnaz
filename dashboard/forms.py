@@ -60,8 +60,7 @@ class section8Form(ModelForm):
 class section9Form(ModelForm):
     class Meta:
         model = BlogNews
-        exclude = ('id',)    
-        widgets = {'reg_title': forms.HiddenInput()}    
+        exclude = ('id','content_type','object_id')   
 
 
 # class userRegister(ModelForm):

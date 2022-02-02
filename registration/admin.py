@@ -66,3 +66,6 @@ class contactsAdmin(admin.ModelAdmin):
 @admin.register(aboutContent)
 class aboutContentAdmin(admin.ModelAdmin):
     list_display=('id','title')
+@admin.register(BlogNews)
+class BlogNewsAdmin(admin.ModelAdmin):
+    list_display=('id','title')

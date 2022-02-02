@@ -16,10 +16,12 @@ class Registration(models.Model):
     def __str__(self):
         return self.title
 
-    
+from django.contrib.contenttypes.fields import GenericRelation
+from registration.models import BlogNews  
 class RegistrationSubMenu(models.Model):
     title = models.ForeignKey(Registration, on_delete=models.CASCADE ,related_name="RegistrationSubMenu")
     submenu = models.CharField(max_length=50)
+    tags = GenericRelation(BlogNews,related_query_name='reg_title')
     logo = models.ImageField(upload_to="logos",blank=True)
     slug = models.SlugField(blank=True)
     def save(self, *args, **kwargs):

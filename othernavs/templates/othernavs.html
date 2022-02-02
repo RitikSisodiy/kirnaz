@@ -1,57 +1,53 @@
 {% extends 'pvtltdbase.html' %}
 {% load static %}
 {% load customfilter %}
-{% block title%}{{reg.submenu|title}}{% endblock title%}
-
+{% block title%}{{reg.title|title}}{% endblock title%}
 {% block content %}
-<style>
-ul {
-    list-style-type: none;
-}
-i.fa-check {
-    color: #e77b20;
-    margin-right: 23px;
-}
-</style>
 {% if top %}
 {% for regs in top %}
-        <div class="first">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-7 col-12">
-                        <div class="banner-captions">
-                            <center><h1 class="title">{{regs.title}}</h1></center>
-                            <div class="sub-title"><center>{{regs.subtitle}}</center></div>
-                            <center>{{regs.Content|safe}}</center>
-                        </div>
+<div class="first">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-12">
+                <div class="banner-captions">
+                    <center>
+                        <h1 class="title">{{regs.title}}</h1>
+                    </center>
+                    <div class="sub-title">
+                        <center>{{regs.subtitle}}</center>
                     </div>
-                    <div class="col-lg-5">
-                        <div class="form">
-                            <div class="form-heading">
-                                <h3>{{regs.formtitle|title}}</h3>
-                            </div>
-                            <form method='POST'>{% csrf_token %}
-                                <input type="text" name="name" placeholder="Name" id="">
-                                <input type="email" name="email" placeholder="Email" id="">
-                                <input type="text" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" maxlength=10 minlength=10 name="contact" placeholder="Contact No." id="">
-                                <input type="text" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" maxlength=7 minlength=6 name="pin" placeholder="Pin Code" id="">
-                                <div class="submit-btn">
-                                    <button type="submit">Proceed Now!</button>
-                                </div>
-                            </form>
-                        </div>
+                    <center>{{regs.Content|safe}}</center>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="form">
+                    <div class="form-heading">
+                        <h3>{{regs.formtitle|title}}</h3>
                     </div>
+                    <form method='POST'>{% csrf_token %}
+                        <input type="text" name="name" placeholder="Name" id="">
+                        <input type="email" name="email" placeholder="Email" id="">
+                        <input type="text" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
+                            maxlength=10 minlength=10 name="contact" placeholder="Contact No." id="">
+                        <input type="text" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
+                            maxlength=7 minlength=6 name="pin" placeholder="Pin Code" id="">
+                        <div class="submit-btn">
+                            <button type="submit">Proceed Now!</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-    {% endfor %}
+    </div>
+</div>
+{% endfor %}
 {% endif %}
 
-        <div class="container second">
-            <p class="left heading-reg my-2"><a href="{% url 'index' %}">Home</a> / {{reg.submenu}}</p>
-            <br><br>
-            <!-- <div class="sub-nav">
-                <div class="container">
+<div class="container second">
+    <p class="left heading-reg my-2"><a href="{% url 'index' %}">Home</a> / {{reg.submenu}}</p>
+    <br><br>
+    <!-- <div class="sub-nav" id="navigation">
+                <div class="container" >
                     <ul class="list-inline list-icons">
                     {% for d in slist %}
                     {% if forloop.counter > 1 %}
@@ -66,1340 +62,1377 @@ i.fa-check {
                     </ul>
                 </div>
             </div> -->
-            <style>
-                .contentnav {
-                    display: -webkit-box;
-                    overflow-x: auto;
-                    width: 100%;
-                    display: flex;
-                    justify-content: space-around;
-                    /* overflow-x: hidden; */
-                }
-        
-                #navigation {
-                    transition: display 1s;
-                }
-        
-                .contentnav::-webkit-scrollbar {
-                    display: none;
-                    /* Safari and Chrome */
-                }
-        
-                #right-button,
-                #left-button {
-                    cursor: pointer;
-                }
-            </style>
-            <div class="d-flex w-100" id="navigation">
-                <div class="align-self-center" id='left-button'><i class="fa fa-angle-double-left mx-1	"></i></div>
-                <div class="p-3 rounded bg-light shadow contentnav" id="content">
-                    {% for d in slist %}
-                    {% if forloop.counter > 1 %}
-                    <div class="mx-2"><a href="#selectsection{{d.1}}">{{d.0}}</a></div>{% endif %}
-                    {% endfor %}
-                </div>
-                <div class="align-self-center" id="right-button"><i class="	fa fa-angle-double-right mx-1 "></i></div>
-        
-            </div>
-            {% if absm %}
-            {% for ab in absm %}
+    <style>
+        .contentnav {
+            display: -webkit-box;
+            overflow-x: auto;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            /* overflow-x: hidden; */
+        }
 
-            <h2 class="heading-reg my-4 text-center text-bold" id='selectsectionabsm'><b>{{ab.heading1}}</b></h2>
-            <div class="col-md-12">
-                <p class="text-justify bold">{{ab.heading1_details|safe}}</p>
+        #navigation {
+            transition: display 1s;
+        }
+        @media only screen and (max-width: 600px) {
+            .contentnav {
+                display: -webkit-box;
+                overflow-x: auto;
+                width: 100%;
+                justify-content: space-around;
+                /* overflow-x: hidden; */
+            }
+        }
 
-                <h2 class="heading-reg my-4 text-center text-bold"><b>{{ab.heading2}}</b></h2>
-                    <ul class="custumli">{{ab.heading2_details|safe}}</ul>
+        .contentnav::-webkit-scrollbar {
+            display: none;
+            /* Safari and Chrome */
+        }
 
-                {% endfor %}
-                {% comment %} <ul>
-                    <li class="mb-20"><i class="fa fa-caret-right" style="font-size:20px; color:#0099e6;"></i> Firstly,
-                        we register the Directors of the company with the Ministry of Corporate Affairs (MCA)</li>
-                    <li class="mb-20"><i class="fa fa-caret-right" style="font-size:20px; color:#0099e6;"></i> Secondly,
-                        we help you in choosing the most appropriate company name</li>
-                    <li class="mb-20"><i class="fa fa-caret-right" style="font-size:20px; color:#0099e6;"></i> Lastly,
-                        we help you in drafting your company’s constitution. (<a
-                            href="https://www.finacbooks.com/memorandum-of-association-moa-amendment">Memorandum of
-                            association</a> &amp; articles of association)</li>
-                </ul>
-
-                <p class="text-justify mb-20">A Private Limited Company (PLC) is considered as the most common and
-                    accepted corporate legal entity in India. The registration of a Private Limited Company is governed
-                    by the Companies Act, 2013 and Companies Incorporation Rules, 2014.
-                    No less than two shareholders and two directors are required to register a Private Limited Company.
-                    A natural person can be a director and shareholder both, while a company legal entity can only be a
-                    shareholder.
-                </p>
-
-                <p class="text-justify mb-20">If we take the current scenario, Start-ups and small businesses are
-                    increasingly choosing Private Limited Companies for doing businesses as it becomes easy for them to
-                    raise the funds from outside and at the same time it also limits the
-                    liabilities of its shareholders. It enables owners to provide employees with the option to own
-                    shares while reserves the right to hire and retain the best talent. Foreign nationals, foreign
-                    corporate entities or even NRIs can be Directors
-                    as well as Shareholders of a Private Limited Company via Foreign Direct Investment, making it the
-                    preferred choice of entity for foreign promoters.</p>
-
-                <p class="text-justify mb-20">A Private Limited Company has many unique features that make it an ideal
-                    business for countless small and medium sized businesses that are professionally managed or family
-                    owned. Some of the unique features of a Private Limited Company
-                    are as follows –</p>
-                <ul>
-                    <li><i class="fa fa-caret-right" style="font-size:20px; color:#0099e6;"></i> Limited liability
-                        protection to shareholders, </li>
-                    <li><i class="fa fa-caret-right" style="font-size:20px; color:#0099e6;"></i> Separate legal entity
-                        status
-                    </li>
-                    <li><i class="fa fa-caret-right" style="font-size:20px; color:#0099e6;"></i> Ability to raise funds
-                    </li>
-                    <li class="mb-20"><i class="fa fa-caret-right" style="font-size:20px; color:#0099e6;"></i> Perpetual
-                        existence.
-                    </li>
-                </ul>
-
-                <p class="text-justify mb-20">Let us take a look at few immediate advantages of a Private Limited
-                    Company:
-                </p>
-                <ul>
-                    <li><i class="fa fa-caret-right" style="font-size:20px; color:#0099e6;"></i> Greater freedom with
-                        limited liability </li>
-                    <li><i class="fa fa-caret-right" style="font-size:20px; color:#0099e6;"></i> Increased capital
-                        contribution and greater stability</li>
-                    <li id="package-sec"><i class="fa fa-caret-right" style="font-size:20px; color:#0099e6;"></i> The
-                        prospects for future business scalability</li>
-                </ul> {% endcomment %}
-            </div>
-            {% endif %}
+        #right-button,
+        #left-button {
+            cursor: pointer;
+        }
+    </style>
+    <div class="d-flex w-100" id="navigation">
+        <div class="align-self-center" id='left-button'><i class="fa fa-angle-double-left mx-1	"></i></div>
+        <div class="p-3 rounded bg-light shadow contentnav" id="content">
+            {% for d in slist %}
+            {% if forloop.counter > 1 %}
+            <div class="mx-2"><a href="#selectsection{{d.1}}">{{d.0}}</a></div>{% endif %}
+            {% endfor %}
         </div>
-        {% if pi %}
-        <div class="third" id= "selectsectionpi">
-            <section class="services mt-20">
-                <!--Heading Start-->
-                <div class="container">
-                    <div class="col-md-12 text-center">
-                        <h2 class="heading-reg my-4 text-center text-bold">What Is Included In Our Package?</h2>
-                    </div>
-                </div>
+        <div class="align-self-center" id="right-button"><i class="	fa fa-angle-double-right mx-1 "></i></div>
 
-                <div class="container">
-                    <div class="row">
-                    {% for p in pi %}
-                        <div class="col-md-3 col-sm-6 icon-box-wrapper">
-                            <div class="cards">
-                                <div class="block-bg">
-                                    <div class="icon-box" style="--color:{{forloop.counter|rancolor}};">
-                                        <div class="icon-left"><i class="fa {{p.icon}}" aria-hidden="true"></i></div>
-                                    </div>
-                                    <div class="icon-content">
-                                        <p class="inc-pacg mt-20 text-center">{{p.heading1}}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endfor %}
+    </div>
+    {% if absm %}
+    {% for ab in absm %}
 
-                        {% comment %} <div class="col-md-3 col-sm-6 icon-box-wrapper">
-                            <div class="cards">
-                                <div class="block-bg">
-                                    <div class="icon-box" style="--color:#2080af;">
-                                        <div class="icon-left"><i class="fa fa-book" aria-hidden="true"></i></div>
-                                    </div>
-                                    <div class="icon-content">
-                                        <p class="inc-pacg mt-20 text-center">Document Preparation</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+    <h2 class="heading-reg my-4 text-center text-bold" id='selectsectionabsm'><b>{{ab.heading1}}</b></h2>
+    <div class="col-md-12">
+        <p class="text-justify bold">{{ab.heading1_details|safe}}</p>
 
-                        <div class="col-md-3 col-sm-6 icon-box-wrapper">
-                            <div class="cards">
-                                <div class="block-bg">
-                                    <div class="icon-box" style="--color:#f69300;">
-                                        <div class="icon-left"><i class="fa fa-file-text-o" aria-hidden="true"></i>
-                                        </div>
-                                    </div>
-                                    <div class="icon-content">
-                                        <p class="inc-pacg mt-20 text-center">Application Drafting</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+        <h2 class="heading-reg my-4 text-center text-bold"><b>{{ab.heading2}}</b></h2>
+        <ul class="custumli">{{ab.heading2_details|safe}}</ul>
 
-                        <div class="col-md-3 col-sm-6 icon-box-wrapper">
-                            <div class="cards">
-                                <div class="block-bg">
-                                    <div class="icon-box" style="--color:#e04f00;">
-                                        <div class="icon-left"><i class="fa fa-inr" aria-hidden="true"></i></div>
-                                    </div>
-                                    <div class="icon-content">
-                                        <p class="inc-pacg mt-20 text-center">Government Fees</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> {% endcomment %}
-
-
-                    </div>
-
-                </div>
-                
-            </section>
-        </div>
-        {% endif %}
-        {% if dr %}
-        <div id = 'selectsectiondr'>
-        {% for d in dr %}
-        <section class="cmp1" id="">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <h2 class="heading-reg my-4 text-center text-bold">{{d.heading1}}</h2>
-                        <ul class="custumli">
-                            {{d.content|safe}}</ul>
-                            {% comment %} <li style="margin: 10px 0;"><i class="fa fa-caret-right" style="font-size:20px; margin-right: 10px; color:#0099e6;"></i>Passport size photograph of directors
-                            </li>
-                            <li style="margin: 10px 0;"><i class="fa fa-caret-right" style="font-size:20px; margin-right: 10px; color:#0099e6;"></i><strong>Aadhaar Card</strong></a>/ Voter identity card of directors</li>
-                            <li style="margin: 10px 0;"><i class="fa fa-caret-right" style="font-size:20px; margin-right: 10px; color:#0099e6;"></i>Copy of Rent agreement (If rented property)</li>
-                            <li style="margin: 10px 0;"><i class="fa fa-caret-right" style="font-size:20px; margin-right: 10px; color:#0099e6;"></i>Electricity/ Water bill (Business Place)</li>
-                            <li style="margin: 10px 0;"><i class="fa fa-caret-right" style="font-size:20px; margin-right: 10px; color:#0099e6;"></i>Copy of Property papers(If owned property)</li>
-                            <li style="margin: 10px 0;"><i class="fa fa-caret-right" style="font-size:20px; margin-right: 10px; color:#0099e6;"></i>Landlord NOC (Format will be provided)</li> {% endcomment %}
-                        
-                    </div>
-                </div>
-            </div>
-        </section>
         {% endfor %}
+        {% comment %} <ul>
+            <li class="mb-20"><i class="fa fa-caret-right" style="font-size:20px; color:#0099e6;"></i> Firstly,
+                we register the Directors of the company with the Ministry of Corporate Affairs (MCA)</li>
+            <li class="mb-20"><i class="fa fa-caret-right" style="font-size:20px; color:#0099e6;"></i> Secondly,
+                we help you in choosing the most appropriate company name</li>
+            <li class="mb-20"><i class="fa fa-caret-right" style="font-size:20px; color:#0099e6;"></i> Lastly,
+                we help you in drafting your company’s constitution. (<a
+                    href="https://www.finacbooks.com/memorandum-of-association-moa-amendment">Memorandum of
+                    association</a> &amp; articles of association)</li>
+        </ul>
+
+        <p class="text-justify mb-20">A Private Limited Company (PLC) is considered as the most common and
+            accepted corporate legal entity in India. The registration of a Private Limited Company is governed
+            by the Companies Act, 2013 and Companies Incorporation Rules, 2014.
+            No less than two shareholders and two directors are required to register a Private Limited Company.
+            A natural person can be a director and shareholder both, while a company legal entity can only be a
+            shareholder.
+        </p>
+
+        <p class="text-justify mb-20">If we take the current scenario, Start-ups and small businesses are
+            increasingly choosing Private Limited Companies for doing businesses as it becomes easy for them to
+            raise the funds from outside and at the same time it also limits the
+            liabilities of its shareholders. It enables owners to provide employees with the option to own
+            shares while reserves the right to hire and retain the best talent. Foreign nationals, foreign
+            corporate entities or even NRIs can be Directors
+            as well as Shareholders of a Private Limited Company via Foreign Direct Investment, making it the
+            preferred choice of entity for foreign promoters.</p>
+
+        <p class="text-justify mb-20">A Private Limited Company has many unique features that make it an ideal
+            business for countless small and medium sized businesses that are professionally managed or family
+            owned. Some of the unique features of a Private Limited Company
+            are as follows –</p>
+        <ul>
+            <li><i class="fa fa-caret-right" style="font-size:20px; color:#0099e6;"></i> Limited liability
+                protection to shareholders, </li>
+            <li><i class="fa fa-caret-right" style="font-size:20px; color:#0099e6;"></i> Separate legal entity
+                status
+            </li>
+            <li><i class="fa fa-caret-right" style="font-size:20px; color:#0099e6;"></i> Ability to raise funds
+            </li>
+            <li class="mb-20"><i class="fa fa-caret-right" style="font-size:20px; color:#0099e6;"></i> Perpetual
+                existence.
+            </li>
+        </ul>
+
+        <p class="text-justify mb-20">Let us take a look at few immediate advantages of a Private Limited
+            Company:
+        </p>
+        <ul>
+            <li><i class="fa fa-caret-right" style="font-size:20px; color:#0099e6;"></i> Greater freedom with
+                limited liability </li>
+            <li><i class="fa fa-caret-right" style="font-size:20px; color:#0099e6;"></i> Increased capital
+                contribution and greater stability</li>
+            <li id="package-sec"><i class="fa fa-caret-right" style="font-size:20px; color:#0099e6;"></i> The
+                prospects for future business scalability</li>
+        </ul> {% endcomment %}
+    </div>
+    {% endif %}
+</div>
+{% if pi %}
+<div class="third" id="selectsectionpi">
+    <section class="services mt-20">
+        <!--Heading Start-->
+        <div class="container">
+            <div class="col-md-12 text-center">
+                <h2 class="heading-reg my-4 text-center text-bold">What Is Included In Our Package?</h2>
+            </div>
         </div>
-        {% endif %}
+
+        <div class="container">
+            <div class="row">
+                {% for p in pi %}
+                <div class="col-md-3 col-sm-6 icon-box-wrapper">
+                    <div class="cards">
+                        <div class="block-bg">
+                            <div class="icon-box" style="--color:{{forloop.counter|rancolor}};">
+                                <div class="icon-left"><i class="fa {{p.icon}}" aria-hidden="true"></i></div>
+                            </div>
+                            <div class="icon-content">
+                                <p class="inc-pacg mt-20 text-center">{{p.heading1}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+                {% comment %} <div class="col-md-3 col-sm-6 icon-box-wrapper">
+                    <div class="cards">
+                        <div class="block-bg">
+                            <div class="icon-box" style="--color:#2080af;">
+                                <div class="icon-left"><i class="fa fa-book" aria-hidden="true"></i></div>
+                            </div>
+                            <div class="icon-content">
+                                <p class="inc-pacg mt-20 text-center">Document Preparation</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6 icon-box-wrapper">
+                    <div class="cards">
+                        <div class="block-bg">
+                            <div class="icon-box" style="--color:#f69300;">
+                                <div class="icon-left"><i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                            <div class="icon-content">
+                                <p class="inc-pacg mt-20 text-center">Application Drafting</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6 icon-box-wrapper">
+                    <div class="cards">
+                        <div class="block-bg">
+                            <div class="icon-box" style="--color:#e04f00;">
+                                <div class="icon-left"><i class="fa fa-inr" aria-hidden="true"></i></div>
+                            </div>
+                            <div class="icon-content">
+                                <p class="inc-pacg mt-20 text-center">Government Fees</p>
+                            </div>
+                        </div>
+                    </div>
+                </div> {% endcomment %}
+
+
+            </div>
+
+        </div>
+
+    </section>
+</div>
+{% endif %}
+{% if dr %}
+<div id='selectsectiondr'>
+    {% for d in dr %}
+    <section class="cmp1" id="">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="heading-reg my-4 text-center text-bold">{{d.heading1}}</h2>
+                    <ul class="custumli">
+                        {{d.content|safe}}</ul>
+                    {% comment %} <li style="margin: 10px 0;"><i class="fa fa-caret-right"
+                            style="font-size:20px; margin-right: 10px; color:#0099e6;"></i>Passport size photograph of
+                        directors
+                    </li>
+                    <li style="margin: 10px 0;"><i class="fa fa-caret-right"
+                            style="font-size:20px; margin-right: 10px; color:#0099e6;"></i><strong>Aadhaar
+                            Card</strong></a>/ Voter identity card of directors</li>
+                    <li style="margin: 10px 0;"><i class="fa fa-caret-right"
+                            style="font-size:20px; margin-right: 10px; color:#0099e6;"></i>Copy of Rent agreement (If
+                        rented property)</li>
+                    <li style="margin: 10px 0;"><i class="fa fa-caret-right"
+                            style="font-size:20px; margin-right: 10px; color:#0099e6;"></i>Electricity/ Water bill
+                        (Business Place)</li>
+                    <li style="margin: 10px 0;"><i class="fa fa-caret-right"
+                            style="font-size:20px; margin-right: 10px; color:#0099e6;"></i>Copy of Property papers(If
+                        owned property)</li>
+                    <li style="margin: 10px 0;"><i class="fa fa-caret-right"
+                            style="font-size:20px; margin-right: 10px; color:#0099e6;"></i>Landlord NOC (Format will be
+                        provided)</li> {% endcomment %}
+
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endfor %}
+</div>
+{% endif %}
 
 {% if pr %}
-        <section class="services" id="selectsectionpr">
-            <div id="procedure"></div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <h2 class="heading-reg my-4 text-center text-bold">Procedure</h2>
-                    </div>
-                </div>
+<section class="services" id="selectsectionpr">
+    <div id="procedure"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h2 class="heading-reg my-4 text-center text-bold">Procedure</h2>
             </div>
+        </div>
+    </div>
 
-            <div class="container">
-                <div class="row wow fadeInUp animated animated mb-20" data-wow-delay=".5s"
-                    style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
-                    {% for p in pr %}
-                    <div class="col-lg-4 mx-auto col-md-6 p-2">
-                        <div class="service-box text-center py-4 px-2" style="border: 1px solid #00000049; width:100%; height:100%;">
-                            <div class="icon-left"><i style="color:{{forloop.counter|rancolor}};" class="mb-3 fa {{p.icon}} fa-4x"></i>
-                            </div>
-                            <div class="service-head" style="color: #444444; font-weight:700;">{{p.heading1|title}}
-                            </div>
-                            <p>{{p.content}}</p>
-
-                        </div>
+    <div class="container">
+        <div class="row wow fadeInUp animated animated mb-20" data-wow-delay=".5s"
+            style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
+            {% for p in pr %}
+            <div class="col-lg-4 mx-auto col-md-6 p-2">
+                <div class="service-box text-center py-4 px-2"
+                    style="border: 1px solid #00000049; width:100%; height:100%;">
+                    <div class="icon-left"><i style="color:{{forloop.counter|rancolor}};"
+                            class="mb-3 fa {{p.icon}} fa-4x"></i>
                     </div>
-                    {% endfor %}
-                    {% comment %} <div class="col-lg-4 mx-auto col-md-6 p-2">
-                        <div class="service-box text-center py-4 px-2"
-                            style="border: 1px solid #00000049; width:100%; height:100%;">
-                            <div class="icon-left"><i style="color: #2892d0;" class="mb-3 fa fa-envelope fa-4x"></i>
-                            </div>
-                            <div class="service-head" style="color: #444444; font-weight:700;">Obtain DSC and DPIN
-                            </div>
-                            <p>After issuing your documents, we provide you with Designated Partner Identification
-                                Number and a Digital Signature Certificate.</p>
-
-                        </div>
+                    <div class="service-head" style="color: #444444; font-weight:700;">{{p.heading1|title}}
                     </div>
-                    <div class="col-lg-4 mx-auto col-md-6 p-2">
-                        <div class="service-box text-center py-4 px-2"
-                            style="border: 1px solid #00000049; width:100%; height:100%;">
-                            <div class="icon-left"><i style="color: #2892d0;" class="mb-3 fa fa-book fa-4x"></i></div>
-                            <div class="service-head" style="color: #444444; font-weight:700;">Verification and Name
-                                Approval
-                            </div>
-                            <p>Your all details will be verified. Subsequently we move ahead with the name approval.</p>
-
-                        </div>
-                    </div> {% endcomment %}
+                    <p>{{p.content}}</p>
 
                 </div>
             </div>
-
-
-
-            {% comment %} <div class="container">
-                <div class="row wow fadeInUp animated animated " data-wow-delay=".5s"
-                    style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
-
-                    <div class="col-lg-4 mx-auto col-md-6  p-2 col-md-offset-2">
-                        <div class="service-box text-center py-4 px-2"
-                            style="border: 1px solid #00000049; width:100%; height:100%;">
-                            <div class="icon-left"><i style="color: #2892d0;" class="mb-3 fa fa-book fa-4x"
-                                    aria-hidden="true"></i></div>
-                            <div class="service-head" style="color: #444444; font-weight:700;">Document Submission</div>
-                            <p>All the essential papers are created by us and then filed with ROC on your behalf.</p>
-
-                        </div>
+            {% endfor %}
+            {% comment %} <div class="col-lg-4 mx-auto col-md-6 p-2">
+                <div class="service-box text-center py-4 px-2"
+                    style="border: 1px solid #00000049; width:100%; height:100%;">
+                    <div class="icon-left"><i style="color: #2892d0;" class="mb-3 fa fa-envelope fa-4x"></i>
                     </div>
-                    <div class="col-lg-4 mx-auto col-md-6 p-2">
-                        <div class="service-box text-center py-4 px-2"
-                            style="border: 1px solid #00000049; width:100%; height:100%;">
-                            <div class="icon-left"><i style="color: #2892d0;" class="mb-3 fa fa-book fa-4x"
-                                    aria-hidden="true"></i></div>
-                            <div class="service-head" style="color: #444444; font-weight:700;">Your work is done!</div>
-                            <p>When your organization is registered, we hand over all the files and DSCs.</p>
-
-                        </div>
+                    <div class="service-head" style="color: #444444; font-weight:700;">Obtain DSC and DPIN
                     </div>
+                    <p>After issuing your documents, we provide you with Designated Partner Identification
+                        Number and a Digital Signature Certificate.</p>
+
+                </div>
+            </div>
+            <div class="col-lg-4 mx-auto col-md-6 p-2">
+                <div class="service-box text-center py-4 px-2"
+                    style="border: 1px solid #00000049; width:100%; height:100%;">
+                    <div class="icon-left"><i style="color: #2892d0;" class="mb-3 fa fa-book fa-4x"></i></div>
+                    <div class="service-head" style="color: #444444; font-weight:700;">Verification and Name
+                        Approval
+                    </div>
+                    <p>Your all details will be verified. Subsequently we move ahead with the name approval.</p>
 
                 </div>
             </div> {% endcomment %}
-        </section>
-        {% endif %}
-        {% if cr %}
-        {% for c in cr %}
-        <section id="selectsectioncr" class="services" id=''>
-        
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <h2 class="heading-reg my-4 text-center text-bold">{{c.heading1}}
-                        </h2>
-                    </div>
-                </div>
-            </div>
 
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 py-3">
-
-                        <ul class="custumli" style="list-style-type: none;">
-                            {{c.content1|safe}}
-                            {% comment %} <li class="my-2"><i style="color: #0099e6; margin-right: 10px;" class="fa fa-check"></i>A
-                                minimum of two shareholders</li>
-                            <li class="my-2"><i style="color: #0099e6; margin-right: 10px;" class="fa fa-check"></i>A
-                                minimum of two directors</li>
-                            <li class="my-2"><i style="color: #0099e6; margin-right: 10px;" class="fa fa-check"></i>Any
-                                amount of capital</li>
-                            <li class="my-2"><i style="color: #0099e6; margin-right: 10px;"
-                                    class="fa fa-check"></i>Requisite documents</li>
-                            <li class="my-2"><i style="color: #0099e6; margin-right: 10px;" class="fa fa-check"></i>MOA
-                                &amp; AOA</li> {% endcomment %}
-                        </ul>
-
-                    </div>
-                </div>
-            </div>
-            
-
-        </section>
-        {% if c.heading2 %}
-        <section class="services">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <h2 class="heading-reg my-4 text-center text-bold">{{c.heading2}}</h2>
-                    </div>
-                </div>
-            </div>
-
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 py-3">
-
-                        <ul class="custumli" style="list-style-type: none;">
-                            
-                                {{c.content2|safe}}
-                            {% comment %} <li class="my-2"><i class="fa fa-check" style="color: #0099e6; margin-right: 10px;"></i>The
-                                directors have to be involved in decision making.</li>
-                            <li class="my-2"><i class="fa fa-check"
-                                    style="color: #0099e6; margin-right: 10px;"></i>Transfer of shares to others cannot
-                                be made without an agreement.</li> {% endcomment %}
-                        </ul>
-
-                    </div>
-                </div>
-            </div>
-
-        </section>{% endif %}
-        {% endfor %}
-        {% endif %}
-
-        {% if sn %}
-        <section id="selectsectionsn" class="services" id=''>
-        {% for s in sn %}
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        </h2 class="heading-reg my-4 text-center text-bold">{{s.heading1}}
-                        </h2>
-                    </div>
-                </div>
-            </div>
-
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <p class="mb-20">{{s.content1|linebreaks}} </p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12 py-3">
-                        <ul style="list-style-type: none;" class="custumli">
-                            {{s.content2|safe}}
-                            {% comment %} <li class="my-2"><i style="color: #0099e6; margin-right: 10px;" class="fa fa-check"></i>It
-                                needs to be the face of the company.</li>
-                            <li class="my-2"><i style="color: #0099e6; margin-right: 10px;" class="fa fa-check"></i>The
-                                company name should be unique. It should not be identical or similar to an already
-                                existing business or a trademark.</li>
-                            <li class="my-2"><i style="color: #0099e6; margin-right: 10px;" class="fa fa-check"></i>It
-                                is best to avoid the name of a person (be the owner or a shareholder) to be used in the
-                                company’s name. This avoids the need to rename the company in
-                                the event of his or her exit.</li>
-                            <li class="my-2"><i style="color: #0099e6; margin-right: 10px;" class="fa fa-check"></i>The
-                                company name needs to be ended with the suffix "Private Ltd".</li>
-                            <li class="my-2"><i style="color: #0099e6; margin-right: 10px;" class="fa fa-check"
-                                    id="frequently-asked"></i>The company name should not be contradictory to the law.
-                                It should not be abusive and against the practices, beliefs and values of
-                                any particular group of people.</li> {% endcomment %}
-
-                        </ul>
-
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
-        </section> {% endif %}
-        {% if mm %}
-        <section id="selectsectionmm" class="fssai-registration-sec py-5"  style="background: #f3f3f3;">
-        {% for m in mm %}
-            <div class="container para-justfy">
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <h2 class="heading-reg my-4 text-center text-bold">{{m.heading1}}</h2>
-                    </div>
-                    <div class="col-md-12 mb-40">
-                        <p class="my-3" id="">{{m.content|safe}} </p>
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
-        </section> {% endif %}
-
-{% if faq %}
-        <section class="services" id="selectsectionfaq">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <h2 class="heading-reg my-4 text-center text-bold">{{reg.submenu}} FAQs </h2>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="container faq">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                        {% for fq in faq %}
-                            <div class="col-12 toggler p-0" id="toggler">
-                                <div class="panel-heading" role="tab" id="headingOne{{forloop.counter}}">
-                                    <div class="row">
-                                        <div class="col-lg-11 col-11">
-                                            <h4 class="panel-title">
-                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne{{forloop.counter}}"
-                                                    aria-expanded="true" aria-controls="collapseOne{{forloop.counter}}">
-                                                    {{fq.heading|safe}}
-
-                                            </h4>
-                                        </div>
-                                        <div class="col-1 col-lg-1">
-                                            <div class="fa fa-plus"></div>
-                                        </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div id="collapseOne{{forloop.counter}}" class="panel-collapse collapse in" role="tabpanel"
-                                    aria-labelledby="headingOne{{forloop.counter}}">
-                                    <div class="panel-body">{{fq.content|safe}}
-                                    </div>
-                                </div>
-                        {% endfor %}
-            {% comment %}   </div>
-                            <div class="col-12 toggler p-0" id="toggler">
-                                <div class="panel-heading" role="tab" id="headingTwo">
-                                    <div class="row">
-                                        <div class="col-lg-11 col-11">
-                                            <h4 class="panel-title">
-                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
-                                                    href="#collapseTwo" aria-expanded="false"
-                                                    aria-controls="collapseTwo">
-                                                    How much time is needed to form a private limited company in India?
-
-                                            </h4>
-                                        </div>
-                                        <div class="col-1 col-lg-1">
-                                            <div class="fa fa-plus"></div>
-                                        </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel"
-                                    aria-labelledby="headingTwo">
-                                    <div class="panel-body">If your all files are in order, it is going to take no
-                                        longer than fifteen days. Nevertheless, it depends on the work of the registrar.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 toggler p-0" id="toggler">
-                                <div class="panel-heading" role="tab" id="headingThree">
-                                    <div class="row">
-                                        <div class="col-lg-11 col-11">
-                                            <h4 class="panel-title">
-                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
-                                                    href="#collapseThree" aria-expanded="false"
-                                                    aria-controls="collapseThree">
-                                                    What is an electronic signature certificate? Who shall obtain DSC
-                                                    for private limited company registration?
-
-
-                                            </h4>
-
-                                        </div>
-                                        <div class="col-1 col-lg-1">
-                                            <div class="fa fa-plus"></div>
-                                        </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel"
-                                    aria-labelledby="headingThree">
-                                    <div class="panel-body">Digital Signature Certificate is provided in a token form
-                                        and it is given by Certified Authorities. Any form submitted to register a
-                                        Private Limited Company online shall be published after affixing the DSC
-                                        of an Applicant. The directors of the company should obtain DSC (Digital
-                                        signature certificate) as absence of DSC can cause site related problems to the
-                                        website visitors and subscribers.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 toggler p-0" id="toggler">
-                                <div class="panel-heading" role="tab" id="headingFour">
-                                    <div class="row">
-                                        <div class="col-lg-11 col-11">
-                                            <h4 class="panel-title">
-                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
-                                                    href="#collapseFour" aria-expanded="false"
-                                                    aria-controls="collapseFour">
-                                                    What is a Director Identification Number (DIN)?
-
-                                            </h4>
-                                        </div>
-                                        <div class="col-1 col-lg-1">
-                                            <div class="fa fa-plus"></div>
-                                        </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div id="collapseFour" class="panel-collapse collapse" role="tabpanel"
-                                    aria-labelledby="headingFour">
-                                    <div class="panel-body">Director Identification Number is a unique number issued by
-                                        the Ministry of Corporate Affairs to an existing or a proposed director of a
-                                        company which is incorporated.</div>
-                                </div>
-                            </div>
-                            <div class="col-12 toggler p-0" id="toggler">
-                                <div class="panel-heading" role="tab" id="headingFive">
-                                    <div class="row">
-                                        <div class="col-lg-11 col-11">
-                                            <h4 class="panel-title">
-                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
-                                                    href="#collapseFive" aria-expanded="false"
-                                                    aria-controls="collapseFive">
-                                                    What are the guidelines for selecting a title for a private limited
-                                                    company?
-
-
-                                            </h4>
-                                        </div>
-                                        <div class="col-1 col-lg-1">
-                                            <div class="fa fa-plus"></div>
-                                        </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div id="collapseFive" class="panel-collapse collapse" role="tabpanel"
-                                    aria-labelledby="headingFive">
-                                    <div class="panel-body">
-                                        <p class="mb-30">The Registrar of Companies (ROC) expects that India should
-                                            follow few naming guidelines. The more closely the guidelines are followed,
-                                            the greater the chances of your name approval. Few guidelines
-                                            for name approval are as follows - </p>
-                                        <p class="mb-30"><b>Blacklist:</b> Generic names, adjectives and abbreviations
-                                            will be rejected. For ex- Abbreviations like ABP or CNN will be rejected.
-                                            The terms like bank, exchange, stock exchange will also
-                                            be rejected unless it is authorized by SEBI or RBI.</p>
-                                        <p class="mb-30"><b>No Common Trademark: </b>Trademark should not be common. The
-                                            registered trademark should not be similar to any other trademark displayed
-                                            on the Intellectual property website of India. If found
-                                            similar, you will get the name approval only when you get an NOC Objection
-                                            Certificate (NOC) from its owner - authorizing you to make use of it.</p>
-                                        <p class="mb-30"><b>Descriptive Component: </b>The company name should convey
-                                            the details about your business you are doing or you want to do. For ex - In
-                                            Eli Research Private Limited, the word' Research' conveys
-                                            that the company is into a research business. If your business is different,
-                                            you cannot use the word “Research” in your business name as it will surely
-                                            get rejected.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 toggler p-0" id="toggler">
-                                <div class="panel-heading" role="tab" id="headingSix">
-                                    <div class="row">
-                                        <div class="col-lg-11 col-11">
-                                            <h4 class="panel-title">
-                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
-                                                    href="#collapseSix" aria-expanded="false"
-                                                    aria-controls="collapseSix">
-                                                    What documents are needed to complete the process?
-
-                                            </h4>
-                                        </div>
-                                        <div class="col-1 col-lg-1">
-                                            <div class="fa fa-plus"></div>
-                                        </div>
-                                        </a>
-
-                                    </div>
-                                </div>
-                                <div id="collapseSix" class="panel-collapse collapse" role="tabpanel"
-                                    aria-labelledby="headingSix">
-                                    <div class="panel-body">All directors should provide a copy of identity proof and
-                                        address proof. In addition to it, a copy of PAN Card is also required.
-                                        No-objection Certificate (NOC) should also be submitted by the
-                                        proprietor of the registered business premises.</div>
-                                </div>
-                            </div>
-                            <div class="col-12 toggler p-0" id="toggler">
-                                <div class="panel-heading" role="tab" id="headingSeven">
-                                    <div class="row">
-                                        <div class="col-lg-11 col-11">
-                                            <h4 class="panel-title">
-                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
-                                                    href="#collapseSeven" aria-expanded="false"
-                                                    aria-controls="collapseSeven">
-                                                    Does a private limited company have a continued existence?
-
-                                            </h4>
-                                        </div>
-                                        <div class="col-1 col-lg-1">
-                                            <div class="fa fa-plus"></div>
-                                        </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div id="collapseSeven" class="panel-collapse collapse" role="tabpanel"
-                                    aria-labelledby="headingSeven">
-                                    <div class="panel-body">Yes, private limited company has a continued existence till
-                                        they are achieving the annual compliances. When they don’t comply with the
-                                        conditions, it is going to be dormant and lastly it
-                                        struck out from the register altogether.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 toggler p-0" id="toggler">
-                                <div class="panel-heading" role="tab" id="headingEight">
-                                    <div class="row">
-                                        <div class="col-lg-11 col-11">
-                                            <h4 class="panel-title">
-                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
-                                                    href="#collapseEight" aria-expanded="false"
-                                                    aria-controls="collapseEight">
-                                                    How much is the cost of operating a private limited company?
-
-                                            </h4>
-                                        </div>
-                                        <div class="col-1 col-lg-1">
-                                            <div class="fa fa-plus"></div>
-                                        </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div id="collapseEight" class="panel-collapse collapse" role="tabpanel"
-                                    aria-labelledby="headingEight">
-                                    <div class="panel-body">The expense of managing a private limited business is
-                                        usually split into 4 categories: expense of establishing a private limited
-                                        business, price of accounting and auditing, cost of miscellaneous
-                                        expenses and compliance. You have to spend minimum Rs.40000 in every cost
-                                        category.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 toggler p-0" id="toggler">
-                                <div class="panel-heading" role="tab" id="headingNine">
-                                    <div class="row">
-                                        <div class="col-lg-11 col-11">
-                                            <h4 class="panel-title">
-                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
-                                                    href="#collapseNine" aria-expanded="false"
-                                                    aria-controls="collapseNine">
-                                                    Is it necessary to get company’s book audited?
-
-                                            </h4>
-                                        </div>
-                                        <div class="col-1 col-lg-1">
-                                            <div class="fa fa-plus"></div>
-                                        </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div id="collapseNine" class="panel-collapse collapse" role="tabpanel"
-                                    aria-labelledby="headingNine">
-                                    <div class="panel-body">Yes, a private limited company must employ an auditor. An
-                                        auditor should be appointed within thirty days of incorporation. Compliances are
-                                        crucial and should be followed by private
-                                        limited company as non-compliance may cause company a penalty of lakhs of rupees
-                                        and sometimes may result in blacklisting of directors. </div>
-                                </div>
-                            </div>
-                            <div class="col-12 toggler p-0" id="toggler">
-                                <div class="panel-heading" role="tab" id="headingTen">
-                                    <div class="row">
-                                        <div class="col-lg-11 col-11">
-                                            <h4 class="panel-title">
-                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
-                                                    href="#collapseTen" aria-expanded="false"
-                                                    aria-controls="collapseTen">
-                                                    What are articles of association and memorandum of association?
-
-                                            </h4>
-                                        </div>
-                                        <div class="col-1 col-lg-1">
-                                            <div class="fa fa-plus"></div>
-                                        </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div id="collapseTen" class="panel-collapse collapse" role="tabpanel"
-                                    aria-labelledby="headingTen">
-                                    <div class="panel-body">Memorandum of association is a legal document which
-                                        specifies the scope of business activities of the company and defines its
-                                        relationship with the shareholders whereas articles
-                                        of association is a document which specifies the company’s rules and regulations
-                                        for its operations as well as defines the company purpose. The document also
-                                        explains how
-                                        the tasks will be accomplished in an organization including the appointment of
-                                        directors and handling of financial records.</div>
-                                </div>
-                            </div>
-                            <div class="col-12 toggler p-0" id="toggler">
-                                <div class="panel-heading" role="tab" id="headingEleven">
-                                    <div class="row">
-                                        <div class="col-lg-11 col-11">
-                                            <h4 class="panel-title">
-                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
-                                                    href="#collapseEleven" aria-expanded="false"
-                                                    aria-controls="collapseEleven">
-                                                    Are 2 directors needed for a Private Limited Company Registration?
-
-                                            </h4>
-                                        </div>
-                                        <div class="col-1 col-lg-1">
-                                            <div class="fa fa-plus"></div>
-                                        </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div id="collapseEleven" class="panel-collapse collapse" role="tabpanel"
-                                    aria-labelledby="headingEleven">
-                                    <div class="panel-body">A minimum of 2 directors are required to run a private
-                                        limited company. The maximum number of peoples can be 200. One director can
-                                        start a business by registering the company
-                                        as One Person Company (OPC) only.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 toggler p-0" id="toggler">
-                                <div class="panel-heading" role="tab" id="headingTwelve">
-                                    <div class="row">
-                                        <div class="col-lg-11 col-11">
-                                            <h4 class="panel-title">
-                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
-                                                    href="#collapseTwelve" aria-expanded="false"
-                                                    aria-controls="collapseTwelve">
-                                                    Who could be in a private limited company?
-
-                                            </h4>
-                                        </div>
-                                        <div class="col-1 col-lg-1">
-                                            <div class="fa fa-plus"></div>
-                                        </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div id="collapseTwelve" class="panel-collapse collapse" role="tabpanel"
-                                    aria-labelledby="headingTwelve">
-                                    <div class="panel-body">Any individual/organization can become a part of a private
-                                        limited company including foreigners, NRI etc. The person should be 18+ above
-                                        and must hold a valid PAN card.</div>
-                                </div>
-                            </div>
-                            <div class="col-12 toggler p-0" id="toggler">
-                                <div class="panel-heading" role="tab" id="headingThirteen">
-                                    <div class="row">
-                                        <div class="col-lg-11 col-11">
-                                            <h4 class="panel-title">
-                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
-                                                    href="#collapseThirteen" aria-expanded="false"
-                                                    aria-controls="collapseThirteen">
-                                                    What minimum capital is required to form a private limited company?
-
-                                            </h4>
-                                        </div>
-                                        <div class="col-1 col-lg-1">
-                                            <div class="fa fa-plus"></div>
-                                        </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div id="collapseThirteen" class="panel-collapse collapse" role="tabpanel"
-                                    aria-labelledby="headingThirteen">
-                                    <div class="panel-body">You can use any amount of capital to form a private limited
-                                        company.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 toggler p-0" id="toggler">
-                                <div class="panel-heading" role="tab" id="headingFourteen">
-                                    <div class="row">
-                                        <div class="col-lg-11 col-11">
-                                            <h4 class="panel-title">
-                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
-                                                    href="#collapseFourteen" aria-expanded="false"
-                                                    aria-controls="collapseFourteen">
-                                                    Whether a salaried person can become a director in a private limited
-                                                    company?
-
-
-                                            </h4>
-
-                                        </div>
-                                        <div class="col-1 col-lg-1">
-                                            <div class="fa fa-plus"></div>
-                                        </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div id="collapseFourteen" class="panel-collapse collapse" role="tabpanel"
-                                    aria-labelledby="headingFourteen">
-                                    <div class="panel-body">Yes, a salaried person can become a director in private
-                                        limited company, one person company (OPC) or limited liability partnership
-                                        (LLP). In this case, one needs
-                                        to look at the employment agreement, if it enables such provisions.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 toggler p-0" id="toggler">
-                                <div class="panel-heading" role="tab" id="headingFifteen">
-                                    <div class="row">
-                                        <div class="col-lg-11 col-11">
-                                            <h4 class="panel-title">
-                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
-                                                    href="#collapseFifteen" aria-expanded="false"
-                                                    aria-controls="collapseFifteen">
-                                                    Whether the limited liability partnership can be transformed into a
-                                                    private limited company?
-
-
-                                            </h4>
-
-                                        </div>
-                                        <div class="col-1 col-lg-1">
-                                            <div class="fa fa-plus"></div>
-                                        </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div id="collapseFifteen" class="panel-collapse collapse" role="tabpanel"
-                                    aria-labelledby="headingFifteen">
-                                    <div class="panel-body">Unfortunately no, one cannot transform an LLP into a Private
-                                        Limited Company. The LLP Act, 2008 and the Companies Act, 2013, both are not
-                                        having any provision
-                                        for transforming the LLP into a private limited company. If one desires to
-                                        transform it, he or she has to purchase a brand new Private Limited Company
-                                        with exactly the same name and LLP Company has to issue a no objection
-                                        certification (NOC) for it.</div>
-                                </div>
-                            </div>
-                            <div class="col-12 toggler p-0" id="toggler">
-                                <div class="panel-heading" role="tab" id="headingSixteen">
-                                    <div class="row">
-                                        <div class="col-lg-11 col-11">
-                                            <h4 class="panel-title">
-                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
-                                                    href="#collapseSixteen" aria-expanded="false"
-                                                    aria-controls="collapseSixteen">
-                                                    What is the time taken by Finacbooks in registering a private
-                                                    limited company?
-
-
-                                            </h4>
-
-                                        </div>
-                                        <div class="col-1 col-lg-1">
-                                            <div class="fa fa-plus"></div>
-                                        </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div id="collapseSixteen" class="panel-collapse collapse" role="tabpanel"
-                                    aria-labelledby="headingSixteen">
-                                    <div class="panel-body">FinacBooks can incorporate a Private Limited Company in 15
-                                        to 25 days. The time taken also depends upon on the relevant documents provided,
-                                        speed and the
-                                        granting of approvals from the authorities. To guarantee a speedy registration,
-                                        kindly choose a unique title as well as make sure you have all the
-                                        necessary documents with you before starting the registration process.</div>
-                                </div>
-                            </div>
-                            <div class="col-12 toggler p-0" id="toggler">
-                                <div class="panel-heading" role="tab" id="headingEighteen">
-                                    <div class="row">
-                                        <div class="col-lg-11 col-11">
-                                            <h4 class="panel-title">
-                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
-                                                    href="#collapseSeventeen" aria-expanded="false"
-                                                    aria-controls="collapseSeventeen">
-                                                    Whether NRI’S/foreign nationals can become a director in a private
-                                                    limited company?
-
-
-                                            </h4>
-
-                                        </div>
-                                        <div class="col-1 col-lg-1">
-                                            <div class="fa fa-plus"></div>
-                                        </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div id="collapseSeventeen" class="panel-collapse collapse" role="tabpanel"
-                                    aria-labelledby="headingSeventeen">
-                                    <div class="panel-body">Yes, NRIs as well as Foreign Nationals can easily become
-                                        directors in a Private Limited Company but they need to qualify and obtain a
-                                        Director Identification
-                                        number (DIN) from the Registrar of companies in India. 2 directors are needed to
-                                        form a private limited company. If one is an NRI, then the other
-                                        must be an Indian.</div>
-                                </div>
-                            </div>
-                            <div class="col-12 toggler p-0" id="toggler">
-                                <div class="panel-heading" role="tab" id="headingTwenty">
-                                    <div class="row">
-                                        <div class="col-lg-11 col-11">
-                                            <h4 class="panel-title">
-                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
-                                                    href="#collapseEighteen" aria-expanded="false"
-                                                    aria-controls="collapseEighteen">
-                                                    A Private Limited Company is also known as a separate legal entity.
-                                                    Why?
-
-
-                                            </h4>
-
-                                        </div>
-                                        <div class="col-1 col-lg-1">
-                                            <div class="fa fa-plus"></div>
-                                        </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div id="collapseEighteen" class="panel-collapse collapse" role="tabpanel"
-                                    aria-labelledby="headingEighteen">
-                                    <div class="panel-body">A private limited company is a separate legal entity like
-                                        any other person incorporated under the Act. It separates the actions of the
-                                        entity from
-                                        its members. Therefore, it is separate at law from its shareholders, directors,
-                                        promoters etc. </div>
-                                </div>
-                            </div>
-                            <div class="col-12 toggler p-0" id="toggler">
-                                <div class="panel-heading" role="tab" id="headingTwentyone">
-                                    <div class="row">
-                                        <div class="col-lg-11 col-11">
-                                            <h4 class="panel-title">
-                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
-                                                    href="#collapseNineteen" aria-expanded="false"
-                                                    aria-controls="collapseNineteen">
-                                                    Can I register a private limited company on my residence address?
-
-                                            </h4>
-                                        </div>
-                                        <div class="col-1 col-lg-1">
-                                            <div class="fa fa-plus"></div>
-                                        </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div id="collapseNineteen" class="panel-collapse collapse" role="tabpanel"
-                                    aria-labelledby="headingNineteen">
-                                    <div class="panel-body">Yes, One can register a private limited company on their
-                                        residential address. One has to submit the electricity copy of the same address
-                                        as
-                                        evidence.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 toggler p-0" id="toggler">
-                                <div class="panel-heading" role="tab" id="headingTwenty">
-                                    <div class="row">
-                                        <div class="col-lg-11 col-11">
-                                            <h4 class="panel-title">
-                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
-                                                    href="#collapseTwenty" aria-expanded="false"
-                                                    aria-controls="collapseTwenty">
-                                                    If you are unable to acquire partners, whether one can register
-                                                    their own family members into the business?
-
-
-                                            </h4>
-
-                                        </div>
-                                        <div class="col-1 col-lg-1">
-                                            <div class="fa fa-plus"></div>
-                                        </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div id="collapseTwenty" class="panel-collapse collapse" role="tabpanel"
-                                    aria-labelledby="headingTwenty">
-                                    <div class="panel-body">Yes, the best option here is to make your loved ones as
-                                        partners.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 toggler p-0" id="toggler">
-                                <div class="panel-heading" role="tab" id="headingTwentyone">
-                                    <div class="row">
-                                        <div class="col-lg-11 col-11">
-                                            <h4 class="panel-title">
-                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
-                                                    href="#collapseTwentyone" aria-expanded="false"
-                                                    aria-controls="collapseTwentyone">
-                                                    What if you want to transform an existing private limited company
-                                                    into a LLP?
-
-
-                                            </h4>
-
-                                        </div>
-                                        <div class="col-1 col-lg-1">
-                                            <div class="fa fa-plus"></div>
-                                        </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div id="collapseTwentyone" class="panel-collapse collapse" role="tabpanel"
-                                    aria-labelledby="headingTwentyone">
-                                    <div class="panel-body">An existing private limited company can be transformed into
-                                        a <a href="https://www.finacbooks.com/llp-registration">LLP under following
-                                            circumstances -
-                                            <ol class="list list-ordened">
-                                                <li>If the company have no security interest in its assets at the time
-                                                    of application.</li>
-                                                <li>When there are no partners of the LLP and the shareholders of the
-                                                    company are the only partners.</li>
-                                            </ol>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 toggler p-0" id="toggler">
-                                <div class="panel-heading" role="tab" id="headingTwentytwo">
-                                    <div class="row">
-                                        <div class="col-lg-11 col-11">
-                                            <h4 class="panel-title">
-                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
-                                                    href="#collapseTwentytwo" aria-expanded="false"
-                                                    aria-controls="collapseTwentytwo">
-                                                    How one can form a section-8 company?
-
-                                            </h4>
-
-                                        </div>
-                                        <div class="col-1 col-lg-1">
-                                            <div class="fa fa-plus"></div>
-                                        </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div id="collapseTwentytwo" class="panel-collapse collapse" role="tabpanel"
-                                    aria-labelledby="headingTwentytwo">
-                                    <div class="panel-body">In order to register a section 8 company, Firstly, the
-                                        applicant is needed to file form INC 1 for title availability. After that, When
-                                        the title is approved, another form INC 12 is to be filed by the company to
-                                        obtain a license. After getting the license number,
-                                        the applicant is able to move forward and add a business by filing e forms INC-7
-                                        or SPICe (in case numbers of members are more
-                                        than seven).</div>
-                                </div>
-                            </div>
-                            <div class="col-12 toggler p-0" id="toggler">
-                                <div class="panel-heading" role="tab" id="headingTwentythree">
-                                    <div class="row">
-                                        <div class="col-lg-11 col-11">
-                                            <h4 class="panel-title">
-                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
-                                                    href="#collapseTwentythree" aria-expanded="false"
-                                                    aria-controls="collapseTwentythree">
-                                                    What are the FDI guidelines for foreigners investing in a
-                                                    private limited company?
-
-
-                                            </h4>
-                                        </div>
-                                        <div class="col-1 col-lg-1">
-                                            <div class="fa fa-plus"></div>
-                                        </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div id="collapseTwentythree" class="panel-collapse collapse" role="tabpanel"
-                                    aria-labelledby="headingTwentythree">
-                                    <div class="panel-body">100% Foreign Direct Investment is permitted in India in most
-                                        of the industries under automatic route. Under Automatic Route, You
-                                        don’t require any approval from RBI or government of India. You will find some
-                                        of the industries which are listed under govt.
-                                        of india and where investment approval is needed from RBI.</div>
-                                </div>
-                            </div>
-                            <div class="col-12 toggler p-0" id="toggler">
-                                <div class="panel-heading" role="tab" id="headingTwentyfour">
-                                    <div class="row">
-                                        <div class="col-lg-11 col-11">
-                                            <h4 class="panel-title">
-                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
-                                                    href="#collapseTwentyfour" aria-expanded="false"
-                                                    aria-controls="collapseTwentyfour">
-                                                    How do I register for a part 1 company?
-
-                                            </h4>
-
-                                        </div>
-                                        <div class="col-1 col-lg-1">
-                                            <div class="fa fa-plus"></div>
-                                        </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div id="collapseTwentyfour" class="panel-collapse collapse" role="tabpanel"
-                                    aria-labelledby="headingTwentyfour">
-                                    <div class="panel-body">To register a Part 1 Company, the applicant is needed to
-                                        file Form INC 1 for the title availability. After the title is approved,
-                                        the applicant will have to file Form No. URC 1 alongside e-forms INC 7, DIR-12
-                                        and INC-22.</div>
-                                </div>
-                            </div> {% endcomment %}
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </section> {% endif %}
-        {% if client %}
-<section class=" client-says boldSection topSpaced bottomSpaced gutter inherit wBackground cover btBackgroundOverlay btSolidLightBackground"
-style="background-image:url(https://www.finacbooks.com/assets/theme/images/bg/background_4.webp);" id='selectsectionclient'>
-<div class="container">
-    <div class="heading">
-        <h2 class="heading-reg my-4 text-center text-bold">What Clients Say</h2>
-        <p class="heading-reg my-4 text-center text-bold">Customer delight is our main goal and we are very serious about it. </p>
-        <hr>
-        </h4>
+        </div>
     </div>
-    <div class="team">
-    {% for cli in client %}
-        <div class="col-12 my-3 col-lg-4">
-            <div class="card">
-                <div class="img">
-                    <img src="/media/{{cli.Profile}}" alt="">
+
+
+
+    {% comment %} <div class="container">
+        <div class="row wow fadeInUp animated animated " data-wow-delay=".5s"
+            style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
+
+            <div class="col-lg-4 mx-auto col-md-6  p-2 col-md-offset-2">
+                <div class="service-box text-center py-4 px-2"
+                    style="border: 1px solid #00000049; width:100%; height:100%;">
+                    <div class="icon-left"><i style="color: #2892d0;" class="mb-3 fa fa-book fa-4x"
+                            aria-hidden="true"></i></div>
+                    <div class="service-head" style="color: #444444; font-weight:700;">Document Submission</div>
+                    <p>All the essential papers are created by us and then filed with ROC on your behalf.</p>
+
                 </div>
-                <div class="text">
-                    <h4>Pravin Chauhan</h4>
-                    <p>
-                    <div class="btSubTitle">{{cli.content}}</div>
-                    </p>
+            </div>
+            <div class="col-lg-4 mx-auto col-md-6 p-2">
+                <div class="service-box text-center py-4 px-2"
+                    style="border: 1px solid #00000049; width:100%; height:100%;">
+                    <div class="icon-left"><i style="color: #2892d0;" class="mb-3 fa fa-book fa-4x"
+                            aria-hidden="true"></i></div>
+                    <div class="service-head" style="color: #444444; font-weight:700;">Your work is done!</div>
+                    <p>When your organization is registered, we hand over all the files and DSCs.</p>
+
                 </div>
-                <div class="sign"><img src="/media/{{cli.SignatureOptional}}" alt=""></div>
+            </div>
+
+        </div>
+    </div> {% endcomment %}
+</section>
+{% endif %}
+{% if cr %}
+{% for c in cr %}
+<section id="selectsectioncr" class="services" id=''>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h2 class="heading-reg my-4 text-center text-bold">{{c.heading1}}
+                </h2>
             </div>
         </div>
-    {% endfor %}
     </div>
-</div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 py-3">
+
+                <ul class="custumli" style="list-style-type: none;">
+                    {{c.content1|safe}}
+                    {% comment %} <li class="my-2"><i style="color: #0099e6; margin-right: 10px;"
+                            class="fa fa-check"></i>A
+                        minimum of two shareholders</li>
+                    <li class="my-2"><i style="color: #0099e6; margin-right: 10px;" class="fa fa-check"></i>A
+                        minimum of two directors</li>
+                    <li class="my-2"><i style="color: #0099e6; margin-right: 10px;" class="fa fa-check"></i>Any
+                        amount of capital</li>
+                    <li class="my-2"><i style="color: #0099e6; margin-right: 10px;" class="fa fa-check"></i>Requisite
+                        documents</li>
+                    <li class="my-2"><i style="color: #0099e6; margin-right: 10px;" class="fa fa-check"></i>MOA
+                        &amp; AOA</li> {% endcomment %}
+                </ul>
+
+            </div>
+        </div>
+    </div>
+
+
+</section>
+{% if c.heading2 %}
+<section class="services">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h2 class="heading-reg my-4 text-center text-bold">{{c.heading2}}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 py-3">
+
+                <ul class="custumli" style="list-style-type: none;">
+
+                    {{c.content2|safe}}
+                    {% comment %} <li class="my-2"><i class="fa fa-check"
+                            style="color: #0099e6; margin-right: 10px;"></i>The
+                        directors have to be involved in decision making.</li>
+                    <li class="my-2"><i class="fa fa-check" style="color: #0099e6; margin-right: 10px;"></i>Transfer of
+                        shares to others cannot
+                        be made without an agreement.</li> {% endcomment %}
+                </ul>
+
+            </div>
+        </div>
+    </div>
+
+</section>{% endif %}
+{% endfor %}
+{% endif %}
+
+{% if sn %}
+<section id="selectsectionsn" class="services" id=''>
+    {% for s in sn %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                </h2 class="heading-reg my-4 text-center text-bold">{{s.heading1}}
+                </h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <p class="mb-20">{{s.content1|linebreaks}} </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 py-3">
+                <ul style="list-style-type: none;" class="custumli">
+                    {{s.content2|safe}}
+                    {% comment %} <li class="my-2"><i style="color: #0099e6; margin-right: 10px;"
+                            class="fa fa-check"></i>It
+                        needs to be the face of the company.</li>
+                    <li class="my-2"><i style="color: #0099e6; margin-right: 10px;" class="fa fa-check"></i>The
+                        company name should be unique. It should not be identical or similar to an already
+                        existing business or a trademark.</li>
+                    <li class="my-2"><i style="color: #0099e6; margin-right: 10px;" class="fa fa-check"></i>It
+                        is best to avoid the name of a person (be the owner or a shareholder) to be used in the
+                        company’s name. This avoids the need to rename the company in
+                        the event of his or her exit.</li>
+                    <li class="my-2"><i style="color: #0099e6; margin-right: 10px;" class="fa fa-check"></i>The
+                        company name needs to be ended with the suffix "Private Ltd".</li>
+                    <li class="my-2"><i style="color: #0099e6; margin-right: 10px;" class="fa fa-check"
+                            id="frequently-asked"></i>The company name should not be contradictory to the law.
+                        It should not be abusive and against the practices, beliefs and values of
+                        any particular group of people.</li> {% endcomment %}
+
+                </ul>
+
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</section> {% endif %}
+{% if mm %}
+<section id="selectsectionmm" class="fssai-registration-sec py-5" style="background: #f3f3f3;">
+    {% for m in mm %}
+    <div class="container para-justfy">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h2 class="heading-reg my-4 text-center text-bold">{{m.heading1}}</h2>
+            </div>
+            <div class="col-md-12 mb-40">
+                <p class="my-3" id="">{{m.content|safe}} </p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</section> {% endif %}
+
+{% if faq %}
+<section class="services" id="selectsectionfaq">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h2 class="heading-reg my-4 text-center text-bold">{{reg.submenu}} FAQs </h2>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container faq">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                    {% for fq in faq %}
+                    <div class="col-12 toggler p-0" id="toggler">
+                        <div class="panel-heading" role="tab" id="headingOne{{forloop.counter}}">
+                            <div class="row">
+                                <div class="col-lg-11 col-11">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion"
+                                            href="#collapseOne{{forloop.counter}}" aria-expanded="true"
+                                            aria-controls="collapseOne{{forloop.counter}}">
+                                            {{fq.heading|safe}}
+
+                                    </h4>
+                                </div>
+                                <div class="col-1 col-lg-1">
+                                    <div class="fa fa-plus"></div>
+                                </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="collapseOne{{forloop.counter}}" class="panel-collapse collapse in" role="tabpanel"
+                            aria-labelledby="headingOne{{forloop.counter}}">
+                            <div class="panel-body">{{fq.content|safe}}
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% comment %}
+                    </div>
+                    <div class="col-12 toggler p-0" id="toggler">
+                        <div class="panel-heading" role="tab" id="headingTwo">
+                            <div class="row">
+                                <div class="col-lg-11 col-11">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+                                            href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            How much time is needed to form a private limited company in India?
+
+                                    </h4>
+                                </div>
+                                <div class="col-1 col-lg-1">
+                                    <div class="fa fa-plus"></div>
+                                </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel"
+                            aria-labelledby="headingTwo">
+                            <div class="panel-body">If your all files are in order, it is going to take no
+                                longer than fifteen days. Nevertheless, it depends on the work of the registrar.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 toggler p-0" id="toggler">
+                        <div class="panel-heading" role="tab" id="headingThree">
+                            <div class="row">
+                                <div class="col-lg-11 col-11">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+                                            href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            What is an electronic signature certificate? Who shall obtain DSC
+                                            for private limited company registration?
+
+
+                                    </h4>
+
+                                </div>
+                                <div class="col-1 col-lg-1">
+                                    <div class="fa fa-plus"></div>
+                                </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel"
+                            aria-labelledby="headingThree">
+                            <div class="panel-body">Digital Signature Certificate is provided in a token form
+                                and it is given by Certified Authorities. Any form submitted to register a
+                                Private Limited Company online shall be published after affixing the DSC
+                                of an Applicant. The directors of the company should obtain DSC (Digital
+                                signature certificate) as absence of DSC can cause site related problems to the
+                                website visitors and subscribers.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 toggler p-0" id="toggler">
+                        <div class="panel-heading" role="tab" id="headingFour">
+                            <div class="row">
+                                <div class="col-lg-11 col-11">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+                                            href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                            What is a Director Identification Number (DIN)?
+
+                                    </h4>
+                                </div>
+                                <div class="col-1 col-lg-1">
+                                    <div class="fa fa-plus"></div>
+                                </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="collapseFour" class="panel-collapse collapse" role="tabpanel"
+                            aria-labelledby="headingFour">
+                            <div class="panel-body">Director Identification Number is a unique number issued by
+                                the Ministry of Corporate Affairs to an existing or a proposed director of a
+                                company which is incorporated.</div>
+                        </div>
+                    </div>
+                    <div class="col-12 toggler p-0" id="toggler">
+                        <div class="panel-heading" role="tab" id="headingFive">
+                            <div class="row">
+                                <div class="col-lg-11 col-11">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+                                            href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                            What are the guidelines for selecting a title for a private limited
+                                            company?
+
+
+                                    </h4>
+                                </div>
+                                <div class="col-1 col-lg-1">
+                                    <div class="fa fa-plus"></div>
+                                </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="collapseFive" class="panel-collapse collapse" role="tabpanel"
+                            aria-labelledby="headingFive">
+                            <div class="panel-body">
+                                <p class="mb-30">The Registrar of Companies (ROC) expects that India should
+                                    follow few naming guidelines. The more closely the guidelines are followed,
+                                    the greater the chances of your name approval. Few guidelines
+                                    for name approval are as follows - </p>
+                                <p class="mb-30"><b>Blacklist:</b> Generic names, adjectives and abbreviations
+                                    will be rejected. For ex- Abbreviations like ABP or CNN will be rejected.
+                                    The terms like bank, exchange, stock exchange will also
+                                    be rejected unless it is authorized by SEBI or RBI.</p>
+                                <p class="mb-30"><b>No Common Trademark: </b>Trademark should not be common. The
+                                    registered trademark should not be similar to any other trademark displayed
+                                    on the Intellectual property website of India. If found
+                                    similar, you will get the name approval only when you get an NOC Objection
+                                    Certificate (NOC) from its owner - authorizing you to make use of it.</p>
+                                <p class="mb-30"><b>Descriptive Component: </b>The company name should convey
+                                    the details about your business you are doing or you want to do. For ex - In
+                                    Eli Research Private Limited, the word' Research' conveys
+                                    that the company is into a research business. If your business is different,
+                                    you cannot use the word “Research” in your business name as it will surely
+                                    get rejected.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 toggler p-0" id="toggler">
+                        <div class="panel-heading" role="tab" id="headingSix">
+                            <div class="row">
+                                <div class="col-lg-11 col-11">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+                                            href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                            What documents are needed to complete the process?
+
+                                    </h4>
+                                </div>
+                                <div class="col-1 col-lg-1">
+                                    <div class="fa fa-plus"></div>
+                                </div>
+                                </a>
+
+                            </div>
+                        </div>
+                        <div id="collapseSix" class="panel-collapse collapse" role="tabpanel"
+                            aria-labelledby="headingSix">
+                            <div class="panel-body">All directors should provide a copy of identity proof and
+                                address proof. In addition to it, a copy of PAN Card is also required.
+                                No-objection Certificate (NOC) should also be submitted by the
+                                proprietor of the registered business premises.</div>
+                        </div>
+                    </div>
+                    <div class="col-12 toggler p-0" id="toggler">
+                        <div class="panel-heading" role="tab" id="headingSeven">
+                            <div class="row">
+                                <div class="col-lg-11 col-11">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+                                            href="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                                            Does a private limited company have a continued existence?
+
+                                    </h4>
+                                </div>
+                                <div class="col-1 col-lg-1">
+                                    <div class="fa fa-plus"></div>
+                                </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="collapseSeven" class="panel-collapse collapse" role="tabpanel"
+                            aria-labelledby="headingSeven">
+                            <div class="panel-body">Yes, private limited company has a continued existence till
+                                they are achieving the annual compliances. When they don’t comply with the
+                                conditions, it is going to be dormant and lastly it
+                                struck out from the register altogether.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 toggler p-0" id="toggler">
+                        <div class="panel-heading" role="tab" id="headingEight">
+                            <div class="row">
+                                <div class="col-lg-11 col-11">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+                                            href="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                                            How much is the cost of operating a private limited company?
+
+                                    </h4>
+                                </div>
+                                <div class="col-1 col-lg-1">
+                                    <div class="fa fa-plus"></div>
+                                </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="collapseEight" class="panel-collapse collapse" role="tabpanel"
+                            aria-labelledby="headingEight">
+                            <div class="panel-body">The expense of managing a private limited business is
+                                usually split into 4 categories: expense of establishing a private limited
+                                business, price of accounting and auditing, cost of miscellaneous
+                                expenses and compliance. You have to spend minimum Rs.40000 in every cost
+                                category.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 toggler p-0" id="toggler">
+                        <div class="panel-heading" role="tab" id="headingNine">
+                            <div class="row">
+                                <div class="col-lg-11 col-11">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+                                            href="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                                            Is it necessary to get company’s book audited?
+
+                                    </h4>
+                                </div>
+                                <div class="col-1 col-lg-1">
+                                    <div class="fa fa-plus"></div>
+                                </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="collapseNine" class="panel-collapse collapse" role="tabpanel"
+                            aria-labelledby="headingNine">
+                            <div class="panel-body">Yes, a private limited company must employ an auditor. An
+                                auditor should be appointed within thirty days of incorporation. Compliances are
+                                crucial and should be followed by private
+                                limited company as non-compliance may cause company a penalty of lakhs of rupees
+                                and sometimes may result in blacklisting of directors. </div>
+                        </div>
+                    </div>
+                    <div class="col-12 toggler p-0" id="toggler">
+                        <div class="panel-heading" role="tab" id="headingTen">
+                            <div class="row">
+                                <div class="col-lg-11 col-11">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+                                            href="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+                                            What are articles of association and memorandum of association?
+
+                                    </h4>
+                                </div>
+                                <div class="col-1 col-lg-1">
+                                    <div class="fa fa-plus"></div>
+                                </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="collapseTen" class="panel-collapse collapse" role="tabpanel"
+                            aria-labelledby="headingTen">
+                            <div class="panel-body">Memorandum of association is a legal document which
+                                specifies the scope of business activities of the company and defines its
+                                relationship with the shareholders whereas articles
+                                of association is a document which specifies the company’s rules and regulations
+                                for its operations as well as defines the company purpose. The document also
+                                explains how
+                                the tasks will be accomplished in an organization including the appointment of
+                                directors and handling of financial records.</div>
+                        </div>
+                    </div>
+                    <div class="col-12 toggler p-0" id="toggler">
+                        <div class="panel-heading" role="tab" id="headingEleven">
+                            <div class="row">
+                                <div class="col-lg-11 col-11">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+                                            href="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
+                                            Are 2 directors needed for a Private Limited Company Registration?
+
+                                    </h4>
+                                </div>
+                                <div class="col-1 col-lg-1">
+                                    <div class="fa fa-plus"></div>
+                                </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="collapseEleven" class="panel-collapse collapse" role="tabpanel"
+                            aria-labelledby="headingEleven">
+                            <div class="panel-body">A minimum of 2 directors are required to run a private
+                                limited company. The maximum number of peoples can be 200. One director can
+                                start a business by registering the company
+                                as One Person Company (OPC) only.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 toggler p-0" id="toggler">
+                        <div class="panel-heading" role="tab" id="headingTwelve">
+                            <div class="row">
+                                <div class="col-lg-11 col-11">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+                                            href="#collapseTwelve" aria-expanded="false" aria-controls="collapseTwelve">
+                                            Who could be in a private limited company?
+
+                                    </h4>
+                                </div>
+                                <div class="col-1 col-lg-1">
+                                    <div class="fa fa-plus"></div>
+                                </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="collapseTwelve" class="panel-collapse collapse" role="tabpanel"
+                            aria-labelledby="headingTwelve">
+                            <div class="panel-body">Any individual/organization can become a part of a private
+                                limited company including foreigners, NRI etc. The person should be 18+ above
+                                and must hold a valid PAN card.</div>
+                        </div>
+                    </div>
+                    <div class="col-12 toggler p-0" id="toggler">
+                        <div class="panel-heading" role="tab" id="headingThirteen">
+                            <div class="row">
+                                <div class="col-lg-11 col-11">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+                                            href="#collapseThirteen" aria-expanded="false"
+                                            aria-controls="collapseThirteen">
+                                            What minimum capital is required to form a private limited company?
+
+                                    </h4>
+                                </div>
+                                <div class="col-1 col-lg-1">
+                                    <div class="fa fa-plus"></div>
+                                </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="collapseThirteen" class="panel-collapse collapse" role="tabpanel"
+                            aria-labelledby="headingThirteen">
+                            <div class="panel-body">You can use any amount of capital to form a private limited
+                                company.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 toggler p-0" id="toggler">
+                        <div class="panel-heading" role="tab" id="headingFourteen">
+                            <div class="row">
+                                <div class="col-lg-11 col-11">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+                                            href="#collapseFourteen" aria-expanded="false"
+                                            aria-controls="collapseFourteen">
+                                            Whether a salaried person can become a director in a private limited
+                                            company?
+
+
+                                    </h4>
+
+                                </div>
+                                <div class="col-1 col-lg-1">
+                                    <div class="fa fa-plus"></div>
+                                </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="collapseFourteen" class="panel-collapse collapse" role="tabpanel"
+                            aria-labelledby="headingFourteen">
+                            <div class="panel-body">Yes, a salaried person can become a director in private
+                                limited company, one person company (OPC) or limited liability partnership
+                                (LLP). In this case, one needs
+                                to look at the employment agreement, if it enables such provisions.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 toggler p-0" id="toggler">
+                        <div class="panel-heading" role="tab" id="headingFifteen">
+                            <div class="row">
+                                <div class="col-lg-11 col-11">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+                                            href="#collapseFifteen" aria-expanded="false"
+                                            aria-controls="collapseFifteen">
+                                            Whether the limited liability partnership can be transformed into a
+                                            private limited company?
+
+
+                                    </h4>
+
+                                </div>
+                                <div class="col-1 col-lg-1">
+                                    <div class="fa fa-plus"></div>
+                                </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="collapseFifteen" class="panel-collapse collapse" role="tabpanel"
+                            aria-labelledby="headingFifteen">
+                            <div class="panel-body">Unfortunately no, one cannot transform an LLP into a Private
+                                Limited Company. The LLP Act, 2008 and the Companies Act, 2013, both are not
+                                having any provision
+                                for transforming the LLP into a private limited company. If one desires to
+                                transform it, he or she has to purchase a brand new Private Limited Company
+                                with exactly the same name and LLP Company has to issue a no objection
+                                certification (NOC) for it.</div>
+                        </div>
+                    </div>
+                    <div class="col-12 toggler p-0" id="toggler">
+                        <div class="panel-heading" role="tab" id="headingSixteen">
+                            <div class="row">
+                                <div class="col-lg-11 col-11">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+                                            href="#collapseSixteen" aria-expanded="false"
+                                            aria-controls="collapseSixteen">
+                                            What is the time taken by Finacbooks in registering a private
+                                            limited company?
+
+
+                                    </h4>
+
+                                </div>
+                                <div class="col-1 col-lg-1">
+                                    <div class="fa fa-plus"></div>
+                                </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="collapseSixteen" class="panel-collapse collapse" role="tabpanel"
+                            aria-labelledby="headingSixteen">
+                            <div class="panel-body">FinacBooks can incorporate a Private Limited Company in 15
+                                to 25 days. The time taken also depends upon on the relevant documents provided,
+                                speed and the
+                                granting of approvals from the authorities. To guarantee a speedy registration,
+                                kindly choose a unique title as well as make sure you have all the
+                                necessary documents with you before starting the registration process.</div>
+                        </div>
+                    </div>
+                    <div class="col-12 toggler p-0" id="toggler">
+                        <div class="panel-heading" role="tab" id="headingEighteen">
+                            <div class="row">
+                                <div class="col-lg-11 col-11">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+                                            href="#collapseSeventeen" aria-expanded="false"
+                                            aria-controls="collapseSeventeen">
+                                            Whether NRI’S/foreign nationals can become a director in a private
+                                            limited company?
+
+
+                                    </h4>
+
+                                </div>
+                                <div class="col-1 col-lg-1">
+                                    <div class="fa fa-plus"></div>
+                                </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="collapseSeventeen" class="panel-collapse collapse" role="tabpanel"
+                            aria-labelledby="headingSeventeen">
+                            <div class="panel-body">Yes, NRIs as well as Foreign Nationals can easily become
+                                directors in a Private Limited Company but they need to qualify and obtain a
+                                Director Identification
+                                number (DIN) from the Registrar of companies in India. 2 directors are needed to
+                                form a private limited company. If one is an NRI, then the other
+                                must be an Indian.</div>
+                        </div>
+                    </div>
+                    <div class="col-12 toggler p-0" id="toggler">
+                        <div class="panel-heading" role="tab" id="headingTwenty">
+                            <div class="row">
+                                <div class="col-lg-11 col-11">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+                                            href="#collapseEighteen" aria-expanded="false"
+                                            aria-controls="collapseEighteen">
+                                            A Private Limited Company is also known as a separate legal entity.
+                                            Why?
+
+
+                                    </h4>
+
+                                </div>
+                                <div class="col-1 col-lg-1">
+                                    <div class="fa fa-plus"></div>
+                                </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="collapseEighteen" class="panel-collapse collapse" role="tabpanel"
+                            aria-labelledby="headingEighteen">
+                            <div class="panel-body">A private limited company is a separate legal entity like
+                                any other person incorporated under the Act. It separates the actions of the
+                                entity from
+                                its members. Therefore, it is separate at law from its shareholders, directors,
+                                promoters etc. </div>
+                        </div>
+                    </div>
+                    <div class="col-12 toggler p-0" id="toggler">
+                        <div class="panel-heading" role="tab" id="headingTwentyone">
+                            <div class="row">
+                                <div class="col-lg-11 col-11">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+                                            href="#collapseNineteen" aria-expanded="false"
+                                            aria-controls="collapseNineteen">
+                                            Can I register a private limited company on my residence address?
+
+                                    </h4>
+                                </div>
+                                <div class="col-1 col-lg-1">
+                                    <div class="fa fa-plus"></div>
+                                </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="collapseNineteen" class="panel-collapse collapse" role="tabpanel"
+                            aria-labelledby="headingNineteen">
+                            <div class="panel-body">Yes, One can register a private limited company on their
+                                residential address. One has to submit the electricity copy of the same address
+                                as
+                                evidence.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 toggler p-0" id="toggler">
+                        <div class="panel-heading" role="tab" id="headingTwenty">
+                            <div class="row">
+                                <div class="col-lg-11 col-11">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+                                            href="#collapseTwenty" aria-expanded="false" aria-controls="collapseTwenty">
+                                            If you are unable to acquire partners, whether one can register
+                                            their own family members into the business?
+
+
+                                    </h4>
+
+                                </div>
+                                <div class="col-1 col-lg-1">
+                                    <div class="fa fa-plus"></div>
+                                </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="collapseTwenty" class="panel-collapse collapse" role="tabpanel"
+                            aria-labelledby="headingTwenty">
+                            <div class="panel-body">Yes, the best option here is to make your loved ones as
+                                partners.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 toggler p-0" id="toggler">
+                        <div class="panel-heading" role="tab" id="headingTwentyone">
+                            <div class="row">
+                                <div class="col-lg-11 col-11">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+                                            href="#collapseTwentyone" aria-expanded="false"
+                                            aria-controls="collapseTwentyone">
+                                            What if you want to transform an existing private limited company
+                                            into a LLP?
+
+
+                                    </h4>
+
+                                </div>
+                                <div class="col-1 col-lg-1">
+                                    <div class="fa fa-plus"></div>
+                                </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="collapseTwentyone" class="panel-collapse collapse" role="tabpanel"
+                            aria-labelledby="headingTwentyone">
+                            <div class="panel-body">An existing private limited company can be transformed into
+                                a <a href="https://www.finacbooks.com/llp-registration">LLP under following
+                                    circumstances -
+                                    <ol class="list list-ordened">
+                                        <li>If the company have no security interest in its assets at the time
+                                            of application.</li>
+                                        <li>When there are no partners of the LLP and the shareholders of the
+                                            company are the only partners.</li>
+                                    </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 toggler p-0" id="toggler">
+                        <div class="panel-heading" role="tab" id="headingTwentytwo">
+                            <div class="row">
+                                <div class="col-lg-11 col-11">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+                                            href="#collapseTwentytwo" aria-expanded="false"
+                                            aria-controls="collapseTwentytwo">
+                                            How one can form a section-8 company?
+
+                                    </h4>
+
+                                </div>
+                                <div class="col-1 col-lg-1">
+                                    <div class="fa fa-plus"></div>
+                                </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="collapseTwentytwo" class="panel-collapse collapse" role="tabpanel"
+                            aria-labelledby="headingTwentytwo">
+                            <div class="panel-body">In order to register a section 8 company, Firstly, the
+                                applicant is needed to file form INC 1 for title availability. After that, When
+                                the title is approved, another form INC 12 is to be filed by the company to
+                                obtain a license. After getting the license number,
+                                the applicant is able to move forward and add a business by filing e forms INC-7
+                                or SPICe (in case numbers of members are more
+                                than seven).</div>
+                        </div>
+                    </div>
+                    <div class="col-12 toggler p-0" id="toggler">
+                        <div class="panel-heading" role="tab" id="headingTwentythree">
+                            <div class="row">
+                                <div class="col-lg-11 col-11">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+                                            href="#collapseTwentythree" aria-expanded="false"
+                                            aria-controls="collapseTwentythree">
+                                            What are the FDI guidelines for foreigners investing in a
+                                            private limited company?
+
+
+                                    </h4>
+                                </div>
+                                <div class="col-1 col-lg-1">
+                                    <div class="fa fa-plus"></div>
+                                </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="collapseTwentythree" class="panel-collapse collapse" role="tabpanel"
+                            aria-labelledby="headingTwentythree">
+                            <div class="panel-body">100% Foreign Direct Investment is permitted in India in most
+                                of the industries under automatic route. Under Automatic Route, You
+                                don’t require any approval from RBI or government of India. You will find some
+                                of the industries which are listed under govt.
+                                of india and where investment approval is needed from RBI.</div>
+                        </div>
+                    </div>
+                    <div class="col-12 toggler p-0" id="toggler">
+                        <div class="panel-heading" role="tab" id="headingTwentyfour">
+                            <div class="row">
+                                <div class="col-lg-11 col-11">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+                                            href="#collapseTwentyfour" aria-expanded="false"
+                                            aria-controls="collapseTwentyfour">
+                                            How do I register for a part 1 company?
+
+                                    </h4>
+
+                                </div>
+                                <div class="col-1 col-lg-1">
+                                    <div class="fa fa-plus"></div>
+                                </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="collapseTwentyfour" class="panel-collapse collapse" role="tabpanel"
+                            aria-labelledby="headingTwentyfour">
+                            <div class="panel-body">To register a Part 1 Company, the applicant is needed to
+                                file Form INC 1 for the title availability. After the title is approved,
+                                the applicant will have to file Form No. URC 1 alongside e-forms INC 7, DIR-12
+                                and INC-22.</div>
+                        </div>
+                    </div> {% endcomment %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section> {% endif %}
+{% if client %}
+<section
+    class=" client-says boldSection topSpaced bottomSpaced gutter inherit wBackground cover btBackgroundOverlay btSolidLightBackground"
+    style="background-image:url(https://www.finacbooks.com/assets/theme/images/bg/background_4.webp);"
+    id='selectsectionclient'>
+    <div class="container">
+        <div class="heading">
+            <h2 class="heading-reg my-4 text-center text-bold">What Clients Say</h2>
+            <p class="heading-reg my-4 text-center text-bold">Customer delight is our main goal and we are very serious
+                about it. </p>
+            <hr>
+            </h4>
+        </div>
+        <div class="team">
+            {% for cli in client %}
+            <div class="col-12 my-3 col-lg-4">
+                <div class="card">
+                    <div class="img">
+                        <img src="/media/{{cli.Profile}}" alt="">
+                    </div>
+                    <div class="text">
+                        <h4>Pravin Chauhan</h4>
+                        <p>
+                            <div class="btSubTitle">{{cli.content}}</div>
+                        </p>
+                    </div>
+                    <div class="sign"><img src="/media/{{cli.SignatureOptional}}" alt=""></div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 </section>
 
 
 {% endif %}
-
-        {% comment %} <section
-            class=" client-says boldSection topSpaced bottomSpaced gutter inherit wBackground cover btBackgroundOverlay btSolidLightBackground"
-            style="background-image:url(https://www.finacbooks.com/assets/theme/images/bg/background_4.webp);">
-            <div class="container">
-                <div class="heading">
-                    <h6>MEET US</h6>
-                    <h4 class="headline">What Clients Say</h4>
-                    <p>Customer delight is our main goal and we are very serious about it. </p>
-                    <hr>
-                    </h4>
-                </div>
-                <div class="team">
-                    <div class="col-12 my-3 col-lg-4">
-                        <div class="card">
-                            <div class="img">
-                                <img src="{% static 'images/team1.jpg' %}" alt="">
-                            </div>
-                            <div class="text">
-                                <h4>Pravin Chauhan</h4>
-                                <p>
-                                <div class="btSubTitle">“CyberFlax.com is a perfect example of a great customer
-                                    service
-                                    dealing with the best of accountancy services.“</div>
-                                </p>
-                            </div>
-                            <div class="sign"><img src="{% static 'images/sign-2.png' %}" alt=""></div>
-                        </div>
+{% if blogs %}
+<center><h2 id="selectsectionblogs" class="heading-reg my-4 text-center text-bold my-2">Related Blogs</h2></center>
+<div class=" p-5 row">
+    {% for data in blogs|slice:":4" %}
+    <div class="col">
+        <div class="card shadow" >
+            <img class="card-img-top" src="{{data.img.url}}" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">{{data.title|slice:":35"}}</h5>
+              <span class="badge badge-danger">{{data.date|date}}</span>
+              <p class="card-text">{{data.Short_des|slice:":90"}}...</p>
+              <a href="{{data.getabsoluteurl}}" class="btn btn-theme shadow-sm ">View more</a>
+            </div>
+          </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+{% comment %} <section
+    class=" client-says boldSection topSpaced bottomSpaced gutter inherit wBackground cover btBackgroundOverlay btSolidLightBackground"
+    style="background-image:url(https://www.finacbooks.com/assets/theme/images/bg/background_4.webp);">
+    <div class="container">
+        <div class="heading">
+            <h6>MEET US</h6>
+            <h4 class="headline">What Clients Say</h4>
+            <p>Customer delight is our main goal and we are very serious about it. </p>
+            <hr>
+            </h4>
+        </div>
+        <div class="team">
+            <div class="col-12 my-3 col-lg-4">
+                <div class="card">
+                    <div class="img">
+                        <img src="{% static 'images/team1.jpg' %}" alt="">
                     </div>
-                    <div class="col-12 my-3 col-lg-4">
-                        <div class="card">
-                            <div class="img">
-                                <img src="{% static 'images/team2.jpg' %}" alt="">
-                            </div>
-                            <div class="text">
-                                <h4>Pravin Chauhan</h4>
-                                <p>
-                                <div class="btSubTitle">“CyberFlax.com is a perfect example of a great customer
-                                    service
-                                    dealing with the best of accountancy services.“</div>
-                                </p>
-                            </div>
-                            <div class="sign"><img src="{% static 'images/sign-2.png' %}" alt=""></div>
-                        </div>
+                    <div class="text">
+                        <h4>Pravin Chauhan</h4>
+                        <p>
+                            <div class="btSubTitle">“CyberFlax.com is a perfect example of a great customer
+                                service
+                                dealing with the best of accountancy services.“</div>
+                        </p>
                     </div>
-                    <div class="col-12 my-3 col-lg-4">
-                        <div class="card">
-                            <div class="img">
-                                <img src="{% static 'images/team3.jpg' %}" alt="">
-                            </div>
-                            <div class="text">
-                                <h4>Pravin Chauhan</h4>
-                                <p>
-                                <div class="btSubTitle">“CyberFlax.com is a perfect example of a great customer
-                                    service
-                                    dealing with the best of accountancy services.“</div>
-                                </p>
-                            </div>
-                            <div class="sign"><img src="{% static 'images/sign-2.png' %}" alt=""></div>
-                        </div>
-                    </div>
-                    <div class="col-12 my-3 col-lg-4">
-                        <div class="card">
-                            <div class="img">
-                                <img src="{% static 'images/team2.jpg' %}" alt="">
-                            </div>
-                            <div class="text">
-                                <h4>Pravin Chauhan</h4>
-                                <p>
-                                <div class="btSubTitle">“CyberFlax.com is a perfect example of a great customer
-                                    service
-                                    dealing with the best of accountancy services.“</div>
-                                </p>
-                            </div>
-                            <div class="sign"><img src="{% static 'images/sign-2.png' %}" alt=""></div>
-                        </div>
-                    </div>
-                    <div class="col-12 my-3 col-lg-4">
-                        <div class="card">
-                            <div class="img">
-                                <img src="{% static 'images/team2.jpg' %}" alt="">
-                            </div>
-                            <div class="text">
-                                <h4>Pravin Chauhan</h4>
-                                <p>
-                                <div class="btSubTitle">“CyberFlax.com is a perfect example of a great customer
-                                    service
-                                    dealing with the best of accountancy services.“</div>
-                                </p>
-                            </div>
-                            <div class="sign"><img src="{% static 'images/sign-2.png' %}" alt=""></div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 my-3 col-lg-4">
-                        <div class="card">
-                            <div class="img">
-                                <img src="{% static 'images/team1.jpg' %}" alt="">
-                            </div>
-                            <div class="text">
-                                <h4>Pravin Chauhan</h4>
-                                <p>
-                                <div class="btSubTitle">“CyberFlax.com is a perfect example of a great customer
-                                    service
-                                    dealing with the best of accountancy services.“</div>
-                                </p>
-                            </div>
-                            <div class="sign"><img src="{% static 'images/sign-2.png' %}" alt=""></div>
-                        </div>
-                    </div>
-                    <div class="col-12 my-3 col-lg-4">
-                        <div class="card">
-                            <div class="img">
-                                <img src="{% static 'images/team2.jpg' %}" alt="">
-                            </div>
-                            <div class="text">
-                                <h4>Pravin Chauhan</h4>
-                                <p>
-                                <div class="btSubTitle">“CyberFlax.com is a perfect example of a great customer
-                                    service
-                                    dealing with the best of accountancy services.“</div>
-                                </p>
-                            </div>
-                            <div class="sign"><img src="{% static 'images/sign-2.png' %}" alt=""></div>
-                        </div>
-                    </div>
+                    <div class="sign"><img src="{% static 'images/sign-2.png' %}" alt=""></div>
                 </div>
             </div>
+            <div class="col-12 my-3 col-lg-4">
+                <div class="card">
+                    <div class="img">
+                        <img src="{% static 'images/team2.jpg' %}" alt="">
+                    </div>
+                    <div class="text">
+                        <h4>Pravin Chauhan</h4>
+                        <p>
+                            <div class="btSubTitle">“CyberFlax.com is a perfect example of a great customer
+                                service
+                                dealing with the best of accountancy services.“</div>
+                        </p>
+                    </div>
+                    <div class="sign"><img src="{% static 'images/sign-2.png' %}" alt=""></div>
+                </div>
+            </div>
+            <div class="col-12 my-3 col-lg-4">
+                <div class="card">
+                    <div class="img">
+                        <img src="{% static 'images/team3.jpg' %}" alt="">
+                    </div>
+                    <div class="text">
+                        <h4>Pravin Chauhan</h4>
+                        <p>
+                            <div class="btSubTitle">“CyberFlax.com is a perfect example of a great customer
+                                service
+                                dealing with the best of accountancy services.“</div>
+                        </p>
+                    </div>
+                    <div class="sign"><img src="{% static 'images/sign-2.png' %}" alt=""></div>
+                </div>
+            </div>
+            <div class="col-12 my-3 col-lg-4">
+                <div class="card">
+                    <div class="img">
+                        <img src="{% static 'images/team2.jpg' %}" alt="">
+                    </div>
+                    <div class="text">
+                        <h4>Pravin Chauhan</h4>
+                        <p>
+                            <div class="btSubTitle">“CyberFlax.com is a perfect example of a great customer
+                                service
+                                dealing with the best of accountancy services.“</div>
+                        </p>
+                    </div>
+                    <div class="sign"><img src="{% static 'images/sign-2.png' %}" alt=""></div>
+                </div>
+            </div>
+            <div class="col-12 my-3 col-lg-4">
+                <div class="card">
+                    <div class="img">
+                        <img src="{% static 'images/team2.jpg' %}" alt="">
+                    </div>
+                    <div class="text">
+                        <h4>Pravin Chauhan</h4>
+                        <p>
+                            <div class="btSubTitle">“CyberFlax.com is a perfect example of a great customer
+                                service
+                                dealing with the best of accountancy services.“</div>
+                        </p>
+                    </div>
+                    <div class="sign"><img src="{% static 'images/sign-2.png' %}" alt=""></div>
+                </div>
+            </div>
+
+            <div class="col-12 my-3 col-lg-4">
+                <div class="card">
+                    <div class="img">
+                        <img src="{% static 'images/team1.jpg' %}" alt="">
+                    </div>
+                    <div class="text">
+                        <h4>Pravin Chauhan</h4>
+                        <p>
+                            <div class="btSubTitle">“CyberFlax.com is a perfect example of a great customer
+                                service
+                                dealing with the best of accountancy services.“</div>
+                        </p>
+                    </div>
+                    <div class="sign"><img src="{% static 'images/sign-2.png' %}" alt=""></div>
+                </div>
+            </div>
+            <div class="col-12 my-3 col-lg-4">
+                <div class="card">
+                    <div class="img">
+                        <img src="{% static 'images/team2.jpg' %}" alt="">
+                    </div>
+                    <div class="text">
+                        <h4>Pravin Chauhan</h4>
+                        <p>
+                            <div class="btSubTitle">“CyberFlax.com is a perfect example of a great customer
+                                service
+                                dealing with the best of accountancy services.“</div>
+                        </p>
+                    </div>
+                    <div class="sign"><img src="{% static 'images/sign-2.png' %}" alt=""></div>
+                </div>
+            </div>
+        </div>
     </div>
     </div>
-    </section> {% endcomment %}
+    </div>
+</section> {% endcomment %}
+
 <script>
-$( document ).ready(function() {
-$("ul.custumli li").addClass('my-2')
-$("ul.custumli li").prepend(`<i style="color: #e77b20; margin-right: 10px;" class="fa fa-check"></i>`)
-$("ul.custumli ul").css("list-style-type", "none")
-});
+    $(document).ready(function () {
+        $("ul.custumli li").addClass('my-2')
+        $("ul.custumli li").prepend(`<i style="color: #e77b20; margin-right: 10px;" class="fa fa-check"></i>`)
+        $("ul.custumli ul").css("list-style-type", "none")
+    });
 
-var elementPosition = $('#navigation').offset();
+    var elementPosition = $('#navigation').offset();
 
-$(window).scroll(function () {
-    if ($(window).scrollTop() > elementPosition.top) {
-        $('#navigation').css('position', 'fixed').css('top', '0').css('z-index', '1').css('left', '0');
-    } else {
-        $('#navigation').css('position', 'static');
-    }
-});
+    $(window).scroll(function () {
+        if ($(window).scrollTop() > elementPosition.top) {
+            $('#navigation').css('position', 'fixed').css('top', '0').css('z-index', '1').css('left', '0');
+        } else {
+            $('#navigation').css('position', 'static');
+        }
+    });
 
 
-$('#right-button').click(function () {
-    event.preventDefault();
-    $('#content').animate({
-        scrollLeft: "+=200px"
-    }, "slow");
-});
+    $('#right-button').click(function () {
+        event.preventDefault();
+        $('#content').animate({
+            scrollLeft: "+=200px"
+        }, "slow");
+    });
 
-$('#left-button').click(function () {
-    event.preventDefault();
-    $('#content').animate({
-        scrollLeft: "-=200px"
-    }, "slow");
-});
+    $('#left-button').click(function () {
+        event.preventDefault();
+        $('#content').animate({
+            scrollLeft: "-=200px"
+        }, "slow");
+    });
 </script>
 {% endblock content%}

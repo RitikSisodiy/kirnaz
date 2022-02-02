@@ -24,7 +24,10 @@ def regis(request,slug1,slug2):
     res['slist'] = []
     sections =[SubRegistrationContent,AboutRegistraionSubMenu,DocumentRequired,PackageIncluded,Procedure,Memorandum,CompanyRegisterRequirements,FAQ,Sainification,ourclients,BlogNews]
     for d in range(0,len(sections)):
-        res[names[d]] = sections[d].objects.filter(reg_title__slug=slug2)
+        if d == len(sections)-1:
+            res[names[d]] = sections[d].objects.filter(reg_title1__slug=slug2)
+        else:
+            res[names[d]] = sections[d].objects.filter(reg_title__slug=slug2)
         if res[names[d]].exists():
             res['slist'].append([sectionname[d],names[d]])
 

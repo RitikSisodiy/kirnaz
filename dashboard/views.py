@@ -13,7 +13,13 @@ from django.core.paginator import Paginator
 from django.contrib.auth import authenticate, login, logout
 
 from cflax.settings import sectionname
+
+from django.contrib.contenttypes.models import ContentType
+
 # Create your views here.
+def GetContentType(model):
+    return ContentType.objects.get(app_label=model._meta.app_label, model=model._meta.model_name)
+
 def index(request):
     res = {}
     res["title"] = "Dashboard"
@@ -34,7 +40,10 @@ def editregistration(request,slug1,slug2):
     RegistrationSubMenuob = RegistrationSubMenu.objects.get(slug=slug2,title__slug=slug1)
     s = []
     for i in sections:
-        s.append(i.objects.filter(reg_title = RegistrationSubMenuob) if i.objects.filter(reg_title = RegistrationSubMenuob).exists() else [None] )
+        try:
+            s.append(i.objects.filter(reg_title = RegistrationSubMenuob) if i.objects.filter(reg_title = RegistrationSubMenuob).exists() else [None] )
+        except:
+            s.append(i.objects.filter(reg_title1 = RegistrationSubMenuob) if i.objects.filter(reg_title1 = RegistrationSubMenuob).exists() else [None] )
     # s1 = sections[0].objects.filter(reg_title = RegistrationSubMenuob) if sections[0].objects.filter(reg_title = RegistrationSubMenuob).exists()  else [RegistrationSubMenuob]
     # s2 = sections[1].objects.filter(reg_title = RegistrationSubMenuob) if sections[1].objects.filter(reg_title = RegistrationSubMenuob).exists()  else [RegistrationSubMenuob]
     # s3 = sections[2].objects.filter(reg_title = RegistrationSubMenuob) if sections[2].objects.filter(reg_title = RegistrationSubMenuob).exists()  else [RegistrationSubMenuob]
@@ -71,6 +80,13 @@ def editregistration(request,slug1,slug2):
             else:
                 form = sectionsforms[page_number][0](request.POST,request.FILES,instance = s[page_number].filter(id=objectno)[0])
         if form.is_valid():
+            form = form.save(commit=False)
+            try:
+                form.content_type =GetContentType(RegistrationSubMenuob)
+                form.object_id = RegistrationSubMenuob.id
+            except Exception as e:
+                print("exception +++++++",e)
+                pass
             form.save()
             messages.success(request,"Information Is Added Successfully")
             path = request.get_full_path().rfind('/')
@@ -152,8 +168,8 @@ def dashboardlogout(request):
     return redirect('dindex')
 from Home.models import *
 from .homeforms import * 
-homemodel = [Slider,aboutca,News,DueDateReminder,addblog]
-homeform = [[sliderform],aboutcaform,[Newsform],[DueDateReminderform],[addblogform]]
+homemodel = [Slider,aboutca,News,DueDateReminder,BlogNews,addblog]
+homeform = [[sliderform],aboutcaform,[Newsform],[DueDateReminderform],[BlogNewsform],[addblogform]]
 editname = ['slider','AboutCA','News_nortification','DueDate_Reminder','Blog_News_nortification','New_Blogs']
 def edithome(request,slug=None):
     res={}

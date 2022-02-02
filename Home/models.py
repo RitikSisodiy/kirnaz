@@ -94,3 +94,4 @@ class documents(models.Model):
     name = models.CharField(max_length=100)
     doc = models.FileField(upload_to="documents")
     time = models.DateTimeField(auto_now=True)
+

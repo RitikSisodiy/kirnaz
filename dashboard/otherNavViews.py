@@ -1,14 +1,16 @@
 from django.shortcuts import redirect, render
 from dashboard.navforms import *
 from .models import Sectionsothernavs as Sections
+from .forms import section9Form , BlogNews
+from .views import GetContentType
 import json
 from django.contrib import messages
 from django.core.paginator import Paginator
 from cflax.settings import sectionname
 
-sections = [SubRegistrationContent,AboutRegistraionSubMenu,DocumentRequired,PackageIncluded,Procedure,Memorandum,CompanyRegisterRequirements,FAQ,Sainification,ourclients]
+sections = [SubRegistrationContent,AboutRegistraionSubMenu,DocumentRequired,PackageIncluded,Procedure,Memorandum,CompanyRegisterRequirements,FAQ,Sainification,ourclients,BlogNews]
 # adding multi objects form as a list in sectionsform
-sectionsforms = [section0Form,section1Form,section2Form,[PackageIncludedForm],[section3Form],section4Form,section5Form,[section6Form],section7Form,[section8Form]]
+sectionsforms = [section0Form,section1Form,section2Form,[PackageIncludedForm],[section3Form],section4Form,section5Form,[section6Form],section7Form,[section8Form],[section9Form]]
 editname = ['slider','AboutCA','News_nortification','DueDate_Reminder','Blog_News_nortification','New_Blogs']
 def editothernavs(request,slug1,slug2):
     RegistrationSubMenuob = RegistrationSubMenu.objects.get(slug=slug2,title__slug=slug1)
@@ -50,6 +52,13 @@ def editothernavs(request,slug1,slug2):
             else:
                 form = sectionsforms[page_number][0](request.POST,request.FILES,instance = s[page_number].filter(id=objectno)[0])
         if form.is_valid():
+            form = form.save(commit=False)
+            try:
+                form.content_type =GetContentType(RegistrationSubMenuob)
+                form.object_id = RegistrationSubMenuob.id
+            except Exception as e:
+                print("exception +++++++",e)
+                pass
             form.save()
             messages.success(request,"Information Is Added Successfully")
             path = request.get_full_path().rfind('/')
