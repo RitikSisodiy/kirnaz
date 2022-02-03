@@ -34,6 +34,7 @@ class icon(models.Model):
 class Registration(models.Model):
     title = models.CharField(max_length=50)
     logo = models.ImageField(upload_to="logos",blank=True)
+    info = models.CharField(max_length=100,blank=True)
     # content = models.CharField(max_length=5000)
     slug = models.SlugField(blank=True)
     type = models.CharField(max_length=1,choices=(("1",'registration'),("2",'othernavs')))
