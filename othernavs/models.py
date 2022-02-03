@@ -9,6 +9,7 @@ class Registration(models.Model):
     title = models.CharField(max_length=50)
     logo = models.ImageField(upload_to="logos",blank=True)
     # content = models.CharField(max_length=5000)
+    info = models.CharField(max_length=100,blank=True)
     slug = models.SlugField(blank=True)
     def save(self, *args, **kwargs):
         self.slug = unique_slug_generator(Registration,self.title)
@@ -24,7 +25,6 @@ class RegistrationSubMenu(models.Model):
     submenu = models.CharField(max_length=50)
     tags = GenericRelation(BlogNews,related_query_name='reg_title')
     logo = models.ImageField(upload_to="logos",blank=True)
-    info = models.CharField(max_length=100,blank=True)
     slug = models.SlugField(blank=True)
     def save(self, *args, **kwargs):
         self.slug = unique_slug_generator(RegistrationSubMenu,self.submenu)
