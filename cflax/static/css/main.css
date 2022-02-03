@@ -2870,12 +2870,14 @@ b {
 }
 #servicecontainer {
     display: -webkit-inline-box;
+    width: 100%;
     overflow-x: hidden;
     cursor: grab;
+    padding-right: 29px;
 }
 @media only screen and (max-width: 640px) {
     .comp-reg .required .card1 {
-        width: 25%;
+        width: 70%;
         margin: 0 0 20px;
     }
     #servicecontainer {
