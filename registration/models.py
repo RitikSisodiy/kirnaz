@@ -36,7 +36,7 @@ class Registration(models.Model):
     logo = models.ImageField(upload_to="logos",blank=True)
     # content = models.CharField(max_length=5000)
     slug = models.SlugField(blank=True)
-    type = models.CharField(max_length=1,choices=((1,'registration'),(2,'othernavs')))
+    type = models.CharField(max_length=1,choices=(("1",'registration'),("2",'othernavs')))
     def save(self, *args, **kwargs):
         self.slug = unique_slug_generator(Registration,self.title)
         super(Registration, self).save(*args, **kwargs)
