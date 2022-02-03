@@ -7,6 +7,7 @@ from django.urls import reverse
 from registration.models import icon
 class Registration(models.Model):
     title = models.CharField(max_length=50)
+    logo = models.ImageField(upload_to="logos",blank=True)
     # content = models.CharField(max_length=5000)
     slug = models.SlugField(blank=True)
     def save(self, *args, **kwargs):
