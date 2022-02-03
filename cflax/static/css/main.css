@@ -2868,11 +2868,20 @@ b {
     border: none;
     color: #fff;
 }
-
+#servicecontainer {
+    display: -webkit-inline-box;
+    overflow-x: hidden;
+    cursor: grab;
+}
 @media only screen and (max-width: 640px) {
     .comp-reg .required .card1 {
         width: 25%;
         margin: 0 0 20px;
+    }
+    #servicecontainer {
+        display: -webkit-inline-box;
+        overflow-x: scroll;
+        cursor: grab;
     }
     .comp-reg .location-wrapper1 h3 {
         font-size: 20px;
