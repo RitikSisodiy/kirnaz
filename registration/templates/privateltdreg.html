@@ -452,7 +452,7 @@
     </div>
     {% if top %}
     {% for regs in top %}
-    <div class="col-md-3 first" id="fixedformdis" style="background: #f9f9fa;">
+    <div class="col-md-3 first " id="fixedformdis" style="background: #f9f9fa;">
         <div id="fixedform" style=" transition:all 1s linear;" >
             <div class="form">
                 <div class="form-heading">
@@ -483,6 +483,15 @@
         $("ul.custumli li").addClass('my-2')
         $("ul.custumli li").prepend(`<i style="color: #e77b20; margin-right: 10px;" class="fa fa-check"></i>`)
         $("ul.custumli ul").css("list-style-type", "none")
+    
+        {% for d in slist %}
+    {% if forloop.counter > 1 %}
+    $('#selectsection{{d.1}}').scroll(function() {
+     alert("hello");
+    });
+    {% endif %}
+    {% endfor %}
+    
     });
 
     var elementPosition = $('#navigation').offset();
@@ -494,6 +503,9 @@
             $('#navigation').css('position', 'static');
         }
     });
+
+
+
     $(window).scroll(function () {
         if ($(window).scrollTop() > fixedform.top) {
             $('#fixedform').addClass('fixedform');
@@ -501,6 +513,8 @@
             $('#fixedform').removeClass('fixedform');
         }
     });
+
+   
 
 
     $('#right-button').click(function () {
@@ -516,5 +530,26 @@
             scrollLeft: "-=200px"
         }, "slow");
     });
+</script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    const id = entry.target.getAttribute('id');
+    if (entry.intersectionRatio > 0) {
+      document.querySelector(`div.mx-2 a[href="#${id}"]`).parentElement.classList.add('active');
+    } else {
+      document.querySelector(`div.mx-2 a[href="#${id}"]`).parentElement.classList.remove('active');
+    }
+  });
+});
+
+// Track all sections that have an `id` applied
+document.querySelectorAll('section[id]').forEach((section) => {
+  observer.observe(section);
+});
+
+});
 </script>
 {% endblock content%}

@@ -40,7 +40,7 @@ def handlenav(request,slug1,slug2):
     # res['faq'] = FAQ.objects.filter(reg_title__slug=slug2)    
     # res['client'] = ourclients.objects.filter(reg_title__slug=slug2)  
     res['reg'] = reg  
-    return render(request,'othernavs.html',res)
+    return render(request,'privateltdreg.html.html',res)
 
     # if type(slug1)==str:
     #     slug1 = slug1.replace('__','/')

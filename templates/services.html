@@ -30,7 +30,7 @@
                     </div>
                     <div class="white-box shadow-lg p-3 mb-5 bg-white rounded p-5">
                     {% for regs in Registrations %}
-                        <h3>{{regs.title}}</h3>
+                        <h3 id="{{regs.title|slugify}}" >{{regs.title}}</h3>
                         <ul>
                         {% for r in regs.RegistrationSubMenu.all %}
                             <li><a href="{% url 'registration' slug1=regs.slug slug2=r.slug %}">{{r.submenu}}</a></li>
@@ -41,7 +41,7 @@
                     {% for regs in othernavreg %}
 
                     <div class="services-head">
-                        <h3>{{regs.title}}</h3>
+                        <h3 id="{{regs.title|slugify}}" >{{regs.title}}</h3>
                     </div>
                     <div class="white-box shadow-lg p-3 mb-5 bg-white rounded p-5">
                         <h3>{{regs.title}}</h3>
