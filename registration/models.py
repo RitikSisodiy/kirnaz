@@ -179,7 +179,7 @@ class contacts(models.Model):
     name = models.CharField(max_length=50)
     email = models.CharField(max_length=50)
     mobile = models.CharField(max_length=50)
-    pincode = models.CharField(max_length=50)
+    message = models.CharField(max_length=500)
     time = models.DateTimeField(auto_now=True)
 
 class aboutContent(models.Model):

@@ -56,4 +56,4 @@ class FAQAdmin(admin.ModelAdmin):
     list_display=('reg_title','content')
 @admin.register(contacts)
 class contactsAdmin(admin.ModelAdmin):
-    list_display=('reg_title','name','email','mobile','pincode')
+    list_display=('reg_title','name','email','mobile','message')

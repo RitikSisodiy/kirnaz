@@ -23,15 +23,14 @@
             <div class="col-lg-5">
                 <div class="form">
                     <div class="form-heading">
-                        <h3>{{regs.formtitle|title}}</h3>
+                        <h3>{{regs.formtitle}}</h3>
                     </div>
                     <form method='POST'>{% csrf_token %}
                         <input type="text" name="name" placeholder="Name" id="">
                         <input type="email" name="email" placeholder="Email" id="">
                         <input type="text" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
                             maxlength=10 minlength=10 name="contact" placeholder="Contact No." id="">
-                        <input type="text" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
-                            maxlength=7 minlength=6 name="pin" placeholder="Pin Code" id="">
+                        <input type="text" name="pin" placeholder="Your Message" id="">
                         <div class="submit-btn">
                             <button type="submit">Proceed Now!</button>
                         </div>
@@ -132,7 +131,7 @@
             {% if absm %}
             {% for ab in absm %}
             <section id='selectsectionabsm'>
-            <h2 class="heading-reg my-4 text-center text-bold" ><b>{{ab.heading1}}</b></h2>
+            <h2 class="heading-reg my-4 text-center text-bold" ><b>{{ab.heading1|title}}</b></h2>
             <div class="col-md-12">
                 <p class="text-justify bold">{{ab.heading1_details|safe}}</p>
 
@@ -459,15 +458,14 @@
         <div id="fixedform" style=" transition:all 1s linear;" >
             <div class="form">
                 <div class="form-heading">
-                    <h3>{{regs.formtitle|title}}</h3>
+                    <h3>{{regs.formtitle}}</h3>
                 </div>
                 <form method='POST'>{% csrf_token %}
                     <input type="text" name="name" placeholder="Name" id="">
                     <input type="email" name="email" placeholder="Email" id="">
                     <input type="text" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
                         maxlength=10 minlength=10 name="contact" placeholder="Contact No." id="">
-                    <input type="text" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
-                        maxlength=7 minlength=6 name="pin" placeholder="Pin Code" id="">
+                    <input type="text" name="pin" placeholder="Your Message" id="">
                     <div class="submit-btn">
                         <button type="submit">Proceed Now!</button>
                     </div>

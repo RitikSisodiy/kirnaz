@@ -17,7 +17,7 @@ def handlenav(request,slug1,slug2):
         email = request.POST['email']
         contact = request.POST['contact']
         pin = request.POST['pin']
-        contacts(reg_title = reg,name=name,email=email,mobile=contact,pincode=pin).save()
+        contacts(reg_title = reg,name=name,email=email,mobile=contact,message=pin).save()
         messages.success(request,"Hurrey! Thanks For Contacting With us, We will Get Back To You Soon.")
         return redirect(request.get_full_path())
     res['slist'] = []
