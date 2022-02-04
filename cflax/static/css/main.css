@@ -738,11 +738,20 @@ a:hover {
     font-size: 16px;
 }
 
-a,
-a:focus,
-a:hover {
+a, a:focus, a:hover {
     outline: none;
     text-decoration: none;
+    color: #e77b20;
+}
+.mx-2.p-3.active {
+    background: #f17000;
+    border-radius: 10px;
+}
+.mx-2.p-3.active a {
+    color:#fff;
+}
+.mx-2.p-3.active:hover{
+    background: #d65703;
 }
 
 a {

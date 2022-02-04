@@ -120,10 +120,10 @@
             </style>
             <div class="d-flex w-100" id="navigation">
                 <div class="align-self-center" id='left-button'><i class="fa fa-angle-double-left mx-1	"></i></div>
-                <div class="p-3 rounded bg-light shadow contentnav" id="content">
+                <div class="rounded shadow contentnav" style="background-color: #e0e2f5!important;" id="content">
                     {% for d in slist %}
                     {% if forloop.counter > 1 %}
-                    <div class="mx-2"><a href="#selectsection{{d.1}}">{{d.0}}</a></div>{% endif %}
+                    <div class="mx-2 p-3"><a href="#selectsection{{d.1}}">{{d.0}}</a></div>{% endif %}
                     {% endfor %}
                 </div>
                 <div class="align-self-center" id="right-button"><i class="	fa fa-angle-double-right mx-1 "></i></div>
@@ -131,8 +131,8 @@
             </div>
             {% if absm %}
             {% for ab in absm %}
-
-            <h2 class="heading-reg my-4 text-center text-bold" id='selectsectionabsm'><b>{{ab.heading1}}</b></h2>
+            <section id='selectsectionabsm'>
+            <h2 class="heading-reg my-4 text-center text-bold" ><b>{{ab.heading1}}</b></h2>
             <div class="col-md-12">
                 <p class="text-justify bold">{{ab.heading1_details|safe}}</p>
 
@@ -141,11 +141,12 @@
 
                 {% endfor %}
             </div>
+        </section>
             {% endif %}
         </div>
         {% if pi %}
-        <div class="third" id="selectsectionpi">
-            <section class="services mt-20">
+        <section class="third" id="selectsectionpi">
+            <div class="services mt-20">
                 <!--Heading Start-->
                 <div class="">
                     <div class="col-md-12 text-center">
@@ -177,13 +178,13 @@
 
                 </div>
 
-            </section>
-        </div>
+            </div>
+        </section>
         {% endif %}
         {% if dr %}
-        <div id='selectsectiondr'>
+        <section id='selectsectiondr'>
             {% for d in dr %}
-            <section class="cmp1" id="">
+            <div class="cmp1" id="">
                 <div class="">
                     <div class="row">
                         <div class="col-12">
@@ -195,9 +196,9 @@
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
             {% endfor %}
-        </div>
+        </section>
         {% endif %}
 
         {% if pr %}
@@ -426,8 +427,9 @@
 
         {% endif %}
         {% if blogs %}
+        <section id="selectsectionblogs">
         <center>
-            <h2 id="selectsectionblogs" class="heading-reg my-4 text-center text-bold my-2">Related Blogs</h2>
+            <h2  class="heading-reg my-4 text-center text-bold my-2">Related Blogs</h2>
         </center>
         <div class=" p-5 row justify-content-md-center">
             {% for data in blogs|slice:":4" %}
@@ -446,13 +448,14 @@
             </div>
             {% endfor %}
         </div>
+    </section>
         {% endif %}
 
 
     </div>
     {% if top %}
     {% for regs in top %}
-    <div class="col-md-3 first " id="fixedformdis" style="background: #f9f9fa;">
+    <section class="col-md-3 first " id="fixedformdis" style="background: #f9f9fa;">
         <div id="fixedform" style=" transition:all 1s linear;" >
             <div class="form">
                 <div class="form-heading">
@@ -471,7 +474,7 @@
                 </form>
             </div>
         </div>
-    </div>
+    </section>
     {% endfor %}
     {% endif %}
 
