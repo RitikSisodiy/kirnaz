@@ -1,7 +1,26 @@
 {% extends 'basic.html'%}
 {% block content %}
 {% load static %}
+<style>
+  p{
+    font-size: 15px!important;
+  }
+  #read{
+    font-size: 13px!important;
+  }
 
+  #recent-posts-4
+  h3
+  {
+  font-size: 15px!important;
+  }
+  #recent-posts-2 h3{
+    font-size: 15px!important;
+  }
+  #custom_html-2 h3 {
+    font-size: 15px!important;
+  }
+</style>
 <body>
 
   <div class="blog">
@@ -22,7 +41,7 @@
               <div class="entry-content">
 
                 <p>{{data.Short_des}}[&hellip;]</p>
-                <p><a class="btn btn-default read-more" href="{{data.getabsoluteurl}}"
+                <p><a class="btn btn-default read-more" id='read' href="{{data.getabsoluteurl}}"
                     title="{{data.title}}">Read
                     More</a>
                 </p>

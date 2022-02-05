@@ -3,6 +3,24 @@
 {% with ""|contact as contact %}
 {% with contact.0 as contact %}
 <footer id="footerid">
+  <style>
+    .p-3 {
+    padding: 7px!important;
+}  .mb-2, .my-2 {
+    margin-bottom: .5rem!important;
+}.ml-1, .mx-1 {
+    margin-left: .5rem!important;
+}.mr-1, .mx-1 {
+    margin-right: .10rem!important;
+}
+.footer-wrap{
+  font-size: 15px!important;
+}
+.footer-heading{
+  font-size: 20px!important;;
+}
+
+  </style>
       <div class="footer-wrap">
         <div class="container">
           <div class="row">
@@ -41,7 +59,7 @@
                   <div><i class="fa fa-envelope"></i><span>{{contact.email}}</span></div>
                 </li>
               </ul>
-              <div class="d-flex">
+              <div class="d-flex" id='social'>
                 <div class="text-light "><a class="border mb-2  rounded-circle bg-danger p-3 mx-1 text-light" href=""><i class="P-2 fa fa-facebook"></i></a></div>
                 <div class="text-light "><a class="border mb-2  rounded-circle bg-danger p-3 mx-1 text-light" href=""><i class="P-2 fa fa-instagram"></i></a></div>
                 <div class="text-light "><a class="border mb-2  rounded-circle bg-danger p-3 mx-1 text-light" href=""><i class="P-2 fa fa-pinterest"></i></a></div>
@@ -51,7 +69,7 @@
             </div>
           </div>
           <div class="footer-service">
-            <div class="copyright">© 2021 Cyberflax PVT. LTD &amp; . All Rights Reserved</div>
+            <div class="copyright" style="font-size: 15px;">© 2021 Cyberflax PVT. LTD &amp; . All Rights Reserved</div>
           </div>
         </div>
       </div>

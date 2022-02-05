@@ -5,14 +5,87 @@
 {% block content %}
 {% if top %}
 {% for regs in top %}
+<style>
+h2{
+    font-size: 22px !important;
+}
 
-<div class="first">
-    <div class="container " >
+ p{
+    font-size: 15px !important;
+}
+
+
+#first center {
+    font-size: 20px!important;
+}
+center ul li strong{
+    font-size: 17px!important;
+}
+
+
+
+#first center p{
+    font-size: 20px!important;
+}
+h4 a{
+    font-size: 18px !important;
+}
+ #select a{
+    font-size: 16px !important;
+}
+.form-heading h3{
+    font-size: 22px !important;
+}
+#first p span{
+    font-size: 20px!important;
+}
+
+#first center p strong{
+    font-size: 19px!important;
+}
+
+#first .form h3{
+    font-size: 22px!important;
+}
+
+ol li span{
+    font-size: 17px!important;
+}
+
+#selectsectionabsm p span
+{
+    font-size: 17px!important;
+}
+.service-head{
+    font-size: 16px!important ;
+}
+.custumli li span{
+    font-size: 17px!important;
+    
+}
+/* #cus  li{
+    font-size: 15px!important;
+} */
+.custumli li{
+    font-size: 15px!important;
+    
+}
+
+li strong{
+    font-size: 15px!important;
+}
+.custumli p span{
+    font-size: 17px!important;
+}
+
+</style>
+<div class="first" id='first'>
+    <div class="container" >
         <div class="row">
             <div class="col-lg-7 col-12">
                 <div class="banner-captions">
                     <center>
-                        <h1 class="title">{{regs.title}}</h1>
+                        <h1 class="title" id='title' style="font-size: 22px !important;">{{regs.title}}</h1>
                     </center>
                     <div class="sub-title">
                         <center>{{regs.subtitle}}</center>
@@ -122,7 +195,7 @@
                 <div class="rounded shadow contentnav" style="background-color: #e0e2f5!important;" id="content">
                     {% for d in slist %}
                     {% if forloop.counter > 1 %}
-                    <div class="mx-2 p-3"><a href="#selectsection{{d.1}}">{{d.0}}</a></div>{% endif %}
+                    <div class="mx-2 p-3" id='select' ><a href="#selectsection{{d.1}}">{{d.0}}</a></div>{% endif %}
                     {% endfor %}
                 </div>
                 <div class="align-self-center" id="right-button"><i class="	fa fa-angle-double-right mx-1 "></i></div>
@@ -136,7 +209,7 @@
                 <p class="text-justify bold">{{ab.heading1_details|safe}}</p>
 
                 <h2 class="heading-reg my-4 text-center text-bold"><b>{{ab.heading2}}</b></h2>
-                <ul class="custumli">{{ab.heading2_details|safe}}</ul>
+                <ul class="custumli" >{{ab.heading2_details|safe}}</ul>
 
                 {% endfor %}
             </div>
@@ -300,7 +373,7 @@
             <div class="">
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        </h2 class="heading-reg my-4 text-center text-bold">{{s.heading1}}
+                        <h2 class="heading-reg my-4 text-center text-bold">{{s.heading1}}
                         </h2>
                     </div>
                 </div>
@@ -437,7 +510,7 @@
                     <img class="card-img-top" src="{{data.img.url}}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">{{data.title|slice:":35"}}</h5>
-                        <span class="badge badge-danger">{{data.date|date}}</span>
+                        <span class="badge badge-danger" id='date'>{{data.date|date}}</span>
                         <p class="card-text">{{data.Short_des|slice:":82"}}...</p>
                         <div class="my-5"></div>
                         <div class="my-5"></div>

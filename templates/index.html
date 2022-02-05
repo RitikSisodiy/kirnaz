@@ -17,6 +17,30 @@
     object-fit: cover !important;
 }
 </style>
+
+<style>
+   ul li a{
+    font-size: 14px!important;
+  } 
+   p{
+    font-size: 15px!important;
+  } 
+  h6 a{
+    font-size: 15px!important;
+  } 
+  h1{
+    font-size: 25px!important;
+  } 
+  h3{
+    font-size: 17px!important;
+  } 
+  h2{
+    font-size: 20px!important;
+  } 
+  h2 span{
+    font-size: 20px!important;
+  } 
+</style>
 <section class="banner-sec">
   <div class="container">
     <div class="parent">
@@ -107,7 +131,7 @@
       <div class=""></div>
     </h1>
     {{aboutca.content|safe}}
-    <a href="{% url 'about' %}">Read More <i class="fa fa-angle-double-right"></i></a>
+    <a href="{% url 'about' %}"  >Read More <i class="fa fa-angle-double-right"></i></a>
   </div>
 </div>
 {% endif %}
@@ -209,7 +233,7 @@
                     <div class="news2d"> <a href="#">{{n.title}}</a> </div>
                   </td>
                 </tr> {% endcomment %}
-                <div class="news_blog"> <span class="hedingnews">{{n.date|date}}</span> <span class="arrownews">
+                <div class="news_blog"> <span class="hedingnews" id='date'>{{n.date|date}}</span> <span class="arrownews">
                     <strong><a href="{{n.getabsoluteurl}}">{{n.title}}</a></strong></span> <br>
                   <span>{{n.Short_des|slice:":100"}}...<a target="_blank" href="{{n.getabsoluteurl}}">more</a></span>
                 </div>
@@ -217,7 +241,7 @@
               </tbody>
             </table>
           </marquee>
-          <a href="{% url 'blog' 'News' %}">Readmore...</a>
+          <a href="{% url 'blog' 'News' %}" >Readmore...</a>
         </div>
       </div>
 
@@ -255,7 +279,7 @@
           <marquee id="ml" height="216" direction="up" srolldelay="30" scrollamount="2" onmouseover="this.stop();"
             onmouseout="this.start();">
             {% for d in ddreminder %}
-            <div class="news_blog"> <span class="hedingnews">{{d.date}}</span> <span
+            <div class="news_blog"> <span class="hedingnews" id='date'>{{d.date}}</span> <span
                 class="arrownews">{{d.details}}</span> <br>
             </div>
             {% endfor %}
@@ -269,7 +293,7 @@
           <marquee id="m2" height="296" direction="up" scrolldelay="30" scrollamount="2" onmouseover="this.stop();"
             onmouseout="this.start();">
             {% for n in bnews %}
-            <div class="news_blog"> <span class="hedingnews">{{n.date|date}}</span> <span class="arrownews">
+            <div class="news_blog"> <span class="hedingnews" id='date'>{{n.date|date}}</span> <span class="arrownews">
                 <strong><a href="{{n.getabsoluteurl}}">{{n.title}}</a></strong></span> <br>
               <span>{{n.Short_des|slice:":100"}}...<a target="_blank" href="{{n.getabsoluteurl}}">more</a></span>
             </div>
@@ -304,7 +328,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12 hm-services-title">
-        <h2>Our Services<span> Offerings</span></h2>
+        <h2>Our Services<span style="font-size: 20px !important;"> Offerings</span></h2>
       </div>
     </div>
     <section class="row">
@@ -358,7 +382,7 @@
       <img class="card-img-top" src="/media/{{data.img}}" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title">{{data.title|slice:":35"}}</h5>
-        <span class="badge badge-danger">{{data.date|date}}</span>
+        <span class="badge badge-danger" id='date'>{{data.date|date}}</span>
         <p class="card-text">{{data.Short_des|slice:":82"}}...</p>
         <a href="{{data.getabsoluteurl}}" class="btn btn-theme shadow-sm ">View more</a>
       </div>

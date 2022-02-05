@@ -13,10 +13,20 @@
 }
 
 </style>
+<style>
+
+   li {
+    font-size: 14px!important;
+  } 
+  ul span li a{
+    font-size: 15px!important;
+  } 
+
+</style>
 <header class="shadow-lg p-3 	bg-white rounded">
       <div class="top-nav">
         <div class="call">Mail Us : <a href="mailto:{{contact.email}}" class="text-light"> {{contact.email}}</a> </div>
-        <div class="call">Contact: <a href="tel:{{contact.phone}}" class="text-light">{{contact.phone}}</a> 
+        <div class="call">Contact: <a href="tel:+{{contact.phone}}" class="text-light">+{{contact.phone}}</a> 
 		</div>{% endwith %}{% endwith %}
         <div class="right">
           <ul>
@@ -28,6 +38,8 @@
             <li><a href="{% url 'membersignup' %}" style="--color:#71d109">Signup</a></li>{% endif %}
             <li><a href="#" style="--color:#4cae4c" onclick="show()">Chat Now</a></li>
             <li><a href="{% url "payment" %}" style="--color:#01b4f1">Payment</a></li>
+			
+            <li><a href="#" style="--color:#f0ad4e"">Contact</a></li>
           </ul>
         </div>
       </div>

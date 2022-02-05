@@ -4,12 +4,31 @@
 {% block title%}About{% endblock title%}
 {% block content %}
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-
+<style>
+  #tit{
+    font-size: 27px!important;
+  } 
+  h1{
+    font-size: 15px!important;
+  } 
+  .content{
+    font-size: 17px!important;
+  } 
+  p{
+    font-size: 15px!important;
+  } 
+  p span{
+    font-size: 17px!important;
+  }  
+   p big span{
+    font-size: 15px!important;
+  } 
+</style>
  <div class="page">
    <div class="banner">
       <div class="container">
          <div class="left-side-content">
-             <h1>Book Appointment With Tax & Compliance Expert</h1>
+             <h1 id='tit'>Book Appointment With Tax & Compliance Expert</h1>
           <p class="content">No geographical barriers to start & manage your business</p>
          </div>
       </div>
@@ -52,7 +71,7 @@
           <div class="section-heading-line"></div>
           <br>
         </div>
-        <div >
+        <div>
             {{con.content|safe}}
         </div>
         </div>
@@ -164,7 +183,7 @@
                 <h3 style="color: #fff;">You can compare and select from the list of experts </h3>
                 <p style="color: #fff;">People forget how fast you did a job, but they remember how well
                   you did it. –Howard W. Newton</p>
-                <a href="#" class="primary-button button-md" style="background: #000000;">Contact Us</a>
+                <a href="#" class="primary-button button-md"  style="font-size: 15px!important;background: #000000;">Contact Us</a>
               </div>
             </div>
           </div>
