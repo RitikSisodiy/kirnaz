@@ -5,87 +5,14 @@
 {% block content %}
 {% if top %}
 {% for regs in top %}
-<style>
-h2{
-    font-size: 22px !important;
-}
 
- p{
-    font-size: 15px !important;
-}
-
-
-#first center {
-    font-size: 20px!important;
-}
-center ul li strong{
-    font-size: 17px!important;
-}
-
-
-
-#first center p{
-    font-size: 20px!important;
-}
-h4 a{
-    font-size: 18px !important;
-}
- #select a{
-    font-size: 16px !important;
-}
-.form-heading h3{
-    font-size: 22px !important;
-}
-#first p span{
-    font-size: 20px!important;
-}
-
-#first center p strong{
-    font-size: 19px!important;
-}
-
-#first .form h3{
-    font-size: 22px!important;
-}
-
-ol li span{
-    font-size: 17px!important;
-}
-
-#selectsectionabsm p span
-{
-    font-size: 17px!important;
-}
-.service-head{
-    font-size: 16px!important ;
-}
-.custumli li span{
-    font-size: 17px!important;
-    
-}
-/* #cus  li{
-    font-size: 15px!important;
-} */
-.custumli li{
-    font-size: 15px!important;
-    
-}
-
-li strong{
-    font-size: 15px!important;
-}
-.custumli p span{
-    font-size: 17px!important;
-}
-
-</style>
-<div class="first" id='first'>
-    <div class="container" >
+<div class="first">
+    <div class="container ">
         <div class="row">
             <div class="col-lg-7 col-12">
                 <div class="banner-captions">
                     <center>
-                        <h1 class="title" id='title' style="font-size: 22px !important;">{{regs.title}}</h1>
+                        <h1 class="title">{{regs.title}}</h1>
                     </center>
                     <div class="sub-title">
                         <center>{{regs.subtitle}}</center>
@@ -118,21 +45,63 @@ li strong{
 <style>
     div.fixedform {
 
-    position: fixed;
-    top: 12%;
-}
-@media only screen and (max-width: 767px) {
-    #fixedformdis {
-    display:none;
-}
-}
+        position: fixed;
+        top: 12%;
+    }
+
+    @media only screen and (max-width: 767px) {
+        #fixedformdis {
+            display: none;
+        }
+    }
 </style>
-<div class="row container-fluid">
-    <div class="  col-md-9">
-        <div class="second">
-            <p class="left heading-reg my-2"><a href="{% url 'index' %}">Home</a> / {{reg.submenu}}</p>
-            <br><br>
-            <!-- <div class="sub-nav" id="navigation">
+<style>
+    .contentnav {
+        display: -webkit-box;
+        overflow-x: auto;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        /* overflow-x: hidden; */
+    }
+
+    #navigation {
+        transition: display 1s;
+    }
+
+    @media only screen and (max-width: 600px) {
+        .contentnav {
+            display: -webkit-box;
+            overflow-x: auto;
+            width: 100%;
+            justify-content: space-around;
+            /* overflow-x: hidden; */
+        }
+    }
+
+    .contentnav::-webkit-scrollbar {
+        display: none;
+        /* Safari and Chrome */
+    }
+
+    #right-button,
+    #left-button {
+        cursor: pointer;
+    }
+
+    .card-img,
+    .card-img-top {
+        border-top-left-radius: calc(.25rem - 1px);
+        border-top-right-radius: calc(.25rem - 1px);
+        height: 129px !important;
+        object-fit: cover !important;
+    }
+</style>
+<div class="row container-fluid formmain">
+    <div class="second  col-md-9 formcontent">
+        <p class="left heading-reg my-2"><a href="{% url 'index' %}">Home</a> / {{reg.submenu}}</p>
+        <br><br>
+        <!-- <div class="sub-nav" id="navigation">
                     <div class="" >
                         <ul class="list-inline list-icons">
                         {% for d in slist %}
@@ -148,447 +117,426 @@ li strong{
                         </ul>
                     </div>
                 </div> -->
-            <style>
-                .contentnav {
-                    display: -webkit-box;
-                    overflow-x: auto;
-                    width: 100%;
-                    display: flex;
-                    justify-content: space-around;
-                    /* overflow-x: hidden; */
-                }
 
-                #navigation {
-                    transition: display 1s;
-                }
-
-                @media only screen and (max-width: 600px) {
-                    .contentnav {
-                        display: -webkit-box;
-                        overflow-x: auto;
-                        width: 100%;
-                        justify-content: space-around;
-                        /* overflow-x: hidden; */
-                    }
-                }
-
-                .contentnav::-webkit-scrollbar {
-                    display: none;
-                    /* Safari and Chrome */
-                }
-
-                #right-button,
-                #left-button {
-                    cursor: pointer;
-                }
-
-                .card-img,
-                .card-img-top {
-                    border-top-left-radius: calc(.25rem - 1px);
-                    border-top-right-radius: calc(.25rem - 1px);
-                    height: 129px !important;
-                    object-fit: cover !important;
-                }
-            </style>
-            <div class="d-flex w-100" id="navigation">
-                <div class="align-self-center" id='left-button'><i class="fa fa-angle-double-left mx-1	"></i></div>
-                <div class="rounded shadow contentnav" style="background-color: #e0e2f5!important;" id="content">
-                    {% for d in slist %}
-                    {% if forloop.counter > 1 %}
-                    <div class="mx-2 p-3" id='select' ><a href="#selectsection{{d.1}}">{{d.0}}</a></div>{% endif %}
-                    {% endfor %}
-                </div>
-                <div class="align-self-center" id="right-button"><i class="	fa fa-angle-double-right mx-1 "></i></div>
-
-            </div>
-            {% if absm %}
-            {% for ab in absm %}
-            <section id='selectsectionabsm'>
-            <h2 class="heading-reg my-4 text-center text-bold" ><b>{{ab.heading1|title}}</b></h2>
-            <div class="col-md-12">
-                <p class="text-justify bold">{{ab.heading1_details|safe}}</p>
-
-                <h2 class="heading-reg my-4 text-center text-bold"><b>{{ab.heading2}}</b></h2>
-                <ul class="custumli" >{{ab.heading2_details|safe}}</ul>
-
-                {% endfor %}
-            </div>
-        </section>
-            {% endif %}
-        </div>
-        {% if pi %}
-        <section class="third" id="selectsectionpi">
-            <div class="services mt-20">
-                <!--Heading Start-->
-                <div class="">
-                    <div class="col-md-12 text-center">
-                        <h2 class="heading-reg my-4 text-center text-bold">What Is Included In Our Package?</h2>
+        <div class="stickynav-main">
+            <div class="stickynavsidebar">
+                <div class="d-flex  stickynavinner" style="z-index: 1;" id="navigation">
+                    <div class="align-self-center" id='left-button'><i class="fa fa-angle-double-left mx-1	"></i>
                     </div>
-                </div>
-
-                <div class="">
-                    <div class="row">
-                        {% for p in pi %}
-                        <div class="col-md-3 col-sm-6 icon-box-wrapper">
-                            <div class="cards">
-                                <div class="block-bg">
-                                    <div class="icon-box" style="--color:{{forloop.counter|rancolor}};">
-                                        <div class="icon-left"><i class="fa {{p.icon}}" aria-hidden="true"></i></div>
-                                    </div>
-                                    <div class="icon-content">
-                                        <p class="inc-pacg mt-20 text-center">{{p.heading1}}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="rounded shadow contentnav" style="background-color: #e0e2f5!important;" id="content">
+                        {% for d in slist %}
+                        {% if forloop.counter > 1 %}
+                        <div class="mx-2 p-3"><a href="#selectsection{{d.1}}">{{d.0}}</a></div>{% endif %}
                         {% endfor %}
-
-
-
-
+                    </div>
+                    <div class="align-self-center" id="right-button"><i class="	fa fa-angle-double-right mx-1 "></i>
                     </div>
 
                 </div>
-
             </div>
-        </section>
-        {% endif %}
-        {% if dr %}
-        <section id='selectsectiondr'>
-            {% for d in dr %}
-            <div class="cmp1" id="">
-                <div class="">
-                    <div class="row">
-                        <div class="col-12">
-                            <h2 class="heading-reg my-4 text-center text-bold">{{d.heading1}}</h2>
-                            <ul class="custumli">
-                                {{d.content|safe}}</ul>
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </section>
-        {% endif %}
-
-        {% if pr %}
-        <section class="services" id="selectsectionpr">
-            <div id="procedure"></div>
-            <div class="">
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <h2 class="heading-reg my-4 text-center text-bold">Procedure</h2>
-                    </div>
-                </div>
-            </div>
-
-            <div class="">
-                <div class="row wow fadeInUp animated animated mb-20" data-wow-delay=".5s"
-                    style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
-                    {% for p in pr %}
-                    <div class="col-lg-4 mx-auto col-md-6 p-2">
-                        <div class="service-box text-center py-4 px-2"
-                            style="border: 1px solid #00000049; width:100%; height:100%;">
-                            <div class="icon-left"><i style="color:{{forloop.counter|rancolor}};"
-                                    class="mb-3 fa {{p.icon}} fa-4x"></i>
-                            </div>
-                            <div class="service-head" style="color: #444444; font-weight:700;">{{p.heading1|title}}
-                            </div>
-                            <p>{{p.content}}</p>
-
-                        </div>
-                    </div>
-                    {% endfor %}
-
-
-                </div>
-            </div>
-
-
-
-
-        </section>
-        {% endif %}
-        {% if cr %}
-        {% for c in cr %}
-        <section id="selectsectioncr" class="services" id=''>
-
-            <div class="">
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <h2 class="heading-reg my-4 text-center text-bold">{{c.heading1}}
-                        </h2>
-                    </div>
-                </div>
-            </div>
-
-            <div class="">
-                <div class="row">
-                    <div class="col-md-12 py-3">
-
-                        <ul class="custumli" style="list-style-type: none;">
-                            {{c.content1|safe}}
-
-                        </ul>
-
-                    </div>
-                </div>
-            </div>
-
-
-        </section>
-        {% if c.heading2 %}
-        <section class="services">
-            <div class="">
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <h2 class="heading-reg my-4 text-center text-bold">{{c.heading2}}</h2>
-                    </div>
-                </div>
-            </div>
-
-            <div class="">
-                <div class="row">
-                    <div class="col-md-12 py-3">
-
-                        <ul class="custumli" style="list-style-type: none;">
-
-                            {{c.content2|safe}}
-
-                        </ul>
-
-                    </div>
-                </div>
-            </div>
-
-        </section>{% endif %}
-        {% endfor %}
-        {% endif %}
-
-        {% if sn %}
-        <section id="selectsectionsn" class="services" id=''>
-            {% for s in sn %}
-            <div class="">
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <h2 class="heading-reg my-4 text-center text-bold">{{s.heading1}}
-                        </h2>
-                    </div>
-                </div>
-            </div>
-
-            <div class="">
-                <div class="row">
+            <div class="stickynavcontent">
+                {% if absm %}
+                {% for ab in absm %}
+                <section id='selectsectionabsm'>
+                    <h2 class="heading-reg my-4 text-center text-bold"><b>{{ab.heading1|title}}</b></h2>
                     <div class="col-md-12">
-                        <p class="mb-20">{{s.content1|linebreaks}} </p>
+                        <p class="text-justify bold">{{ab.heading1_details|safe}}</p>
+
+                        <h2 class="heading-reg my-4 text-center text-bold"><b>{{ab.heading2}}</b></h2>
+                        <ul class="custumli">{{ab.heading2_details|safe}}</ul>
+
+                        {% endfor %}
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12 py-3">
-                        <ul style="list-style-type: none;" class="custumli">
-                            {{s.content2|safe}}
+                </section>
+                {% endif %}
 
+                {% if pi %}
+                <section class="third" id="selectsectionpi">
+                    <div class="services mt-20">
+                        <!--Heading Start-->
+                        <div class="">
+                            <div class="col-md-12 text-center">
+                                <h2 class="heading-reg my-4 text-center text-bold">What Is Included In Our Package?
+                                </h2>
+                            </div>
+                        </div>
 
-                        </ul>
-
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </section> {% endif %}
-        {% if mm %}
-        <section id="selectsectionmm" class="fssai-registration-sec py-5" style="background: #f3f3f3;">
-            {% for m in mm %}
-            <div class=" para-justfy">
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <h2 class="heading-reg my-4 text-center text-bold">{{m.heading1}}</h2>
-                    </div>
-                    <div class="col-md-12 mb-40">
-                        <p class="my-3" id="">{{m.content|safe}} </p>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </section> {% endif %}
-
-        {% if faq %}
-        <section class="services" id="selectsectionfaq">
-            <div class="">
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <h2 class="heading-reg my-4 text-center text-bold">{{reg.submenu}} FAQs </h2>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class=" faq">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                            {% for fq in faq %}
-                            <div class="col-12 toggler p-0" id="toggler">
-                                <div class="panel-heading" role="tab" id="headingOne{{forloop.counter}}">
-                                    <div class="row">
-                                        <div class="col-lg-11 col-11">
-                                            <h4 class="panel-title">
-                                                <a data-toggle="collapse" data-parent="#accordion"
-                                                    href="#collapseOne{{forloop.counter}}" aria-expanded="true"
-                                                    aria-controls="collapseOne{{forloop.counter}}">
-                                                    {{fq.heading|safe}}
-
-                                            </h4>
+                        <div class="">
+                            <div class="row">
+                                {% for p in pi %}
+                                <div class="col-md-3 col-sm-6 icon-box-wrapper">
+                                    <div class="cards">
+                                        <div class="block-bg">
+                                            <div class="icon-box" style="--color:{{forloop.counter|rancolor}};">
+                                                <div class="icon-left"><i class="fa {{p.icon}}" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                            <div class="icon-content">
+                                                <p class="inc-pacg mt-20 text-center">{{p.heading1}}</p>
+                                            </div>
                                         </div>
-                                        <div class="col-1 col-lg-1">
-                                            <div class="fa fa-plus"></div>
-                                        </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div id="collapseOne{{forloop.counter}}" class="panel-collapse collapse in"
-                                    role="tabpanel" aria-labelledby="headingOne{{forloop.counter}}">
-                                    <div class="panel-body">{{fq.content|safe}}
                                     </div>
                                 </div>
                                 {% endfor %}
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-        </section> {% endif %}
-        {% if client %}
-        <section
-            class=" client-says boldSection topSpaced bottomSpaced gutter inherit wBackground cover btBackgroundOverlay btSolidLightBackground"
-            style="background-image:url(https://www.finacbooks.com/assets/theme/images/bg/background_4.webp);"
-            id='selectsectionclient'>
-            <div class="">
-                <div class="heading">
-                    <h2 class="heading-reg my-4 text-center text-bold">What Clients Say</h2>
-                    <p class="heading-reg my-4 text-center text-bold">Customer delight is our main goal and we are very
-                        serious
-                        about it. </p>
-                    <hr>
-                    </h4>
-                </div>
-                <div class="team">
-                    {% for cli in client %}
-                    <div class="col-12 my-3 col-lg-4">
-                        <div class="card">
-                            <div class="img">
-                                <img src="/media/{{cli.Profile}}" alt="">
+
+
                             </div>
-                            <div class="text">
-                                <h4>Pravin Chauhan</h4>
-                                <p>
-                                    <div class="btSubTitle">{{cli.content}}</div>
-                                </p>
+
+                        </div>
+
+                    </div>
+                </section>
+                {% endif %}
+                {% if dr %}
+                <section id='selectsectiondr'>
+                    {% for d in dr %}
+                    <div class="cmp1" id="">
+                        <div class="">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h2 class="heading-reg my-4 text-center text-bold">{{d.heading1}}</h2>
+                                    <ul class="custumli">
+                                        {{d.content|safe}}</ul>
+
+
+                                </div>
                             </div>
-                            <div class="sign"><img src="/media/{{cli.SignatureOptional}}" alt=""></div>
                         </div>
                     </div>
                     {% endfor %}
-                </div>
-            </div>
-        </section>
+                </section>
+                {% endif %}
 
-
-        {% endif %}
-        {% if blogs %}
-        <section id="selectsectionblogs">
-        <center>
-            <h2  class="heading-reg my-4 text-center text-bold my-2">Related Blogs</h2>
-        </center>
-        <div class=" p-5 row justify-content-md-center">
-            {% for data in blogs|slice:":4" %}
-            <div class="col-md-4" style="display: inline-flex;">
-                <div class="card shadow">
-                    <img class="card-img-top" src="{{data.img.url}}" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">{{data.title|slice:":35"}}</h5>
-                        <span class="badge badge-danger" id='date'>{{data.date|date}}</span>
-                        <p class="card-text">{{data.Short_des|slice:":82"}}...</p>
-                        <div class="my-5"></div>
-                        <div class="my-5"></div>
-                        <a href="{{data.getabsoluteurl}}" class="btn btn-theme shadow-sm " style=" font-size: 15px!important; position: absolute; bottom: 15px;">View more</a>
+                {% if pr %}
+                <section class="services" id="selectsectionpr">
+                    <div id="procedure"></div>
+                    <div class="">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <h2 class="heading-reg my-4 text-center text-bold">Procedure</h2>
+                            </div>
+                        </div>
                     </div>
-                </div>
+
+                    <div class="">
+                        <div class="row wow fadeInUp animated animated mb-20" data-wow-delay=".5s"
+                            style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
+                            {% for p in pr %}
+                            <div class="col-lg-4 mx-auto col-md-6 p-2">
+                                <div class="service-box text-center py-4 px-2"
+                                    style="border: 1px solid #00000049; width:100%; height:100%;">
+                                    <div class="icon-left"><i style="color:{{forloop.counter|rancolor}};"
+                                            class="mb-3 fa {{p.icon}} fa-4x"></i>
+                                    </div>
+                                    <div class="service-head" style="color: #444444; font-weight:700;">
+                                        {{p.heading1|title}}
+                                    </div>
+                                    <p>{{p.content}}</p>
+
+                                </div>
+                            </div>
+                            {% endfor %}
+
+
+                        </div>
+                    </div>
+
+
+
+
+                </section>
+                {% endif %}
+                {% if cr %}
+                {% for c in cr %}
+                <section id="selectsectioncr" class="services" id=''>
+
+                    <div class="">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <h2 class="heading-reg my-4 text-center text-bold">{{c.heading1}}
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="">
+                        <div class="row">
+                            <div class="col-md-12 py-3">
+
+                                <ul class="custumli" style="list-style-type: none;">
+                                    {{c.content1|safe}}
+
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </section>
+                {% if c.heading2 %}
+                <section class="services">
+                    <div class="">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <h2 class="heading-reg my-4 text-center text-bold">{{c.heading2}}</h2>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="">
+                        <div class="row">
+                            <div class="col-md-12 py-3">
+
+                                <ul class="custumli" style="list-style-type: none;">
+
+                                    {{c.content2|safe}}
+
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </section>{% endif %}
+                {% endfor %}
+                {% endif %}
+
+                {% if sn %}
+                <section id="selectsectionsn" class="services" id=''>
+                    {% for s in sn %}
+                    <div class="">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                </h2 class="heading-reg my-4 text-center text-bold">{{s.heading1}}
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p class="mb-20">{{s.content1|linebreaks}} </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 py-3">
+                                <ul style="list-style-type: none;" class="custumli">
+                                    {{s.content2|safe}}
+
+
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </section> {% endif %}
+                {% if mm %}
+                <section id="selectsectionmm" class="fssai-registration-sec py-5" style="background: #f3f3f3;">
+                    {% for m in mm %}
+                    <div class=" para-justfy">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <h2 class="heading-reg my-4 text-center text-bold">{{m.heading1}}</h2>
+                            </div>
+                            <div class="col-md-12 mb-40">
+                                <p class="my-3" id="">{{m.content|safe}} </p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </section> {% endif %}
+
+                {% if faq %}
+                <section class="services" id="selectsectionfaq">
+                    <div class="">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <h2 class="heading-reg my-4 text-center text-bold">{{reg.submenu}} FAQs </h2>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class=" faq">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                    {% for fq in faq %}
+                                    <div class="col-12 toggler p-0" id="toggler">
+                                        <div class="panel-heading" role="tab" id="headingOne{{forloop.counter}}">
+                                            <div class="row">
+                                                <div class="col-lg-11 col-11">
+                                                    <h4 class="panel-title">
+                                                        <a data-toggle="collapse" data-parent="#accordion"
+                                                            href="#collapseOne{{forloop.counter}}" aria-expanded="true"
+                                                            aria-controls="collapseOne{{forloop.counter}}">
+                                                            {{fq.heading|safe}}
+
+                                                    </h4>
+                                                </div>
+                                                <div class="col-1 col-lg-1">
+                                                    <div class="fa fa-plus"></div>
+                                                </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div id="collapseOne{{forloop.counter}}" class="panel-collapse collapse in"
+                                            role="tabpanel" aria-labelledby="headingOne{{forloop.counter}}">
+                                            <div class="panel-body">{{fq.content|safe}}
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                </section> {% endif %}
+                {% if client %}
+                <section
+                    class=" client-says boldSection topSpaced bottomSpaced gutter inherit wBackground cover btBackgroundOverlay btSolidLightBackground"
+                    style="background-image:url(https://www.finacbooks.com/assets/theme/images/bg/background_4.webp);"
+                    id='selectsectionclient'>
+                    <div class="">
+                        <div class="heading">
+                            <h2 class="heading-reg my-4 text-center text-bold">What Clients Say</h2>
+                            <p class="heading-reg my-4 text-center text-bold">Customer delight is our main goal and
+                                we
+                                are very
+                                serious
+                                about it. </p>
+                            <hr>
+                            </h4>
+                        </div>
+                        <div class="team">
+                            {% for cli in client %}
+                            <div class="col-12 my-3 col-lg-4">
+                                <div class="card">
+                                    <div class="img">
+                                        <img src="/media/{{cli.Profile}}" alt="">
+                                    </div>
+                                    <div class="text">
+                                        <h4>Pravin Chauhan</h4>
+                                        <p>
+                                            <div class="btSubTitle">{{cli.content}}</div>
+                                        </p>
+                                    </div>
+                                    <div class="sign"><img src="/media/{{cli.SignatureOptional}}" alt=""></div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </section>
+
+
+                {% endif %}
+                {% if blogs %}
+                <section id="selectsectionblogs">
+                    <center>
+                        <h2 class="heading-reg my-4 text-center text-bold my-2">Related Blogs</h2>
+                    </center>
+                    <div class=" p-5 row justify-content-md-center">
+                        {% for data in blogs|slice:":4" %}
+                        <div class="col-md-4" style="display: inline-flex;">
+                            <div class="card shadow">
+                                <img class="card-img-top" src="{{data.img.url}}" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{data.title|slice:":35"}}</h5>
+                                    <span class="badge badge-danger">{{data.date|date}}</span>
+                                    <p class="card-text">{{data.Short_des|slice:":82"}}...</p>
+                                    <div class="my-5"></div>
+                                    <div class="my-5"></div>
+                                    <a href="{{data.getabsoluteurl}}" class="btn btn-theme shadow-sm "
+                                        style="position: absolute; bottom: 15px;">View more</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </section>
+                {% endif %}
             </div>
-            {% endfor %}
         </div>
-    </section>
-        {% endif %}
-
-
     </div>
-    {% if top %}
-    {% for regs in top %}
-    <section class="col-md-3 first " id="fixedformdis" style="background: #f9f9fa;">
-        <div id="fixedform" style=" transition:all 1s linear;" >
-            <div class="form">
-                <div class="form-heading">
-                    <h3>{{regs.formtitle}}</h3>
-                </div>
-                <form method='POST'>{% csrf_token %}
-                    <input type="text" name="name" placeholder="Name" id="">
-                    <input type="email" name="email" placeholder="Email" id="">
-                    <input type="text" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
-                        maxlength=10 minlength=10 name="contact" placeholder="Contact No." id="">
-                    <input type="text" name="pin" placeholder="Your Message" id="">
-                    <div class="submit-btn">
-                        <button type="submit">Proceed Now!</button>
+        {% if top %}
+        {% for regs in top %}
+        <section class=" first col-md-3 formsidebar "  id="fixedformdis" style="background: #f9f9fa;padding-top: 50px; padding-bottom: 0;">           
+                <div class="form forminner ">
+                    <div class="form-heading ">
+                        <h3>{{regs.formtitle}}</h3>
                     </div>
-                </form>
-            </div>
-        </div>
-    </section>
-    {% endfor %}
-    {% endif %}
-
+                    <form method='POST'>{% csrf_token %}
+                        <input type="text" name="name" placeholder="Name" id="">
+                        <input type="email" name="email" placeholder="Email" id="">
+                        <input type="text" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
+                            maxlength=10 minlength=10 name="contact" placeholder="Contact No." id="">
+                        <input type="text" name="pin" placeholder="Your Message" id="">
+                        <div class="submit-btn">
+                            <button type="submit">Proceed Now!</button>
+                        </div>
+                    </form>
+                </div>
+        </section>
+        {% endfor %}
+        {% endif %}
+    
 </div>
 
 
 <script>
     $(document).ready(function () {
         $("ul.custumli li").addClass('my-2')
-        $("ul.custumli li").prepend(`<i style="color: #e77b20; margin-right: 10px;" class="fa fa-check"></i>`)
+        $("ul.custumli li").prepend(
+            `<i style="color: #e77b20; margin-right: 10px;" class="fa fa-check"></i>`)
         $("ul.custumli ul").css("list-style-type", "none")
-    
-        {% for d in slist %}
-    {% if forloop.counter > 1 %}
-    $('#selectsection{{d.1}}').scroll(function() {
-     alert("hello");
-    });
-    {% endif %}
-    {% endfor %}
-    
+
+        {
+            %
+            for d in slist %
+        } {
+            %
+            if forloop.counter > 1 %
+        }
+        $('#selectsection{{d.1}}').scroll(function () {
+            alert("hello");
+        }); {
+            %
+            endif %
+        } {
+            %
+            endfor %
+        }
+
     });
 
     var elementPosition = $('#navigation').offset();
-    var fixedform =  $("#fixedform").offset()
-    $(window).scroll(function () {
-        if ($(window).scrollTop() > elementPosition.top) {
-            $('#navigation').css('position', 'fixed').css('top', '0').css('z-index', '1').css('left', '0');
-        } else {
-            $('#navigation').css('position', 'static');
-        }
-    });
+    var fixedform = $("#fixedform").offset()
+    // $(window).scroll(function () {
+    //     if ($(window).scrollTop() > elementPosition.top) {
+    //         $('#navigation').css('position', 'fixed').css('top', '0').css('z-index', '1').css('left', '0');
+    //     } else {
+    //         $('#navigation').css('position', 'static');
+    //     }
+    // });
 
 
 
-    $(window).scroll(function () {
-        if ($(window).scrollTop() > fixedform.top) {
-            $('#fixedform').addClass('fixedform');
-        } else {
-            $('#fixedform').removeClass('fixedform');
-        }
-    });
+    // $(window).scroll(function () {
+    //     if ($(window).scrollTop() > fixedform.top) {
+    //         $('#fixedform').addClass('fixedform');
+    //     } else {
+    //         $('#fixedform').removeClass('fixedform');
+    //     }
+    // });
 
-   
+
 
 
     $('#right-button').click(function () {
@@ -605,25 +553,46 @@ li strong{
         }, "slow");
     });
 </script>
+<script type="text/javascript" src="https://abouolia.github.io/sticky-sidebar/js/sticky-sidebar.js"></script>
+<script>
+    var sidebar = new StickySidebar('.stickynavsidebar', {
+        topSpacing: 20,
+        bottomSpacing: 20,
+        containerSelector: '.stickynav-main',
+        innerWrapperSelector: '.stickynavinner'
+    });
+    var formfix = new StickySidebar('.formsidebar', {
+        topSpacing: 20,
+        bottomSpacing: 40,
+        containerSelector: '.formmain',
+        innerWrapperSelector: '.forminner'
+    });
+</script>
+
+
 <script>
     window.addEventListener('DOMContentLoaded', () => {
 
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    const id = entry.target.getAttribute('id');
-    if (entry.intersectionRatio > 0) {
-      document.querySelector(`div.mx-2 a[href="#${id}"]`).parentElement.classList.add('active');
-    } else {
-      document.querySelector(`div.mx-2 a[href="#${id}"]`).parentElement.classList.remove('active');
-    }
-  });
-});
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                const id = entry.target.getAttribute('id');
+                if (entry.intersectionRatio > 0) {
+                    document.querySelector(`div.mx-2 a[href="#${id}"]`).parentElement
+                        .classList
+                        .add('active');
+                } else {
+                    document.querySelector(`div.mx-2 a[href="#${id}"]`).parentElement
+                        .classList
+                        .remove('active');
+                }
+            });
+        });
 
-// Track all sections that have an `id` applied
-document.querySelectorAll('section[id]').forEach((section) => {
-  observer.observe(section);
-});
+        // Track all sections that have an `id` applied
+        document.querySelectorAll('section[id]').forEach((section) => {
+            observer.observe(section);
+        });
 
-});
+    });
 </script>
 {% endblock content%}
