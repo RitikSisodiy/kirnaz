@@ -46,6 +46,8 @@ def index(request):
         messages.success(request,"Hurrey! Thanks For Contacting With us, We will Get Back To You Soon.")
         return redirect('index')
     return render(request,'index.html',res)
+def contact(request):
+    return render(request,'contact.html')
 
 def about(request):
     res= {}
