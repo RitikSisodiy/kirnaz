@@ -8,7 +8,7 @@ class SliderAdmin(admin.ModelAdmin):
     
 @admin.register(BusinessQuery)
 class BusinessQueryAdmin(admin.ModelAdmin):
-    list_display=('name',)
+    list_display=('name','email','phone','message')
 
 @admin.register(News)
 class NewsAdmin(admin.ModelAdmin):
