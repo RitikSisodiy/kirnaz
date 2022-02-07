@@ -5,6 +5,10 @@ from . models import *
 @admin.register(Slider)
 class SliderAdmin(admin.ModelAdmin):
     list_display=('objective','obj_details','img')
+    
+@admin.register(BusinessQuery)
+class BusinessQueryAdmin(admin.ModelAdmin):
+    list_display=('name',)
 
 @admin.register(News)
 class NewsAdmin(admin.ModelAdmin):
