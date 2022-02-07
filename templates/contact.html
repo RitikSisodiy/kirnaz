@@ -3,6 +3,10 @@
 {% load customfilter %}
 {% block title%}contact{% endblock title%}
 {% block content %}
+
+
+{% with ""|contact as contact %}
+{% with contact.0 as contact %}
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 <style>
@@ -18,7 +22,7 @@
     .btn-send {
         color: #fff;
         background: #e77b20;
-        font-size: 18px;
+        font-size: 16px;
         padding-left: 40px;
         padding-right: 40px;
         border: 1px solid #e77b20;
@@ -27,6 +31,9 @@
         font-weight: 900;
         border-radius: 0;
         transition: 0.4s;
+    }
+    #color{
+        color: #e77b20;
     }
 
     #tit {
@@ -42,10 +49,12 @@
         size: 50px !important;
     }
 
-    h1 {
-        font-size: 15px !important;
+    h2 {
+        font-size: 23px !important;
     }
-
+    h4 {
+        font-size: 20px !important;
+    }
     .content {
         font-size: 17px !important;
     }
@@ -55,7 +64,7 @@
     }
 
     p {
-        font-size: 17px !important;
+        font-size: 15px !important;
     }
 
     p span {
@@ -105,7 +114,7 @@
             <div class="login-form mb-60px">
                 <div class="panel" style="text-align: center; margin-top: 50px; margin-bottom: 40px;">
 
-                    <h2>Contact Details</h2>
+                    <h2 style="font-size: 24px !important;">Contact Us</h2>
                     <div class="section-heading-line"
                         style="border-radius: 50%!important;position:static!important;margin-left: 50%!important;">
                     </div><br>
@@ -119,45 +128,33 @@
                                 <div class="contact-info">
 
                                     <h2 style="margin-bottom: 15px;">Get in Touch</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna
-                                        aliqua. Quis ipsum suspendisse ultrices
-                                        gravida. Risus commodo viverra.</p><br>
+                                    <p>You will be able to see your data with status update in every second.
+                                         You can feel us adorable experience with us. We
+                                        always ready to help you out regarding all your queries.</p><br>
                                     <ul>
                                         <li>
 
-                                            <h4>Our Address <i class="fa fa-map-marker"></i></h4>
-                                            <p>A-3, Acharya Niketan,Mayur Vihar Phase 1,<br>
-                                                New Delhi-110091
+                                            <h4><i class="fa fa-map-marker"></i> Our Address </h4>
+                                            <p >{{contact.address}}
 
                                             </p>
                                         </li>
                                         <li>
 
-                                            <h4>E-mail <i class="fa fa-envelope"></i></h4>
-                                            <p>Mail: <a href="https://mail.google.com/mail/u/0/#inbox?compose=new"><span
-                                                        class="__cf_email__"
-                                                        data-cfemail="563e333a3a391633353732333b2f7835393b">Info@kirnaaz.com</span></a>
+                                            <h4><i class="fa fa-envelope"></i> E-mail </h4>
+                                            <p>Mail: <a href="https://mail.google.com/mail/u/0/#inbox?compose=new" id='color'>
+                                                        {{contact.email}}</a>
                                             </p>
 
                                         </li>
                                         <li>
 
-                                            <h4>Contact <i class="fa fa-phone"></i></h4>
-                                            <p>Mobile : <a href="tel:+91-8269155750">
-                                                    8269155750
+                                            <h4> <i class="fa fa-phone"></i> Contact</h4>
+                                            <p>Mobile : <a href="tel:+ {{contact.otherPhones}}"  id='color'>
+                                                {{contact.otherPhones}}
 
                                                 </a>
-                                                ,
-
-
-                                                <a href="tel:+91-117-964-7326">
-                                                    +91-1179647326
-
-
-
-                                                </a>
+                                                
                                             </p>
                                         </li>
 
@@ -181,8 +178,8 @@
                                                                 name="gdpr" required value="1" aria-invalid="false"
                                                                 class="gdpr-term" /><span class="wpcf7-list-item-label">
                                                                 &nbsp; Accept
-                                                                <a href="#">terms</a>
-                                                                and <a href="#">privacy
+                                                                <a href="#" id='color'>terms</a>
+                                                                and <a href="#" id='color'>privacy
                                                                     policy</a>.</span></label></span></span></span>
                                         </div>
 
@@ -221,5 +218,7 @@
     integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous">
     </script>
 
+</html>
+{% endwith %}{% endwith %}
 
 {% endblock %}
