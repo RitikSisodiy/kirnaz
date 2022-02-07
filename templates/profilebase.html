@@ -1,17 +1,31 @@
 {% extends 'basic.html' %}
 {% load static %}
 {% block content %}
-
+<style>
+h6 {
+    font-size: 15px;
+}
+li {
+    font-size: 15px!important;
+}
+/* .h2 h2{
+    color: white!important;
+    text-align:center!important;
+    font-size: 1.5rem!important;
+} */
+</style>
         <div class="dashboard-page">
 
             <body data-new-gr-c-s-check-loaded="14.1024.0" data-gr-ext-installed="">
 
-                <div class="breadcrumb-area" style='    background-image: url({% static 'images/bg-landing.jpg'%});'>
+                <div class="breadcrumb-area" style='background-image: url("{% static 'images/bg-landing.jpg' %}");'>
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="breadcrumb-inner">
                                     <h2 class="page-title"> User Dashboard
+                                        <!-- <h2 class="page-title mt-4 mb-4"> User Dashboard -->
+                                        <!-- [Client Id: {{request.user.id}}] -->
                                     </h2>
                                     <ul class="page-list">
                                       <h2> Client Id: {{request.user.id}}</h2>
@@ -27,7 +41,7 @@
                         <div class="row ">
                             <div class="col-lg-12">
                                 <div class="user-dashboard-wrapper">
-                                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                    <ul class="nav nav-pills mb-3 mt-3" id="pills-tab" role="tablist">
                                         <li class="mobile_nav">
                                             <i class="fa fa-cogs"></i>
                                         </li>

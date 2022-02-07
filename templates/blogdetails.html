@@ -31,6 +31,60 @@
     font-size: .9em;
     line-height: 20px;
 }
+p{
+  font-size: 17px!important;
+}
+
+h1{
+  font-size: 25px!important;
+}
+li span{
+  font-size: 17px!important;
+}
+
+li{
+  font-size: 15px!important;
+}
+
+span{
+  font-family: var(--bs-body-font-family)!important;
+  font-size: 15px!important;
+}
+
+#txt{
+  font-size: 15px!important;
+}
+h3{
+  font-size: 17px!important;
+}
+span u{
+  font-size: 17px!important;
+}
+p span{
+  font-size: 17px!important;
+}
+
+#blg span{
+  font-size: 17px!important;
+}
+
+#blg u{
+  font-size: 17px!important;
+}
+
+#cont div{
+  font-size: 17px!important;
+}
+#cont strong{
+  font-size: 17px!important;
+}
+#cont p{
+  font-size: 17px!important;
+}
+
+strong a{
+font-size: 17px;}
+    
 </style>
 <link rel="stylesheet" href="{% static 'assets/css/skins/skin-corporate-3.css' %}">
 <link rel="stylesheet" href="{% static 'assets/css/theme-elements.css' %}">
@@ -39,7 +93,7 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
-        <ul class="breadcrumb" style='background:#e77b20'>
+        <ul class="breadcrumb" style='background:#e77b20' id='blg'>
           <li><a href="{% url 'index' %}" style="color: white;text-decoration:nono;"><span><u>Home &nbsp;/ &nbsp;
                 </u></span></a></li>
           <li><a href="{% url 'blog' slug=type %}" style="color: white; text-decoration:nono;"><span><u>{{type|title}} /&nbsp;
@@ -50,7 +104,7 @@
         <br>
         <span class="blog-meta-header pl-0 text-light"><i class="fa fa-user"></i> Vidit Agarwal &nbsp; <i
             class="fa fa-calendar"></i> Published on {{blogob.date|date}} &nbsp; <i class="fa fa-tag"></i> <a
-            href="{{blogob.content_object.getabsoluteurl}}" class='text-light'>{{blogob.content_object.submenu}}</a> &nbsp;</span>
+            href="{{blogob.content_object.getabsoluteurl}}" id='txt' class='text-light'>{{blogob.content_object.submenu}}</a> &nbsp;</span>
 
 
 
@@ -65,14 +119,13 @@
 <div class="container my-4">
   <div class="row">
     <div class="col-sm-8 ">
-
-      <section class="call-to-action featured free-consultbg consult-mt0 featured-primary mb-xl">
-        <div class="call-to-action-content cllaction-cont">
+  <section class="call-to-action featured free-consultbg consult-mt0 featured-primary mb-xl">
+        <div class="call-to-action-content cllaction-cont" id='cont'>
           <div class="free-consult-head">Free <strong>Consultation</strong></div>
           <p>Any Questions? Request a callback from our Tax Experts.</p>
         </div>
         <div class="call-to-action-btn">
-          <a class="btn btn btn-primary lightbox-92160973430455" style="background-color:#e77b20;" onclick="show()">
+          <a class="btn btn btn-primary lightbox-92160973430455" style="background-color:#e77b20; font-size: 15px!important;" onclick="show()">
             Let's Talk
           </a>
         </div>
@@ -92,11 +145,11 @@
                 <div class="col-md-6">
                 {% if prevblog %}
                   <h3 style="text-align:left;">
-                    <a href="{{prevblog.getabsoluteurl}}" class="btn btn-primary text-light" style="background-color:#e77b20;" ><i class="fa fa-chevron-left"></i> Previous Post </a>
+                    <a href="{{prevblog.getabsoluteurl}}" class="btn btn-primary text-light" style="background-color:#e77b20;font-size: 15px!important;" ><i class="fa fa-chevron-left"></i> Previous Post </a>
                   </h3>
                   {% else %}
                    <h3 style="text-align:left;">
-                    <a href="" class="btn btn-primary disabled text-light" style="background-color:#e77b20;" disabled><i class="fa fa-chevron-left"></i> Previous Post </a>
+                    <a href="" class="btn btn-primary disabled text-light" style="background-color:#e77b20;font-size: 15px!important;" disabled><i class="fa fa-chevron-left"></i> Previous Post </a>
                   </h3>
                   {% endif %}
                 </div>

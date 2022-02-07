@@ -21,6 +21,9 @@
 <style>
    ul li a{
     font-size: 14px!important;
+  }
+  .card-text{
+    font-size: 15px!important;
   } 
    p{
     font-size: 15px!important;
@@ -40,6 +43,9 @@
   h2 span{
     font-size: 20px!important;
   } 
+   #date{
+    font-size: 12px!important;
+  }
 </style>
 <section class="banner-sec">
   <div class="container">
@@ -52,7 +58,7 @@
           <div class=" col-lg-6">
             <h1 class="objective animate0">{{s.objective}}</h1>
             <p class="objective_para">{{s.obj_details}}</p>
-            <a href="#" onclick="show()" class="btn btn-theme">Contact Us</a>
+            <a href="#" onclick="show()" style="font-size: 14px!important;" class="btn btn-theme">Contact Us</a>
           </div>
         </div>
       </div>
@@ -131,7 +137,7 @@
       <div class=""></div>
     </h1>
     {{aboutca.content|safe}}
-    <a href="{% url 'about' %}"  >Read More <i class="fa fa-angle-double-right"></i></a>
+    <a href="{% url 'about' %}" style="font-size: 15px!important;" >Read More <i class="fa fa-angle-double-right"></i></a>
   </div>
 </div>
 {% endif %}
@@ -160,7 +166,7 @@
                 placeholder="Your Message" required></textarea>
             </div>
             <div class="group-query">
-              <input type="submit" name="ctl00$btnsubmit" value="Send" id="ctl00_btnsubmit" class="btn btn-send">
+              <input type="submit" name="ctl00$btnsubmit" style="font-size: 17px!important;" value="Send" id="ctl00_btnsubmit" class="btn btn-send">
             </div>
           </form>
         </div>
@@ -186,7 +192,7 @@
                 {{d.submenu}}</a></li>
             {% endfor %}
           </ul>
-          <a href="{% url 'services' %}" title="How to register One Person Company?" target="_blank" class="bt-1">View
+          <a href="{% url 'services' %}" title="How to register One Person Company?" style="font-size: 15px!important;" target="_blank" class="bt-1">View
             More...</a>
         </div>
       </div>
@@ -201,7 +207,7 @@
                 {{d.submenu}}</a></li>
             {% endfor %}
           </ul>
-          <a href="{% url "services" %}" title="How to register One Person Company?" target="_blank" class="bt-1">View
+          <a href="{% url "services" %}" title="How to register One Person Company?" target="_blank"  style="font-size: 15px!important;" class="bt-1">View
             More...</a>
         </div>
       </div>
@@ -384,7 +390,7 @@
         <h5 class="card-title">{{data.title|slice:":35"}}</h5>
         <span class="badge badge-danger" id='date'>{{data.date|date}}</span>
         <p class="card-text">{{data.Short_des|slice:":82"}}...</p>
-        <a href="{{data.getabsoluteurl}}" class="btn btn-theme shadow-sm ">View more</a>
+        <a href="{{data.getabsoluteurl}}" style="font-size: 15px!important;" class="btn btn-theme shadow-sm ">View more</a>
       </div>
     </div>
   </div>
