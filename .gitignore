@@ -2,7 +2,6 @@
 *.log
 *.pot
 *.pyc
-static/
 media
 __pycache__
 
