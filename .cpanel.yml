@@ -1,7 +1,7 @@
 ---
 deployment:
   tasks:
-    - source /home/ztlzpllpqetq/virtualenv/kirnaz/3.6/bin/activate && cd /home/ztlzpllpqetq/kirnaz
+    - source /home/io0rbcflm0qh/virtualenv/kirnaz/3.6/bin/activate && cd /home/io0rbcflm0qh/kirnaz
     - pip install -r requirements.txt
     - python manage.py collectstatic --no-input
     - python manage.py migrate
