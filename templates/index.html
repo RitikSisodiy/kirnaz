@@ -47,6 +47,48 @@
     font-size: 12px!important;
   }
 </style>
+<style>
+  .contentnav {
+      display: -webkit-box;
+      overflow-x: auto;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      /* overflow-x: hidden; */
+  }
+
+  #navigation {
+      transition: display 1s;
+  }
+
+  @media only screen and (max-width: 600px) {
+      .contentnav {
+          display: -webkit-box;
+          overflow-x: auto;
+          width: 100%;
+          justify-content: space-around;
+          /* overflow-x: hidden; */
+      }
+  }
+
+  .contentnav::-webkit-scrollbar {
+      display: none;
+      /* Safari and Chrome */
+  }
+
+  #right-button,
+  #left-button {
+      cursor: pointer;
+  }
+
+  .card-img,
+  .card-img-top {
+      border-top-left-radius: calc(.25rem - 1px);
+      border-top-right-radius: calc(.25rem - 1px);
+      height: 129px !important;
+      object-fit: cover !important;
+  }
+</style>
 <section class="banner-sec">
   <div class="container">
     <div class="parent">
@@ -383,17 +425,20 @@
 </center>
 <div class=" p-5 row justify-content-md-center">
   {% for data in blogs|slice:":4" %}
-  <div class="col-md-3">
+  <div class="col-md-3" style="display: inline-flex;">
     <div class="card shadow">
-      <img class="card-img-top" src="/media/{{data.img}}" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">{{data.title|slice:":35"}}</h5>
-        <span class="badge badge-danger" id='date'>{{data.date|date}}</span>
-        <p class="card-text">{{data.Short_des|slice:":82"}}...</p>
-        <a href="{{data.getabsoluteurl}}" style="font-size: 15px!important;" class="btn btn-theme shadow-sm ">View more</a>
-      </div>
+        <img class="card-img-top" src="{{data.img.url}}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">{{data.title|slice:":35"}}</h5>
+            <span class="badge badge-danger">{{data.date|date}}</span>
+            <p class="card-text">{{data.Short_des|slice:":82"}}...</p>
+            <div class="my-5"></div>
+            <div class="my-5"></div>
+            <a href="{{data.getabsoluteurl}}" class="btn btn-theme shadow-sm "
+                style="position: absolute; bottom: 15px;">View more</a>
+        </div>
     </div>
-  </div>
+</div>
   {% endfor %}
 </div>
 {% endif %}

@@ -123,10 +123,10 @@
                 <div class="d-flex  stickynavinner" style="z-index: 1;" id="navigation">
                     <div class="align-self-center" id='left-button'><i class="fa fa-angle-double-left mx-1	"></i>
                     </div>
-                    <div class="rounded shadow contentnav" style="background-color: #e0e2f5!important;" id="content">
+                    <div class="rounded shadow contentnav  bg-light" style="" id="content">
                         {% for d in slist %}
                         {% if forloop.counter > 1 %}
-                        <div class="mx-2 p-3"><a href="#selectsection{{d.1}}">{{d.0}}</a></div>{% endif %}
+                        <div class="mx-2 p-4" style="padding: 1.1rem!important;"><a href="#selectsection{{d.1}}">{{d.0}}</a></div>{% endif %}
                         {% endfor %}
                     </div>
                     <div class="align-self-center" id="right-button"><i class="	fa fa-angle-double-right mx-1 "></i>

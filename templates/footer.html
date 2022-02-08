@@ -224,7 +224,7 @@ event.preventDefault();
         // Set up a handler for when the task for the request is complete.
         xhr.onload = function () {
           if (xhr.status === 200) {
-            $("input[name=message]").val('')
+           $("input[name=message]").val('')
            $("input[name=message]").focus()
            $("#filefield").val(null)
            $("#imgpreview").hide()
@@ -271,9 +271,9 @@ function updatedmsg(msgs){
                  `
                  if (msgs[i]['convofiles__file']!= null){
                    msgstr += `<div class="" style="border: solid 5px;
-    border-block-color: revert;
-    border-color: #e77b20;
-    border-radius:20;"><img src="/media/${msgs[i]['convofiles__file']}" alt="" style="width:100%"  ></div>`
+        border-block-color: revert;
+        border-color: #e77b20;
+        border-radius:20;"><img src="/media/${msgs[i]['convofiles__file']}" alt="" style="width:100%"  ></div>`
                  }
                  msgstr+= `      <p>${msgs[i]['msg']}</p>
                               </div>

@@ -743,14 +743,14 @@ a, a:focus, a:hover {
     text-decoration: none;
     color: #e77b20;
 }
-.mx-2.p-3.active {
+.mx-2.p-4.active {
     background: #f17000;
     border-radius: 10px;
 }
-.mx-2.p-3.active a {
+.mx-2.p-4.active a {
     color:#fff;
 }
-.mx-2.p-3.active:hover{
+.mx-2.p-4.active:hover{
     background: #d65703;
 }
 
@@ -2589,12 +2589,12 @@ b {
     list-style-type: none;
 }
 
-.comp-reg ul.cards li a,div.pkb-recomandation a,ul.nav li a {
+.comp-reg ul.cards li a,div.pkb-recomandation a,ul.nav li a, .white-box.shadow-lg.p-3.mb-5.bg-white.rounded.p-5 a{
     color: #000!important;
 
 }
 
-.comp-reg ul.cards li a:hover , div.pkb-recomandation a:hover,ul.nav li a:hover {
+.comp-reg ul.cards li a:hover , div.pkb-recomandation a:hover,ul.nav li a:hover,.white-box.shadow-lg.p-3.mb-5.bg-white.rounded.p-5 a:hover {
     color: #f17000!important;
 
 }
