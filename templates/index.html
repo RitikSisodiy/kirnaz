@@ -172,19 +172,8 @@
   </div>
 
 </section>
-{% if aboutca %}
-<div class="first">
-  <div class="container">
-    <h1> {{aboutca.title|title}}
-      <div class=""></div>
-    </h1>
-    {{aboutca.content|safe}}
-    <a href="{% url 'about' %}" style="font-size: 15px!important;" >Read More <i class="fa fa-angle-double-right"></i></a>
-  </div>
-</div>
-{% endif %}
-<div class="second">
-  <section class="hm-query-sec">
+<div class="second ">
+  <section class="hm-query-sec pt-5">
     <div class="container">
       <div class="row">
         <div class="col-md-6 ordering">
@@ -218,6 +207,18 @@
     </div>
   </section>
 </div>
+{% if aboutca %}
+<div class="first">
+  <div class="container">
+    <h1> {{aboutca.title|title}}
+      <div class=""></div>
+    </h1>
+    {{aboutca.content|safe}}
+    <a href="{% url 'about' %}" style="font-size: 15px!important;" >Read More <i class="fa fa-angle-double-right"></i></a>
+  </div>
+</div>
+{% endif %}
+
 <div class="comp-reg">
   <section class="required">
     <center>
