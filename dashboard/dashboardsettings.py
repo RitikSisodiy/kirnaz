@@ -9,7 +9,6 @@ from cflax.settings import INSTALLED_APPS
 
 
 excludeModels = (
-    "Home.BusinessQuery",
     "Home.News",
     "Home.aboutca",
     "Home.BlogNews",
