@@ -172,6 +172,70 @@
   </div>
 
 </section>
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body second hm-query-sec pt-5">
+          <button type="button" id="popup-close" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            <div class="container">
+              <div class="row">
+                <div class="col-md-12 ordering">
+                  <form action="" method="POST">
+                    {% csrf_token %}
+                    <h2>Business Query <div class=""></div>
+                    </h2>
+                    <p>Always ready to help you out regarding all your queries.</p>
+                    <div class="group-query">
+                      <input name="name" type="text" id="ctl00_txtname" class="form-control" placeholder="Your Name" required>
+                    </div>
+                    <div class="group-query">
+                      <input name="phone" type="text" id="ctl00_txtcontact" class="form-control" placeholder="Phone" required>
+                    </div>
+                    <div class="group-query">
+                      <input name="email" type="email" id="ctl00_txtmail" class="form-control" placeholder="Your Email"
+                        required>
+                    </div>
+                    <div class="group-query">
+                      <textarea name="message" type="text" rows="2" cols="20" id="ctl00_txtremark" class="form-control"
+                        placeholder="Your Message" required></textarea>
+                    </div>
+                    <div class="group-query">
+                      <input type="submit" name="ctl00$btnsubmit" style="font-size: 17px!important;" value="Send" id="ctl00_btnsubmit" class="btn btn-send">
+                    </div>
+                  </form>
+                </div>
+            </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+<script>
+  $(document).ready(function() {
+    var currentDateObj = new Date();
+        console.log(Date.parse(localStorage.getItem('showtime')) ,currentDateObj.getTime());
+    if(localStorage.getItem('popState') != 'shown' || Date.parse(localStorage.getItem('showtime'))<currentDateObj.getTime()){
+        setTimeout(() => {
+          $('#exampleModal').modal('show')
+        },);
+        var numberOfMlSeconds = currentDateObj.getTime();
+        var addMlSeconds = 30 *60 * 1000;
+        var newDateObj = new Date(numberOfMlSeconds + addMlSeconds);
+        localStorage.setItem('popState','shown')
+        localStorage.setItem('showtime',newDateObj)
+    }
+    $('#popup-close, #popup').click(function(e) // You are clicking the close button
+    {
+        $('#exampleModal').modal('hide'); // Now the pop up is hiden.
+    });
+});
+</script>
 <div class="second ">
   <section class="hm-query-sec pt-5">
     <div class="container">
