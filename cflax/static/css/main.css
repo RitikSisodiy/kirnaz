@@ -3649,11 +3649,10 @@ a {
 .services-page .white-box ul li{
     width: 25%;
 }
-.services-page .white-box ul li::before{
+.services-page .white-box ul li::before {
     content: '\f138';
-    color: #10b4f1;
-    
-    font-family:fontAwesome;
+    color: #f17000;
+    font-family: fontAwesome;
     margin-right: 8px;
 }
 @media (max-width:781px) {
