@@ -8,7 +8,7 @@
 
 <div class="first">
     <div class="container ">
-        <div class="row">
+        <div class="row justify-content-md-center">
             <div class="col-lg-7 col-12">
                 <div class="banner-captions">
                     <center>
@@ -20,17 +20,17 @@
                     <center>{{regs.Content|safe}}</center>
                 </div>
             </div>
-            <div class="col-lg-5">
+            <div class="col-lg-5" id="Topformsection" style="display:none;">
                 <div class="form">
                     <div class="form-heading">
                         <h3>{{regs.formtitle}}</h3>
                     </div>
                     <form method='POST'>{% csrf_token %}
-                        <input type="text" name="name" placeholder="Name" id="">
-                        <input type="email" name="email" placeholder="Email" id="">
+                        <input type="text" name="name" placeholder="Name" >
+                        <input type="email" name="email" placeholder="Email" >
                         <input type="text" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
-                            maxlength=10 minlength=10 name="contact" placeholder="Contact No." id="">
-                        <input type="text" name="pin" placeholder="Your Message" id="">
+                            maxlength=10 minlength=10 name="contact" placeholder="Contact No." >
+                        <input type="text" name="pin" placeholder="Your Message" >
                         <div class="submit-btn">
                             <button type="submit">Proceed Now!</button>
                         </div>
@@ -48,11 +48,21 @@
         position: fixed;
         top: 12%;
     }
-
+    
     @media only screen and (max-width: 767px) {
         #fixedformdis {
             display: none;
         }
+        #Topformsection{
+            display: block!important;
+        }
+        #navigation{
+            width: 100%;
+        }
+        .container-fluid{
+            width: auto;
+        }
+        
     }
 </style>
 <style>
@@ -88,6 +98,7 @@
     #left-button {
         cursor: pointer;
     }
+    
 
     .card-img,
     .card-img-top {
@@ -121,16 +132,16 @@
         <div class="stickynav-main">
             <div class="stickynavsidebar">
                 <div class="d-flex  stickynavinner" style="z-index: 1;" id="navigation">
-                    <div class="align-self-center" id='left-button'><i class="fa fa-angle-double-left mx-1	"></i>
-                    </div>
+                    <!-- <div class="align-self-center" id='left-button'><i class="fa fa-angle-double-left mx-1	"></i>
+                    </div> -->
                     <div class="rounded shadow contentnav  bg-light" style="" id="content">
                         {% for d in slist %}
                         {% if forloop.counter > 1 %}
-                        <div class="mx-2 p-4" style="padding: 1.1rem!important;"><a href="#selectsection{{d.1}}">{{d.0}}</a></div>{% endif %}
+                        <div class="mx-2 p-4" ><a href="#selectsection{{d.1}}">{{d.0}}</a></div>{% endif %}
                         {% endfor %}
                     </div>
-                    <div class="align-self-center" id="right-button"><i class="	fa fa-angle-double-right mx-1 "></i>
-                    </div>
+                    <!-- <div class="align-self-center" id="right-button"><i class="	fa fa-angle-double-right mx-1 "></i>
+                    </div> -->
 
                 </div>
             </div>
@@ -192,7 +203,7 @@
                 {% if dr %}
                 <section id='selectsectiondr'>
                     {% for d in dr %}
-                    <div class="cmp1" id="">
+                    <div class="cmp1" >
                         <div class="">
                             <div class="row">
                                 <div class="col-12">
@@ -344,7 +355,7 @@
                                 <h2 class="heading-reg my-4 text-center text-bold">{{m.heading1}}</h2>
                             </div>
                             <div class="col-md-12 mb-40">
-                                <p class="my-3" id="">{{m.content|safe}} </p>
+                                <p class="my-3" >{{m.content|safe}} </p>
                             </div>
                         </div>
                     </div>
@@ -473,11 +484,11 @@
                         <h3>{{regs.formtitle}}</h3>
                     </div>
                     <form method='POST'>{% csrf_token %}
-                        <input type="text" name="name" placeholder="Name" id="">
-                        <input type="email" name="email" placeholder="Email" id="">
+                        <input type="text" name="name" placeholder="Name" >
+                        <input type="email" name="email" placeholder="Email" >
                         <input type="text" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
-                            maxlength=10 minlength=10 name="contact" placeholder="Contact No." id="">
-                        <input type="text" name="pin" placeholder="Your Message" id="">
+                            maxlength=10 minlength=10 name="contact" placeholder="Contact No." >
+                        <input type="text" name="pin" placeholder="Your Message" >
                         <div class="submit-btn">
                             <button type="submit">Proceed Now!</button>
                         </div>
@@ -497,22 +508,7 @@
             `<i style="color: #e77b20; margin-right: 10px;" class="fa fa-check"></i>`)
         $("ul.custumli ul").css("list-style-type", "none")
 
-        {
-            %
-            for d in slist %
-        } {
-            %
-            if forloop.counter > 1 %
-        }
-        $('#selectsection{{d.1}}').scroll(function () {
-            alert("hello");
-        }); {
-            %
-            endif %
-        } {
-            %
-            endfor %
-        }
+       
 
     });
 
@@ -553,13 +549,15 @@
         }, "slow");
     });
 </script>
-<script type="text/javascript" src="https://abouolia.github.io/sticky-sidebar/js/sticky-sidebar.js"></script>
+<script type="text/javascript" src="/static/js/sticky-sidebar.js"></script>
+<script type="text/javascript" src="/static/js/ResizeSensor.js"></script>
 <script>
     var sidebar = new StickySidebar('.stickynavsidebar', {
         topSpacing: 20,
         bottomSpacing: 20,
         containerSelector: '.stickynav-main',
-        innerWrapperSelector: '.stickynavinner'
+        innerWrapperSelector: '.stickynavinner',
+        resizeSensor: true
     });
     var formfix = new StickySidebar('.formsidebar', {
         topSpacing: 20,
@@ -576,14 +574,17 @@
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 const id = entry.target.getAttribute('id');
+                let ele = document.querySelector(`div.mx-2.p-4 a[href="#${id}"]`)
+                if(ele!=null){
                 if (entry.intersectionRatio > 0) {
-                    document.querySelector(`div.mx-2 a[href="#${id}"]`).parentElement
+                    ele.parentElement
                         .classList
                         .add('active');
                 } else {
-                    document.querySelector(`div.mx-2 a[href="#${id}"]`).parentElement
-                        .classList
+                        ele.parentElement.classList
                         .remove('active');
+                    }
+                        
                 }
             });
         });

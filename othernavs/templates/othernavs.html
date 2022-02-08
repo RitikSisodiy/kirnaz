@@ -26,12 +26,12 @@
                         <h3>{{regs.formtitle|title}}</h3>
                     </div>
                     <form method='POST'>{% csrf_token %}
-                        <input type="text" name="name" placeholder="Name" id="">
-                        <input type="email" name="email" placeholder="Email" id="">
+                        <input type="text" name="name" placeholder="Name" >
+                        <input type="email" name="email" placeholder="Email" >
                         <input type="text" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
-                            maxlength=10 minlength=10 name="contact" placeholder="Contact No." id="">
+                            maxlength=10 minlength=10 name="contact" placeholder="Contact No." >
                         <input type="text" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
-                            maxlength=7 minlength=6 name="pin" placeholder="Pin Code" id="">
+                            maxlength=7 minlength=6 name="pin" placeholder="Pin Code" >
                         <div class="submit-btn">
                             <button type="submit">Proceed Now!</button>
                         </div>
@@ -183,7 +183,7 @@
         {% if dr %}
         <div id='selectsectiondr'>
             {% for d in dr %}
-            <section class="cmp1" id="">
+            <section class="cmp1" >
                 <div class="">
                     <div class="row">
                         <div class="col-12">
@@ -334,7 +334,7 @@
                         <h2 class="heading-reg my-4 text-center text-bold">{{m.heading1}}</h2>
                     </div>
                     <div class="col-md-12 mb-40">
-                        <p class="my-3" id="">{{m.content|safe}} </p>
+                        <p class="my-3" >{{m.content|safe}} </p>
                     </div>
                 </div>
             </div>
@@ -459,12 +459,12 @@
                     <h3>{{regs.formtitle|title}}</h3>
                 </div>
                 <form method='POST'>{% csrf_token %}
-                    <input type="text" name="name" placeholder="Name" id="">
-                    <input type="email" name="email" placeholder="Email" id="">
+                    <input type="text" name="name" placeholder="Name" >
+                    <input type="email" name="email" placeholder="Email" >
                     <input type="text" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
-                        maxlength=10 minlength=10 name="contact" placeholder="Contact No." id="">
+                        maxlength=10 minlength=10 name="contact" placeholder="Contact No." >
                     <input type="text" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
-                        maxlength=7 minlength=6 name="pin" placeholder="Pin Code" id="">
+                        maxlength=7 minlength=6 name="pin" placeholder="Pin Code" >
                     <div class="submit-btn">
                         <button type="submit">Proceed Now!</button>
                     </div>
