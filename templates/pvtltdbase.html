@@ -19,7 +19,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     
-  <link rel="stylesheet" href="{% static 'css/font-basic.css' %}">
  <style>
     .card-bordered {
     border: 1px solid #ebebeb
@@ -380,10 +379,10 @@ textarea {
             Fill This to Start Chatting
           </h6>
           <form action="{% url "convologin" %}" method="POST">{% csrf_token %}
-            <input type="text" name="name" required placeholder="Name" id="">
-            <input type="email" name="email" id="" required placeholder="Email">
-            <input type="number" name="phone" maxlength="10" minlength="10" id="" required placeholder="Mobile">
-            <input type="password" name="password" id="" required placeholder="Password">
+            <input type="text" name="name" required placeholder="Name" >
+            <input type="email" name="email"  required placeholder="Email">
+            <input type="number" name="phone" maxlength="10" minlength="10"  required placeholder="Mobile">
+            <input type="password" name="password"  required placeholder="Password">
             <button type="submit">Start Chatting</button>
           </form>
         {% endif %}

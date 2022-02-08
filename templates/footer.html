@@ -170,7 +170,7 @@ event.preventDefault();
     var fileSelect = document.getElementById('filefield');
     var uploadButton = document.getElementById('submit');
     var statusDiv = document.getElementById('status');
-
+    if (form!=null){
     form.onsubmit = function(event) {
         event.preventDefault();
 
@@ -225,10 +225,8 @@ event.preventDefault();
         // Send the data.
         xhr.send(formData);
     }
+    }
 })();
-
-
-
    function getsms () {
    data = document.getElementsByClassName("usermessages")
    var xhttp = new XMLHttpRequest()
