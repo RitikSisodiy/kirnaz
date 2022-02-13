@@ -4,7 +4,7 @@ import sys
 import django.core.handlers.wsgi
 # import django.core.handlers.asgi
 from django.core.wsgi import get_wsgi_application
-from multichat.asgi import application
+from cflax.asgi import application
 # Set up paths and environment variables
 sys.path.append(os.getcwd())
 os.environ['DJANGO_SETTINGS_MODULE'] = 'cflax.settings'
