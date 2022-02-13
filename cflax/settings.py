@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
 from pathlib import Path
-if os.environ.get('enviorment') == "production":
+if os.environ.get(' ') == "production":
     __import__('pysqlite3')
     import sys
     sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
@@ -97,18 +97,18 @@ CKEDITOR_CONFIGS = {
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
     # 'default': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'kirnaz',
-    #     'USER': 'userkirnaz', 
-    #     'PASSWORD': 'Flax@2021',
-    #     'HOST': '184.168.97.94',
-    #     'PORT': '3306',   #my port is 3306
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
     # }
+     'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'kirnaz',
+        'USER': 'userkirnaz', 
+        'PASSWORD': 'Flax@2021',
+        'HOST': 'localhost',
+        'PORT': '3306'
+     }
 }
 
 CHANNEL_LAYERS = {
