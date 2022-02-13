@@ -1,9 +1,9 @@
 import os
 import sys
 
-import django.core.handlers.asgi
-# from django.core.wsgi import get_wsgi_application
-from django.core.asgi import get_asgi_application
+import django.core.handlers.wsgi
+from django.core.wsgi import get_wsgi_application
+
 # Set up paths and environment variables
 sys.path.append(os.getcwd())
 os.environ['DJANGO_SETTINGS_MODULE'] = 'cflax.settings'
@@ -28,5 +28,5 @@ class PassengerPathInfoFix(object):
         return self.app(environ, start_response)
 
 # Set the application
-application = get_asgi_application()
+application = get_wsgi_application()
 application = PassengerPathInfoFix(application)
