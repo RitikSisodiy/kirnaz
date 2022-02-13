@@ -130,7 +130,7 @@ if os.environ.get('enviorment') == "production":
     CHANNEL_LAYERS["default"]= {
             "BACKEND": "channels_redis.core.RedisChannelLayer",
             "CONFIG": {
-                "hosts": [("127.0.0.1", 6379)],
+                "hosts": [("kirnaaz.com", 6379)],
             },
         },
 
