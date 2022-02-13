@@ -269,6 +269,7 @@ event.preventDefault();
           if (xhr.status === 200) {
             $("input[name=message]").val('')
            $("input[name=message]").focus()
+            ws.send('sent')
           }
         };
 
@@ -292,12 +293,11 @@ event.preventDefault();
            }
        }
    }
-   setTimeout(getsms, 1500); // try again in 1500 milliseconds
    }
 function updatedmsg(msgs){
     if (msgs.length>0){
         for(i=0;i<msgs.length;i++){
-          console.log("hello")
+          // console.log("hello")
             if (msgs[i]['msgtoadmin']==true){
                 var msgstr = `
                 
@@ -305,7 +305,7 @@ function updatedmsg(msgs){
                
           <div class="media w-50 mb-3 usermessages"><img src="http://simpleicon.com/wp-content/uploads/user1.png" alt="user" width="50" class="rounded-circle">
           <div class="media-body ml-3">
-            <div class="bg-light rounded py-2 px-3 mb-2"></div>`
+            <div class="bg-light rounded py-2 px-3 mb-2">`
             if (msgs[i]['convofiles__file']!= null){
                    msgstr += ` <div class="m-sent clearfix">
                                 <div class="message float-right">
@@ -316,7 +316,7 @@ function updatedmsg(msgs){
                                         <small class="text-muted"><i class="fas fa-check-double text-primary"></i> 10:05</small>
                                     </div>
                                 </div>
-                            </div>`
+                            </div></div>`
                  }
                  msgstr+= `  
 
@@ -360,6 +360,22 @@ function updatedmsg(msgs){
         }
     }
 }
+const url = "ws://{{request.get_host}}/ws/chat/{{username}}"
+    const ws = new WebSocket(url)
+    const messageDiv = document.getElementById("showmessages")
+    const online = document.getElementById("onlineuser")
+    ws.onopen = function(event){
+        // console.log("connetion is opend")
+
+    }
+    ws.onmessage = function(event){
+        // console.log("message is get")
+        // console.log(event)
+        getsms()  
+    }
+    ws.onclose = function(event){
+        // console.log("connetion is closed")
+    }
     getsms()
 </script>
 {% endif %}

@@ -19,7 +19,7 @@ def message(request):
         print(request.POST,request.FILES)
         files= request.FILES.get('myfile')
         msg = request.POST['message']   
-        convo = conversation(msgby = user.objects.get(user=request.user),msgtoadmin=True,msg=msg)
+        convo = conversation(msgby = request.user.user,msgtoadmin=True,msg=msg)
         convo.save()
         if files is not None:
             convofiles(msg=convo,file=files).save()

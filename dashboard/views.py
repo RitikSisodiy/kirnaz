@@ -144,6 +144,7 @@ def adminchat(request,slug1=None,id=None):
         res['coverstion'] = conversation.objects.filter(msgby__user=id)
         res['window'] = True
         res['slug'] = [slug1,id]
+        res['username'] = user.objects.get(user=id).user.username
     list = conversation.objects.values('msgby__user__id') 
     resp = []
     for i in list:

@@ -1,3 +1,4 @@
+from statistics import mode
 from django.db import models
 from datetime import datetime
 from django.contrib.auth.models import User
@@ -9,6 +10,7 @@ def datetime_from_utc_to_local(utc_datetime):
     offset = datetime.fromtimestamp(now_timestamp) - datetime.utcfromtimestamp(now_timestamp)
     return utc_datetime + offset
 # Create your models here.
+    
 class user(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE,related_name="user")
     phone = models.CharField(max_length=10,primary_key=True)
@@ -27,3 +29,6 @@ class conversation(models.Model):
 class convofiles(models.Model):
     msg = models.ForeignKey(conversation,on_delete=models.SET_NULL,null=True,related_name='convofiles',)
     file = models.FileField(upload_to="convomedia")
+class Status(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE,related_name="status")
+    status = models.BooleanField(default=False)

@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'othernavs',
     'chat',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -86,7 +87,7 @@ sectionname = ["Top Form section","What We Offer","Document","Our Package","Proc
 names = ['top','absm','dr','pi','pr','mm','cr','faq','sn','client','blogs']
 
 WSGI_APPLICATION = 'cflax.wsgi.application'
-
+ASGI_APPLICATION = 'cflax.routing.application'
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'full',
@@ -110,6 +111,13 @@ DATABASES = {
     # }
 }
 
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+}
+
+
 if os.environ.get('enviorment') == "production":
     DATABASES['default']=  {
         'ENGINE': 'django.db.backends.mysql',
@@ -119,6 +127,13 @@ if os.environ.get('enviorment') == "production":
         'HOST': 'localhost',
         'PORT': '3306',   #my port is 3306
     }
+    CHANNEL_LAYERS["default"]= {
+            "BACKEND": "channels_redis.core.RedisChannelLayer",
+            "CONFIG": {
+                "hosts": [("127.0.0.1", 6379)],
+            },
+        },
+
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 

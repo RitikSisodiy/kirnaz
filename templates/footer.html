@@ -218,7 +218,7 @@ event.preventDefault();
            $("input[name=message]").focus()
            $("#filefield").val(null)
            $("#imgpreview").hide()
-
+            ws.send("sent")
           }
         };
 
@@ -235,7 +235,7 @@ event.preventDefault();
    xhttp.onreadystatechange = function(){
        if(xhttp.readyState==4 && xhttp.status==200){
            data = xhttp.responseText
-           console.log(data)
+          //  console.log(data)
            if (data != "updated"){
                data = JSON.parse(data)
                updatedmsg(data)
@@ -243,13 +243,13 @@ event.preventDefault();
            }
        }
    }
-   setTimeout(getsms, 1500); // try again in 1500 milliseconds
+  //  setTimeout(getsms, 1500); // try again in 1500 milliseconds
    }
    
 function updatedmsg(msgs){
     if (msgs.length>0){
         for(i=0;i<msgs.length;i++){
-          console.log("hello")
+          // console.log("hello")
             if (msgs[i]['msgtoadmin']==true){
                 var msgstr = `
                 
@@ -285,6 +285,24 @@ function updatedmsg(msgs){
         }
     }
 }
+
+
+    const url = "ws://{{request.get_host}}/ws/chat/{{user.username}}"
+    const ws = new WebSocket(url)
+    const messageDiv = document.getElementById("showmessages")
+    const online = document.getElementById("onlineuser")
+    ws.onopen = function(event){
+        // console.log("connetion is opend")
+
+    }
+    ws.onmessage = function(event){
+        // console.log("message is get")
+        // console.log(event)
+        getsms()  
+    }
+    ws.onclose = function(event){
+        // console.log("connetion is closed")
+    }
     getsms()
 </script>
 
