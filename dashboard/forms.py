@@ -146,7 +146,7 @@ from django.contrib.admin import (
       site as admin_site
     )
 
-def GenForm(Model,listHiddenfield=[]):
+def GenForm(Model,listHiddenfield=[],disablefield=[]):
     data = {field:forms.HiddenInput() for field in listHiddenfield}
     class newform(forms.ModelForm):
         class Meta:

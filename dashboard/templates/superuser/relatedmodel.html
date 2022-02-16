@@ -1,6 +1,7 @@
 {% extends 'superuser/basic.html' %}
 {% block body %}
-{% load customfilter %}
+{% load static %}
+{% load custumfilter %}
 <div class=" smart-card">
     <h4 class="title">Available {{currentmodelname|title}}s in <a
             href="{% url 'editdatamodel' appname modelname currentmodel.pk 'edit' %}">{{currentmodel}}</a> </h4>
@@ -26,3 +27,33 @@
     <input type="submit" class="btn btn-primary my-3" value="submit">
 </form>
 {% endblock %}
+{% block delete %}
+{% if appname and modelname  %}
+<div style="display: none;">
+    <form id="multideleteForm" method="post" action="{% url 'editdatamodel' currentappname currentmodelname 'multidelete' 'delete' %}">
+        {% csrf_token %}
+        <input type="text" name="delete" id="deletevalues">
+    </form>
+</div>
+{% endif %}
+{% endblock %}
+{% block exscript %}
+<script src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
+
+
+<script type="text/javascript"
+src="{% static 'select/js/mdb.min.js' %}"></script>
+<script type="text/javascript">
+{ // Material Select Initialization
+  $(document).ready(function () {
+    $('.mdb-select').materialSelect();
+  });
+}
+</script>
+{%  endblock %}
+{% block exstyle %}
+<link rel="stylesheet"
+href="{% static 'select/css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'select/css/mdb.min.css' %}">
+
+{%  endblock %}

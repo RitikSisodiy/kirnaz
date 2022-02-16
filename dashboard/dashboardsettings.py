@@ -50,9 +50,13 @@ exclude = (
 'registration',
 'taxfiling',
 'othernavs',
-'dashboard',
+# 'dashboard',
 'chat',
 )
+#write in string like "appname.modelname.fieldname"
+hiddenFields= []
+disablefield = []
+
 #write in string like "appname.modelname"
 showRelatedOnEditPage=(
     'gallary.Gallery',
@@ -64,3 +68,5 @@ for data in INSTALLED_APPS:
     if '.' not in data and data not in exclude:
         appslist.append(data)
 appslist.insert(0,'auth')
+
+getTitle = 'Kirnaaz Administration' #add your admin app title

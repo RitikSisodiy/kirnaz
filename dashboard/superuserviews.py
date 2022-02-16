@@ -1,16 +1,20 @@
 # from django.http import request
 # from django.http.response import HttpResponse
 from django.contrib import messages
-from django.http.response import HttpResponse
+from django.http.response import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from .custumfunction import getobjecturl
-from dashboard.templatetags.customfilter import sidebardata
-from .dashboardsettings import hiddenFieldInAdminAllModel,appmodels , appslist , getObjectbyAppModelName , getmodelbyappname
+from dashboard.templatetags.custumfilter import sidebardata
+from .dashboardsettings import appmodels , appslist , getObjectbyAppModelName , getmodelbyappname
 from django.core import serializers
 from .forms import GenForm
-from django.contrib.auth import logout
-from .dashboardsettings import exclude as excludeapps
-from registration.models import icon
+from django.contrib.auth import authenticate, login, logout
+from dashboard.dashboardsettings import exclude as excludeapps
+from django.db.models.fields import related
+from dashboard.dashboardsettings import hiddenFields,disablefield
+from .models import emailSetup
+import csv
+from django.core.mail.backends.smtp import EmailBackend
 # from django.apps import apps
 # from onlineshop.models import *
 # from django.contrib import messages
@@ -47,6 +51,7 @@ def get_all_fields(self):
     return fields
 def index(request):
     res = {}
+    res['title'] = 'Dashboard'
     res['dashboardheading'] = 'Dashboard'
     # for data in res['modelslist']:
     #     print(res['modelslist'][data])
@@ -59,6 +64,7 @@ def showmodels(request,appname):
     res = {}
     res['modelname'] ="Home"
     res['appname'] =appname
+    res['title'] =appname
     res['models'] = getmodelbyappname(appname)
     return render(request,'superuser/listmodels.html',res)
 
@@ -71,31 +77,57 @@ def showObject(request,appname,modelname):
     res['modeldata'] = mymodel.objects.all()
     res['appname'] =appname
     res['modelname'] =modelname
+    res['title'] =modelname
+    try:
+        res['oprations'] = mymodel().BulkOprationButton()
+    except:
+        pass
     return render(request , 'superuser/modeldatatable.html' ,res)
+
+def ExportData(request,appname,modelname,type):
+    if type=='excel':
+        mymodel = getObjectbyAppModelName(appname,modelname)
+        modelob = mymodel.objects.all()
+        response = HttpResponse(content_type='application/vnd.ms-excel;charset=utf-8')
+        response['Content-Disposition'] = f'attachment; filename="{appname}-{modelname}.xls"'
+
+        writer = csv.writer(response)
+        fields = [f.name for f in mymodel._meta.fields]
+        writer.writerow(fields)
+        for data in modelob:
+            writer.writerow([ getattr(data,name) for name in fields ])
+        return response
+
 from .dashboardsettings import showRelatedOnEditPage
 def editmodel(request,appname=None,modelname=None,objectid=None,opration=None):
     res = {}
     mymodel = getObjectbyAppModelName(appname,modelname)
-    form = GenForm(mymodel,hiddenFieldInAdminAllModel)
+    hfield = ['slug']
+    hfield = cheackField(hfield,hiddenFields,appname=appname,modelname=modelname)
+    Dfield = cheackField(avFields=disablefield,appname=appname,modelname=modelname)
+    form = GenForm(mymodel,hfield,Dfield)
     res['appname'] =appname
     res['modelname'] =modelname
     if objectid is not None and objectid != "newmodel":
-        singledata = mymodel.objects.get(pk=objectid)
+        if not (objectid=='multidelete'):
+            singledata = mymodel.objects.get(pk=objectid)
+        else:
+            singledata = objectid
     if opration == 'add':
         res['form'] = form()
+        res['title'] = "add " + modelname
         if request.method == "POST":
-            print(request.POST)
             res['form'] = form(request.POST,request.FILES)
             if res['form'].is_valid():
                 res['form'].save()
-                messages.success(request,str(res['form'].instance) + " is saved successfully")
+                messages.success(request,str(getobjecturl(res['form'].instance)) + " is saved successfully")
                 return redirect(request.get_full_path())
             messages.error(request,str(getobjecturl(res['form'].instance)) + " data is invalid Check your form")
     elif opration == 'edit':
+        res['title'] = "edit " + modelname
         if f"{appname}.{modelname}" in showRelatedOnEditPage:
             res['showrelated'] = True
         res['form'] = form(instance=singledata)
-        res['icon'] = icon.objects.all() if 'icon' in res['form'].fields else []
         res['relateddata'] = type(singledata)._meta.related_objects
         res['appname'] = appname
         res['modelname'] = modelname
@@ -111,55 +143,112 @@ def editmodel(request,appname=None,modelname=None,objectid=None,opration=None):
             messages.error(request,str(res['form'].instance) + " data is invalid Check your form")
             
     elif opration == 'delete':
-        confirm = request.GET.get('confirm')
-        return alertdelete(request,singledata,confirm)
+        confirm = request.POST.get('confirm')
+        return alertdelete(request,singledata,confirm,appname,modelname)
     return render(request,'superuser/editmodel.html',res)
+
+def cheackField(field=[],avFields=[],appname='', modelname=''):
+    nfield = field
+    for data in avFields:
+        data = data.split('.')
+        if appname==data[0] and modelname==data[1]:
+            nfield.append(data[2])
+    return field
 
 def relatedmodel(request,appname=None,modelname=None,objectid=None,relatedfield=None):
     res= {}
+    res['title'] = modelname+" | " + relatedfield
     mymodel = getObjectbyAppModelName(appname,modelname)
     singledata = mymodel.objects.get(pk=objectid)
-    relatedfieldobject = getattr(singledata,relatedfield)
-    res['availbledata'] = relatedfieldobject.all()
-    relmodel = relatedfieldobject.model
-    relatedfieldobjectFieldname = relatedfieldobject.field.name
-    form = GenForm(relmodel,[relatedfieldobjectFieldname,'slug'])
-    res['currentmodelname'] = relatedfieldobject.model._meta.verbose_name
-    res['currentappname'] = relatedfieldobject.model._meta.app_label
-    res['currentmodelfieldname'] = relatedfieldobject.model._meta.model_name
-    if request.method == "POST":
-        form = form(request.POST,request.FILES)
-        if form.is_valid():
-            form.save()
-            messages.success(request,"new "+ res['currentmodelname'] + "is added in "+modelname +" Successfully"  )
-            return redirect(request.get_full_path())
-        else:
-            messages.error(request,'Invalid data please cheack your form')
-    if relmodel is not None:
-        res['fields'] = [[f.name,str(type(f))] for f in relmodel._meta.fields]
     res['appname'] = appname
     res['modelname'] = modelname
     res['objectid'] = objectid
     res['currentmodel'] = singledata
+    try:
+        relatedfieldobject = getattr(singledata,relatedfield)
+    except getattr(mymodel._meta.model,relatedfield).RelatedObjectDoesNotExist:
+        result =  (list(filter(lambda x : (x.related_name==relatedfield), mymodel._meta.related_objects)))[0]
+        relatedmodel =   result.related_model._meta.verbose_name
+        relappname = result.related_model._meta.app_label
+        res['title'] = "edit " + modelname
+        if f"{appname}.{modelname}" in showRelatedOnEditPage:
+            res['showrelated'] = True
+        form = GenForm(result.related_model,listHiddenfield=[result.field.name])
+        inidic = {result.field.name:singledata.id}
+        print(inidic)
+        res['form'] = form(initial=inidic)
+        if request.method=='POST':
+            res['form'] = form(request.POST,request.FILES)
+            if res['form'].is_valid():
+                res['form'].save()
+                messages.success(request,str(getobjecturl(res['form'].instance)) + " is saved successfully")
+                if request.GET.get('next') is not None:
+                    return redirect(request.GET.get('next'))
+                return redirect(request.get_full_path())
+            messages.error(request,str(getobjecturl(res['form'].instance)) + " data is invalid Check your form")
+        return render(request,'superuser/editmodel.html',res)
+        # return redirect('editdatamodel',appname=relappname,modelname=relatedmodel,opration='add',objectid='newmodel')
+    try:
+        res['availbledata'] = relatedfieldobject.all()
+    except:
+        result =  (list(filter(lambda x : (x.related_name==relatedfield), mymodel._meta.related_objects)))[0]
+        relatedmodel =   result.related_model._meta.verbose_name
+        relappname = result.related_model._meta.app_label
+        return redirect('editdatamodel',appname=relappname,modelname=relatedmodel,opration='edit',objectid=relatedfieldobject.id)
+
+    relmodel = relatedfieldobject.model
+    relatedfieldobjectFieldname = relatedfieldobject.field.name
+    hfield = [relatedfieldobjectFieldname,'slug']
+    hfield = cheackField(hfield,hiddenFields,appname=appname,modelname=modelname)
+    Dfield = cheackField(avFields=disablefield,appname=appname,modelname=modelname)
+    form = GenForm(relmodel,hfield,Dfield)
+    res['currentmodelname'] = relatedfieldobject.model._meta.verbose_name
+    res['currentappname'] = relatedfieldobject.model._meta.app_label
+    res['currentmodelfieldname'] = relatedfieldobject.model._meta.model_name
+    if request.method == "POST":
+        res['form'] = form(request.POST,request.FILES)
+        if res['form'].is_valid():
+            res['form'].save()
+            messages.success(request,"new "+ res['currentmodelname'] + "is added in "+modelname +" Successfully"  )
+            return redirect(request.get_full_path())
+        else:
+            messages.error(request,'Invalid data please cheack your form')
+            return render(request,'superuser/relatedmodel.html',res)
+    if relmodel is not None:
+        res['fields'] = [[f.name,str(type(f))] for f in relmodel._meta.fields]
+    
     res['currentmodelobjectid'] = singledata.pk
     res['form'] = form(initial={relatedfieldobjectFieldname: singledata.pk})
     return render(request,'superuser/relatedmodel.html',res)
 
 
-
+from django.core.exceptions import ValidationError
 from django.contrib.admin.utils import NestedObjects
-def alertdelete(request,singledata,confirm="None"):
-    appname = type(singledata)._meta.app_label
-    modelname = singledata._meta.model_name
+def alertdelete(request,singledata,confirm="None",appname ='', modelname=''):
+    print(request.POST)
+    print(singledata)
+    if singledata=="multidelete":
+        mymodel = getObjectbyAppModelName(appname,modelname)
+        singledata = [mymodel.objects.get(id=data) for data in request.POST.get('delete').split(',')]
+        print(singledata)
+    else:
+        singledata = [singledata]
     if confirm == "delete":
-        name = str(singledata)
-        singledata.delete()
+        name = ""
+        for data in singledata:
+            name += str(data)+ " ,"
+            try:
+                data.delete()
+            except ValidationError as e:
+                messages.error(request,e.message)
+                return redirect('showdatamodel',appname=appname,modelname=modelname )
         messages.success(request,name + " is deleted successfully")
         return redirect('showdatamodel',appname=appname,modelname=modelname )
     res = {}
+    res['title'] = "delete " + modelname
     using = 'default'
     nested_object = NestedObjects(using)
-    nested_object.collect([singledata])
+    nested_object.collect(singledata)
     res['deletedata'] = nested_object.nested()
     res['appname'] = appname
     res['modelname'] = modelname
@@ -169,10 +258,32 @@ def Logout(request):
     try:
         logout(request)
     except Exception as e:
-        return redirect('home')
-    return redirect('home')
+        return redirect('index')
+    return redirect('index')
+
+def logindashboard(request):
+    if request.user.is_authenticated and request.user.is_superuser:
+        return redirect('dashboardindex')
+    if request.method=="POST":
+        print(request.POST,"this is working")
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        USER = authenticate(request,username=username, password=password)
+        if USER is not None:
+            login(request, USER)
+            if request.user.is_superuser:
+                return JsonResponse({'status':'ok','msg':'Login Success','next':request.GET.get('next'),'type':'success'})
+            return JsonResponse({"status":'invaliduser','msg':'invalid user','type':'danger'})
+        return JsonResponse({"status":'invaliduser','msg':'Invalid Credentials','type':'danger'})
+    return render(request,'superuser/logindashboard.html')
 
 
+
+def getEmailBackend():
+    config = emailSetup.objects.get(activate=True)
+    backend = EmailBackend(host=config.host, port=config.port, username=config.email, 
+                       password=config.password, use_tls=config.tsl )
+    return backend , config
 
 
 

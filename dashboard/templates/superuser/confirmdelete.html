@@ -8,7 +8,11 @@
      <div class=" shadow-lg p-3 mb-5 bg-white rounded">
 
         <h2>Are You Sure ??</h2> 
-        <p> you want to delete <a href="{% url 'editdatamodel' appname modelname currentmodel.id 'edit' %}" >{{currentmodel}}</a></p>
+        <p> you want to delete <br>
+            {% for data in currentmodel %}
+            <a href="{% url 'editdatamodel' appname modelname data.id 'edit' %}" >{{data}}</a><br>
+            {% endfor %}
+        </p>
         <h6>Your Deletion will affect below records</h6>
         <div class="continaer my-4">
             {% include "admin/includes/object_delete_summary.html" %}
@@ -16,8 +20,10 @@
             <ul>{{ deletedata|unordered_list }}</ul>
 
         </div>
-        <form method="get" >
+        <form method="POST" >
+            {% csrf_token %}
             <input type="hidden" name='confirm' value='delete'>
+            <input type="hidden" name='delete' value='{{request.POST.delete}}'>
             <button type="submit" class='btn btn-danger'> Yes </button>
             <a class='btn btn-secondary' href="{% url 'showdatamodel' appname modelname  %}"> No, Take Me Back </a>
           </form>

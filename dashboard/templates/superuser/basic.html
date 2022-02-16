@@ -1,18 +1,21 @@
+{% spaceless %}
 <!doctype html>
 <html class="no-js" lang="en_GB" dir="ltr">
 {% load static %}
-
+{% load custumfilter %}
+{% with ''|getAbout as aboutdata %}
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>
-        SEQUEL -
+        {{aboutdata.AdminTitle}} | {{title|title}}
 
     </title>
+    {% block exstyle %}{%  endblock %}
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="css/mobiscroll.javascript.min.css" rel="stylesheet" />
-
-    <link rel="icon" href=" {% static '' %} " type="image/png">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.3/css/select.dataTables.min.css">
+    <link rel="icon" href=" {{aboutdata.favicon.url}} " type="image/png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href=" {% static 'assets/common/css/bootstrap.min.css' %} ">
     <link rel="stylesheet" href=" {% static 'assets/common/css/font-awesome.min.css' %} ">
@@ -33,7 +36,9 @@
     <style>
         .django-ckeditor-widget {
             width: 100%;
+            padding: 0px 18px 0 18px;
         }
+      
     </style>
     <script src=" {% static 'assets/common/vendor/modernizr-2.8.3.min.js' %} "></script>
 </head>
@@ -51,6 +56,9 @@
                         <h3 class="text-success">
                             {% endif %}
                             {{message}}
+                        }
+
+                            
                         </h3>{% endfor %}
                 </div>
                 {% endcomment %}
@@ -58,10 +66,19 @@
                     <center>
                         <div class="thank-you-pop">
                             {% for message in messages %}
-                            {% if message.tags == 'error' %}
+                            {% if message.tags == 'danger' %}
                             <img src="/static/Red-Cross-Mark-Download-PNG.png" style="height:175px;" alt="">
                             <h1 class="my-4" 1>Eroor</h1>
                             <p>{{message|safe}}</p>
+                            {% if form.errors %}
+                            {% for field in form %}
+                                {% for error in field.errors %} 
+                                    <div class="alert alert-danger">
+                                        <strong>{{ error|escape }}</strong>
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+                            {% endif %}
                             {% else %}
                             <img src="/static/Green-Round-Tick.png" style="height:175px;" alt="">
                             <h1 class="my-4" 1>Success</h1>
@@ -86,9 +103,8 @@
 
     {% endif %}
 
-
-
-
+   
+   
     <!-- preloader area start -->
     <div id="preloader">
         <div class="loader"></div>
@@ -101,13 +117,13 @@
             <div class="sidebar-header">
                 <div class="logo">
                     <a href=" {% url 'dashboardindex' %} ">
-                        <img src=" {{info.logo.url}} " alt="" />
+                        <img src="{{aboutdata.logo.url}}" alt="adminlogo" />
                     </a>
                 </div>
             </div>
             <div class="main-menu">
                 <div class="menu-inner">
-                    {% include 'sidebar.html' %}
+                    {% include 'superuser/header.html' %}
                 </div>
             </div>
         </div>
@@ -203,6 +219,7 @@
                 {% endif %} -->
             {% block body %}
             {% endblock %}
+        
         </div>
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
@@ -220,15 +237,23 @@
                 </div>
             </div>
         </div>
+        {% block delete %}
+        {% if appname and modelname  %}
+        <div id="bulkopration" style="display: none;">
+           
+        </div>
+        {% endif %}
+        {% endblock %}
         <footer>
             <div class="footer-area">
                 <p>
-                    &copy; Copyright  {% now "Y" %} . All Right Reserved By <a href="/"></a>
+                    &copy; Copyright 2021 . All Right Reserved By <a href="/">{{ABOUT}}</a>
                 </p>
             </div>
         </footer>
     </div>
-<script src="js/mobiscroll.javascript.min.js"></script>
+    {% endwith %}
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src=" {% static 'assets/common/js/jquery-3.6.0.min.js' %} "></script>
     <script src=" {% static 'assets/common/js/jquery-migrate-3.3.2.min.js' %} "></script>
     <script src=" {% static 'assets/common/js/popper.min.js' %} "></script>
@@ -247,24 +272,29 @@
             $('#reload').on('click', function () {
                 location.reload();
             })
-            
+            $('#darkmode').on('click', function () {
+                var el = $(this)
+                var mode = el.data('mode')
+            })
+               
         })(jQuery);
     </script>
     <script>
         var ele = document.getElementsByTagName('input')
         var ele2 = document.getElementsByTagName('textarea')
 
-        for (var i = 0; i < ele.length; i++) {
-            if (ele[i].className == '' && ele[i].getAttribute('type') != 'checkbox') {
-                ele[i].setAttribute('class', 'form-control col')
-            }
-            if (ele[i].className == 'self.fields[f.name].') {
-                ele[i].setAttribute('type', 'time')
-            }
-        }
+        // for (var i = 0; i < ele.length; i++) {
+        //     if (ele[i].className == '' && ele[i].getAttribute('type') != 'checkbox') {
+        //         ele[i].setAttribute('class', 'form-control col')
+        //     }
+        //     if (ele[i].className == 'self.fields[f.name].') {
+        //         ele[i].setAttribute('type', 'time')
+        //     }
+        // }
         for (var i = 0; i < ele2.length; i++) {
             if (ele2[i].className == '' && ele2[i].getAttribute('type') != 'checkbox') {
                 ele2[i].setAttribute('class', 'form-control col')
+                ele2[i].parentElement.setAttribute('class', 'col-md-12 ')
             }
             if (ele2[i].className == 'vTimeField') {
                 ele2[i].setAttribute('type', 'time')
@@ -272,54 +302,207 @@
         }
         var sel = document.getElementsByTagName('select')
         for (var i = 0; i < sel.length; i++) {
-            sel[i].setAttribute('class', 'form-control col')
+            sel[i].setAttribute('class', 'mdb-select colorful-select dropdown-primary md-form ')
+            sel[i].setAttribute('searchable', 'Search here..')
+            sel[i].parentElement.setAttribute('class', 'col-md-6')
         }
         var ele = document.getElementsByTagName('input')
         for (var i = 0; i < ele.length; i++) {
-            if (ele[i].className == '' && ele[i].getAttribute('type') != 'checkbox') {
-                ele[i].setAttribute('class', 'form-control col')
+            if (ele[i].className == '' && ele[i].getAttribute('type') != 'checkbox' && ele[i].getAttribute('type') != 'hidden') {
+                ele[i].setAttribute('class', 'form-control ')
+                ele[i].parentElement.setAttribute('class', 'col-md-6')
             }
             if (ele[i].className == 'vTimeField') {
                 ele[i].setAttribute('type', 'time')
+                ele[i].parentElement.setAttribute('class', 'col-md-6')
             }
             if (ele[i].className == 'vDateField') {
                 ele[i].setAttribute('type', 'date')
                 ele[i].setAttribute('class', 'form-control')
+                ele[i].parentElement.setAttribute('class', 'col-md-6')
             }
             if (ele[i].className == 'vDateTime') {
                 ele[i].setAttribute('value', ele[i].value.replace(" ","T"))
                 ele[i].setAttribute('type', 'datetime-local')
                 ele[i].setAttribute('class', 'form-control')
+                ele[i].parentElement.setAttribute('class', 'col-md-6')
             }
         }
-        var sel = document.getElementsByTagName('select')
-        for (var i = 0; i < sel.length; i++) {
-            sel[i].setAttribute('class', 'form-control col')
-        }
+      
     </script>
+    
     <script type="text/javascript">
         $(window).on('load', function () {
             $('#myModal').modal('show');
         });
     </script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.js">
-    </script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.1/css/jquery.dataTables.css">
+
+
+
     <script>
-        $(document).ready(function () {
-            $('table').DataTable();
-        });
-        dTable = $('table').DataTable({});
-        $('input[name=table_search]').keyup(function () {
-            dTable.search($(this).val())
-        .draw(); // this  is for customized searchbox with datatable search feature.
-        })
-        $("a.related-widget-wrapper-link").on('click',function(){
-             window.open(this.href, "yyyyy", "width=480,height=360,resizable=no,toolbar=no,menubar=no,location=no,status=no");
-            return false
-        })
+        // $(document).ready(function () {
+        //     $('table').DataTable();
+        // });
+        // dTable = $('table').DataTable({});
+        // $('input[name=table_search]').keyup(function () {
+        //     dTable.search($(this).val())
+        // .draw(); // this  is for customized searchbox with datatable search feature.
+        // })
+        // $("a.related-widget-wrapper-link").on('click',function(){
+        //      window.open(this.href, "yyyyy", "width=480,height=360,resizable=no,toolbar=no,menubar=no,location=no,status=no");
+        //     return false
+        // })
     </script>
+   
+   <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+   <script src="https://cdn.datatables.net/select/1.3.3/js/dataTables.select.min.js"></script>
+   <script src="https://cdn.datatables.net/buttons/2.1.0/js/dataTables.buttons.min.js"></script>
+   <script >
+       {% if appname and modelname %}
+       $(document).ready(function() {
+        $('table thead tr')
+        .clone(true)
+        .addClass('filters')
+        .appendTo('table thead');
+        var oTable = $('table').DataTable( {
+            orderCellsTop: true,
+            fixedHeader: true,
+            "scrollX": true,
+            select: true,
+            initComplete: function () {
+            var api = this.api();
+ 
+            // For each column
+            api
+                .columns()
+                .eq(0)
+                .each(function (colIdx) {
+                    // Set the header cell to contain the input element
+                    var cell = $('.filters th').eq(
+                        $(api.column(colIdx).header()).index()
+                    );
+                    var title = $(cell).text();
+                    $(cell).html('<input type="text" placeholder="' + title + '" />');
+ 
+                    // On every keypress in this input
+                    $(
+                        'input',
+                        $('.filters th').eq($(api.column(colIdx).header()).index())
+                    )
+                        .off('keyup change')
+                        .on('keyup change', function (e) {
+                            e.stopPropagation();
+ 
+                            // Get the search value
+                            $(this).attr('title', $(this).val());
+                            var regexr = '({search})'; //$(this).parents('th').find('select').val();
+ 
+                            var cursorPosition = this.selectionStart;
+                            // Search the column for that value
+                            api
+                                .column(colIdx)
+                                .search(
+                                    this.value != ''
+                                        ? regexr.replace('{search}', '(((' + this.value + ')))')
+                                        : '',
+                                    this.value != '',
+                                    this.value == ''
+                                )
+                                .draw();
+ 
+                            $(this)
+                                .focus()[0]
+                                .setSelectionRange(cursorPosition, cursorPosition);
+                        });
+                });
+            },
+            dom: 'Bfrtip',
+            select: {
+                style: 'multi',
+                
+            },
+            buttons: [
+            {
+                text: 'Delete selected',
+                action : HandleDelete,
+                className : "btn btn-danger"
+            },
+            {% for data in oprations %}
+            {
+                text:"{{data.0}}",
+                action: {{data.2}},
+                className:"{{data.1}}",
+            },
+            {% endfor %}
+        ]
+        } );
+        oTable.columns.adjust().draw();
+        
+        function getSelecteddata(){
+            var data = $('table tbody').children('tr.selected')
+            var pos = oTable.row(this).index();
+            var row = oTable.row(pos).data();
+            if(data.length==0){
+                alert("Select some records")
+                return ""
+            }else{
+                var selected = ''
+                for (let index = 0; index < data.length; index++) {
+                    const element = data[index];
+                    pos = oTable.row(element).index();
+                    var row = oTable.row(pos).data();
+                    if (index == data.length-1){selected+=row[0]}else{selected+=row[0]+','}
+                }
+                return selected
+            }
+        }
+
+        {% for data in oprations %}
+        {% if not data.4 %}
+        function {{data.2}}(){
+            var selected = getSelecteddata()
+            if (selected != ""){ 
+                $("#bulkopration").html('')
+                $("#bulkopration").html(`<form id="{{data.2}}Form" method="post" action="{{data.3}}?next={{request.get_full_path}}">
+                {% csrf_token %}
+                <input type="text" name="{{data.2}}input" id="{{data.2}}id">
+                </form>`)
+                $("#{{data.2}}id").val(selected)
+                $("#{{data.2}}Form").submit()
+            }
+          
+        }
+        {% else %}
+        function {{data.2}}(){
+            window.location.href = "{{data.3}}?next={{request.get_full_path}}";
+        }
+        {% endif %}
+        {% endfor %}
+
+        function HandleDelete() {
+        
+            var selected = getSelecteddata()
+            
+           if (selected != ""){ 
+            $("#bulkopration").html('')
+            $("#bulkopration").html(` <form id="multideleteForm" method="post" action="{% url 'editdatamodel' appname modelname 'multidelete' 'delete' %}">
+                {% csrf_token %}
+                <input type="text" name="delete" id="deletevalues">
+            </form>`)
+            $("input#deletevalues").val(selected)
+            $("#multideleteForm").submit()
+        }
+
+    }
     
+} );
+
+{% endif %}
+   
+    </script>
+    {% block exscript %}{%  endblock %}
+
 </body>
 
 </html>
+{% endspaceless %}
