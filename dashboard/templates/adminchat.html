@@ -293,6 +293,9 @@ event.preventDefault();
            }
        }
    }
+   if(!socket){
+   setTimeout(getsms, 1500);
+   }
    }
 function updatedmsg(msgs){
     if (msgs.length>0){
@@ -371,9 +374,11 @@ const url = "ws://{{request.get_host}}/ws/chat/{{username}}"
     ws.onmessage = function(event){
         // console.log("message is get")
         // console.log(event)
+        var socket=true
         getsms()  
     }
     ws.onclose = function(event){
+      var socket=false
         // console.log("connetion is closed")
     }
     getsms()

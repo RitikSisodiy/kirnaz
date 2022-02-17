@@ -1,0 +1,75 @@
+{% extends 'superuser2/basic.html' %}
+{% block body %}
+{% load custumfilter %}
+<!-- <div class=" smart-card">
+    <h4 class="title">{{modelname|title}}</h4>
+    <div class="table-responsive">
+        <div class=" shadow-lg p-3 mb-5 bg-white rounded">
+            <div class="my-3">
+                <a class="btn btn-primary" href="{% url 'editdatamodel' appname modelname 'newmodel' 'add' %}">+Add New
+                    {{modelname|cemelcase|title}} </a>
+                    <a class="btn btn-warning mx-2" href="{% url 'exportexcel' appname modelname 'excel' %}">Export {{modelname|cemelcase|title}} </a>
+            </div>
+           {% include 'superuser/componets/datatable.html' with modeldata=modeldata fields=fields %}
+        </div>
+    </div>
+</div> -->
+<div class="container">
+    <div class="page-header">
+        <h1 class="page-header__title">{{modelname|title}}</h1>
+    </div>
+    <div class="page-tools">
+                    <div class="page-tools__breadcrumbs">
+                        <div class="breadcrumbs">
+                            <div class="breadcrumbs__container">
+                                <ol class="breadcrumbs__list">
+                                    <li class="breadcrumbs__item">
+                                        <a class="breadcrumbs__link" href="index-2.html">
+                                            <svg class="icon-icon-home breadcrumbs__icon">
+                                                <use xlink:href="#icon-home"></use>
+                                            </svg>
+                                            <svg class="icon-icon-keyboard-right breadcrumbs__arrow">
+                                                <use xlink:href="#icon-keyboard-right"></use>
+                                            </svg>
+                                        </a>
+                                    </li>
+                                    <li class="breadcrumbs__item "><a class="breadcrumbs__link"
+                                            href="{% if appname and modelname %}{% url 'showapp' appname  %}{% endif %}"><span>{{appname|title}}{{dashboardheading}}</span>
+                                            <svg class="icon-icon-keyboard-right breadcrumbs__arrow">
+                                                <use xlink:href="#icon-keyboard-right"></use>
+                                            </svg></a>
+                                    </li>
+                                    <li class="breadcrumbs__item active"><span class="breadcrumbs__link">{{modelname|title}}</span>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="page-tools__right">
+                        <div class="page-tools__right-row">
+                            <div class="page-tools__right-item"><a class="button-icon" href="{% url 'exportexcel' appname modelname 'excel' %}"><span
+                                        class="button-icon__icon">
+                                        <svg class="icon-icon-print">
+                                            <use xlink:href="#icon-print"></use>
+                                        </svg></span></a>
+                            </div>
+                            <div class="page-tools__right-item"><a class="button-icon" href="#"><span
+                                        class="button-icon__icon">
+                                        <svg class="icon-icon-import">
+                                            <use xlink:href="#icon-import"></use>
+                                        </svg></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+              
+    <div class="table-wrapper">
+        <div class="table-wrapper__content table-products table-collapse scrollbar-thin scrollbar-visible"
+            data-simplebar>
+            {% include 'superuser2/componets/datatable.html' with modeldata=modeldata fields=fields %}
+        </div>
+    </div>
+
+</div>
+{% endblock %}

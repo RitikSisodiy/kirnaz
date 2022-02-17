@@ -15,6 +15,8 @@ from dashboard.dashboardsettings import hiddenFields,disablefield
 from .models import emailSetup
 import csv
 from django.core.mail.backends.smtp import EmailBackend
+
+templateFolder = 'superuser2'
 # from django.apps import apps
 # from onlineshop.models import *
 # from django.contrib import messages
@@ -58,7 +60,7 @@ def index(request):
     #     break
     # for app in allapps:
     #     res.append({app:apps.all_models[app]})
-    return render(request,'superuser/index.html',res)
+    return render(request,f'{templateFolder}/index.html',res)
 
 def showmodels(request,appname):
     res = {}
@@ -66,7 +68,7 @@ def showmodels(request,appname):
     res['appname'] =appname
     res['title'] =appname
     res['models'] = getmodelbyappname(appname)
-    return render(request,'superuser/listmodels.html',res)
+    return render(request,f'{templateFolder}/listmodels.html',res)
 
 def showObject(request,appname,modelname):
     res = {}
@@ -82,7 +84,7 @@ def showObject(request,appname,modelname):
         res['oprations'] = mymodel().BulkOprationButton()
     except:
         pass
-    return render(request , 'superuser/modeldatatable.html' ,res)
+    return render(request , f'{templateFolder}/modeldatatable.html' ,res)
 
 def ExportData(request,appname,modelname,type):
     if type=='excel':
@@ -145,7 +147,7 @@ def editmodel(request,appname=None,modelname=None,objectid=None,opration=None):
     elif opration == 'delete':
         confirm = request.POST.get('confirm')
         return alertdelete(request,singledata,confirm,appname,modelname)
-    return render(request,'superuser/editmodel.html',res)
+    return render(request,f'{templateFolder}/editmodel.html',res)
 
 def cheackField(field=[],avFields=[],appname='', modelname=''):
     nfield = field
@@ -186,7 +188,7 @@ def relatedmodel(request,appname=None,modelname=None,objectid=None,relatedfield=
                     return redirect(request.GET.get('next'))
                 return redirect(request.get_full_path())
             messages.error(request,str(getobjecturl(res['form'].instance)) + " data is invalid Check your form")
-        return render(request,'superuser/editmodel.html',res)
+        return render(request,f'{templateFolder}/editmodel.html',res)
         # return redirect('editdatamodel',appname=relappname,modelname=relatedmodel,opration='add',objectid='newmodel')
     try:
         res['availbledata'] = relatedfieldobject.all()
@@ -213,13 +215,13 @@ def relatedmodel(request,appname=None,modelname=None,objectid=None,relatedfield=
             return redirect(request.get_full_path())
         else:
             messages.error(request,'Invalid data please cheack your form')
-            return render(request,'superuser/relatedmodel.html',res)
+            return render(request,f'{templateFolder}/relatedmodel.html',res)
     if relmodel is not None:
         res['fields'] = [[f.name,str(type(f))] for f in relmodel._meta.fields]
     
     res['currentmodelobjectid'] = singledata.pk
     res['form'] = form(initial={relatedfieldobjectFieldname: singledata.pk})
-    return render(request,'superuser/relatedmodel.html',res)
+    return render(request,f'{templateFolder}/relatedmodel.html',res)
 
 
 from django.core.exceptions import ValidationError
@@ -253,7 +255,7 @@ def alertdelete(request,singledata,confirm="None",appname ='', modelname=''):
     res['appname'] = appname
     res['modelname'] = modelname
     res['currentmodel'] = singledata
-    return render(request , 'superuser/confirmdelete.html',res)
+    return render(request , f'{templateFolder}/confirmdelete.html',res)
 def Logout(request):
     try:
         logout(request)
@@ -275,7 +277,7 @@ def logindashboard(request):
                 return JsonResponse({'status':'ok','msg':'Login Success','next':request.GET.get('next'),'type':'success'})
             return JsonResponse({"status":'invaliduser','msg':'invalid user','type':'danger'})
         return JsonResponse({"status":'invaliduser','msg':'Invalid Credentials','type':'danger'})
-    return render(request,'superuser/logindashboard.html')
+    return render(request,f'{templateFolder}/logindashboard.html')
 
 
 

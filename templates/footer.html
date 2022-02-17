@@ -243,6 +243,9 @@ event.preventDefault();
            }
        }
    }
+   if(!socket){
+   setTimeout(getsms, 1500);
+   }
   //  setTimeout(getsms, 1500); // try again in 1500 milliseconds
    }
    
@@ -298,9 +301,11 @@ function updatedmsg(msgs){
     ws.onmessage = function(event){
         console.log("message is get")
         console.log(event)
+        var socket=true
         getsms()  
     }
     ws.onclose = function(event){
+      var socket=false
         console.log("connetion is closed")
     }
     getsms()
