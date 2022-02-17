@@ -1,7 +1,27 @@
+import imp
 from django import template
-from dashboard.dashboardsettings import appslist,appmodels,getTitle
-from dashboard.models import aboutContact
+import random
+from registration.models import icon
+from Home.models import ContactDetails
+
 register = template.Library()
+@register.filter(name='rancolor')
+def cut(value):
+    r = lambda: random.randint(0,255)
+    return '#%02X%02X%02X' % (r(),r(),r())
+@register.filter(name='geticon')
+def geticon(value):
+    data = value.split(' ')
+    print(data)
+    iconlist = icon.objects.all()
+    for d in data:
+        iconli = iconlist.filter(icon__contains = d)
+        if iconli.exists():
+            return iconli[0].icon
+    return iconlist[random.randint(0,len(iconlist)-1)]
+from django import template
+from dashboard.dashboardsettings import appslist,appmodels
+
 @register.filter(name='sidebardata')
 def sidebardata(value):
     return appmodels(appslist)
@@ -37,14 +57,7 @@ def getpercent(value,arg):
 @register.filter(name="showrelated")
 def showrelated(value,args):
     return "showing related"
-@register.filter(name="getTitle")
-def showrelated(value):
-    if len(getTitle)>0:
-        return getTitle
-    else:
-        return "Admin"
-@register.filter("getAbout")
-def getLogo(value):
-    data = aboutContact.objects.all()
-    if data.exists():
-        return data[0]    
+
+@register.filter(name="contact")
+def getcontact(value):
+    return ContactDetails.objects.all()
