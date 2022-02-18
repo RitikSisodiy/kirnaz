@@ -1,4 +1,16 @@
 {% load custumfilter %}
+<style>
+
+tbody>tr.selected td {
+    color: white!important;
+}
+    html[data-theme=dark] tr{
+    background-color: black!important;
+}
+tbody>tr.selected {
+    background-color: #244e93!important;
+}
+</style>
 <div class="toolbox">
     <div class="toolbox__row row gutter-bottom-xs">
         <div class="toolbox__left col-12 col-lg">
@@ -6,7 +18,7 @@
                 <div class="form-group form-group--inline col-12 col-sm-auto">
                     <label class="form-label">Show</label>
                     <div class="input-group input-group--white input-group--append">
-                        <input class="input input--select" type="text" value="10" size="1"
+                        <input class="input input--select" id="datatableselect" type="text" value="10" size="1"
                             data-toggle="dropdown" readonly><span class="input-group__arrow">
                             <svg class="icon-icon-keyboard-down">
                                 <use xlink:href="#icon-keyboard-down"></use>
@@ -75,7 +87,7 @@
                                     <use xlink:href="#icon-search"></use>
                                 </svg>
                             </div>
-                            <input class="input" type="text" id="datatablesearch" placeholder="Search product">
+                            <input class="input" type="text" id="datatablesearch" placeholder="Search {{modelname}}">
                         </div>
                     </form>
                 </div>
@@ -91,7 +103,7 @@
         </div>
     </div>
 </div>
-<table class="table table--lines" >
+<table class=" hover  "  style="width:100%" style="width: 100%;">
     <thead class="table__header">
         <tr class="table__header-row">
             {% for data,type in fields|slice:":5" %}

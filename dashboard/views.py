@@ -15,6 +15,7 @@ from django.contrib.auth import authenticate, login, logout
 from cflax.settings import sectionname
 
 from django.contrib.contenttypes.models import ContentType
+from .dashboardsettings import templateFolder
 
 # Create your views here.
 def GetContentType(model):
@@ -23,7 +24,10 @@ def GetContentType(model):
 def index(request):
     res = {}
     res["title"] = "Dashboard"
-    return render(request,'dashboard.html',res)
+    try:
+        return render(request,f'{templateFolder}/extra/dashboard.html',res)
+    except Exception:    
+        return render(request,'dashboard.html',res)
 def registration(request,slug=None):
     res = {}
     if slug is not None:
@@ -31,7 +35,10 @@ def registration(request,slug=None):
     else:
         res['registration'] = Registration.objects.all()
     res["title"] = "Registration"
-    return render(request,'dregistrations.html',res)
+    try:
+        return render(request,f'{templateFolder}/extra/dregistrations.html',res)
+    except Exception:    
+        return render(request,'dregistrations.html',res)
 sections = [SubRegistrationContent,AboutRegistraionSubMenu,DocumentRequired,PackageIncluded,Procedure,Memorandum,CompanyRegisterRequirements,FAQ,Sainification,ourclients,BlogNews]
 # adding multi objects form as a list in sectionsform
 sectionsforms = [section0Form,section1Form,section2Form,[PackageIncludedForm],[section3Form],section4Form,section5Form,[section6Form],section7Form,[section8Form],[section9Form]]
@@ -111,7 +118,11 @@ def editregistration(request,slug1,slug2):
     res['forms'] = li
     res['slugs'] = [slug1,slug2,RegistrationSubMenuob]
     res['sec'] = [[i,sec[i-1]] for i in res['page_obj'].paginator.page_range ]
-    return render(request,'editregistraions.html',res)
+    try:
+        return render(request,f'{templateFolder}/extra/editregistraions.html',res)
+    except Exception as e:    
+        print(e)
+        return render(request,'editregistraions.html',res)
 
 
 
@@ -151,10 +162,16 @@ def adminchat(request,slug1=None,id=None):
         if i not in resp:
             resp.append(i)
     res['chats'] = [[User.objects.get(id=i['msgby__user__id']),User.objects.get(id=i['msgby__user__id']).user.msgby.all().order_by('-time')] for i in resp]
-    return render(request,'adminchat.html',res)
+    try:
+        return render(request,f'{templateFolder}/extra/adminchat.html',res)
+    except Exception:    
+        return render(request,'adminchat.html',res)
 def alluser(request):
     res = {}
-    return render(request,'alluser.html',res)
+    try:
+        return render(request,f'{templateFolder}/extra/alluser.html',res)
+    except Exception:    
+        return render(request,'alluser.html',res)
 
 def getmsg(request,slug1=None,id=None):
     auser = User.objects.get(id=id)
@@ -209,7 +226,10 @@ def edithome(request,slug=None):
             return redirect(request.get_full_path()[0:request.get_full_path().find('&object')])
         else:
             messages.error  (request,"Plese Check Your Fields, Invalid Opration")
-    return render(request,'dashboardhome.html',res)
+    try:
+        return render(request,f'{templateFolder}/extra/dashboardhome.html',res)
+    except Exception:    
+        return render(request,'dashboardhome.html',res)
 def deletehome(request,slug):
     if slug is not None:
         formid = editname.index(slug)
@@ -224,12 +244,18 @@ def deletehome(request,slug):
     return redirect(request.get_full_path()[0:request.get_full_path().find('&object')])
 def viewicon(request):
     iconlist = icon.objects.all()
-    return render(request,'iconpack.html',{'icon':iconlist})
+    try:
+        return render(request,f'{templateFolder}/extra/iconpack.html',{'icon':iconlist})
+    except Exception:    
+        return render(request,'iconpack.html',{'icon':iconlist})
 def contact(request):
     res = {}
     res['title'] = "Registration Contacts"
     res['contacts'] = contacts.objects.all().order_by('-time')
-    return render(request,'drcontacts.html',res)
+    try:
+        return render(request,f'{templateFolder}/extra/drcontacts.html',res)
+    except Exception:    
+        return render(request,'drcontacts.html',res)
 def delcontacts(request):
     if request.method=="POST":
         delval = request.POST['delval'].split(',')

@@ -12,30 +12,37 @@ class Slider(models.Model):
     objective = models.CharField(max_length=100)
     obj_details = models.TextField()
     img = models.ImageField(upload_to="img")
+    def __str__(self) -> str:
+        return self.objective
 class aboutca(models.Model):
     title = models.CharField(max_length=50)
     content = RichTextField(blank=True,null=True)
-
+    def __str__(self) -> str:
+        return self.title
 class ContactDetails(models.Model):
     email = models.EmailField()
     phone = models.CharField(max_length=13)
     address = models.TextField(max_length=100)
     otherPhones = models.CharField(max_length=100)
-
+    def __str__(self) -> str:
+        return self.email
 class BusinessQuery(models.Model):
     name = models.CharField(max_length=30)
     phone = models.IntegerField()
     email = models.EmailField(max_length=50)
     message = models.CharField(max_length=500)
-
+    def __str__(self) -> str:
+        return self.name
 class News(models.Model):
     date = models.DateField(auto_now_add=False,null=True,blank=True)
     news = models.TextField()
-
+    def __str__(self) -> str:
+        return self.date
 class DueDateReminder(models.Model):
     date = models.DateField(auto_now_add=False,null=True,blank=True)
     details = models.TextField()
-
+    def __str__(self) -> str:
+        return self.date
 class BlogNews(models.Model):
     Tchoice = (
         ('1','News'),
@@ -54,29 +61,43 @@ class BlogNews(models.Model):
         super(BlogNews, self).save(*args, **kwargs)
     def Getchoices(self):
         return self.Tchoice
+    def __str__(self) -> str:
+        return self.title
 class Offrings(models.Model):
     title = models.CharField(max_length=100)
     details = models.CharField(max_length=500)
     img = models.ImageField(upload_to="img")
+    def __str__(self) -> str:
+        return self.title
 class headbanner(models.Model):
     banner_title = models.CharField(max_length=500,blank=True)
     banner_content = models.CharField(max_length=1500,blank=True)
     banneerimg = models.ImageField(upload_to="banner",blank=True)
+    def __str__(self) -> str:
+        return self.banner_title
 class links(models.Model):
     title = models.CharField(max_length=50)
     page1 = models.ForeignKey(RegistrationSubMenu,on_delete=models.SET_NULL,blank=True,null=True)
     orpage2 = models.ForeignKey(othernavsubmenu,on_delete=models.SET_NULL,blank=True,null=True)
+    def __str__(self) -> str:
+        return self.title
 class Expertise(models.Model):
     icon = models.ImageField(upload_to="imgaes")
     title = models.CharField(max_length=50)
+    def __str__(self) -> str:
+        return self.title
 class marketplace(models.Model):
     icon = models.FileField(upload_to="imgaes")
     title = RichTextField(blank=True,null=True)
+    def __str__(self) -> str:
+        return self.title
 class addblog(models.Model):
     title = models.CharField(max_length=100)
     image = models.ImageField(upload_to="blogsimg")
     content = RichTextField(blank=True,null=True)
     time = models.DateTimeField(auto_now=True)
+    def __str__(self) -> str:
+        return self.title
 class Payments(models.Model):
     order_id = models.CharField(unique=True, max_length=100, null=True, blank=True, verbose_name="Payments")
     payreq = models.ForeignKey(makepaymentrequest,on_delete=models.SET_NULL,null=True)
@@ -89,12 +110,15 @@ class Payments(models.Model):
         if self.order_id is None and self.order_date and self.id:
             self.order_id = self.order_date.strftime('PAY2ME%Y%m%dODR') + str(self.id)
         return super().save(*args, **kwargs)
+    def __str__(self) -> str:
+        return self.order_id
 class documents(models.Model):
     user = models.ForeignKey(User,on_delete=SET_NULL,null=True)
     name = models.CharField(max_length=100)
     doc = models.FileField(upload_to="documents")
     time = models.DateTimeField(auto_now=True)
-
+    def __str__(self) -> str:
+        return self.name
 from django.db import models
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType

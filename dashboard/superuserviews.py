@@ -9,14 +9,15 @@ from .dashboardsettings import appmodels , appslist , getObjectbyAppModelName , 
 from django.core import serializers
 from .forms import GenForm
 from django.contrib.auth import authenticate, login, logout
-from dashboard.dashboardsettings import exclude as excludeapps
+from dashboard.dashboardsettings import exclude as excludeapps 
+from .dashboardsettings import templateFolder
 from django.db.models.fields import related
 from dashboard.dashboardsettings import hiddenFields,disablefield
 from .models import emailSetup
 import csv
 from django.core.mail.backends.smtp import EmailBackend
 
-templateFolder = 'superuser2'
+
 # from django.apps import apps
 # from onlineshop.models import *
 # from django.contrib import messages

@@ -3,12 +3,12 @@
 {% load static %}
 {% block body %}
 <style>
-  .related-widget-wrapper{
+  .related-widget-wrapper {
     width: 100%;
     padding: 0px 18px 0 18px;
   }
 </style>
-<div class="card card-primary ">
+<!-- <div class="card card-primary ">
   <div class="card-header  bg-primary text-light">
     <h3 class="card-title">Edit </h3>
   </div>
@@ -50,8 +50,114 @@
     </div>
   </div>
 
-</div>
+</div> -->
 
+<div class="container">
+  <div class="page-header">
+    <h1 class="page-header__title">Add {{modelname|title}}</h1>
+  </div>
+  <div class="page-tools">
+    <div class="page-tools__breadcrumbs">
+      <div class="breadcrumbs">
+        <div class="breadcrumbs__container">
+          <ol class="breadcrumbs__list">
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link" href="index-2.html">
+                <svg class="icon-icon-home breadcrumbs__icon">
+                  <use xlink:href="#icon-home"></use>
+                </svg>
+                <svg class="icon-icon-keyboard-right breadcrumbs__arrow">
+                  <use xlink:href="#icon-keyboard-right"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="breadcrumbs__item "><a class="breadcrumbs__link"
+                href="{% if appname and modelname %}{% url 'showapp' appname  %}{% endif %}"><span>{{appname|title}}{{dashboardheading}}</span>
+                <svg class="icon-icon-keyboard-right breadcrumbs__arrow">
+                  <use xlink:href="#icon-keyboard-right"></use>
+                </svg></a>
+            </li>
+            <li class="breadcrumbs__item "><span class="breadcrumbs__link">{{modelname|title}}</span>
+            </li>
+            <li class="breadcrumbs__item "><a class="breadcrumbs__link"
+                href="{% if appname and modelname %}{% url 'showapp' appname  %}{% endif %}">
+                <svg class="icon-icon-keyboard-right breadcrumbs__arrow">
+                  <use xlink:href="#icon-keyboard-right"></use>
+                </svg></a>
+            </li>
+            <li class="breadcrumbs__item active"><span class="breadcrumbs__link">{{form.instance}}</span>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <div class="page-tools__right">
+      <div class="page-tools__right-row">
+        <div class="page-tools__right-item"><a class="button-icon"
+            href="{% url 'exportexcel' appname modelname 'excel' %}"><span class="button-icon__icon">
+              <svg class="icon-icon-print">
+                <use xlink:href="#icon-print"></use>
+              </svg></span></a>
+        </div>
+        <div class="page-tools__right-item"><a class="button-icon" href="#"><span class="button-icon__icon">
+              <svg class="icon-icon-import">
+                <use xlink:href="#icon-import"></use>
+              </svg></span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card add-product card--content-center">
+    <div class="card__wrapper">
+      <div class="card__container">
+        <form class="add-product__form"  method="post" enctype="multipart/form-data">
+          <div class="">
+            <div class="">
+              <div class="row row--md">
+                <div class="card-body ">
+                  <div class="">
+                    <div class="row" >
+                      {% csrf_token %}
+                      {{form.media}}
+                      {{form.as_p}}
+                      
+                    </div>
+                    <div class='row container'>
+                      {% for data in relateddata %}
+                      {% if data.related_name is not None %}
+              
+                      <a href="{% url 'relatedmodel' appname=appname modelname=modelname objectid=objectid relatedfield=data.related_name %}"
+                        class="btn btn-primary {% if forloop.counter > 1 %}mx-2{% endif %}">{% if  "onetoonerel" in data|slugify %}View
+                        {{data.related_name}}s{% else %}Available {{data.related_name}}s{% endif %}</a>
+                      {% if showrelated %}
+                      <div>
+                        {{data|showrelated:objectid}}
+                      </div>
+                      {% endif %}
+                      {% endif %}
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="add-product__submit mt-5">
+                <div class="modal__footer-button">
+                  <button class="button button--primary button--block" type="submit"><span class="button__text">Create</span>
+                  </button>
+                </div>
+              {% if form.instance %}
+              <a tabindex="0" class="button bg-danger text-light button--block " href="{% url 'editdatamodel' appname modelname form.instance.pk 'delete' %}"
+                data-html="true">
+                <i class="ti-trash"></i>Delete
+              </a>{% endif %}</div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>
 {% endblock %}
 {% block exscript %}
 <script src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
@@ -71,19 +177,3 @@
 <link rel="stylesheet" href="{% static 'select/css/mdb.min.css' %}">
 
 {%  endblock %}
-{% comment %}<div class="row">
-  <div class="col-md-12">
-
-    <select class="mdb-select colorful-select dropdown-primary md-form" multiple searchable="Search here..">
-      <option value="" disabled selected>Choose your country</option>
-      <option value="1">USA</option>
-      <option value="2">Germany</option>
-      <option value="3">France</option>
-      <option value="4">Poland</option>
-      <option value="5">Japan</option>
-    </select>
-    <label class="mdb-main-label">Label example</label>
-    <button class="btn-save btn btn-primary btn-sm">Save</button>
-
-  </div>
-</div>{% endcomment %}

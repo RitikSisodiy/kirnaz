@@ -1,0 +1,240 @@
+{% extends 'dbasic.html' %}
+
+{% block body %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+    integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.0-beta/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <style>
+    .dropdown-menu label {
+    margin: 10px;
+    width: 30px;
+    height: 30px;
+}
+
+.dropdown-menu {
+    height:400px;
+    overflow-y: scroll;
+}
+    </style>
+<div class="todo-grid">
+    <aside class="sidebar-panel scrollbar-thin" id="sidebarPanel" data-simplebar="data-simplebar">
+        <div class="sidebar-panel__content">
+            <div class="sidebar-panel__nav">
+                <ul class="sidebar-panel__menu">
+                    <li class="sidebar-panel__menu-item">
+                        <a class="sidebar-panel__menu-link active" href="#">
+                            <svg class="icon-icon-todo">
+                                <use xlink:href="#icon-todo"></use>
+                            </svg><span class="sidebar-panel__menu-text">All Sections</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="sidebar-panel__nav">
+                <h3 class="sidebar-panel__nav-title">Sections</h3>
+                <ul class="sidebar-panel__menu">
+                    {% for i,j in sec %}
+                    <li class="sidebar-panel__menu-item">
+                        <a class="sidebar-panel__menu-link active" href="?page={{ i }}">
+                            <svg class="icon-icon-star">
+                                <use xlink:href="#icon-star"></use>
+                            </svg><span
+                                class="{% if page_obj.number == i %} sidebar-panel__menu-link active {% else %}sidebar-panel__menu-text{% endif %}">{{j}}</span>
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </aside>
+    <div class="todo-content">
+        <div class="todo-content__top">
+            <div class="container">
+                <div class="row row--xs flex-nowrap align-items-center justify-content-between">
+                    <div class="col">
+                        <div class="d-flex align-items-center">
+                            <button class="toggle-sidebar toggle-sidebar--secondary js-toggle-sidebar-panel"
+                                type="button" data-toggle="#sidebarPanel">
+                                <svg class="icon-icon-menu">
+                                    <use xlink:href="#icon-menu"></use>
+                                </svg>
+                            </button>
+                            <h3 class="self-align-center">{{title}}</h3>
+
+                        </div>
+                    </div>
+                    <div class="col-auto position-static">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="todo-content__items scrollbar-thin scrollbar-hidden" data-simplebar>
+            <div class="card add-product card--content-center">
+                <div class="card__wrapper">
+                    <div class="card__container">
+                        <form class="add-product__form">
+                            <div class="">
+
+                                <div class="add-product__right">
+                                    <div class="row row--md">
+                                        {% for form in page_obj %}
+                                        {% if form|length > 0 %}
+                                     
+
+
+
+
+
+                                        <nav aria-label="Page navigation example">
+                                            <ul class="pagination justify-content-center">
+                                              {% if card_obj.has_previous %}
+                                                <li class="page-item">
+                                                  <a class="page-link" href="?page={{page_obj.number}}&card={{ card_obj.previous_page_number }}"><<</a>
+                                                </li>
+                                              {% else %}
+                                                <li class="page-item disabled">
+                                                  <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><<</a>
+                                                </li>
+                                              {% endif %}
+                                              {% for i in card_obj.paginator.page_range %}
+                                                {% if card_obj.number == i %}
+                                                  <li class="page-item active" aria-current="page">
+                                                    <span class="page-link">
+                                                      {% for i,j in sec %}{% if page_obj.number == i %}{{j}}{% endif %}{% endfor %}{{i}}
+                                                      <span class="sr-only">(current)</span>
+                                                    </span>
+                                                  </li>
+                                                {% else %}
+                                                  <li class="page-item"><a class="page-link" href="?page={{page_obj.number}}&card={{ i }}">{% if forloop.counter == card_obj.paginator.page_range|length %}Add New{% else %}{{ i }}{% endif %}</a></li>
+                                                {% endif %}
+                                              {% endfor %}
+                                              {% if card_obj.has_next %}
+                                                <li class="page-item">
+                                                  <a class="page-link" href="?page={{page_obj.number}}&card={{ card_obj.next_page_number }}">>></a>
+                                                </li>
+                                              {% else %}
+                                                <li class="page-item disabled">
+                                                  <a class="page-link" href="#" tabindex="-1" aria-disabled="true">>></a>
+                                                </li>
+                                              {% endif %}
+                                            </ul>
+                                          </nav>
+                                          {% for f in card_obj %}
+                                          <div class="col-lg-12 my-2">
+                                              <div class="">
+                                              <div class="card-body">
+                                                <a class="btn btn-info btn-xs float-right my-4" target="_blank" href="{% url 'registration' slug1=slugs.0 slug2=slugs.1  %}" "="">
+                                                  <i class="ti-eye"> View Page</i>
+                                              </a>
+                                              <h1 class="my-4">{% for i,j in sec %}{% if page_obj.number == i %}{{j}}{% endif %}{% endfor %}{{i}} {{card_obj.number}}</h1>
+                                              <form action="{{request.get_full_path}}{% if f.instance.id %}&object={{f.instance.id}}{% else %}&object=new{% endif %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                                                  {{ f.media }}
+                                                  {{ f.as_p }}
+                                                       {% if 'icon' in f.fields %}
+                                          <div class="row my-4">
+                                          <div class="container col-10 ">
+                                              <li class="nav-item dropup" style="list-style-type: none;">
+                                                <a class="nav-link dropdown-toggle btn btn-secondary" href="#" data-bs-toggle="dropdown">Choose Icon</a>
+                                                  <ul class="dropdown-menu col-md-10">
+                                                    <div class="col-md-12">
+                                                        {% for i in icon %}
+                                                        <label class="fa {{i.icon}}" onmouseover="$('#showiconi').attr('class',this.className);
+                                                        $('#id_icon').val(this.id)" id="{{forloop.counter}}"  onclick="$('#showiconi').attr('class',this.className);" for="icon{{forloop.counter}}"></label><input type="radio" class="somerandomclass" style="display: none;" id="icon{{forloop.counter}}" name="icons">
+                                                      {% endfor %}
+                                                    </div>
+                                                  </ul>
+                                              </li>
+                                          </div>
+                                          <div class="col"><h1><i class="fa {{f.instance.icon}}" id='showiconi'></i></h1></div>
+                                          </div>
+                                          {% endif %}
+                                                  <input type="submit" class="btn btn-primary my-3" value="Submit">
+                                                  <button type="button" class="btn btn-danger  {% if f.instance.id %}{% else %}disabled{% endif %}" data-toggle="modal" data-target="#exampleModal{{f.instance.id}}">
+                                                      <i class="ti-trash"></i>Delete
+                                                    </button>
+                                                  
+                                              </form>
+                                              
+                                                
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModal{{f.instance.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                  <div class="modal-dialog" role="document">
+                                                      <div class="modal-content">
+                                                  <form method="POST" action="{% url 'dsdeleteregistration' %}">
+                                                      <div class="modal-body">
+                                                        <h3>Are You Sure.</h3>
+                                                      </div>
+                                                      {% csrf_token %}
+                                                      <input type="hidden" name="id" value="{{f.instance.id}}">
+                                                      <input type="hidden" name="page" value="{{request.GET.page}}">
+                                                      <input type="hidden" name="return" value="{{request.get_full_path}}">
+                                                      <div class="modal-footer">
+                                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                          <button type="submit" class="btn btn-danger">Yes Sure</button>
+                                                      </div>
+                                                  </form>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              
+                                                  </div>
+                                              </div>
+                                              </div>
+                                              {% endfor %}
+
+
+
+                                      {% else %}
+
+
+                                        <div class="col-lg-12 my-2">
+                                            <div class="card-body">
+                                                <a class="btn btn-info btn-xs float-right my-4" target="_blank"
+                                                    href="{% url 'registration' slug1=slugs.0 slug2=slugs.1  %}" "="">
+                                                    <i class=" ti-eye"> View Page</i>
+                                                </a>
+                                                <h1 class="my-4">{% for i,j in sec %}
+                                                    {% if page_obj.number == i %}{{j}}{% endif %}{% endfor %}</h1>
+                                                <form action="" method="POST" enctype="multipart/form-data">
+                                                    {% csrf_token %}
+                                                    {{ form.media }}
+                                                    {{ form.as_p }}
+                                                    <input type="submit" class="btn btn-primary my-3" value="Submit">
+                                                    <button type="button"
+                                                        class="btn btn-danger {% if form.instance.id %}{% else %}disabled{% endif %}"
+                                                        data-toggle="modal"
+                                                        data-target="#exampleModal{{f.instance.id}}">
+                                                        <i class="ti-trash"></i>Delete
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                    <div class="add-product__submit">
+                                        <div class="modal__footer-button">
+                                            <button class="button button--primary button--block" data-dismiss="modal"
+                                                data-modal="#addProductSuccess"><span class="button__text">Create</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal__footer-button"><a
+                                                class="button button--secondary button--block"
+                                                href="products.html"><span class="button__text">Cancel</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="backdrop-sidebar-panel"></div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+{% endblock %}

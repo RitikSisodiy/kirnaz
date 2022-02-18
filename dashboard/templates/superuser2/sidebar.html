@@ -15,29 +15,72 @@
       <nav class="sidebar__nav">
         <ul class="sidebar__menu">
           {% url "dashboardindex" as dashboardurl %}
-          <li class="sidebar__menu-item"><a class="sidebar__link {% if request.path == dashboardurl %}active{% endif %}" href=" {{dashboardurl}}"
-              aria-expanded="true"><span class="sidebar__link-icon">
+          <li class="sidebar__menu-item"><a class="sidebar__link " href=" {{dashboardurl}}" aria-expanded="true"><span
+                class="sidebar__link-icon">
                 <svg class="icon-icon-dashboard">
                   <use xlink:href=" #icon-dashboard"></use>
                 </svg></span><span class="sidebar__link-text">Dashboard</span></a>
+          </li>
+          <li class="sidebar__menu-item"><a class="sidebar__link {% if showappurl in request.path %}active{% endif %}"
+              href=" " data-toggle="collapse" data-target="#Users-Manage" aria-expanded=""><span
+                class="sidebar__link-icon">
+                <svg class="icon-icon-cart">
+                  <use xlink:href=" #icon-cart"></use>
+                </svg></span><span class="sidebar__link-text">Users Manage</span><span class="sidebar__link-arrow">
+                <svg class="icon-icon-keyboard-down">
+                  <use xlink:href=" #icon-keyboard-down"></use>
+                </svg></span></a>
+            <div class="collapse {% if showappurl in request.path %}show{% endif %}" id="Users-Manage">
+              <ul class="sidebar__collapse-menu">
+                {% url 'adminchat' as showdatamodelurl %}
+                <li class="sidebar__menu-item"><a
+                    class="sidebar__link  {% if showdatamodelurl == request.path %}active{% endif %}"
+                    href=" {{showdatamodelurl}} "><span class="sidebar__link-signal"></span><span
+                      class="sidebar__link-text ">Chat</span></a>
+                </li>
+                {% with '/dashboard/chat/user/' as showdatamodelurl %}
+                <li class="sidebar__menu-item"><a
+                    class="sidebar__link  {% if showdatamodelurl == request.path %}active{% endif %}"
+                    href="{{showdatamodelurl}}"><span class="sidebar__link-signal"></span><span
+                      class="sidebar__link-text ">All Users</span></a>
+                </li>
+                {% endwith %}
+                {% with '/dashboard/Home/documents/' as showdatamodelurl %}
+                <li class="sidebar__menu-item"><a
+                    class="sidebar__link  {% if showdatamodelurl == request.path %}active{% endif %}"
+                    href="{{showdatamodelurl}}"><span class="sidebar__link-signal"></span><span
+                      class="sidebar__link-text ">Documents</span></a>
+                </li>
+                {% endwith %}
+                {% with '/dashboard/Home/Payments/' as showdatamodelurl %}
+                <li class="sidebar__menu-item"><a
+                    class="sidebar__link  {% if showdatamodelurl == request.path %}active{% endif %}"
+                    href="{{showdatamodelurl}}"><span class="sidebar__link-signal"></span><span
+                      class="sidebar__link-text ">Payments</span></a>
+                </li>
+                {% endwith %}
+              </ul>
+            </div>
           </li>
 
           {% with ''|sidebardata as modelslist %}
           {% for key,val in modelslist.items %}
           {% url "showapp" key as showappurl %}
-          <li class="sidebar__menu-item"><a class="sidebar__link {% if showappurl in request.path %}active{% endif %}" href="{{showappurl}} "
-              data-toggle="collapse" data-target="#{{key|slugify}}" aria-expanded="false"><span class="sidebar__link-icon">
+          <li class="sidebar__menu-item"><a class="sidebar__link {% if showappurl in request.path %}active{% endif %}"
+              href="{{showappurl}} " data-toggle="collapse" data-target="#{{key|slugify}}"
+              aria-expanded="{% if showappurl in request.path %}true{% endif %}"><span class="sidebar__link-icon">
                 <svg class="icon-icon-cart">
                   <use xlink:href=" #icon-cart"></use>
                 </svg></span><span class="sidebar__link-text">{{key|cemelcase}}</span><span class="sidebar__link-arrow">
                 <svg class="icon-icon-keyboard-down">
                   <use xlink:href=" #icon-keyboard-down"></use>
                 </svg></span></a>
-            <div class="collapse" id="{{key|slugify}}">
+            <div class="collapse {% if showappurl in request.path %}show{% endif %}" id="{{key|slugify}}">
               <ul class="sidebar__collapse-menu">
                 {% for da in val %}
                 {% url 'showdatamodel' key da as showdatamodelurl %}
-                <li class="sidebar__menu-item"><a class="sidebar__link  {% if showdatamodelurl == request.path %}active{% endif %}"
+                <li class="sidebar__menu-item"><a
+                    class="sidebar__link  {% if showdatamodelurl == request.path %}active{% endif %}"
                     href=" {{showdatamodelurl}} "><span class="sidebar__link-signal"></span><span
                       class="sidebar__link-text ">{{da|cemelcase}}</span></a>
                 </li>
@@ -47,6 +90,144 @@
           </li>
           {% endfor %}
           {% endwith %}
+          <li class="sidebar__menu-item"><a class="sidebar__link" href=" " data-toggle="collapse"
+            data-target="#Registration-manage" aria-expanded=""><span class="sidebar__link-icon">
+              <svg class="icon-icon-cart">
+                <use xlink:href=" #icon-cart"></use>
+              </svg></span><span class="sidebar__link-text">Registration</span><span class="sidebar__link-arrow">
+              <svg class="icon-icon-keyboard-down">
+                <use xlink:href=" #icon-keyboard-down"></use>
+              </svg></span></a>
+          <div class="collapse {% if showappurl in request.path %}show{% endif %}" id="Registration-manage">
+            <ul class="sidebar__collapse-menu">
+              {% url 'dregistration' as showdatamodelurl %}
+              <li class="sidebar__menu-item"><a
+                  class="sidebar__link  {% if showdatamodelurl == request.path %}active{% endif %}"
+                  href="{{showdatamodelurl}}"><span class="sidebar__link-signal"></span><span
+                    class="sidebar__link-text ">All Registrations</span></a>
+              </li>
+              {% url 'drcontact' as showdatamodelurl %}
+              <li class="sidebar__menu-item"><a
+                  class="sidebar__link  {% if showdatamodelurl == request.path %}active{% endif %}"
+                  href="{{showdatamodelurl}}"><span class="sidebar__link-signal"></span><span
+                    class="sidebar__link-text ">All Contacts</span></a>
+              </li>
+              {% for res in Registrations %}
+              {% url "showapp" key as showappurl %}
+              <li class="sidebar__menu-item"><a
+                  class="sidebar__link {% if showappurl in request.path %}active{% endif %}" href=" "
+                  data-toggle="collapse" data-target="#{{res.title|slugify}}" aria-expanded="{% if showappurl in request.path %}true{% endif %}"><span
+                    class="sidebar__link-icon">
+                    <svg class="icon-icon-cart">
+                      <use xlink:href=" #icon-cart"></use>
+                    </svg></span><span class="sidebar__link-text">{{res.title}}</span><span
+                    class="sidebar__link-arrow">
+                    <svg class="icon-icon-keyboard-down">
+                      <use xlink:href=" #icon-keyboard-down"></use>
+                    </svg></span></a>
+                <div class="collapse {% if showappurl in request.path %}show{% endif %}" id="{{res.title|slugify}}">
+                  <ul class="sidebar__collapse-menu">
+                    {% for d in res.RegistrationSubMenu.all %}
+                    {% url "dseditregistration" slug1=d.title.slug slug2=d.slug as showdatamodelurl %}
+                    <li class="sidebar__menu-item"><a
+                        class="sidebar__link  {% if showdatamodelurl == request.path %}active{% endif %}"
+                        href="{{showdatamodelurl}}"><span class="sidebar__link-signal"></span><span
+                          class="sidebar__link-text ">{{d.submenu}}</span></a>
+                    </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              </li>
+              {% endfor %}
+              {% for res in othernavreg %}
+              <li class="sidebar__menu-item"><a
+                  class="sidebar__link {% if showappurl in request.path %}active{% endif %}" href=" "
+                  data-toggle="collapse" data-target="#{{res.title|slugify}}" aria-expanded=""><span
+                    class="sidebar__link-icon">
+                    <svg class="icon-icon-cart">
+                      <use xlink:href=" #icon-cart"></use>
+                    </svg></span><span class="sidebar__link-text">{{res.title}}</span><span
+                    class="sidebar__link-arrow">
+                    <svg class="icon-icon-keyboard-down">
+                      <use xlink:href=" #icon-keyboard-down"></use>
+                    </svg></span></a>
+                <div class="collapse {% if showappurl in request.path %}show{% endif %}" id="{{res.title|slugify}}">
+                  <ul class="sidebar__collapse-menu">
+                    {% for d in res.RegistrationSubMenu.all %}
+                    {% url "dseditothernavs" slug1=d.title.slug slug2=d.slug as showdatamodelurl %}
+                    <li class="sidebar__menu-item"><a
+                        class="sidebar__link  {% if showdatamodelurl == request.path %}active{% endif %}"
+                        href="{{showdatamodelurl}}"><span class="sidebar__link-signal"></span><span
+                          class="sidebar__link-text ">{{d.submenu}}</span></a>
+                    </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </li>
+
+          <li class="sidebar__menu-item"><a class="sidebar__link" href=" " data-toggle="collapse"
+              data-target="#about-manage" aria-expanded=""><span class="sidebar__link-icon">
+                <svg class="icon-icon-cart">
+                  <use xlink:href=" #icon-cart"></use>
+                </svg></span><span class="sidebar__link-text">About</span><span class="sidebar__link-arrow">
+                <svg class="icon-icon-keyboard-down">
+                  <use xlink:href=" #icon-keyboard-down"></use>
+                </svg></span></a>
+            <div class="collapse {% if showappurl in request.path %}show{% endif %}" id="about-manage">
+              <ul class="sidebar__collapse-menu">
+                {% with '/dashboard/Home/aboutca/' as showdatamodelurl %}
+                <li class="sidebar__menu-item"><a
+                    class="sidebar__link  {% if showdatamodelurl == request.path %}active{% endif %}"
+                    href="{{showdatamodelurl}}"><span class="sidebar__link-signal"></span><span
+                      class="sidebar__link-text ">About CA</span></a>
+                </li>
+                {% endwith %}
+                {% with '/dashboard/registration/aboutContent/' as showdatamodelurl %}
+                <li class="sidebar__menu-item"><a
+                    class="sidebar__link  {% if showdatamodelurl == request.path %}active{% endif %}"
+                    href="{{showdatamodelurl}}"><span class="sidebar__link-signal"></span><span
+                      class="sidebar__link-text ">About Content</span></a>
+                </li>
+                {% endwith %}
+              </ul>
+            </div>
+          </li>
+
+          <li class="sidebar__menu-item"><a class="sidebar__link {% if showappurl in request.path %}active{% endif %}"
+              href=" " data-toggle="collapse" data-target="#Blog-Manage" aria-expanded=""><span
+                class="sidebar__link-icon">
+                <svg class="icon-icon-cart">
+                  <use xlink:href=" #icon-cart"></use>
+                </svg></span><span class="sidebar__link-text">Blogs</span><span class="sidebar__link-arrow">
+                <svg class="icon-icon-keyboard-down">
+                  <use xlink:href=" #icon-keyboard-down"></use>
+                </svg></span></a>
+            <div class="collapse {% if showappurl in request.path %}show{% endif %}" id="Blog-Manage">
+              <ul class="sidebar__collapse-menu">
+                {% with '/dashboard/Home/BlogNews/' as showdatamodelurl %}
+                <li class="sidebar__menu-item"><a
+                    class="sidebar__link  {% if showdatamodelurl == request.path %}active{% endif %}"
+                    href="{{showdatamodelurl}}"><span class="sidebar__link-signal"></span><span
+                      class="sidebar__link-text ">News</span></a>
+                </li>
+                {% endwith %}
+                {% with '/dashboard/Home/addblog/' as showdatamodelurl %}
+                <li class="sidebar__menu-item"><a
+                    class="sidebar__link  {% if showdatamodelurl == request.path %}active{% endif %}"
+                    href="{{showdatamodelurl}}"><span class="sidebar__link-signal"></span><span
+                      class="sidebar__link-text ">Blogs</span></a>
+                </li>
+                {% endwith %}
+              </ul>
+            </div>
+          </li>
+
+
+         
 
         </ul>
       </nav>

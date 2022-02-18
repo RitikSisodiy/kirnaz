@@ -17,7 +17,7 @@ excludeModels = (
     "Home.Payments",
     "Home.documents",
 )
-
+templateFolder = 'superuser2'
 def appmodels(listofappname:list):
     resli = {}
     for name in listofappname:
