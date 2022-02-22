@@ -100,17 +100,17 @@
               </svg></span></a>
           <div class="collapse {% if showappurl in request.path %}show{% endif %}" id="Registration-manage">
             <ul class="sidebar__collapse-menu">
+              {% url 'drcontact' as showdatamodelurl %}
+              <li class="sidebar__menu-item"><a
+                class="sidebar__link  {% if showdatamodelurl == request.path %}active{% endif %}"
+                href="/dashboard/registration/contacts/"><span class="sidebar__link-signal"></span><span
+                class="sidebar__link-text ">Registration Contacts</span></a>
+              </li>
               {% url 'dregistration' as showdatamodelurl %}
               <li class="sidebar__menu-item"><a
                   class="sidebar__link  {% if showdatamodelurl == request.path %}active{% endif %}"
-                  href="{{showdatamodelurl}}"><span class="sidebar__link-signal"></span><span
-                    class="sidebar__link-text ">All Registrations</span></a>
-              </li>
-              {% url 'drcontact' as showdatamodelurl %}
-              <li class="sidebar__menu-item"><a
-                  class="sidebar__link  {% if showdatamodelurl == request.path %}active{% endif %}"
-                  href="{{showdatamodelurl}}"><span class="sidebar__link-signal"></span><span
-                    class="sidebar__link-text ">All Contacts</span></a>
+                  href=" /dashboard/othernavs/contacts/"><span class="sidebar__link-signal"></span><span
+                    class="sidebar__link-text ">Other Contacts</span></a>
               </li>
               {% for res in Registrations %}
               {% url "showapp" key as showappurl %}

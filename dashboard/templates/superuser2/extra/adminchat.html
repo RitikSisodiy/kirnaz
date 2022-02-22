@@ -1,0 +1,820 @@
+{% extends 'dbasic.html' %}
+{% load static %}
+<!-- sidebar menu area start -->
+{% block body %}
+
+
+<div class="chat-grid">
+  <div class="chat-users">
+    <div class="chat-users__top">
+      <form class="chat-users__search" method="GET">
+        <div class="input-group input-group--prepend">
+          <div class="input-group__prepend">
+            <svg class="icon-icon-search">
+              <use xlink:href='#icon-search'></use>
+            </svg>
+          </div>
+          <input class="input" type="text" placeholder="Search...">
+        </div>
+      </form>
+      <div class="chat-users__top-right">
+        <button class="chat-users__button-add-users button-icon button-icon--small" data-toggle="users-add-list"><span
+            class="button-icon__icon">
+            <svg class="icon-icon-plus">
+              <use xlink:href='#icon-plus'></use>
+            </svg></span><span class="button-icon__icon">
+            <svg class="icon-icon-chevron">
+              <use xlink:href='#icon-chevron'></use>
+            </svg></span>
+        </button>
+      </div>
+    </div>
+    <div class="chat-users__add-content scrollbar-thin scrollbar-hidden" data-simplebar>
+      <ul class="chat-users__list">
+        <li class="chat-users__list-header">B</li>
+        <li class="chat-users__list-item">
+          <a class="chat-users__item" href="#">
+            <div class="chat-users__item-avatar color-teal">
+              <div class="chat-users__item-avatar-text">BH</div>
+              <img src=" {% static 'superuser2/img/content/humans/item-8.jpg' %} " alt="#">
+            </div>
+            <div class="chat-users__item-right">
+              <h5 class="chat-users__item-name">Billy Hicks</h5>
+              <div class="text-sm text-grey">Hi there! I'm using chat</div>
+            </div>
+          </a>
+        </li>
+        <li class="chat-users__list-header">C</li>
+        <li class="chat-users__list-item">
+          <a class="chat-users__item" href="#">
+            <div class="chat-users__item-avatar color-green">
+              <div class="chat-users__item-avatar-text">CL</div>
+              <img src=" {% static 'superuser2/img/content/humans/item-10.jpg' %} " alt="#">
+            </div>
+            <div class="chat-users__item-right">
+              <h5 class="chat-users__item-name">Christine Lewis</h5>
+              <div class="text-sm text-grey">Hi there! I'm using chat</div>
+            </div>
+          </a>
+        </li>
+        <li class="chat-users__list-header">D</li>
+        <li class="chat-users__list-item">
+          <a class="chat-users__item" href="#">
+            <div class="chat-users__item-avatar color-teal">
+              <div class="chat-users__item-avatar-text">DP</div>
+              <img src=" {% static 'superuser2/img/content/humans/item-5.jpg' %} " alt="#">
+            </div>
+            <div class="chat-users__item-right">
+              <h5 class="chat-users__item-name">David Palmer</h5>
+              <div class="text-sm text-grey">Hi there! I'm using chat</div>
+            </div>
+          </a>
+        </li>
+        <li class="chat-users__list-header">E</li>
+        <li class="chat-users__list-item">
+          <a class="chat-users__item" href="#">
+            <div class="chat-users__item-avatar color-orange">
+              <div class="chat-users__item-avatar-text">ED</div>
+              <img src=" {% static 'superuser2/img/content/humans/item-2.jpg' %} " alt="#">
+            </div>
+            <div class="chat-users__item-right">
+              <h5 class="chat-users__item-name">Elaine Day</h5>
+              <div class="text-sm text-grey">Hi there! I'm using chat</div>
+            </div>
+          </a>
+        </li>
+        <li class="chat-users__list-header">F</li>
+        <li class="chat-users__list-item">
+          <a class="chat-users__item" href="#">
+            <div class="chat-users__item-avatar color-orange-dark">
+              <div class="chat-users__item-avatar-text">FB</div>
+              <img src=" {% static 'superuser2/img/content/humans/item-1.jpg' %} " alt="#">
+            </div>
+            <div class="chat-users__item-right">
+              <h5 class="chat-users__item-name">Felecia Burke</h5>
+              <div class="text-sm text-grey">Hi there! I'm using chat</div>
+            </div>
+          </a>
+        </li>
+        <li class="chat-users__list-header">J</li>
+        <li class="chat-users__list-item">
+          <a class="chat-users__item" href="#">
+            <div class="chat-users__item-avatar color-red">
+              <div class="chat-users__item-avatar-text">JB</div>
+              <img src=" {% static 'superuser2/img/content/humans/item-4.jpg' %} " alt="#">
+            </div>
+            <div class="chat-users__item-right">
+              <h5 class="chat-users__item-name">Joan Bates</h5>
+              <div class="text-sm text-grey">Hi there! I'm using chat</div>
+            </div>
+          </a>
+        </li>
+        <li class="chat-users__list-header">M</li>
+        <li class="chat-users__list-item">
+          <a class="chat-users__item" href="#">
+            <div class="chat-users__item-avatar color-green">
+              <div class="chat-users__item-avatar-text">MS</div>
+              <img src=" {% static 'superuser2/img/content/humans/item-6.jpg' %} " alt="#">
+            </div>
+            <div class="chat-users__item-right">
+              <h5 class="chat-users__item-name">Morris Stevens</h5>
+              <div class="text-sm text-grey">Hi there! I'm using chat</div>
+            </div>
+          </a>
+        </li>
+        <li class="chat-users__list-header">N</li>
+        <li class="chat-users__list-item">
+          <a class="chat-users__item" href="#">
+            <div class="chat-users__item-avatar color-red">
+              <div class="chat-users__item-avatar-text">NS</div>
+              <img src=" {% static 'superuser2/img/content/humans/item-3.jpg' %} " alt="#">
+            </div>
+            <div class="chat-users__item-right">
+              <h5 class="chat-users__item-name">Nora Stanley</h5>
+              <div class="text-sm text-grey">Hi there! I'm using chat</div>
+            </div>
+          </a>
+        </li>
+        <li class="chat-users__list-header">T</li>
+        <li class="chat-users__list-item">
+          <a class="chat-users__item" href="#">
+            <div class="chat-users__item-avatar color-orange-dark">
+              <div class="chat-users__item-avatar-text">TR</div>
+              <img src=" {% static 'superuser2/img/content/humans/item-7.jpg' %} " alt="#">
+            </div>
+            <div class="chat-users__item-right">
+              <h5 class="chat-users__item-name">Troy Russell</h5>
+              <div class="text-sm text-grey">Hi there! I'm using chat</div>
+            </div>
+          </a>
+        </li>
+        <li class="chat-users__list-header">W</li>
+        <li class="chat-users__list-item">
+          <a class="chat-users__item" href="#">
+            <div class="chat-users__item-avatar color-orange">
+              <div class="chat-users__item-avatar-text">WM</div>
+              <img src=" {% static 'superuser2/img/content/humans/item-9.jpg' %} " alt="#">
+            </div>
+            <div class="chat-users__item-right">
+              <h5 class="chat-users__item-name">Walter Miles</h5>
+              <div class="text-sm text-grey">Hi there! I'm using chat</div>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="chat-users__content scrollbar-thin scrollbar-hidden" data-simplebar>
+      <ul class="chat-users__list">
+        {% for chat,latmsg in chats %}
+        {% url 'adminchatuser' slug1=chat.first_name|slugify id=chat.id as url %}
+        <li class="chat-users__list-item">
+          <a class="chat-users__item {% if request.path == url %} active{% endif %}" href="{{url}}">
+            <div class="chat-users__item-avatar color-orange-dark">
+              <div class="chat-users__item-avatar-text">
+                {{chat.first_name|slice:"1"|title}}{{chat.last_name|slice:"1"|title}}</div><span
+                class="badge-signal badge-signal--green"></span>
+              <img
+                src="{% if chat.user.profile %}/media/{{chat.user.profile}}{% else %}http://simpleicon.com/wp-content/uploads/user1.png{% endif %} "
+                alt="#">
+            </div>
+            <div class="chat-users__item-right">
+              <h5 class="chat-users__item-name">{{chat.first_name|title}} {{chat.last_name|title}}</h5>
+              <div class="chat-users__item-right-group"><span class="chat-users__item-time">1 min</span>
+              </div>
+              <div class="chat-users__item-message">
+                <div class="chat-users__item-badge">{% if latmsg.0.aunread is not 0 %}<span
+                    class="badge badge--small badge--red">{{latmsg.0.aunread}}</span>{% endif %}
+                </div>
+                <p class="chat-users__item-text">The Arts play a large role in</p>
+              </div>
+            </div>
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="chat-details">
+    <div class="chat-details__backdrop"></div>
+    <div class="chat-details__top">
+      <div class="chat-details__top-left">
+        <button class="chat-details__toggle toggle-sidebar toggle-sidebar--secondary" type="button" data-dismiss
+          data-tippy-content="Back to User's" data-tippy-placement="bottom">
+          <svg class="icon-icon-chevron">
+            <use xlink:href='#icon-chevron'></use>
+          </svg>
+        </button>
+        <a class="media-item media-item--medium" href="#">
+          <div class="media-item__icon color-red">
+            <div class="media-item__icon-text">
+              {{chatuser.first_name|slice:"1"|title}}{{chatuser.last_name|slice:"1"|title}}</div><span
+              class="badge-signal badge-signal--green"></span>
+            <img class="media-item__thumb"
+              src=" {% if chatuser.user.profile %}/media/{{chatuser.user.profile}}{% else %}http://simpleicon.com/wp-content/uploads/user1.png{% endif %}"
+              alt="#">
+          </div>
+          <div class="media-item__right">
+            <h5 class="media-item__title font-weight-medium">{{chatuser.first_name|title}} {{chatuser.last_name|title}}
+            </h5>
+            <div class="text-sm text-grey" id="useractivebox">Active 1 min ago</div>
+          </div>
+        </a>
+      </div>
+      <div class="chat-details__top-right">
+        <div class="items-more position-relative">
+          <button class="items-more__button">
+            <svg class="icon-icon-more">
+              <use xlink:href='#icon-more'></use>
+            </svg>
+          </button>
+          <div class="dropdown-items dropdown-items--right">
+            <div class="dropdown-items__container">
+              <ul class="dropdown-items__list">
+                <li class="dropdown-items__item"><a class="dropdown-items__link"><span
+                      class="dropdown-items__link-icon">
+                      <svg class="icon-icon-view">
+                        <use xlink:href='#icon-view'></use>
+                      </svg></span>Create a room</a>
+                </li>
+                <li class="dropdown-items__item"><a class="dropdown-items__link"><span
+                      class="dropdown-items__link-icon">
+                      <svg class="icon-icon-user">
+                        <use xlink:href='#icon-user'></use>
+                      </svg></span>Profile</a>
+                </li>
+                <li class="dropdown-items__item"><a class="dropdown-items__link"><span
+                      class="dropdown-items__link-icon">
+                      <svg class="icon-icon-archive">
+                        <use xlink:href='#icon-archive'></use>
+                      </svg></span>Archived</a>
+                </li>
+                <li class="dropdown-items__item"><a class="dropdown-items__link"><span
+                      class="dropdown-items__link-icon">
+                      <svg class="icon-icon-settings">
+                        <use xlink:href='#icon-settings'></use>
+                      </svg></span>Settings</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chat-details__content scrollbar-thin scrollbar-hidden" id="chat-content" data-simplebar>
+      <!-- <div class="chat-message">
+        <div class="chat-message__content">
+          <a class="chat-message__icon color-teal" href="#">
+            <div class="chat-message__icon-text">DP</div>
+            <img src=" {% static 'superuser2/img/content/humans/item-5.jpg' %} " alt="#" />
+          </a>
+          <div class="chat-message__right">
+            <div class="chat-message__messages">
+              <div class="chat-message__message-group">
+                <div class="chat-message__message-item">
+                  <p class="chat-message__item-text">Temporibus autem quibusdam et aut officiis debitis aut rerum
+                    necessitatibus saepe eveniet.
+                    <img src=" {% static 'superuser2/img/content/emoji-happy.svg' %} " alt="#" />
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="chat-message__bottom">
+          <div class="chat-message__time">1 min ago</div>
+          <div class="chat-message__files">
+          </div>
+        </div>
+      </div>
+      <div class="chat-message chat-message--answer">
+        <div class="chat-message__content">
+          <a class="chat-message__icon color-red" href="#">
+            <div class="chat-message__icon-text">JB</div>
+            <img src=" {% static 'superuser2/img/content/humans/item-4.jpg' %} " alt="#" />
+          </a>
+          <div class="chat-message__right">
+            <div class="chat-message__messages">
+              <div class="chat-message__message-group">
+                <div class="chat-message__message-item">
+                  <p class="chat-message__item-text">Sed ut perspiciatis, qui in ea voluptate velit esse, quam nihil
+                    molestiae?</p>
+                </div>
+                <div class="chat-message__tools">
+                  <div class="items-more">
+                    <button class="items-more__button">
+                      <svg class="icon-icon-more">
+                        <use xlink:href='#icon-more'></use>
+                      </svg>
+                    </button>
+                  </div>
+                  <div class="chat-message__tools-item">
+                    <button class="button-icon button-icon--grey"><span class="button-icon__icon">
+                        <svg class="icon-icon-drafts">
+                          <use xlink:href='#icon-drafts'></use>
+                        </svg></span>
+                    </button>
+                  </div>
+                  <div class="chat-message__tools-item">
+                    <button class="button-icon button-icon--grey"><span class="button-icon__icon">
+                        <svg class="icon-icon-trash">
+                          <use xlink:href='#icon-trash'></use>
+                        </svg></span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="chat-message__bottom">
+          <div class="chat-message__time">2 min ago</div>
+          <div class="chat-message__files">
+            <div class="chat-message__files-items">
+              <div class="chat-message__file">
+                <img src=" {% static 'superuser2/img/content/message-file-1%402x.jpg' %} " width="56" alt="#" />
+              </div>
+              <div class="chat-message__file">
+                <img src=" {% static 'superuser2/img/content/message-file-2%402x.jpg' %} " width="56" alt="#" />
+              </div>
+              <div class="chat-message__file">
+                <img src=" {% static 'superuser2/img/content/message-file-3%402x.jpg' %} " width="56" alt="#" />
+              </div>
+            </div>
+            <button class="button-add button-add--blue button-add--sm">+3</button>
+          </div>
+        </div>
+      </div>
+      <div class="chat-message">
+        <div class="chat-message__content">
+          <a class="chat-message__icon color-teal" href="#">
+            <div class="chat-message__icon-text">DP</div>
+            <img src=" {% static 'superuser2/img/content/humans/item-5.jpg' %} " alt="#" />
+          </a>
+          <div class="chat-message__right">
+            <div class="chat-message__messages">
+              <div class="chat-message__message-group">
+                <div class="chat-message__message-item">
+                  <p class="chat-message__item-text">voluptatem sequi nesciunt neque porro obcaecati cupiditate. non
+                    provident similique sunt.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="chat-message__bottom">
+          <div class="chat-message__time">3 min ago</div>
+          <div class="chat-message__files">
+          </div>
+        </div>
+      </div>
+      <div class="chat-details__date">Today</div>
+      <div class="chat-message chat-message--answer">
+        <div class="chat-message__content">
+          <a class="chat-message__icon color-red" href="#">
+            <div class="chat-message__icon-text">JB</div>
+            <img src=" {% static 'superuser2/img/content/humans/item-4.jpg' %} " alt="#" />
+          </a>
+          <div class="chat-message__right">
+            <div class="chat-message__messages">
+              <div class="chat-message__message-group">
+                <div class="chat-message__message-item">
+                  <p class="chat-message__item-text">Excepteur sint occaecat cupidatat non proident, quia voluptas sit,
+                    aspernatur aut odit aut fugit.
+                    <img src=" {% static 'superuser2/img/content/emoji/shocked.svg' %} " alt="#" />
+                  </p>
+                </div>
+                <div class="chat-message__tools active">
+                  <div class="items-more">
+                    <button class="items-more__button">
+                      <svg class="icon-icon-more">
+                        <use xlink:href='#icon-more'></use>
+                      </svg>
+                    </button>
+                  </div>
+                  <div class="chat-message__tools-item">
+                    <button class="button-icon button-icon--grey"><span class="button-icon__icon">
+                        <svg class="icon-icon-drafts">
+                          <use xlink:href='#icon-drafts'></use>
+                        </svg></span>
+                    </button>
+                  </div>
+                  <div class="chat-message__tools-item">
+                    <button class="button-icon button-icon--grey"><span class="button-icon__icon">
+                        <svg class="icon-icon-trash">
+                          <use xlink:href='#icon-trash'></use>
+                        </svg></span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="chat-message__bottom">
+          <div class="chat-message__time">4 min ago</div>
+          <div class="chat-message__files">
+          </div>
+        </div>
+      </div>
+      <div class="chat-message">
+        <div class="chat-message__content">
+          <a class="chat-message__icon color-teal" href="#">
+            <div class="chat-message__icon-text">DP</div>
+            <img src=" {% static 'superuser2/img/content/humans/item-5.jpg' %} " alt="#" />
+          </a>
+          <div class="chat-message__right">
+            <div class="chat-message__messages">
+              <div class="chat-message__message-group">
+                <div class="chat-message__message-item">
+                  <p class="chat-message__item-text">Itaque earum rerum hic tenetur a sapiente delectus quia voluptas
+                    sit, aspernatur aut odit aut fugit sed.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="chat-message__bottom">
+          <div class="chat-message__time">5 min ago</div>
+          <div class="chat-message__files">
+          </div>
+        </div>
+      </div>
+      <div class="chat-message chat-message--answer">
+        <div class="chat-message__content">
+          <a class="chat-message__icon color-red" href="#">
+            <div class="chat-message__icon-text">JB</div>
+            <img src=" {% static 'superuser2/img/content/humans/item-4.jpg' %} " alt="#" />
+          </a>
+          <div class="chat-message__right">
+            <div class="chat-message__messages">
+              <div class="chat-message__message-group">
+                <div class="chat-message__message-item">
+                  <div class="media-file">
+                    <div class="media-file__icon">
+                      <img class="media-file__thumb" src=" {% static 'superuser2/img/content/file-pdf.svg' %} " alt="#" />
+                    </div>
+                    <div class="media-file__right">
+                      <div class="media-file__prepend">
+                        <h5 class="media-file__title">Documentation.pdf</h5><span class="text-sm text-grey">50 MB</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="chat-message__tools">
+                  <div class="items-more">
+                    <button class="items-more__button">
+                      <svg class="icon-icon-more">
+                        <use xlink:href='#icon-more'></use>
+                      </svg>
+                    </button>
+                  </div>
+                  <div class="chat-message__tools-item">
+                    <button class="button-icon button-icon--grey"><span class="button-icon__icon">
+                        <svg class="icon-icon-drafts">
+                          <use xlink:href='#icon-drafts'></use>
+                        </svg></span>
+                    </button>
+                  </div>
+                  <div class="chat-message__tools-item">
+                    <button class="button-icon button-icon--grey"><span class="button-icon__icon">
+                        <svg class="icon-icon-trash">
+                          <use xlink:href='#icon-trash'></use>
+                        </svg></span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="chat-message__bottom">
+          <div class="chat-message__time">6 min ago</div>
+          <div class="chat-message__files">
+          </div>
+        </div>
+      </div> -->
+    </div>
+    <form id="sendmsg" class="chat-details__bottom">
+      <div class="chat-details__input-group input-group input-group--white">
+        <div class="chat-details__input-prepend">
+          <label class="button-icon button-icon--transparent">
+            <input type="file" id='filefield' name="myfile" class="somerandom" multiple><span class="button-icon__icon">
+              <svg class="icon-icon-attachment">
+                <use xlink:href='#icon-attachment'></use>
+              </svg></span>
+          </label>
+          <label class="button-icon button-icon--transparent" data-dismiss="modal" data-modal="#setpayment">
+              <i class="fa fa-inr" ></i>  
+            </span>
+          </label>
+          
+        </div>
+        {% csrf_token %}
+        <input class="chat-details__input input" type="text" autocomplete="off" name="message"
+          placeholder="Write a Message...">
+      </div>
+      <div class="chat-details__bottom-right">
+        <button class="button-add button-add--blue" type="submit"><span class="button-add__icon">
+            <svg class="icon-icon-send">
+              <use xlink:href='#icon-send'></use>
+            </svg></span><span class="button-add__text"></span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="modal modal-compact modal-success scrollbar-thin" id="setpayment" data-simplebar>
+  <div class="modal__overlay" data-dismiss="modal"></div>
+  <div class="modal__wrap">
+      <div class="modal__window">
+          <div class="modal__content">
+              <div class="modal__body">
+                <form method="POST" action="{{request.get_full_path}}setpayment/">
+                  <div class="modal-body">
+                    <h3>Set The Payment</h3>
+                  </div>
+                  {% csrf_token %}
+                  <div class="container">
+                    <label for="">Reason</label>
+                  <input type="text" class="form-control" name="reason" placeholder="Payment reason" value="{{f.instance.id}}">
+                  <label for="">Ammount</label>
+                  <input type="text" class="form-control my-2" name="Ammount" placeholder="Payment reason" value="{{request.GET.page}}">
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-success">Yes Sure</button>
+                  </div>
+              </form>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+{% endblock %}
+{% block script %}
+{% if window %}
+<script>
+  const MONTH_NAMES = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+
+
+  function getFormattedDate(date, prefomattedDate = false, hideYear = false) {
+    const day = date.getDate();
+    const month = MONTH_NAMES[date.getMonth()];
+    const year = date.getFullYear();
+    const hours = date.getHours();
+    let minutes = date.getMinutes();
+
+    if (minutes < 10) {
+      // Adding leading zero to minutes
+      minutes = `0${minutes}`;
+    }
+
+    if (prefomattedDate) {
+      // Today at 10:20
+      // Yesterday at 10:20
+      return `${prefomattedDate} at ${hours}:${minutes}`;
+    }
+
+    if (hideYear) {
+      // 10. January at 10:20
+      return `${day}. ${month} at ${hours}:${minutes}`;
+    }
+
+    // 10. January 2017. at 10:20
+    return `${day}. ${month} ${year}. at ${hours}:${minutes}`;
+  }
+
+
+  // --- Main function
+  function timeAgo(dateParam) {
+    if (!dateParam) {
+      return null;
+    }
+
+    const date = typeof dateParam === 'object' ? dateParam : new Date(dateParam);
+    const DAY_IN_MS = 86400000; // 24 * 60 * 60 * 1000
+    const today = new Date();
+    const yesterday = new Date(today - DAY_IN_MS);
+    const seconds = Math.round((today - date) / 1000);
+    const minutes = Math.round(seconds / 60);
+    const isToday = today.toDateString() === date.toDateString();
+    const isYesterday = yesterday.toDateString() === date.toDateString();
+    const isThisYear = today.getFullYear() === date.getFullYear();
+
+
+    if (seconds < 5) {
+      return 'now';
+    } else if (seconds < 60) {
+      return `${seconds} seconds ago`;
+    } else if (seconds < 90) {
+      return 'about a minute ago';
+    } else if (minutes < 60) {
+      return `${minutes} minutes ago`;
+    } else if (isToday) {
+      return getFormattedDate(date, 'Today'); // Today at 10:20
+    } else if (isYesterday) {
+      return getFormattedDate(date, 'Yesterday'); // Yesterday at 10:20
+    } else if (isThisYear) {
+      return getFormattedDate(date, false, true); // 10. January at 10:20
+    }
+
+    return getFormattedDate(date); // 10. January 2017. at 10:20
+  }
+</script>
+<script>
+  (function () {
+    var form = document.getElementById('sendmsg');
+    var fileSelect = document.getElementById('filefield');
+    var uploadButton = document.getElementById('submit');
+
+
+    form.onsubmit = function (event) {
+      event.preventDefault();
+
+
+      // Get the files from the input
+      var files = fileSelect.files;
+
+      // Create a FormData object.
+      var formData = new FormData();
+      $('#sendmsg').serializeArray().reduce(function (obj, item) {
+        formData.append(item.name, item.value);
+        return obj;
+      }, {});
+
+      //Grab only one file since this script disallows multiple file uploads.
+      var file = files[0];
+
+      // //Check the file type.
+      // if (!file.type.match('image.*')) {
+      //     statusDiv.innerHTML = 'You cannot upload this file because it’s not an image.';
+      //     return;
+      // }
+
+      // if (file.size >= 2000000 ) {
+      //     statusDiv.innerHTML = 'You cannot upload this file because its size exceeds the maximum limit of 2 MB.';
+      //     return;
+      // }
+
+      // Add the file to the AJAX request.
+      if (file != undefined) {
+        formData.append('myfile', file, file.name);
+      }
+      // Set up the request.
+      var xhr = new XMLHttpRequest();
+
+      // Open the connection.
+      xhr.open('POST', '{{request.get_full_path}}', true);
+
+
+      // Set up a handler for when the task for the request is complete.
+      xhr.onload = function () {
+        if (xhr.status === 200) {
+          $("input[name=message]").val('')
+          $("input[name=myfile]").val('')
+          $("input[name=message]").focus()
+          ws.send('sent')
+        }
+      };
+
+      // Send the data.
+      xhr.send(formData);
+    }
+  })();
+
+
+  function getsms() {
+    data = document.getElementsByClassName("usermessages")
+    var xhttp = new XMLHttpRequest()
+    xhttp.open('GET', "{% url 'admingetmsg' slug1=slug.0 id=slug.1 %}?len=" + data.length.toString(), true)
+    xhttp.send()
+    xhttp.onreadystatechange = function () {
+      if (xhttp.readyState == 4 && xhttp.status == 200) {
+        data = xhttp.responseText
+        console.log(data)
+        if (data != "updated") {
+          data = JSON.parse(data)
+          //  console.log(data)
+          updatedmsg(data)
+          var objDiv = document.querySelector("#chat-content .simplebar-content-wrapper");
+          // console.log(msgstr)
+          objDiv.scrollTop = objDiv.scrollHeight;
+        }
+      }
+    }
+    if (!socket) {
+      setTimeout(getsms, 1500);
+    }
+  }
+
+  function getMsgstring(msg) {
+    convofile = ""
+    if (msg['convofiles__file'] != null) {
+      convofile = `<div class="chat-message__file">
+                <img src="/media/${msg['convofiles__file']} " width="56" alt="#" />
+              </div>`
+    }
+    chatmsg = ''
+    if(msg['msg'].length>0){
+      chatmsg = ` <div class="chat-message__messages">
+              <div class="chat-message__message-group">
+                <div class="chat-message__message-item">
+                  <p class="chat-message__item-text">${msg['msg']}
+                  </p>
+                </div>
+              </div>
+            </div>`
+    }
+
+    if (msg['msgtoadmin'] == true) {
+      myser = ` <div class="chat-message usermessages">
+        <div class="chat-message__content">
+          <a class="chat-message__icon color-teal" href="#">
+            <div class="chat-message__icon-text">DP</div>
+            <img src=" {% static 'superuser2/img/content/humans/item-5.jpg' %} " alt="#" />
+          </a>
+          <div class="chat-message__right">
+           ${chatmsg}
+          </div>
+        </div>
+        <div class="chat-message__bottom">
+          <div class="chat-message__files">
+            ${convofile}
+            </div>
+            <div class="chat-message__time">${timeAgo(msg['time'])}</div>
+        </div>
+      </div>`
+    } else {
+      myser = `
+    <div class="chat-message chat-message--answer usermessages">
+        <div class="chat-message__content">
+          <a class="chat-message__icon color-red" href="#">
+            <div class="chat-message__icon-text">JB</div>
+            <img src=" {% static 'superuser2/img/content/humans/item-4.jpg' %} " alt="#" />
+          </a>
+          <div class="chat-message__right">
+            <div class="chat-message__messages">
+              ${chatmsg}
+            </div>
+          </div>
+        </div>
+        <div class="chat-message__bottom">
+          <div class="chat-message__files">
+            ${convofile}
+            </div>
+            <div class="chat-message__time">${timeAgo(msg['time'])}</div>
+        </div>
+      </div>
+    `
+    }
+    return myser
+  }
+
+
+  function updatedmsg(msgs) {
+    if (msgs.length > 0) {
+
+      for (i = 0; i < msgs.length; i++) {
+        // console.log("hello")
+        msgstr = getMsgstring(msgs[i])
+        $("#chat-content .simplebar-content").append(msgstr)
+        var objDiv = document.querySelector("#chat-content .simplebar-content-wrapper");
+        // console.log(msgstr)
+        objDiv.scrollTop = objDiv.scrollHeight;
+        }
+    }
+  }
+  const url = "ws://{{request.get_host}}/ws/chat/{{username}}"
+  const ws = new WebSocket(url)
+  var useractivebox = document.getElementById('useractivebox')
+  const messageDiv = document.getElementById("showmessages")
+  const online = document.getElementById("onlineuser")
+  var socket = false
+  ws.onopen = function (event) {
+    console.log("connetion is opend",)
+  }
+  ws.onmessage = function (event) {
+    console.log("message is get")
+    data = JSON.parse(event.data)
+    console.log(data)
+    if( data.userstatus){
+      if(data.userstatus[0]){
+        useractivebox.innerHTML = "Active Now"
+      }else{
+        useractivebox.innerHTML = timeAgo(data.userstatus[1])
+      }
+    }
+    socket = true
+    getsms()
+  }
+  ws.onclose = function (event) {
+    socket = false
+    console.log("connetion is closed")
+  }
+  getsms()
+</script>
+{% endif %}
+{% endblock %}

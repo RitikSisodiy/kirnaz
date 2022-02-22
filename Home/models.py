@@ -3,8 +3,10 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.deletion import SET_NULL
 from django.http import request
+from dashboard.superuserviews import getEmailBackend
 from registration.models import RegistrationSubMenu
 from othernavs.models import RegistrationSubMenu as othernavsubmenu
+from django.core.mail import  EmailMessage
 from dashboard.models import makepaymentrequest
 # Create your models here.
 from datetime import datetime
@@ -26,11 +28,28 @@ class ContactDetails(models.Model):
     otherPhones = models.CharField(max_length=100)
     def __str__(self) -> str:
         return self.email
+from django.utils.html import strip_tags
 class BusinessQuery(models.Model):
     name = models.CharField(max_length=30)
     phone = models.IntegerField()
     email = models.EmailField(max_length=50)
     message = models.CharField(max_length=500)
+    reply = RichTextField(blank=True)
+    def save(self):
+        if len(self.reply)>7:
+            backend,config = getEmailBackend()
+            msg= strip_tags(self.reply)
+            email = EmailMessage(
+            "Kirnaaz: Query response",
+            msg,
+            config.email,
+            [self.email],
+            headers={'Reply-To': config.email},
+            connection=backend
+             )
+            email.send()
+        self.reply = ''
+        super().save()
     def __str__(self) -> str:
         return self.name
 class News(models.Model):

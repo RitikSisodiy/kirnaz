@@ -7,7 +7,7 @@ import json
 from django.contrib import messages
 from django.core.paginator import Paginator
 from cflax.settings import sectionname
-
+from .dashboardsettings import templateFolder
 sections = [SubRegistrationContent,AboutRegistraionSubMenu,DocumentRequired,PackageIncluded,Procedure,Memorandum,CompanyRegisterRequirements,FAQ,Sainification,ourclients,BlogNews]
 # adding multi objects form as a list in sectionsform
 sectionsforms = [section0Form,section1Form,section2Form,[PackageIncludedForm],[section3Form],section4Form,section5Form,[section6Form],section7Form,[section8Form],[section9Form]]
@@ -84,7 +84,10 @@ def editothernavs(request,slug1,slug2):
     res['forms'] = li
     res['slugs'] = [slug1,slug2,RegistrationSubMenuob.submenu]
     res['sec'] = [[i,sec[i-1]] for i in res['page_obj'].paginator.page_range ]
-    return render(request,'editothernavs.html',res)
+    try:
+        return render(request,f'{templateFolder}/extra/editothernavs.html',res)
+    except Exception:    
+        return render(request,'editothernavs.html',res)
 
 def deleteothernavs(request):
     if request.method == "POST":

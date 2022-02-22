@@ -16,7 +16,7 @@ from cflax.settings import sectionname
 
 from django.contrib.contenttypes.models import ContentType
 from .dashboardsettings import templateFolder
-
+from Home.models import Payments
 # Create your views here.
 def GetContentType(model):
     return ContentType.objects.get(app_label=model._meta.app_label, model=model._meta.model_name)
@@ -24,6 +24,7 @@ def GetContentType(model):
 def index(request):
     res = {}
     res["title"] = "Dashboard"
+    res['payments'] = Payments.objects.all().order_by("-order_date")
     try:
         return render(request,f'{templateFolder}/extra/dashboard.html',res)
     except Exception:    
@@ -153,9 +154,11 @@ def adminchat(request,slug1=None,id=None):
         return HttpResponse("{'msg':"+msg+"}")
     if id is not None:
         res['coverstion'] = conversation.objects.filter(msgby__user=id)
+        res['coverstion'].update(readbyadmin=True)
         res['window'] = True
         res['slug'] = [slug1,id]
-        res['username'] = user.objects.get(user=id).user.username
+        res['chatuser'] = user.objects.get(user=id).user
+        res['username'] = res['chatuser'].username
     list = conversation.objects.values('msgby__user__id') 
     resp = []
     for i in list:
@@ -177,7 +180,7 @@ def getmsg(request,slug1=None,id=None):
     auser = User.objects.get(id=id)
     mlen = request.GET.get('len')
     messages = list(conversation.objects.filter(msgby__user=auser.id).order_by('time').values('msgby__user',
-'msgtoadmin','msg','convofiles__file'))
+'msgtoadmin','msg','convofiles__file','time'))
     if len(messages)==int(mlen):
         return HttpResponse("updated")
     return JsonResponse(messages[int(mlen):],safe=False)

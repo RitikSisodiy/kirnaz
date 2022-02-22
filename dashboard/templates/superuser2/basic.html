@@ -24,7 +24,6 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.3/css/select.dataTables.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" href=" {% static 'superuser2/css/vendor.min.css' %} " />
     <link rel="stylesheet" href=" {% static 'superuser2/css/common.css' %} " />
@@ -53,11 +52,13 @@
         width: 100%;
         padding: 0px 18px 0 18px;
     }
-  
+    input.checkbox{
+        -webkit-appearance: auto!important;
+    }
 </style>
 <body class="page-home">
     {% if messages %}
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 {% comment %} <div class="modal-body">
@@ -111,8 +112,57 @@
                 </div>
             </div>
         </div>
+    </div> -->
+
+
+    <div class="modal modal-compact modal-success scrollbar-thin" id="myModal" data-simplebar>
+        <div class="modal__overlay" data-dismiss="modal"></div>
+        <div class="modal__wrap">
+            <div class="modal__window">
+                <div class="modal__content">
+                    <div class="modal__body">
+                        <div class="modal__container">
+                                {% for message in messages %}
+                                {% if message.tags == 'danger' %}
+                                <img class="modal-success__icon" src="{% static 'superuser2/img/content/checked-failed.svg' %}" alt="#">
+                                <h1 class="my-4" 1>Eroor</h1>
+                                <p>{{message|safe}}</p>
+                                {% if form.errors %}
+                                {% for field in form %}
+                                    {% for error in field.errors %} 
+                                        <div class="alert alert-danger">
+                                            <strong>{{ error|escape }}</strong>
+                                        </div>
+                                    {% endfor %}
+                                {% endfor %}
+                                {% endif %}
+                                {% else %}
+                                <img class="modal-success__icon" src="{% static 'superuser2/img/content/checked-success.svg' %}" alt="#">
+                                <h4 class="modal-success__title">Success</h4>
+                                <p>{{message|safe}}</p>
+                                {% endif %}
+                                </h3>
+    
+                                {% endfor %}
+                        </div>
+                    </div>
+                    <div class="modal-compact__buttons">
+                        <div class="modal-compact__button-item">
+                            <a class="modal-compact__button button" href="{% if modelname and appname %}{% url 'editdatamodel' appname modelname 'newmodel' 'add' %}{% endif %}"><span class="button__text">Add {{modelname|title}}</span>
+                            </a>
+                        </div>
+                        <div class="modal-compact__button-item">
+                            <button class="modal-compact__button button" data-dismiss="modal"><span class="button__text">Close</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <button class="button button--primary button--block d-none" data-dismiss="modal" data-modal="#myModal"><span class="button__text">Open Modal</span>
+    </button>
     {% endif %}
     {% include 'superuser2/theame-toggle.html' %}
    
@@ -120,26 +170,12 @@
     <div class="page-wrapper">
         {% include 'superuser2/header.html' with aboutdata=aboutdata %}
         {% include 'superuser2/sidebar.html' with aboutdata=aboutdata %}
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">{% block formtitle %}{% endblock %}</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        {% block addform %}
-                        {% endblock %}
-                    </div>
-                </div>
-            </div>
-        </div>
-        <main class="page-content page-content--full">
+
+        <main class="page-content {% block main %} page-content--full{% endblock %}">
             {% block body %}
             {% endblock %}
         </main>
+      
     </div>
     {% block delete %}
         {% if appname and modelname  %}
@@ -156,10 +192,10 @@
     <script src=" {% static 'superuser2/js/vendor.min.js' %} "></script>
     <script src=" {% static 'superuser2/js/common.js' %} "></script>
     <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
-   <script src="https://cdn.datatables.net/select/1.3.3/js/dataTables.select.min.js"></script>
-   <script src="https://cdn.datatables.net/buttons/2.1.0/js/dataTables.buttons.min.js"></script>
-   <!-- <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap.min.js"></script> -->
-   <script >
+    <script src="https://cdn.datatables.net/select/1.3.3/js/dataTables.select.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.1.0/js/dataTables.buttons.min.js"></script>
+    <!-- <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap.min.js"></script> -->
+    <script >
        {% if appname and modelname %}
        $(document).ready(function() {
         $('table thead tr')
@@ -315,7 +351,29 @@
 {% endif %}
    
     </script>
-     <script>
+   <script type="text/javascript">
+    $(window).on('load', function () {
+        // $('#myModal').modal('show');
+        $("button[data-modal='#myModal']").click()
+    });
+    </script>
+    <script>
+        let mode = localStorage.getItem('darkmode')
+        if (mode){$('html').attr('data-theme',mode)}
+        if (mode=='dark'){$('#darkmodetoggle').addClass('is-active')}
+        $('#darkmodetoggle').on('click',function(){
+            if($(this).hasClass("is-active")){
+                $('html').attr('data-theme','dark')
+                localStorage.setItem('darkmode','dark')
+            }else{
+                $('html').attr('data-theme','light')
+                localStorage.setItem('darkmode','light')
+
+            }
+        })
+    </script>
+    {% block script %}
+    <script>
         var ele = document.getElementsByTagName('input')
         var ele2 = document.getElementsByTagName('textarea')
 
@@ -335,6 +393,7 @@
             if (ele2[i].className == 'vTimeField') {
                 ele2[i].setAttribute('type', 'time')
             }
+           
         }
         var sel = document.getElementsByTagName('select')
         for (var i = 0; i < sel.length; i++) {
@@ -348,6 +407,10 @@
         for (var i = 0; i < ele.length; i++) {
             if (ele[i].className == '' && ele[i].getAttribute('type') != 'checkbox' && ele[i].getAttribute('type') != 'hidden') {
                 ele[i].setAttribute('class', 'form-control input ')
+                ele[i].parentElement.setAttribute('class', 'col-md-6')
+            }
+            if ( ele[i].getAttribute('type') == 'checkbox') {
+                ele[i].setAttribute('class', 'checkbox')
                 ele[i].parentElement.setAttribute('class', 'col-md-6')
             }
             if (ele[i].className == 'vTimeField') {
@@ -368,21 +431,7 @@
         }
       
     </script>
-<script>
-    let mode = localStorage.getItem('darkmode')
-    $('html').attr('data-theme',mode)
-    if (mode=='dark'){$('#darkmodetoggle').addClass('is-active')}
-    $('#darkmodetoggle').on('click',function(){
-        if($(this).hasClass("is-active")){
-            $('html').attr('data-theme','dark')
-            localStorage.setItem('darkmode','dark')
-        }else{
-            $('html').attr('data-theme','light')
-            localStorage.setItem('darkmode','light')
-
-        }
-    })
- </script>
+    {% endblock%}
 </body>
 
 

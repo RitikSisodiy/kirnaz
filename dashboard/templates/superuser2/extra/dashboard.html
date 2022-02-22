@@ -1,0 +1,157 @@
+{% extends 'superuser2/basic.html' %}
+{% load static %}
+{% block main %}{% endblock %}
+{% load custumfilter %}
+{% block body %}
+<div class="container mt-5">
+    <div class="widgets">
+        <div class="widgets__row row gutter-bottom-xl">
+            {% with ''|sidebardata as sidebar %}
+                     {% for key , val in sidebar.items %}
+            <div class="col-12 col-sm-6 col-xl-4 d-flex">
+                <div class="widget">
+                    <div class="widget__wrapper">
+                        <div class="widget__row">
+                            <div class="widget__left">
+                                <h3 class="widget__title">{{key|title}}</h3>
+                                <div class="widget__spacer"></div>
+                                <div class="widget__trade"><span class="widget__trade-count">{{val|length}}</span><span class="trade-icon trade-icon--up">
+                                
+                                </div>
+                                <div class="widget__details"><a class="link-under text-grey" href="{% url 'showapp' key %}">Detail</a>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% endwith %}
+        </div>
+    </div>
+   
+</div>
+<section class="section">
+    <div class="section__title d-none">
+        <h2>Section</h2>
+    </div>
+    <div class="row gutter-bottotm-xl">
+        <div class="col-12 d-flex">
+            <div class="card pb-0">
+                <div class="card__wrapper">
+                    <div class="card__container">
+                        <div class="card__header">
+                            <div class="card__header-left">
+                                <h3 class="card__header-title">Transactions</h3>
+                            </div>
+                            <div class="card__tools-more">
+                                <button class="items-more__button">
+                                    <svg class="icon-icon-more">
+                                        <use xlink:href="#icon-more"></use>
+                                    </svg>
+                                </button>
+                                <div class="dropdown-items">
+                                    <div class="dropdown-items__container">
+                                        <ul class="dropdown-items__list">
+                                            <li class="dropdown-items__item"><a class="dropdown-items__link"><span class="dropdown-items__link-icon">
+                      <svg class="icon-icon-refresh">
+                        <use xlink:href="#icon-refresh"></use>
+                      </svg></span>Refresh</a>
+                                            </li>
+                                            <li class="dropdown-items__item"><a class="dropdown-items__link"><span class="dropdown-items__link-icon">
+                      <svg class="icon-icon-settings">
+                        <use xlink:href="#icon-settings"></use>
+                      </svg></span>Settings</a>
+                                            </li>
+                                            <li class="dropdown-items__item"><a class="dropdown-items__link"><span class="dropdown-items__link-icon">
+                      <svg class="icon-icon-download">
+                        <use xlink:href="#icon-download"></use>
+                      </svg></span>Download</a>
+                                            </li>
+                                            <li class="dropdown-items__item"><a class="dropdown-items__link"><span class="dropdown-items__link-icon">
+                      <svg class="icon-icon-action">
+                        <use xlink:href="#icon-action"></use>
+                      </svg></span>Action</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card__body">
+                            <div class="card__scrollbar card__table">
+                                <div class="card__table-transactions scrollbar-thin scrollbar-visible" data-simplebar="data-simplebar">
+                                    <table class="table table--lines table--striped">
+                                        <colgroup>
+                                            <col class="colgroup-1" />
+                                            <col class="colgroup-2" />
+                                            <col class="colgroup-3" />
+                                            <col class="colgroup-4" />
+                                            <col class="colgroup-5" />
+                                            <col class="colgroup-6" />
+                                            <col/>
+                                        </colgroup>
+                                        <thead class="table__header table__header--sticky">
+                                            <tr>
+                                                <th><span class="text-nowrap">Order No.</span>
+                                                </th>
+                                                <th><span>Name</span>
+                                                </th>
+                                                <th><span>Date</span>
+                                                </th>
+                                                <th><span>Amount</span>
+                                                </th>
+                                                <th><span>Reason</span>
+                                                </th>
+                                                <th><span>Status</span>
+                                                </th>
+                                                <th class="table__actions"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for data in payments %}
+                                            <tr class="table__row">
+                                                <td class="table__td"><span class="text-grey">{{data.order_id}}</span>
+                                                </td>
+                                                <td class="table__td">
+                                                    <div class="media-item">
+                                                        <div class="media-item__icon color-orange">
+                                                            <div class="media-item__icon-text">{{data.user.first_name|slice:1}}{{data.user.last_name|slice:1}}</div>
+\                                                        </div>
+                                                        <div class="media-item__right">
+                                                            <h5 class="media-item__title">{{data.user.first_name}} {{data.user.last_name}}</h5>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="table__td"><span class="text-grey">{{data.order_date|date}}</span>
+                                                </td>
+                                                <td class="table__td"><span>{{data.ammount}}</span>
+                                                </td>
+                                                <td class="table__td"><span class="text-grey">{{data.payreq}}</span>
+                                                </td>
+                                                <td class="table__td">
+                                                    <div class="table__status">
+                                                        {% if data.status == 'Success' %}
+                                                        <span class="table__status-icon color-green"></span>{{data.status}}</div>
+                                                        {% elif data.status == 'pending' %}
+                                                        <span class="table__status-icon color-yellow"></span>{{data.status}}</div>
+                                                        {% else %}
+                                                        <span class="table__status-icon color-red"></span>{{data.status}}</div>
+                                                        {% endif %}
+                                                </td>
+                                            
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

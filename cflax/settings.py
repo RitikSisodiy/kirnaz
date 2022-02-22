@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'taxfiling',
     'dashboard',
     'ckeditor',
+    'ckeditor_uploader',
     'othernavs',
     'chat',
     'channels',
@@ -91,8 +92,12 @@ ASGI_APPLICATION = 'cflax.routing.application'
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'full',
+        'height': 'full', 
+        'width': 'full', 
     },
 }
+CKEDITOR_UPLOAD_PATH = 'content/ckeditor/'
+CKEDITOR_UPLOAD_PATH = "uploads/"
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 

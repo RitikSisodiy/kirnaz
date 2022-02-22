@@ -1,6 +1,7 @@
-from statistics import mode
+from statistics import covariance, mode
 from django.db import models
 from datetime import datetime
+from django.utils import timezone
 from django.contrib.auth.models import User
 import time
 
@@ -23,7 +24,13 @@ class conversation(models.Model):
     msgby = models.ForeignKey(user,related_name="msgby",on_delete=models.CASCADE,related_query_name="convo")
     msgtoadmin = models.BooleanField()
     msg = models.CharField(max_length=1000)
+    readbyadmin = models.BooleanField(default=False)
+    readbyuser = models.BooleanField(default=False)
     time = models.DateTimeField(auto_now=True)
+    def aunread(self):
+        return conversation.objects.filter(msgby=self.msgby,readbyadmin=False).count()
+    def uunread(self):
+        return conversation.objects.filter(msgby=self.msgby,readbyuser=False).count()
     def msgtime(self):
         return datetime_from_utc_to_local(self.time).strftime('%I:%M')
 class convofiles(models.Model):
@@ -32,3 +39,10 @@ class convofiles(models.Model):
 class Status(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE,related_name="status")
     status = models.BooleanField(default=False)
+    lastseen = models.DateTimeField(auto_now=True)
+    def save(self):
+        if not self.status:
+            self.lastseen = timezone.now()
+        super().save()
+    def getLastSeen(self):
+        return self.lastseen.__str__()

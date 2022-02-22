@@ -290,7 +290,7 @@ function updatedmsg(msgs){
 }
 
 
-    const url = "ws://node.cyberinstant.com/ws/chat/{{user.username}}"
+    const url = "ws://{{request.get_host}}/ws/chat/{{user.username}}"
     const ws = new WebSocket(url)
     const messageDiv = document.getElementById("showmessages")
     const online = document.getElementById("onlineuser")

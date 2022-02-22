@@ -21,9 +21,9 @@ from django.db.models import Count
 class ChatClassConsumer(SyncConsumer):
     def websocket_connect(self,event):
         self.user = self.scope['user']
-        statusob,created = Status.objects.get_or_create(user=self.user)
-        statusob.status= True
-        statusob.save()
+        self.statusob,created = Status.objects.get_or_create(user=self.user)
+        self.statusob.status= True
+        self.statusob.save()
         self.sendOnlineuser()
         otherUserName = self.scope['url_route']['kwargs']['username']
         otheruser = User.objects.get(username=otherUserName)
@@ -57,8 +57,8 @@ class ChatClassConsumer(SyncConsumer):
     def websocket_disconnect(self,event):
         print("event is disconnected")
         async_to_sync(self.channel_layer.group_discard)(self.room_name,self.channel_name)
-        self.user.status.status= False
-        self.user.status.save()
+        self.statusob.status= False
+        self.statusob.save()
         self.sendOnlineuser()
         print(f'[{self.channel_name}] you are disconnected')
         print(event)
@@ -69,9 +69,12 @@ class ChatClassConsumer(SyncConsumer):
             Text = text
         )
     def sendOnlineuser(self):
-        onlineuser = Status.objects.filter(status=True).count()
+        onlineuser = Status.objects.filter(status=True,user__is_superuser=False).count()
+        otherUserName = self.scope['url_route']['kwargs']['username']
+        otheruser = User.objects.get(username=otherUserName)
         msg = json.dumps({
-            "online":onlineuser
+            "online":onlineuser,
+            'userstatus':[otheruser.status.status,otheruser.status.getLastSeen()],
         })
         async_to_sync(self.channel_layer.group_add)("globle",self.channel_name)
         async_to_sync(self.channel_layer.group_send)("globle",{
