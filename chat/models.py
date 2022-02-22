@@ -1,4 +1,3 @@
-from statistics import covariance, mode
 from django.db import models
 from datetime import datetime
 from django.utils import timezone
