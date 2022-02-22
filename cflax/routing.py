@@ -5,8 +5,8 @@ from channels.auth import AuthMiddlewareStack
 application = ProtocolTypeRouter({
     "websocket": AuthMiddlewareStack(
         URLRouter([
-          path("ws/chat/<str:username>",consumer.ChatClassConsumer.as_asgi()),
-          path("ws/chat/",consumer.EchoClassConsumer.as_asgi())
+          path("chat/<str:username>",consumer.ChatClassConsumer.as_asgi()),
+          path("chat/",consumer.EchoClassConsumer.as_asgi())
     ])
     )
 })
