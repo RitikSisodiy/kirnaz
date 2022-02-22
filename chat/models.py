@@ -39,7 +39,7 @@ class Status(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE,related_name="status")
     status = models.BooleanField(default=False)
     lastseen = models.DateTimeField(auto_now=True)
-    def save(self):
+    def save(self, **kwargs):
         if not self.status:
             self.lastseen = timezone.now()
         super().save()
