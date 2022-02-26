@@ -72,9 +72,10 @@ class ChatClassConsumer(SyncConsumer):
         onlineuser = Status.objects.filter(status=True,user__is_superuser=False).count()
         otherUserName = self.scope['url_route']['kwargs']['username']
         otheruser = User.objects.get(username=otherUserName)
+        oustatus,created = Status.objects.get_or_create(user=otheruser)
         msg = json.dumps({
             "online":onlineuser,
-            'userstatus':[otheruser.status.status,otheruser.status.getLastSeen()],
+            'userstatus':[oustatus.status,oustatus.getLastSeen()],
         })
         async_to_sync(self.channel_layer.group_add)("globle",self.channel_name)
         async_to_sync(self.channel_layer.group_send)("globle",{
