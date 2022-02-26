@@ -26,7 +26,7 @@ with open(BASE_DIR / 'checkchannel.txt','r') as file:
 if data == 'true':
     with open(BASE_DIR / 'checkchannel.txt','w') as file:
         file.write("false")
-    os.popen("daphne -p 8001 cflax.asgi:application")
+    os.popen("daphne -p 8000 cflax.asgi:application")
 # os.popen("daphne -p 8000 cflax.asgi:application")
 
 # Quick-start development settings - unsuitable for production
