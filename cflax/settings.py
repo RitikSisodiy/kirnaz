@@ -21,6 +21,14 @@ TEMPLATES_DIR = os.path.join(BASE_DIR,'templates')
 STATIC_DIR = os.path.join(BASE_DIR,'static')
 
 
+with open(BASE_DIR / 'checkchannel.txt','r') as file:
+    data = file.read()
+if data == 'true':
+    with open(BASE_DIR / 'checkchannel.txt','w') as file:
+        file.write("false")
+    os.popen("daphne -p 8001 cflax.asgi:application")
+# os.popen("daphne -p 8000 cflax.asgi:application")
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 

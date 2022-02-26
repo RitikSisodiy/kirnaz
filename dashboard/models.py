@@ -3,7 +3,7 @@ from django.db import models
 from django.db.models import fields
 from registration.models import RegistrationSubMenu
 from othernavs.models import RegistrationSubMenu as othernavRegistrationSubMenu
-from dashboard.superuserviews import getEmailBackend
+
 # Create your models here.
 class Sections(models.Model):
     reg_title = models.OneToOneField(RegistrationSubMenu,on_delete=models.CASCADE)
@@ -27,7 +27,6 @@ class aboutContact(models.Model):
     AdminTitle = models.CharField(max_length=30)
     favicon  = models.ImageField(upload_to='logo')
     def __str__(self) -> str:
-        emailback,config = getEmailBackend()
         return self.AdminTitle
 
 class emailSetup(models.Model):
