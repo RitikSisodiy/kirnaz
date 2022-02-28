@@ -672,7 +672,7 @@
         }
     }
   }
-  const url = "ws://{{request.get_host}}/chat/{{username}}"
+  const url = "ws://{{request.get_host}}/ws/chat/{{username}}"
   const ws = new WebSocket(url)
   var useractivebox = document.getElementById('useractivebox')
   const messageDiv = document.getElementById("showmessages")
