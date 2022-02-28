@@ -16,7 +16,7 @@ def index(request):
     return render(request,'chat/index.html',{'contacts':contacts})
 def message(request):
     if request.method=="POST":
-        print(request.POST,request.FILES)
+        # print(request.POST,request.FILES)
         files= request.FILES.get('myfile')
         msg = request.POST['message']   
         convo = conversation(msgby = request.user.user,msgtoadmin=True,msg=msg)

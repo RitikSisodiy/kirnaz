@@ -102,9 +102,9 @@ def signup1(request):
 def signup2(request):
     return render(request,'signup2.html')
 def logindashboard(request):
-    print("hellp this funtion is working")
+    # print("hellp this funtion is working")
     if request.method=="POST":
-        print(request.POST,"this is working")
+        # print(request.POST,"this is working")
         username = request.POST.get('username')
         password = request.POST.get('password')
         USER = authenticate(request,username=username, password=password)
@@ -135,7 +135,7 @@ def payment(request):
             'CALLBACK_URL':'http://'+request.get_host()+'/handlerequest/',
         }
         paytmParams["CHECKSUMHASH"] = Checksum.generateSignature(paytmParams, "ey1DQFRPXypAmeE3")
-        print(paytmParams)
+        # print(paytmParams)
         return render(request,'payttm.html',{'dic':paytmParams})
         # print(paytmParams)
     else:
@@ -147,7 +147,7 @@ import json
 def handelrequest(request):
     if request.method == "POST":
         resp = request.POST
-        print(resp)
+        # print(resp)
         param = {}
         Payments.objects.filter(order_id=resp["ORDERID"]).update(other_data=json.dumps(resp));
         for data in resp:
@@ -234,14 +234,14 @@ def getblog(request,res,id):
     res['recentblog'] = BlogNews.objects.all().order_by('-date')[:4]
     res['title'] = res['blogob'].title
     current = res['blogs'].filter(id__lt = res['blogob'].id).count()
-    print(current)
+    # print(current)
     res['nextblog'] = res['blogs'][current+1] if len(res['blogs'])-1 > current else False
     res['prevblog'] = res['blogs'][current-1] if current > 0 else False
     return render(request, 'blogdetails.html',res)
 def blog(request,slug=None,slug1=None):
     type = slug
     res= {}
-    print('hello')
+    # print('hello')
     res['blogs'] = BlogNews.objects.filter(type=list(filter(lambda x:x[1]==slug, BlogNews().Getchoices()))[0][0])
     res['title'] = slug
     res['type'] = type

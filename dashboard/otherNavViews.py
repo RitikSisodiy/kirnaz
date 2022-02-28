@@ -57,7 +57,7 @@ def editothernavs(request,slug1,slug2):
                 form.content_type =GetContentType(RegistrationSubMenuob)
                 form.object_id = RegistrationSubMenuob.id
             except Exception as e:
-                print("exception +++++++",e)
+                # print("exception +++++++",e)
                 pass
             form.save()
             messages.success(request,"Information Is Added Successfully")

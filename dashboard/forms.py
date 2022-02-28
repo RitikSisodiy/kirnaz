@@ -157,13 +157,13 @@ def GenForm(Model,listHiddenfield=[],disablefield=[]):
             super(newform, self).__init__(*args, **kwargs)
             for f in Model._meta.fields:
                 if "DateTimeField" in str(type(f)):
-                    print('DateTimeField is present',f.name)
+                    # print('DateTimeField is present',f.name)
                     try:
                         self.fields[f.name].widget.attrs['class'] = 'vDateTime'
                     except Exception:
                         pass
                 if "ForeignKey" in str(type(f)):
-                    print('ForeignKey is present',f.name)
+                    # print('ForeignKey is present',f.name)
                     try:
                         self.fields[f.name].widget  = widgets.RelatedFieldWidgetWrapper(
                         self.fields[f.name].widget,
@@ -173,7 +173,7 @@ def GenForm(Model,listHiddenfield=[],disablefield=[]):
                     except Exception:
                         pass
                 if "ManyToManyField" in str(type(f)):
-                    print('ManyToManyField is present',f.name)
+                    # print('ManyToManyField is present',f.name)
                     try:
                         pass
                     except Exception:

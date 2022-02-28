@@ -164,7 +164,10 @@ $("#filefield").change(function(){
 event.preventDefault();
 event.preventDefault();
 }) {% endcomment %}
-
+function scrollChat(){
+  objDiv = document.getElementById("chat-content");
+  objDiv.scrollTop = objDiv.scrollHeight;
+}
 (function(){
     var form = document.getElementById('sendmsg');
     var fileSelect = document.getElementById('filefield');
@@ -228,7 +231,7 @@ event.preventDefault();
     }
 })();
 
-    var socket = false
+   
    function getsms () {
    data = document.getElementsByClassName("usermessages")
    var xhttp = new XMLHttpRequest()
@@ -237,11 +240,11 @@ event.preventDefault();
    xhttp.onreadystatechange = function(){
        if(xhttp.readyState==4 && xhttp.status==200){
            data = xhttp.responseText
-           console.log(data)
+          //  console.log(data)
            if (data != "updated"){
                data = JSON.parse(data)
                updatedmsg(data)
-               $("#chat-content").scrollTop($("#chat-content")[0].scrollHeight);
+               
            }
        }
    }
@@ -266,7 +269,10 @@ function updatedmsg(msgs){
                    msgstr += `<div class="" style="border: solid 5px;
         border-block-color: revert;
         border-color: #e77b20;
-        border-radius:20;"><img src="/media/${msgs[i]['convofiles__file']}" alt="" style="width:100%"  ></div>`
+        border-radius:20;"><img src="/media/${msgs[i]['convofiles__file']}" alt="" style="
+        width: 200px;
+    height: 154px;
+    object-fit: cover;"  ></div>`
                  }
                  msgstr+= `      <p>${msgs[i]['msg']}</p>
                               </div>
@@ -276,7 +282,10 @@ function updatedmsg(msgs){
                 var msgstr = ` <div class="media media-chat usermessages"> <img class="avatar" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="...">
                               <div class="media-body">`
                  if (msgs[i]['convofiles__file']!= null){
-                   msgstr += `<img src="/media/${msgs[i]['convofiles__file']}" alt="" style="width:100%">`
+                   msgstr += `<img src="/media/${msgs[i]['convofiles__file']}" alt="" style="    
+                   width: 200px;
+                    height: 154px;
+                    object-fit: cover;">`
                  }
                  msgstr+= `      <p>${msgs[i]['msg']}</p>
                               </div>
@@ -285,14 +294,14 @@ function updatedmsg(msgs){
             msgstr = msgstr.replace("<p></p>",'')
 
             $("#chat-content").append(msgstr)
-            var objDiv = document.getElementById("chat-content");
-            objDiv.scrollTop = objDiv.scrollHeight;
         }
+            scrollChat()    
     }
 }
 
 
-    const url = "ws://{{request.get_host}}/ws/chat/{{user.username}}"
+
+    const url = "ws://{{request.get_host}}/chat/{{username}}"
     const ws = new WebSocket(url)
     const messageDiv = document.getElementById("showmessages")
     const online = document.getElementById("onlineuser")
@@ -302,16 +311,16 @@ function updatedmsg(msgs){
     }
     ws.onmessage = function(event){
         console.log("message is get")
-        console.log(event)
-        socket=true
+       var socket=true
         getsms()  
     }
     ws.onclose = function(event){
-      socket=false
+      var socket = false
         console.log("connetion is closed")
         // getsms()
     }
     getsms()
+    
 </script>
 
 </body>

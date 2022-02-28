@@ -31,136 +31,21 @@
     </div>
     <div class="chat-users__add-content scrollbar-thin scrollbar-hidden" data-simplebar>
       <ul class="chat-users__list">
-        <li class="chat-users__list-header">B</li>
+        {% for data in alluser %}
         <li class="chat-users__list-item">
-          <a class="chat-users__item" href="#">
+          <a class="chat-users__item" href=" {% url 'adminchatuser' slug1=data.user.first_name|slugify id=data.user.id %}">
             <div class="chat-users__item-avatar color-teal">
-              <div class="chat-users__item-avatar-text">BH</div>
-              <img src=" {% static 'superuser2/img/content/humans/item-8.jpg' %} " alt="#">
+              <div class="chat-users__item-avatar-text">{{data.user.first_name|slice:"1"|title}}{{data.user.last_name|slice:"1"|title}}</div>
+              <img src="/media/{{data.profile}}" alt="#">
             </div>
             <div class="chat-users__item-right">
-              <h5 class="chat-users__item-name">Billy Hicks</h5>
+              <h5 class="chat-users__item-name">{{data.user.first_name|title}} {{data.user.last_name|title}}</h5>
               <div class="text-sm text-grey">Hi there! I'm using chat</div>
             </div>
           </a>
         </li>
-        <li class="chat-users__list-header">C</li>
-        <li class="chat-users__list-item">
-          <a class="chat-users__item" href="#">
-            <div class="chat-users__item-avatar color-green">
-              <div class="chat-users__item-avatar-text">CL</div>
-              <img src=" {% static 'superuser2/img/content/humans/item-10.jpg' %} " alt="#">
-            </div>
-            <div class="chat-users__item-right">
-              <h5 class="chat-users__item-name">Christine Lewis</h5>
-              <div class="text-sm text-grey">Hi there! I'm using chat</div>
-            </div>
-          </a>
-        </li>
-        <li class="chat-users__list-header">D</li>
-        <li class="chat-users__list-item">
-          <a class="chat-users__item" href="#">
-            <div class="chat-users__item-avatar color-teal">
-              <div class="chat-users__item-avatar-text">DP</div>
-              <img src=" {% static 'superuser2/img/content/humans/item-5.jpg' %} " alt="#">
-            </div>
-            <div class="chat-users__item-right">
-              <h5 class="chat-users__item-name">David Palmer</h5>
-              <div class="text-sm text-grey">Hi there! I'm using chat</div>
-            </div>
-          </a>
-        </li>
-        <li class="chat-users__list-header">E</li>
-        <li class="chat-users__list-item">
-          <a class="chat-users__item" href="#">
-            <div class="chat-users__item-avatar color-orange">
-              <div class="chat-users__item-avatar-text">ED</div>
-              <img src=" {% static 'superuser2/img/content/humans/item-2.jpg' %} " alt="#">
-            </div>
-            <div class="chat-users__item-right">
-              <h5 class="chat-users__item-name">Elaine Day</h5>
-              <div class="text-sm text-grey">Hi there! I'm using chat</div>
-            </div>
-          </a>
-        </li>
-        <li class="chat-users__list-header">F</li>
-        <li class="chat-users__list-item">
-          <a class="chat-users__item" href="#">
-            <div class="chat-users__item-avatar color-orange-dark">
-              <div class="chat-users__item-avatar-text">FB</div>
-              <img src=" {% static 'superuser2/img/content/humans/item-1.jpg' %} " alt="#">
-            </div>
-            <div class="chat-users__item-right">
-              <h5 class="chat-users__item-name">Felecia Burke</h5>
-              <div class="text-sm text-grey">Hi there! I'm using chat</div>
-            </div>
-          </a>
-        </li>
-        <li class="chat-users__list-header">J</li>
-        <li class="chat-users__list-item">
-          <a class="chat-users__item" href="#">
-            <div class="chat-users__item-avatar color-red">
-              <div class="chat-users__item-avatar-text">JB</div>
-              <img src=" {% static 'superuser2/img/content/humans/item-4.jpg' %} " alt="#">
-            </div>
-            <div class="chat-users__item-right">
-              <h5 class="chat-users__item-name">Joan Bates</h5>
-              <div class="text-sm text-grey">Hi there! I'm using chat</div>
-            </div>
-          </a>
-        </li>
-        <li class="chat-users__list-header">M</li>
-        <li class="chat-users__list-item">
-          <a class="chat-users__item" href="#">
-            <div class="chat-users__item-avatar color-green">
-              <div class="chat-users__item-avatar-text">MS</div>
-              <img src=" {% static 'superuser2/img/content/humans/item-6.jpg' %} " alt="#">
-            </div>
-            <div class="chat-users__item-right">
-              <h5 class="chat-users__item-name">Morris Stevens</h5>
-              <div class="text-sm text-grey">Hi there! I'm using chat</div>
-            </div>
-          </a>
-        </li>
-        <li class="chat-users__list-header">N</li>
-        <li class="chat-users__list-item">
-          <a class="chat-users__item" href="#">
-            <div class="chat-users__item-avatar color-red">
-              <div class="chat-users__item-avatar-text">NS</div>
-              <img src=" {% static 'superuser2/img/content/humans/item-3.jpg' %} " alt="#">
-            </div>
-            <div class="chat-users__item-right">
-              <h5 class="chat-users__item-name">Nora Stanley</h5>
-              <div class="text-sm text-grey">Hi there! I'm using chat</div>
-            </div>
-          </a>
-        </li>
-        <li class="chat-users__list-header">T</li>
-        <li class="chat-users__list-item">
-          <a class="chat-users__item" href="#">
-            <div class="chat-users__item-avatar color-orange-dark">
-              <div class="chat-users__item-avatar-text">TR</div>
-              <img src=" {% static 'superuser2/img/content/humans/item-7.jpg' %} " alt="#">
-            </div>
-            <div class="chat-users__item-right">
-              <h5 class="chat-users__item-name">Troy Russell</h5>
-              <div class="text-sm text-grey">Hi there! I'm using chat</div>
-            </div>
-          </a>
-        </li>
-        <li class="chat-users__list-header">W</li>
-        <li class="chat-users__list-item">
-          <a class="chat-users__item" href="#">
-            <div class="chat-users__item-avatar color-orange">
-              <div class="chat-users__item-avatar-text">WM</div>
-              <img src=" {% static 'superuser2/img/content/humans/item-9.jpg' %} " alt="#">
-            </div>
-            <div class="chat-users__item-right">
-              <h5 class="chat-users__item-name">Walter Miles</h5>
-              <div class="text-sm text-grey">Hi there! I'm using chat</div>
-            </div>
-          </a>
-        </li>
+        {% endfor %}
+        
       </ul>
     </div>
     <div class="chat-users__content scrollbar-thin scrollbar-hidden" data-simplebar>

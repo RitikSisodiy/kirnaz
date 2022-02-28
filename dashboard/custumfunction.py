@@ -6,5 +6,5 @@ def getobjecturl(value):
     applabel = modelclass._meta.app_label
     url = reverse('editdatamodel', args = [applabel, modelname , objectid,'edit'])
     atag = f"<a href='{url}'>{str(value)}</a>"
-    print(modelname,objectid,applabel,url)
+    # print(modelname,objectid,applabel,url)
     return atag

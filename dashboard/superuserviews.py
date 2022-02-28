@@ -178,7 +178,7 @@ def relatedmodel(request,appname=None,modelname=None,objectid=None,relatedfield=
             res['showrelated'] = True
         form = GenForm(result.related_model,listHiddenfield=[result.field.name])
         inidic = {result.field.name:singledata.id}
-        print(inidic)
+        # print(inidic)
         res['form'] = form(initial=inidic)
         if request.method=='POST':
             res['form'] = form(request.POST,request.FILES)
@@ -228,12 +228,13 @@ def relatedmodel(request,appname=None,modelname=None,objectid=None,relatedfield=
 from django.core.exceptions import ValidationError
 from django.contrib.admin.utils import NestedObjects
 def alertdelete(request,singledata,confirm="None",appname ='', modelname=''):
-    print(request.POST)
-    print(singledata)
+    # print(request.POST)
+    # print(singledata)
+
     if singledata=="multidelete":
         mymodel = getObjectbyAppModelName(appname,modelname)
         singledata = [mymodel.objects.get(id=data) for data in request.POST.get('delete').split(',')]
-        print(singledata)
+        # print(singledata)
     else:
         singledata = [singledata]
     if confirm == "delete":
@@ -268,7 +269,7 @@ def logindashboard(request):
     if request.user.is_authenticated and request.user.is_superuser:
         return redirect('dashboardindex')
     if request.method=="POST":
-        print(request.POST,"this is working")
+        # print(request.POST,"this is working")
         username = request.POST.get('username')
         password = request.POST.get('password')
         USER = authenticate(request,username=username, password=password)

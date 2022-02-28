@@ -1,3 +1,4 @@
+from email.policy import default
 from django.db import models
 from datetime import datetime
 from django.utils import timezone
@@ -16,7 +17,7 @@ class user(models.Model):
     phone = models.CharField(max_length=10,primary_key=True)
     alternative_Phone = models.CharField(max_length=10,blank=True)
     address = models.CharField(max_length=100,blank=True)
-    profile = models.ImageField(upload_to='profile',blank='true')
+    profile = models.ImageField(upload_to='profile',default='profile/default.png')
     def __str__(self):
         return str(self.user.id)
 class conversation(models.Model):

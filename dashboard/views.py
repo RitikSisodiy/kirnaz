@@ -93,7 +93,7 @@ def editregistration(request,slug1,slug2):
                 form.content_type =GetContentType(RegistrationSubMenuob)
                 form.object_id = RegistrationSubMenuob.id
             except Exception as e:
-                print("exception +++++++",e)
+                # print("exception +++++++",e)
                 pass
             form.save()
             messages.success(request,"Information Is Added Successfully")
@@ -122,7 +122,7 @@ def editregistration(request,slug1,slug2):
     try:
         return render(request,f'{templateFolder}/extra/editregistraions.html',res)
     except Exception as e:    
-        print(e)
+        # print(e)
         return render(request,'editregistraions.html',res)
 
 
@@ -144,6 +144,7 @@ def deleteregistration(request):
 from chat.models import user,convofiles
 def adminchat(request,slug1=None,id=None):
     res = {}
+    res['alluser'] = user.objects.all()
     if request.method=="POST":
         msg = request.POST['message']   
         files= request.FILES.get('myfile')

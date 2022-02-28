@@ -12,7 +12,7 @@ def cut(value):
 @register.filter(name='geticon')
 def geticon(value):
     data = value.split(' ')
-    print(data)
+    # print(data)
     iconlist = icon.objects.all()
     for d in data:
         iconli = iconlist.filter(icon__contains = d)
