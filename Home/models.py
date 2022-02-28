@@ -120,10 +120,10 @@ class addblog(models.Model):
 class Payments(models.Model):
     order_id = models.CharField(unique=True, max_length=100, null=True, blank=True, verbose_name="Payments")
     payreq = models.ForeignKey(makepaymentrequest,on_delete=models.SET_NULL,null=True)
+    status = models.CharField(max_length=50,default='pending')
     ammount = models.FloatField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     order_date = models.DateTimeField(auto_now_add=True)
-    status = models.CharField(max_length=50,default='pending')
     other_data = models.CharField(max_length=1000,default="nodata")
     def save(self, *args, **kwargs):
         if self.order_id is None and self.order_date and self.id:

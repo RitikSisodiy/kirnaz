@@ -152,7 +152,7 @@
                                           </div>
                                           {% endif %}
                                                   <input type="submit" class="btn btn-primary my-3" value="Submit">
-                                                  <button type="button" class="btn btn-danger  {% if f.instance.id %}{% else %}disabled{% endif %}" data-toggle="modal" data-target="#exampleModal{{f.instance.id}}">
+                                                  <button type="button" class="btn btn-danger  {% if f.instance.id %}{% else %}disabled{% endif %}" data-toggle="modal"  data-modal="#exampleModal{{f.instance.id}}">
                                                       <i class="ti-trash"></i>Delete
                                                     </button>
                                                   
@@ -160,24 +160,30 @@
                                               
                                                 
                                                 <!-- Modal -->
-                                                <div class="modal fade" id="exampleModal{{f.instance.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                  <div class="modal-dialog" role="document">
-                                                      <div class="modal-content">
-                                                  <form method="POST" action="{% url 'dsdeleteregistration' %}">
-                                                      <div class="modal-body">
-                                                        <h3>Are You Sure.</h3>
-                                                      </div>
-                                                      {% csrf_token %}
-                                                      <input type="hidden" name="id" value="{{f.instance.id}}">
-                                                      <input type="hidden" name="page" value="{{request.GET.page}}">
-                                                      <input type="hidden" name="return" value="{{request.get_full_path}}">
-                                                      <div class="modal-footer">
-                                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                          <button type="submit" class="btn btn-danger">Yes Sure</button>
-                                                      </div>
-                                                  </form>
+                                                <div class="modal modal-compact modal-success scrollbar-thin" id="exampleModal{{f.instance.id}}" data-simplebar>
+                                                    <div class="modal__overlay" data-dismiss="modal"></div>
+                                                    <div class="modal__wrap">
+                                                        <div class="modal__window">
+                                                            <div class="modal__content">
+                                                                <div class="modal__body">
+                                                                    <h3>Are You Sure.</h3>
+                                                                  </div>
+                                                                  <div class="modal__content">
+                                                                    <form method="POST" action="{% url 'dsdeleteregistration' %}">
+                                                                  
+                                                                        {% csrf_token %}
+                                                                        <input type="hidden" name="id" value="{{f.instance.id}}">
+                                                                        <input type="hidden" name="page" value="{{request.GET.page}}">
+                                                                        <input type="hidden" name="return" value="{{request.get_full_path}}">
+                                                                       <div class="row">
+                                                                            <button type="button" class="btn btn-secondary mx-2" data-dismiss="modal">Close</button>
+                                                                            <button type="submit" class="btn btn-danger mx-2">Yes Sure</button>
+                                                                        </div>
+                                                                    </form>
+                                                                      </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                  </div>
                                                 </div>
                                               
                                                   </div>
@@ -189,7 +195,32 @@
 
                                       {% else %}
 
-
+                                      
+                                      <div class="modal modal-compact modal-success scrollbar-thin" id="exampleModal{{form.instance.id}}" data-simplebar>
+                                        <div class="modal__overlay" data-dismiss="modal"></div>
+                                        <div class="modal__wrap">
+                                            <div class="modal__window">
+                                                <div class="modal__content">
+                                                    <div class="modal__body">
+                                                        <h3>Are You Sure.</h3>
+                                                      </div>
+                                                      <div class="modal__content">
+                                                        <form method="POST" action="{% url 'dsdeleteregistration' %}">
+                                                      
+                                                            {% csrf_token %}
+                                                            <input type="hidden" name="id" value="{{form.instance.id}}">
+                                                            <input type="hidden" name="page" value="{{request.GET.page}}">
+                                                            <input type="hidden" name="return" value="{{request.get_full_path}}">
+                                                           <div class="row">
+                                                                <button type="button" class="btn btn-secondary mx-2" data-dismiss="modal">Close</button>
+                                                                <button type="submit" class="btn btn-danger mx-2">Yes Sure</button>
+                                                            </div>
+                                                        </form>
+                                                          </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                         <div class="col-lg-12 my-2">
                                             <div class="card-body">
                                                 <a class="btn btn-info btn-xs float-right my-4" target="_blank"
@@ -206,7 +237,7 @@
                                                     <button type="button"
                                                         class="btn btn-danger {% if form.instance.id %}{% else %}disabled{% endif %}"
                                                         data-toggle="modal"
-                                                        data-target="#exampleModal{{f.instance.id}}">
+                                                        data-modal="#exampleModal{{form.instance.id}}">
                                                         <i class="ti-trash"></i>Delete
                                                     </button>
                                                 </form>
@@ -215,17 +246,7 @@
                                         {% endif %}
                                         {% endfor %}
                                     </div>
-                                    <div class="add-product__submit">
-                                        <div class="modal__footer-button">
-                                            <button class="button button--primary button--block" data-dismiss="modal"
-                                                data-modal="#addProductSuccess"><span class="button__text">Create</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal__footer-button"><a
-                                                class="button button--secondary button--block"
-                                                href="products.html"><span class="button__text">Cancel</span></a>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </form>

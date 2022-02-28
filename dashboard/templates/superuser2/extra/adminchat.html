@@ -33,9 +33,11 @@
       <ul class="chat-users__list">
         {% for data in alluser %}
         <li class="chat-users__list-item">
-          <a class="chat-users__item" href=" {% url 'adminchatuser' slug1=data.user.first_name|slugify id=data.user.id %}">
+          <a class="chat-users__item"
+            href=" {% url 'adminchatuser' slug1=data.user.first_name|slugify id=data.user.id %}">
             <div class="chat-users__item-avatar color-teal">
-              <div class="chat-users__item-avatar-text">{{data.user.first_name|slice:"1"|title}}{{data.user.last_name|slice:"1"|title}}</div>
+              <div class="chat-users__item-avatar-text">
+                {{data.user.first_name|slice:"1"|title}}{{data.user.last_name|slice:"1"|title}}</div>
               <img src="/media/{{data.profile}}" alt="#">
             </div>
             <div class="chat-users__item-right">
@@ -45,7 +47,7 @@
           </a>
         </li>
         {% endfor %}
-        
+
       </ul>
     </div>
     <div class="chat-users__content scrollbar-thin scrollbar-hidden" data-simplebar>
@@ -115,7 +117,8 @@
           <div class="dropdown-items dropdown-items--right">
             <div class="dropdown-items__container">
               <ul class="dropdown-items__list">
-                <li class="dropdown-items__item"><a class="dropdown-items__link" href="{% if chatuser %}{% url "editdatamodel" "auth" "User" chatuser.id "edit" %}{% endif %}"><span
+                <li class="dropdown-items__item"><a class="dropdown-items__link" href="{% if chatuser %}{% url "
+                    editdatamodel" "auth" "User" chatuser.id "edit" %}{% endif %}"><span
                       class="dropdown-items__link-icon">
                       <svg class="icon-icon-user">
                         <use xlink:href='#icon-user'></use>
@@ -362,7 +365,27 @@
         </div>
       </div> -->
     </div>
-    <form id="sendmsg" class="chat-details__bottom">
+
+
+
+    <div id="imgpreview" style="
+      display: none;
+      position: absolute;
+      bottom: 60px;
+     ">
+      <div style="position: relative;">
+        <img src="http://127.0.0.1:8000/media/convomedia/Screenshot_7.png" style="height: 150px;"  id="blah" alt="">
+        <div class="bg-danger " style="cursor: pointer;">
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+            style="position: absolute!important;
+            top: 0;
+            right: 0;" onclick="clearfile()">
+            X
+          </span>
+        </div>
+      </div>
+    </div>
+    <form id="sendmsg" class="chat-details__bottom ">
       <div class="chat-details__input-group input-group input-group--white">
         <div class="chat-details__input-prepend">
           <label class="button-icon button-icon--transparent">
@@ -372,10 +395,10 @@
               </svg></span>
           </label>
           <label class="button-icon button-icon--transparent" data-dismiss="modal" data-modal="#setpayment">
-              <i class="fa fa-inr" ></i>  
+            <i class="fa fa-inr"></i>
             </span>
           </label>
-          
+
         </div>
         {% csrf_token %}
         <input class="chat-details__input input" type="text" autocomplete="off" name="message"
@@ -389,32 +412,36 @@
         </button>
       </div>
     </form>
+
+
   </div>
 </div>
 <div class="modal modal-compact modal-success scrollbar-thin" id="setpayment" data-simplebar>
   <div class="modal__overlay" data-dismiss="modal"></div>
   <div class="modal__wrap">
-      <div class="modal__window">
-          <div class="modal__content">
-              <div class="modal__body">
-                <form method="POST" action="{{request.get_full_path}}setpayment/">
-                  <div class="modal-body">
-                    <h3>Set The Payment</h3>
-                  </div>
-                  {% csrf_token %}
-                  <div class="container">
-                    <label for="">Reason</label>
-                  <input type="text" class="form-control" name="reason" placeholder="Payment reason" value="{{f.instance.id}}">
-                  <label for="">Ammount</label>
-                  <input type="text" class="form-control my-2" name="Ammount" placeholder="Payment reason" value="{{request.GET.page}}">
-                  <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="submit" class="btn btn-success">Yes Sure</button>
-                  </div>
-              </form>
+    <div class="modal__window">
+      <div class="modal__content">
+        <div class="modal__body">
+          <form method="POST" action="{{request.get_full_path}}setpayment/">
+            <div class="modal-body">
+              <h3>Set The Payment</h3>
+            </div>
+            {% csrf_token %}
+            <div class="container">
+              <label for="">Reason</label>
+              <input type="text" class="form-control" name="reason" placeholder="Payment reason"
+                value="{{f.instance.id}}">
+              <label for="">Ammount</label>
+              <input type="text" class="form-control my-2" name="Ammount" placeholder="Payment reason"
+                value="{{request.GET.page}}">
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-success">Yes Sure</button>
               </div>
-          </div>
+          </form>
+        </div>
       </div>
+    </div>
   </div>
 </div>
 
@@ -422,6 +449,26 @@
 {% block script %}
 {% if window %}
 <script>
+  function clearfile(){
+            $("#filefield").val(null);
+            $("#imgpreview").toggle();
+        }
+   function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#blah').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+        $("#imgpreview").show()
+    }
+}
+
+$("#filefield").change(function(){
+    readURL(this);
+});
   const MONTH_NAMES = [
     'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'
@@ -530,6 +577,7 @@
       // Add the file to the AJAX request.
       if (file != undefined) {
         formData.append('myfile', file, file.name);
+        clearfile()
       }
       // Set up the request.
       var xhr = new XMLHttpRequest();
@@ -544,6 +592,7 @@
           $("input[name=message]").val('')
           $("input[name=myfile]").val('')
           $("input[name=message]").focus()
+          
           ws.send('sent')
         }
       };
@@ -586,7 +635,7 @@
               </div>`
     }
     chatmsg = ''
-    if(msg['msg'].length>0){
+    if (msg['msg'].length > 0) {
       chatmsg = ` <div class="chat-message__messages">
               <div class="chat-message__message-group">
                 <div class="chat-message__message-item">
@@ -652,7 +701,7 @@
         var objDiv = document.querySelector("#chat-content .simplebar-content-wrapper");
         // console.log(msgstr)
         objDiv.scrollTop = objDiv.scrollHeight;
-        }
+      }
     }
   }
   const url = "ws://{{request.get_host}}/ws/chat/{{username}}"
@@ -668,10 +717,10 @@
     console.log("message is get")
     data = JSON.parse(event.data)
     console.log(data)
-    if( data.userstatus){
-      if(data.userstatus[0]){
+    if (data.userstatus) {
+      if (data.userstatus[0]) {
         useractivebox.innerHTML = "Active Now"
-      }else{
+      } else {
         useractivebox.innerHTML = timeAgo(data.userstatus[1])
       }
     }

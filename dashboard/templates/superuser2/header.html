@@ -18,21 +18,23 @@
                         </button>
                     </div>
                     <div class="header__search">
-                        <form class="form-search" action="#" method="GET">
+                        <!-- <form class="form-search" action="#" method="GET">
                             <div class="form-search__container"><span class="form-search__icon-left">
                                     <svg class="icon-icon-search">
                                         <use xlink:href="#icon-search"></use>
                                     </svg></span>
                                 <input class="form-search__input" type="text" placeholder="Search..." />
                             </div>
-                        </form>
+                        </form> -->
                     </div>
                 </div>
                 <div class="header__col-right col d-flex align-items-center">
                         <label class="checkbox-toggle checkbox-sm " id="darkmodetoggle">
                             <input type="checkbox" class="checkbox"  checked=""><span class="checkbox-toggle__range"></span>
                         </label>
-                    <div class="header__tools">
+                    
+                    <!-- //Notifications panel -->
+                    <!-- <div class="header__tools">
                         <div class="header__notes header__tools-item">
                             <a class="header__tools-toggle header__tools-toggle--message" href="#"
                                 data-tippy-content="Notifications" data-tippy-placement="bottom" data-toggle="dropdown">
@@ -348,6 +350,9 @@
                             </div>
                         </div>
                     </div>
+                     -->
+                    
+                    
                     <div class="header__profile dropdown">
                         <a class="header__profile-toggle dropdown__toggle" href="#" data-toggle="dropdown">
                             <div class="header__profile-text"><span>Administration</span>
@@ -358,7 +363,7 @@
                         </a>
                         <div class="profile-dropdown dropdown-menu dropdown-menu--right">
                             <div class="dropdown-menu__divider"></div><a
-                                class="profile-dropdown__item dropdown-menu__item" href="#" tabindex="0"><span
+                                class="profile-dropdown__item dropdown-menu__item" href="{% url "logout" %}" tabindex="0"><span
                                     class="profile-dropdown__icon">
                                     <svg class="icon-icon-logout">
                                         <use xlink:href="#icon-logout"></use>

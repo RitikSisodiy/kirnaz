@@ -19,7 +19,7 @@ class user(models.Model):
     address = models.CharField(max_length=100,blank=True)
     profile = models.ImageField(upload_to='profile',default='profile/default.png')
     def __str__(self):
-        return str(self.user.id)
+        return str(self.phone)
 class conversation(models.Model):
     msgby = models.ForeignKey(user,related_name="msgby",on_delete=models.CASCADE,related_query_name="convo")
     msgtoadmin = models.BooleanField()

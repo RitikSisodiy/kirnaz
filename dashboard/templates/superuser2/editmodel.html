@@ -8,6 +8,7 @@
     padding: 0px 18px 0 18px;
   }
 </style>
+{% comment %}
 <!-- <div class="card card-primary ">
   <div class="card-header  bg-primary text-light">
     <h3 class="card-title">Edit </h3>
@@ -51,7 +52,7 @@
   </div>
 
 </div> -->
-
+{% endcomment %}
 <div class="container">
   <div class="page-header">
     <h1 class="page-header__title">Add {{modelname|title}}</h1>
@@ -145,7 +146,7 @@
                   <button class="button button--primary button--block" type="submit"><span class="button__text">Create</span>
                   </button>
                 </div>
-              {% if form.instance %}
+              {% if form.instance.pk %}
               <a tabindex="0" class="button bg-danger text-light button--block " href="{% url 'editdatamodel' appname modelname form.instance.pk 'delete' %}"
                 data-html="true">
                 <i class="ti-trash"></i>Delete
