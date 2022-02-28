@@ -16,6 +16,10 @@ excludeModels = (
     "Home.addblog",
     "Home.Payments",
     "Home.documents",
+    "Home.Offrings",
+    "Home.headbanner",
+    "Home.Expertise",
+    "Home.marketplace",
 )
 templateFolder = 'superuser2'
 def appmodels(listofappname:list):
