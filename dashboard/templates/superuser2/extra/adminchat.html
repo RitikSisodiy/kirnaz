@@ -374,12 +374,46 @@
       bottom: 60px;
      ">
       <div style="position: relative;">
-        <img src="http://127.0.0.1:8000/media/convomedia/Screenshot_7.png" style="height: 150px;"  id="blah" alt="">
+        <img src="http://127.0.0.1:8000/media/convomedia/Screenshot_7.png" style="height: 150px;" id="blah" alt="">
         <div class="bg-danger " style="cursor: pointer;">
-          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-            style="position: absolute!important;
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="position: absolute!important;
             top: 0;
-            right: 0;" onclick="clearfile()">
+            right: 0;" onclick="clearImg()">
+            X
+          </span>
+        </div>
+      </div>
+
+    </div>
+    <div id="filepreview" style="
+    position: absolute;
+    bottom: 60px;
+    display: none;
+   ">
+      <div style="position: relative;">
+        <div class="mb-3">
+          <div class="media-file">
+            <div class="media-file__icon">
+              <img class="media-file__thumb" src="{% static 'superuser2/img/content/file-doc.svg' %}" alt="#">
+            </div>
+            <div class="media-file__right">
+              <div class="media-file__prepend">
+                <h5 class="media-file__title" id="docname">Resume.pdf</h5><span class="text-sm text-grey" id="docsize">570 KB</span>
+              </div>
+              <div class="media-file__append"><a class="button-icon button-icon--grey" href="#"><span
+                    class="button-icon__icon">
+                    <svg class="icon-icon-download">
+                      <use xlink:href="#icon-download"></use>
+                    </svg></span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-danger text-light" style="cursor: pointer;">
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="position: absolute!important;
+        top: 0;
+        right: 0;" onclick="clearfile()">
             X
           </span>
         </div>
@@ -449,26 +483,40 @@
 {% block script %}
 {% if window %}
 <script>
-  function clearfile(){
-            $("#filefield").val(null);
-            $("#imgpreview").toggle();
-        }
-   function readURL(input) {
+  function clearImg() {
+    $("#filefield").val(null);
+    $("#imgpreview").hide();
+  }
+  function clearfile() {
+    $("#filefield").val(null);
+    $("#filepreview").hide();
+  }
+  function readURL(input) {
     if (input.files && input.files[0]) {
-        var reader = new FileReader();
+      var reader = new FileReader();
+      if(input.files[0].type.search("image")!=-1){
+      reader.onload = function (e) {
+        console.log(e)
+        $('#blah').attr('src', e.target.result);
+      }
 
-        reader.onload = function (e) {
-            $('#blah').attr('src', e.target.result);
-        }
-
-        reader.readAsDataURL(input.files[0]);
-        $("#imgpreview").show()
+      reader.readAsDataURL(input.files[0]);
+      $("#imgpreview").show()
+      }
+      else{
+        let sfile = input.files[0]
+        let fileSize = sfile.size.toString()
+        fileSize = (fileSize.length < 7)?`${Math.round(+fileSize/1024).toFixed(2)}kb`:`${(Math.round(+fileSize/1024)/1000).toFixed(2)}MB`
+        $('#docname').html(sfile.name)
+        $('#docsize').html(fileSize)
+        $("#filepreview").show()
+      }
     }
-}
+  }
 
-$("#filefield").change(function(){
+  $("#filefield").change(function () {
     readURL(this);
-});
+  });
   const MONTH_NAMES = [
     'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'
@@ -577,6 +625,7 @@ $("#filefield").change(function(){
       // Add the file to the AJAX request.
       if (file != undefined) {
         formData.append('myfile', file, file.name);
+        clearImg()
         clearfile()
       }
       // Set up the request.
@@ -592,7 +641,7 @@ $("#filefield").change(function(){
           $("input[name=message]").val('')
           $("input[name=myfile]").val('')
           $("input[name=message]").focus()
-          
+
           ws.send('sent')
         }
       };
@@ -611,7 +660,7 @@ $("#filefield").change(function(){
     xhttp.onreadystatechange = function () {
       if (xhttp.readyState == 4 && xhttp.status == 200) {
         data = xhttp.responseText
-        console.log(data)
+        // console.log(data)
         if (data != "updated") {
           data = JSON.parse(data)
           //  console.log(data)
@@ -630,9 +679,33 @@ $("#filefield").change(function(){
   function getMsgstring(msg) {
     convofile = ""
     if (msg['convofiles__file'] != null) {
-      convofile = `<div class="chat-message__file">
-                <img src="/media/${msg['convofiles__file']} " width="56" alt="#" />
-              </div>`
+      
+        if(msg['convofiles__content_type'].search("image") != -1){      
+          convofile = `<img src="/media/${msg['convofiles__file']} " width="56" alt="#" />`
+        }
+        else{
+          convofile = `<div class="chat-message__file">
+
+                <div class="media-file">
+                  <div class="media-file__icon">
+                    <img class="media-file__thumb" src="{% static 'superuser2/img/content/file-doc.svg' %}" alt="#">
+                  </div>
+                  <div class="media-file__right">
+                    <div class="media-file__prepend">
+                      <h5 class="media-file__title" id="docname">${msg['convofiles__file']}</h5><span class="text-sm text-grey" id="docsize">570 KB</span>
+                    </div>
+                    <div class="media-file__append"><a class="button-icon button-icon--grey" href="/media/${msg['convofiles__file']}"><span
+                          class="button-icon__icon">
+                          <svg class="icon-icon-download">
+                            <use xlink:href="#icon-download"></use>
+                          </svg></span></a>
+                    </div>
+                  </div>
+                </div>
+                </div>`
+        }
+        console.log("this is cfils",convofile)
+
     }
     chatmsg = ''
     if (msg['msg'].length > 0) {
@@ -716,7 +789,7 @@ $("#filefield").change(function(){
   ws.onmessage = function (event) {
     console.log("message is get")
     data = JSON.parse(event.data)
-    console.log(data)
+    // console.log(data)
     if (data.userstatus) {
       if (data.userstatus[0]) {
         useractivebox.innerHTML = "Active Now"

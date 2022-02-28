@@ -36,6 +36,13 @@ class conversation(models.Model):
 class convofiles(models.Model):
     msg = models.ForeignKey(conversation,on_delete=models.SET_NULL,null=True,related_name='convofiles',)
     file = models.FileField(upload_to="convomedia")
+    content_type = models.CharField(null=True, blank=True, max_length=100)
+    def save(self, *args, **kwargs):
+        try:
+            self.content_type = self.file.file.content_type
+        except:
+            pass
+        super().save(*args, **kwargs)
 class Status(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE,related_name="status")
     status = models.BooleanField(default=False)

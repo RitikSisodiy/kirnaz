@@ -181,7 +181,7 @@ def getmsg(request,slug1=None,id=None):
     auser = User.objects.get(id=id)
     mlen = request.GET.get('len')
     messages = list(conversation.objects.filter(msgby__user=auser.id).order_by('time').values('msgby__user',
-'msgtoadmin','msg','convofiles__file','time'))
+'msgtoadmin','msg','convofiles__file','time',"convofiles__content_type"))
     if len(messages)==int(mlen):
         return HttpResponse("updated")
     return JsonResponse(messages[int(mlen):],safe=False)
