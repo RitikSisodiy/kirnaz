@@ -164,10 +164,7 @@ $("#filefield").change(function(){
 event.preventDefault();
 event.preventDefault();
 }) {% endcomment %}
-function scrollChat(){
-  objDiv = document.getElementById("chat-content");
-  objDiv.scrollTop = objDiv.scrollHeight;
-}
+
 (function(){
     var form = document.getElementById('sendmsg');
     var fileSelect = document.getElementById('filefield');
@@ -231,7 +228,7 @@ function scrollChat(){
     }
 })();
 
-   
+    var socket = false
    function getsms () {
    data = document.getElementsByClassName("usermessages")
    var xhttp = new XMLHttpRequest()
@@ -240,11 +237,12 @@ function scrollChat(){
    xhttp.onreadystatechange = function(){
        if(xhttp.readyState==4 && xhttp.status==200){
            data = xhttp.responseText
-          //  console.log(data)
+           console.log(data)
            if (data != "updated"){
                data = JSON.parse(data)
                updatedmsg(data)
-               
+               var objDiv = document.getElementById("chat-content");
+            objDiv.scrollTop = objDiv.scrollHeight;
            }
        }
    }
@@ -294,14 +292,14 @@ function updatedmsg(msgs){
             msgstr = msgstr.replace("<p></p>",'')
 
             $("#chat-content").append(msgstr)
+            var objDiv = document.getElementById("chat-content");
+            objDiv.scrollTop = objDiv.scrollHeight;
         }
-            scrollChat()    
     }
 }
 
 
-
-    const url = "ws://{{request.get_host}}/ws/chat/{{username}}"
+    const url = "ws://{{request.get_host}}/ws/chat/{{user.username}}"
     const ws = new WebSocket(url)
     const messageDiv = document.getElementById("showmessages")
     const online = document.getElementById("onlineuser")
@@ -311,11 +309,12 @@ function updatedmsg(msgs){
     }
     ws.onmessage = function(event){
         console.log("message is get")
-       var socket=true
+        console.log(event)
+        socket=true
         getsms()  
     }
     ws.onclose = function(event){
-      var socket = false
+      socket=false
         console.log("connetion is closed")
         // getsms()
     }
