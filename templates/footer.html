@@ -301,7 +301,7 @@ function updatedmsg(msgs){
 
 
 
-    const url = "ws://{{request.get_host}}/chat/{{username}}"
+    const url = "ws://{{request.get_host}}/ws/chat/{{username}}"
     const ws = new WebSocket(url)
     const messageDiv = document.getElementById("showmessages")
     const online = document.getElementById("onlineuser")
