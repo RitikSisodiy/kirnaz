@@ -197,7 +197,7 @@ def relatedmodel(request,appname=None,modelname=None,objectid=None,relatedfield=
         result =  (list(filter(lambda x : (x.related_name==relatedfield), mymodel._meta.related_objects)))[0]
         relatedmodel =   result.related_model._meta.verbose_name
         relappname = result.related_model._meta.app_label
-        return redirect('editdatamodel',appname=relappname,modelname=relatedmodel,opration='edit',objectid=relatedfieldobject.id)
+        return redirect('editdatamodel',appname=relappname,modelname=relatedmodel,opration='edit',objectid=relatedfieldobject.pk)
 
     relmodel = relatedfieldobject.model
     relatedfieldobjectFieldname = relatedfieldobject.field.name
