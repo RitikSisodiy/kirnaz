@@ -115,29 +115,12 @@
           <div class="dropdown-items dropdown-items--right">
             <div class="dropdown-items__container">
               <ul class="dropdown-items__list">
-                <li class="dropdown-items__item"><a class="dropdown-items__link"><span
-                      class="dropdown-items__link-icon">
-                      <svg class="icon-icon-view">
-                        <use xlink:href='#icon-view'></use>
-                      </svg></span>Create a room</a>
-                </li>
-                <li class="dropdown-items__item"><a class="dropdown-items__link"><span
+                <li class="dropdown-items__item"><a class="dropdown-items__link" href="{% url "editdatamodel" "auth" "User" data.user.id %}"><span
                       class="dropdown-items__link-icon">
                       <svg class="icon-icon-user">
                         <use xlink:href='#icon-user'></use>
                       </svg></span>Profile</a>
                 </li>
-                <li class="dropdown-items__item"><a class="dropdown-items__link"><span
-                      class="dropdown-items__link-icon">
-                      <svg class="icon-icon-archive">
-                        <use xlink:href='#icon-archive'></use>
-                      </svg></span>Archived</a>
-                </li>
-                <li class="dropdown-items__item"><a class="dropdown-items__link"><span
-                      class="dropdown-items__link-icon">
-                      <svg class="icon-icon-settings">
-                        <use xlink:href='#icon-settings'></use>
-                      </svg></span>Settings</a>
                 </li>
               </ul>
             </div>
