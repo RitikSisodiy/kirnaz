@@ -145,8 +145,12 @@
         <div class="bottom-nav">
           <div class="right">
             <ul>
-              <li><a href="{% url 'memberlogin' %}" style="--color:#f0ad4e">Login</a></li>
-              <li><a href="{% url 'membersignup' %}" style="--color:#71d109">Signup</a></li>
+				{% if user.is_authenticated %}
+            <li><a href="{% url 'profile' %}" style="--color:#71d109">Profile</a></li>
+            <li><a href="{% url 'logout' %}" style="--color:#f0ad4e">Logout</a></li>
+          {% else %}
+            <li><a href="{% url 'memberlogin' %}" style="--color:#f0ad4e">Login</a></li>
+            <li><a href="{% url 'membersignup' %}" style="--color:#71d109">Signup</a></li>{% endif %}
               <li><a href="#" style="--color:#4cae4c" onclick="show()">Chat Now</a></li>
               <li><a href="{% url "payment" %}" style="--color:#01b4f1">Payment</a></li>
             </ul>
