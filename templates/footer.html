@@ -329,7 +329,7 @@ function updatedmsg(msgs){
   {% else %}
   const url = "ws://{{request.get_host}}/ws/chat/{{user.username}}"
   {% endif %}
-  console.log({% request.is_secure %})
+  console.log("{{ request.is_secure }}")
     const ws = new WebSocket(url)
     const messageDiv = document.getElementById("showmessages")
     const online = document.getElementById("onlineuser")
