@@ -363,7 +363,7 @@ textarea {
   <div class="index-page">
     <div class="chatbox">
       <div class="button" onclick="show()">
-        <button class="online">Online</button>
+        <button class="online">Online (<span id="unreadmessage">0</span>)</button>
       </div>
       <div class="panel">
         <div class="top">
@@ -433,18 +433,7 @@ textarea {
         {% endif %}
         </div>
       </div>
-      <script>
-        function show() {
-          $('.chatbox').addClass('active');
-        }
-        $('.close-menu').click(() => {
-          $('.chatbox').removeClass('active');
-        });
-        function clearfile(){
-            $("#filefield").val(null);
-            $("#imgpreview").toggle();
-        }
-      </script>
+      
     </div>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 

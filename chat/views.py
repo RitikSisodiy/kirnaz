@@ -67,8 +67,19 @@ def Logout(request):
 def getmsg(request):
     auser = request.user
     mlen = request.GET.get('len')
-    messages = list(conversation.objects.filter(msgby__user=auser.id).order_by('time').values('msgby__user',
+    conv = conversation.objects.filter(msgby__user=auser.id)
+    unread = conv.filter(readbyuser=False).count()
+    messages = list(conv.order_by('time').values('msgby__user',
 'msgtoadmin','msg','convofiles__file'))
     if len(messages)==int(mlen):
         return HttpResponse("updated")
-    return JsonResponse(messages[int(mlen):],safe=False)
+    messages = [messages[int(mlen):],unread]
+    return JsonResponse(messages,safe=False)
+def readbyuser(request):
+    try:
+        auser = request.user
+        conv = conversation.objects.filter(msgby__user=auser.id)
+        conv.update(readbyuser=True)
+    except:
+        pass
+    return HttpResponse('ok')

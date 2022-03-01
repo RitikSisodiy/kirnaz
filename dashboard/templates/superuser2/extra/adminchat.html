@@ -762,6 +762,13 @@
     return myser
   }
 
+ async function ShowNortification  (title,body,icon){
+    let permission = await Notification.requestPermission();
+    const greeting = new Notification(title,{
+        body: body,
+        icon: icon
+      });
+  }
 
   function updatedmsg(msgs) {
     if (msgs.length > 0) {
