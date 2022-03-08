@@ -34,7 +34,7 @@
         {% for data in alluser %}
         <li class="chat-users__list-item">
           <a class="chat-users__item"
-            href=" {% url 'adminchatuser' slug1=data.user.first_name|slugify id=data.user.id %}">
+            href=" {% url 'adminchatuser' slug1=data.user.username|slugify id=data.user.id %}">
             <div class="chat-users__item-avatar color-teal">
               <div class="chat-users__item-avatar-text">
                 {{data.user.first_name|slice:"1"|title}}{{data.user.last_name|slice:"1"|title}}</div>
@@ -53,7 +53,7 @@
     <div class="chat-users__content scrollbar-thin scrollbar-hidden" data-simplebar>
       <ul class="chat-users__list">
         {% for chat,latmsg in chats %}
-        {% url 'adminchatuser' slug1=chat.first_name|slugify id=chat.id as url %}
+        {% url 'adminchatuser' slug1=chat.username|slugify id=chat.id as url %}
         <li class="chat-users__list-item">
           <a class="chat-users__item {% if request.path == url %} active{% endif %}" href="{{url}}">
             <div class="chat-users__item-avatar color-orange-dark">
