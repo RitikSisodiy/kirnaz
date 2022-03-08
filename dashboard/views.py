@@ -166,6 +166,7 @@ def adminchat(request,slug1=None,id=None):
         if i not in resp:
             resp.append(i)
     res['chats'] = [[User.objects.get(id=i['msgby__user__id']),User.objects.get(id=i['msgby__user__id']).user.msgby.all().order_by('-time')] for i in resp]
+    return render(request,f'{templateFolder}/extra/adminchat.html',res)
     try:
         return render(request,f'{templateFolder}/extra/adminchat.html',res)
     except Exception:    
